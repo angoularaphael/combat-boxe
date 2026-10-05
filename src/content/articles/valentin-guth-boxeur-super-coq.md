@@ -7,7 +7,7 @@ date: 2026-10-05
 status: published
 family: fond
 kind: portrait
-image: /img/valentin-guth.jpg
+image: /img/valentin-guth-hero.jpg
 imageAlt: "Valentin Guth, boxeur professionnel français chez les super-coqs"
 breadcrumbs:
   - href: /boxeurs-francais

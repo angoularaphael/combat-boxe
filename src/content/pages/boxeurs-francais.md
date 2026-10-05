@@ -4,7 +4,7 @@ title: "Boxeurs français : portraits et prochains combats | Combat Boxe"
 description: "Boxeurs français et boxeurs professionnels : portraits, catégories, palmarès, clubs et prochaines échéances."
 h1: "Boxeurs français à suivre : portraits, parcours et prochains combats"
 template: boxers-fr
-image: /img/valentin-guth.jpg
+image: /img/valentin-guth-hero.jpg
 imageAlt: "Valentin Guth, boxeur professionnel français"
 breadcrumbs:
   - href: /boxeurs-francais

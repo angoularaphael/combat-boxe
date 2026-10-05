@@ -82,7 +82,7 @@ a:hover {
 }
 
 .logo img {
-  height: 52px;
+  height: 46px;
   width: auto;
 }
 
@@ -302,8 +302,9 @@ h2 {
 
 .card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: top center;
 }
 
 .prose {
@@ -334,6 +335,19 @@ h2 {
   gap: 6px;
   padding: 14px 0;
   border-top: 1px solid var(--line);
+}
+
+.row-card-media {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.row-card-media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .row-card h3 {
@@ -433,8 +447,8 @@ dd {
 .footer-brand img {
   height: 48px;
   width: auto;
-  background: var(--paper);
-  padding: 6px;
+  display: block;
+  margin-bottom: 12px;
 }
 
 @media (min-width: 720px) {
@@ -445,7 +459,12 @@ dd {
   }
 
   .logo img {
-    height: 64px;
+    height: 52px;
+  }
+
+  .row-card-media {
+    grid-template-columns: 200px 1fr;
+    align-items: center;
   }
 }
 
@@ -542,20 +561,20 @@ a {
 }
 
 .site-header {
-  background: rgba(244, 241, 236, .97);
+  background: rgba(247, 247, 245, .97);
   border-bottom: 1px solid var(--line);
-  box-shadow: 0 8px 30px rgba(16, 29, 41, .05);
+  box-shadow: 0 4px 20px rgba(16, 29, 41, .04);
   backdrop-filter: blur(14px);
 }
 
 .header-bar {
-  min-height: 78px;
-  background: rgb(244, 241, 236);
+  min-height: 76px;
 }
 
 .logo img {
-  height: 54px;
-  mix-blend-mode: multiply;
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
 .nav-burger {
@@ -656,8 +675,11 @@ a {
   z-index: -2;
 }
 
-.lead-story > img {
-  object-position: center 18%;
+.lead-story > img,
+.side-story > img,
+.mini-story > img,
+.portrait-card > img {
+  object-position: top center;
 }
 
 .lead-story:hover > img,
@@ -968,9 +990,19 @@ a {
 
 .page-hero .figure img {
   width: 100%;
-  max-height: 720px;
+  aspect-ratio: 16 / 9;
+  max-height: none;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center center;
+}
+
+.page-hero .figure.figure-portrait {
+  max-width: 420px;
+}
+
+.page-hero .figure.figure-portrait img {
+  aspect-ratio: 4 / 5;
+  object-position: top center;
 }
 
 .page-hero .prose {
@@ -1009,7 +1041,8 @@ a {
 }
 
 .card img {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 5;
+  object-position: top center;
 }
 
 .site-footer {
@@ -1024,9 +1057,10 @@ a {
 }
 
 .footer-brand img {
-  height: 62px;
-  padding: 8px;
-  background: #fff;
+  height: 52px;
+  width: auto;
+  display: block;
+  margin-bottom: 14px;
 }
 
 .footer-brand p {
@@ -1096,11 +1130,11 @@ a {
 @media (min-width: 900px) {
   .header-bar {
     justify-content: center;
-    min-height: 94px;
+    min-height: 88px;
   }
 
   .logo img {
-    height: 70px;
+    height: 56px;
   }
 
   .nav-panel {

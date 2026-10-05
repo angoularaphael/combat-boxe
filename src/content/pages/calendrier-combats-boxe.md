@@ -4,8 +4,8 @@ title: "Calendrier des combats de boxe | Combat Boxe"
 description: "Calendrier combat boxe et calendrier boxe : les rendez-vous confirmés, par date, avec catégories, lieux et titres en jeu."
 h1: "Calendrier des combats de boxe"
 template: calendar
-image: /img/boxing-ring-blue.jpg
-imageAlt: "Boxeur au centre d'un ring éclairé en bleu"
+image: /img/boxing-gloves.jpg
+imageAlt: "Gants de boxe prêts pour une soirée de combats"
 breadcrumbs:
   - href: /calendrier-combats-boxe
     label: Calendrier

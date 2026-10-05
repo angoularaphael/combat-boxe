@@ -51,8 +51,8 @@ export const clubs = [
       'Transmission : le pratiquant formé au club devient à son tour coach',
     ],
     url: 'https://boxe-toulouse.com/',
-    image: '/img/boxing-sparring.jpg',
-    imageAlt: 'Deux boxeurs en séance de sparring dans une salle',
+    image: '/img/valentin-guth-hero.jpg',
+    imageAlt: 'Valentin Guth au Boxing Center de Toulouse Minimes',
   },
 ];
 
@@ -81,10 +81,72 @@ export const coachs = [
 ];
 
 /** @type {Array<Record<string, string>>} */
-export const combats = [];
+export const combats = [
+  {
+    status: 'a-venir',
+    date: '2026-10-10',
+    boxerA: 'Floyd Schofield III',
+    boxerB: 'Lucas Bahdi',
+    category: 'Poids légers',
+    titles: 'Championnat du monde WBA des poids légers',
+    city: 'Chicago, États-Unis',
+    stakes:
+      'Deux invaincus se disputent la ceinture WBA des poids légers à la Wintrust Arena, en coproduction Golden Boy et Most Valuable Promotions, sur DAZN.',
+    article: 'schofield-bahdi-chicago-poids-legers',
+    sourceName: 'Most Valuable Promotions',
+    sourceUrl: 'https://www.mostvaluablepromotions.com/schofield-vs-bahdi-undercard-set-for-oct-10-in-chicago/',
+  },
+  {
+    status: 'a-venir',
+    date: '2026-10-24',
+    boxerA: 'Emanuel Navarrete',
+    boxerB: "O'Shaquie Foster",
+    category: 'Super-plumes',
+    titles: 'Unification WBO, IBF et WBC des super-plumes',
+    city: 'San Antonio, États-Unis',
+    stakes:
+      'Le champion WBO/IBF Emanuel Navarrete affronte le champion WBC O’Shaquie Foster pour trois ceintures mondiales au Frost Bank Center.',
+    article: 'navarrete-foster-unification-super-plumes',
+    sourceName: 'Top Rank Boxing',
+    sourceUrl: 'https://toprank.com/events/navarrete-vs-foster',
+  },
+  {
+    status: 'a-venir',
+    date: '2026-10-31',
+    boxerA: 'Christian Mbilli',
+    boxerB: 'Saúl Álvarez',
+    category: 'Super-moyens',
+    titles: 'Championnat du monde WBC des super-moyens',
+    city: 'Riyad, Arabie saoudite',
+    stakes:
+      'Mbilli, champion WBC, défend sa ceinture face à Canelo Álvarez, qui revient chercher le titre mondial des super-moyens.',
+    article: 'mbilli-canelo-riyad-super-moyens',
+    sourceName: 'World Boxing Council',
+    sourceUrl: 'https://wbcboxing.com/en/canelo-vs-mbilli-wbc-super-middleweight-world-title-on-the-line-october-31/',
+  },
+];
 
 /** @type {Array<Record<string, string>>} */
-export const galas = [];
+export const galas = [
+  {
+    date: '2026-10-10',
+    name: 'Schofield contre Bahdi',
+    city: 'Chicago, Wintrust Arena',
+    note: 'Carte Golden Boy et Most Valuable Promotions, en direct sur DAZN. Affiche principale : titre WBA des poids légers. En co-main, Ricardo Sandoval défend ses ceintures WBA et WBC contre Sergio Mendoza.',
+  },
+  {
+    date: '2026-10-24',
+    name: 'Navarrete contre Foster',
+    city: 'San Antonio, Frost Bank Center',
+    note: 'Soirée Top Rank. Affiche principale : unification à trois ceintures chez les super-plumes. Co-feature : Albert Gonzalez contre Edward Vazquez en plumes.',
+  },
+  {
+    date: '2026-10-31',
+    name: 'Mbilli contre Canelo',
+    city: 'Riyad',
+    note: 'Combat pour le titre WBC des super-moyens. Christian Mbilli, champion en titre, affronte Saúl Álvarez. Annonce du WBC le 30 septembre 2026.',
+  },
+];
 
 export function formatDate(date) {
   return new Intl.DateTimeFormat('fr-FR', {
@@ -104,4 +166,22 @@ export function clubBySlug(slug) {
 
 export function coachBySlug(slug) {
   return coachs.find((c) => c.slug === slug);
+}
+
+export function kindLabel(kind) {
+  const labels = {
+    portrait: 'Portrait',
+    annonce: 'Annonce',
+    resultat: 'Résultat',
+    analyse: 'Analyse',
+    interview: 'Interview',
+    dossier: 'Dossier',
+    guide: 'Guide',
+    gala: 'Gala',
+    titre: 'Titre',
+    signature: 'Signature',
+    blessure: 'Blessure',
+    report: 'Report',
+  };
+  return labels[kind] || kind;
 }

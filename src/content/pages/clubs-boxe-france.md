@@ -4,8 +4,8 @@ title: "Clubs de boxe en France : salles et formations | Combat Boxe"
 description: "Club de boxe France, salles et clubs formateurs : ville, disciplines, coachs, boxeurs formés et lien vers le club."
 h1: "Clubs de boxe en France : salles, formations et clubs à découvrir"
 template: clubs
-image: /img/boxing-sparring.jpg
-imageAlt: "Deux boxeurs s'entraînant dans une salle de boxe"
+image: /img/valentin-guth-hero.jpg
+imageAlt: "Valentin Guth au Boxing Center de Toulouse Minimes"
 breadcrumbs:
   - href: /clubs-boxe-france
     label: Clubs de boxe en France

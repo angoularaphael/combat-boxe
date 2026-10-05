@@ -9,6 +9,10 @@ L'agent publie. Une demande du type « publie un article sur tel combat » se te
 
 Le site est dans `combat-boxe/`. Astro, contenu markdown et données dans `src/data/entities.js`.
 
+L'accueil (`src/pages/index.astro`) affiche tout seul le dernier article publié et les quatre plus récents. Les combats de `entities.js` apparaissent dans Combats à venir, Calendrier, Galas et à l'accueil. Il ne faut pas recoder la une à la main.
+
+Pour une rédaction hors Cursor, via API : `node scripts/rediger-article.mjs --faits faits.json` (voir `docs/configuration-ia.md`). Claude Sonnet en priorité.
+
 ## Voix
 
 Média de boxe anglaise, France et international. Clair, sérieux, sportif, informatif, accessible. Une analyse peut prendre position après les faits. Le mot-clé central est « combat de boxe ». Boxing Center n'entre dans un texte que si un boxeur, un coach ou un club du réseau est vraiment dans le sujet.

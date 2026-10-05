@@ -4,8 +4,8 @@ title: "Entraîneurs de boxe français : portraits et parcours | Combat Boxe"
 description: "Entraîneur de boxe français et coach de boxe : diplômes, clubs, boxeurs formés, méthode et résultats."
 h1: "Entraîneurs de boxe français : coachs, formateurs et parcours"
 template: coaches
-image: /img/boxing-pads.jpg
-imageAlt: "Entraîneur travaillant aux pattes d'ours avec un boxeur"
+image: /img/boxing-ring-corner.jpg
+imageAlt: "Deux boxeurs à l'entraînement dans un ring"
 breadcrumbs:
   - href: /entraineurs-boxe-francais
     label: Entraîneurs

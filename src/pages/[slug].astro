@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { boxeurs, clubs, coachs, combats, galas, formatDate } from '../data/entities';
+import { boxeurs, clubs, coachs, combats, galas, formatDate, kindLabel } from '../data/entities';
 import { articleLd, breadcrumbLd, graph } from '../lib/seo';
 
 export async function getStaticPaths() {
@@ -24,6 +24,7 @@ const data = entry.data;
 const path = `/${data.slug}`;
 const crumbs = [{ href: '/', label: 'Accueil' }, ...data.breadcrumbs];
 const image = data.image || '/img/boxing-sparring.jpg';
+const portraitImage = image.includes('valentin-guth');
 const jsonLd = graph(
   breadcrumbLd(crumbs),
   mode === 'article'
@@ -68,11 +69,11 @@ const template = mode === 'page' ? data.template : 'article';
           </li>
         ))}
       </ol>
-      {mode === 'article' && <p class="meta">{formatDate(data.date)} · {data.kind}</p>}
+      {mode === 'article' && <p class="meta">{formatDate(data.date)} · {kindLabel(data.kind)}</p>}
       <h1>{data.h1}</h1>
       {template !== 'legal' && (
-        <figure class="figure">
-          <img src={image} alt={data.imageAlt || ''} width="1200" height="675" />
+        <figure class={portraitImage ? 'figure figure-portrait' : 'figure'}>
+          <img src={image} alt={data.imageAlt || ''} width={portraitImage ? '640' : '1200'} height={portraitImage ? '800' : '675'} />
         </figure>
       )}
       <div class="prose">
@@ -82,10 +83,13 @@ const template = mode === 'page' ? data.template : 'article';
       {template === 'news' && (
         <div class="stack">
           {articles.map((item) => (
-            <article class="row-card">
-              <p class="meta">{formatDate(item.data.date)} · {item.data.kind}</p>
-              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
-              <p>{item.data.description}</p>
+            <article class="row-card row-card-media">
+              <img src={item.data.image} alt={item.data.imageAlt} width="400" height="250" loading="lazy" />
+              <div>
+                <p class="meta">{formatDate(item.data.date)} · {kindLabel(item.data.kind)}</p>
+                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+                <p>{item.data.description}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -111,7 +115,7 @@ const template = mode === 'page' ? data.template : 'article';
                 ) : (
                   <p>{c.titles ? `${c.titles}. ` : ''}{c.stakes}</p>
                 )}
-                {c.article && <p><a href={`/${c.article}`}>Lire le compte rendu</a></p>}
+                {c.article && <p><a href={`/${c.article}`}>{c.status === 'dispute' ? 'Lire le compte rendu' : 'Lire l\'annonce'}</a></p>}
                 {c.sourceUrl && <p class="meta">Source : <a href={c.sourceUrl}>{c.sourceName}</a></p>}
               </article>
             ))}
@@ -139,7 +143,7 @@ const template = mode === 'page' ? data.template : 'article';
         <div class="grid cards-2">
           {fr.map((b) => (
             <article class="card">
-              <img src={b.photo} alt={b.photoAlt} width="640" height="800" />
+              <img src={b.photo} alt={b.photoAlt} width="640" height="800" loading="lazy" />
               <h2><a href={`/boxeurs/${b.slug}`}>{b.name}</a></h2>
               <p>{b.category} · {b.ranking}</p>
               <a class="btn" href={`/boxeurs/${b.slug}`}>Voir la fiche</a>
@@ -166,9 +170,12 @@ const template = mode === 'page' ? data.template : 'article';
       {template === 'portraits' && (
         <div class="stack">
           {portraits.map((item) => (
-            <article class="row-card">
-              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
-              <p>{item.data.description}</p>
+            <article class="row-card row-card-media">
+              <img src={item.data.image} alt={item.data.imageAlt} width="400" height="250" loading="lazy" />
+              <div>
+                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+                <p>{item.data.description}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -178,7 +185,7 @@ const template = mode === 'page' ? data.template : 'article';
         <div class="grid cards-2">
           {clubs.map((c) => (
             <article class="card">
-              <img src={c.image} alt={c.imageAlt} width="800" height="600" />
+              <img src={c.image} alt={c.imageAlt} width="800" height="1000" loading="lazy" />
               <h2><a href={`/clubs/${c.slug}`}>{c.name}</a></h2>
               <p>{c.city} · {c.disciplines.join(', ')}</p>
               <a class="btn" href={`/clubs/${c.slug}`}>Voir le club</a>
@@ -191,7 +198,7 @@ const template = mode === 'page' ? data.template : 'article';
         <div class="grid cards-2">
           {coachs.map((c) => (
             <article class="card">
-              <img src={c.photo} alt={c.photoAlt} width="640" height="800" />
+              <img src={c.photo} alt={c.photoAlt} width="640" height="800" loading="lazy" />
               <h2><a href={`/coachs/${c.slug}`}>{c.name}</a></h2>
               <p>{c.city} · {c.diplomes.join(', ')}</p>
               <a class="btn" href={`/coachs/${c.slug}`}>Voir le coach</a>

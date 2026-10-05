@@ -4,8 +4,8 @@ title: "Combats de boxe à venir : calendrier et enjeux | Combat Boxe"
 description: "Prochains combats de boxe : dates, boxeurs, catégories, titres en jeu, lieux et enjeux. Le calendrier des affiches confirmées."
 h1: "Combats de boxe à venir : calendrier, affiches et enjeux"
 template: upcoming
-image: /img/boxing-ring-blue.jpg
-imageAlt: "Boxeur dans un ring éclairé en bleu"
+image: /img/boxing-ring-corner.jpg
+imageAlt: "Deux boxeurs face à face dans un ring"
 breadcrumbs:
   - href: /combats-a-venir
     label: Combats à venir

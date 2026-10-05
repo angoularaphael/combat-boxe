@@ -4,8 +4,8 @@ title: "Actualité boxe française et internationale | Combat Boxe"
 description: "Actualité boxe : annonces de combats, galas, résultats, boxeurs français et affiches internationales. Le fil du média Combat Boxe."
 h1: "Actualité boxe : la France et l'international"
 template: news
-image: /img/boxing-pads.jpg
-imageAlt: "Boxeur travaillant aux pattes d'ours avec son entraîneur"
+image: /img/boxing-gloves.jpg
+imageAlt: "Gants de boxe posés au bord d'un ring"
 breadcrumbs:
   - href: /actualites
     label: Actualités
