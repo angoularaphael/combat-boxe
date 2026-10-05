@@ -1,0 +1,160 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { boxeurs, clubs, coachs, combats, formatDate } from '../data/entities';
+import { breadcrumbLd, graph, organizationLd } from '../lib/seo';
+
+const articles = (await getCollection('articles'))
+  .filter((a) => a.data.status === 'published')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const une = articles[0];
+const upcoming = combats.filter((c) => c.status === 'a-venir').slice(0, 4);
+const results = combats.filter((c) => c.status === 'dispute').slice(0, 4);
+const jsonLd = graph(
+  organizationLd,
+  breadcrumbLd([{ href: '/', label: 'Accueil' }]),
+);
+---
+
+<Base
+  title="Combat de boxe : actualité, calendrier et résultats | Combat Boxe"
+  description="Combat Boxe suit les combats de boxe à venir, les résultats, les boxeurs français, les clubs et les entraîneurs, en France et à l'international."
+  path="/"
+  image="/img/valentin-guth.jpg"
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+  <section class="news-hero">
+    <div class="wrap">
+      <div class="edition-line">
+        <span>Combat Boxe</span>
+        <p>Actualité, résultats, calendriers et visages de la boxe anglaise</p>
+      </div>
+      <div class="lead-grid">
+        {une && (
+          <a class="lead-story" href={`/${une.data.slug}`}>
+            <img src="/img/valentin-guth.jpg" alt={une.data.imageAlt} width="960" height="1200" />
+            <span class="story-shade"></span>
+            <div class="lead-copy">
+              <span class="tag">Portrait</span>
+              <p class="story-date">{formatDate(une.data.date)}</p>
+              <h1>Valentin Guth, du Boxing Center au top 3 français</h1>
+              <p>N°3 chez les super-coqs, professionnel et coach : un parcours construit dans la même salle, avec une ceinture nationale en ligne de mire.</p>
+              <span class="read-more">Lire le grand format</span>
+            </div>
+          </a>
+        )}
+        <div class="hero-side">
+          <a class="side-story side-story-dark" href="/combats-a-venir">
+            <img src="/img/boxing-sparring.jpg" alt="Deux boxeurs en séance de sparring dans une salle" width="900" height="600" />
+            <div>
+              <span class="tag">À suivre</span>
+              <h2>Les prochains combats qui vont compter</h2>
+              <p>Dates, affiches, catégories et enjeux : uniquement les rendez-vous confirmés.</p>
+            </div>
+          </a>
+          <div class="side-pair">
+            <a class="mini-story" href="/resultats-boxe">
+              <img src="/img/boxing-ring-blue.jpg" alt="Boxeur dans un ring éclairé en bleu" width="700" height="700" />
+              <span class="tag">Résultats</span>
+              <h3>Vainqueurs, décisions et analyses</h3>
+            </a>
+            <a class="mini-story" href="/calendrier-combats-boxe">
+              <img src="/img/boxing-training.jpg" alt="Boxeur en entraînement dans un ring" width="700" height="700" />
+              <span class="tag">Calendrier</span>
+              <h3>Les dates à retenir autour du ring</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section quick-access">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Le fil</span>
+          <h2>L'essentiel du ring</h2>
+        </div>
+        <a href="/actualites">Toutes les actualités</a>
+      </div>
+      <div class="news-list">
+        <a href="/valentin-guth-boxeur-super-coq" class="news-item">
+          <span class="news-index">01</span>
+          <div><span class="tag tag-blue">Boxe française</span><h3>Valentin Guth veut franchir un cap national en 2027</h3></div>
+          <span class="news-arrow">Lire</span>
+        </a>
+        <a href="/combats-a-venir" class="news-item">
+          <span class="news-index">02</span>
+          <div><span class="tag tag-blue">Agenda</span><h3>Les affiches confirmées, les lieux et les titres en jeu</h3></div>
+          <span class="news-arrow">Voir</span>
+        </a>
+        <a href="/resultats-boxe" class="news-item">
+          <span class="news-index">03</span>
+          <div><span class="tag tag-blue">Après-combat</span><h3>Comprendre un résultat au-delà du seul verdict</h3></div>
+          <span class="news-arrow">Voir</span>
+        </a>
+        <a href="/dossiers" class="news-item">
+          <span class="news-index">04</span>
+          <div><span class="tag tag-blue">Décryptage</span><h3>Catégories, palmarès, galas : les guides pour suivre la boxe</h3></div>
+          <span class="news-arrow">Lire</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section schedule-block">
+    <div class="wrap split-content">
+      <div>
+        <div class="section-head section-head-light">
+          <div><span class="eyebrow">Agenda</span><h2>Prochains combats</h2></div>
+          <a href="/combats-a-venir">Tout le calendrier</a>
+        </div>
+        {upcoming.length === 0 ? (
+          <div class="editorial-empty"><strong>Calendrier en cours de vérification</strong><p>Les premières affiches apparaîtront ici dès que la date, les deux boxeurs et la source seront confirmés.</p></div>
+        ) : (
+          <div class="stack">{upcoming.map((c) => <article class="row-card"><p class="meta">{formatDate(c.date)} · {c.category}</p><h3>{c.boxerA} contre {c.boxerB}</h3></article>)}</div>
+        )}
+      </div>
+      <div>
+        <div class="section-head section-head-light">
+          <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
+          <a href="/resultats-boxe">Tous les résultats</a>
+        </div>
+        {results.length === 0 ? (
+          <div class="editorial-empty"><strong>Résultats sourcés uniquement</strong><p>Le vainqueur, la méthode et la décision seront publiés dès les premiers comptes rendus vérifiés.</p></div>
+        ) : (
+          <div class="stack">{results.map((c) => <article class="row-card"><p class="meta">{formatDate(c.date)}</p><h3>{c.winner} bat {c.winner === c.boxerA ? c.boxerB : c.boxerA}</h3></article>)}</div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section discover">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">Au-delà du combat</span><h2>Les visages et les salles</h2></div>
+        <a href="/portraits-boxeurs">Tous les portraits</a>
+      </div>
+      <div class="portrait-grid">
+        <a class="portrait-card portrait-card-wide" href="/boxeurs-francais">
+          <img src="/img/valentin-guth.jpg" alt="Valentin Guth dans sa salle de boxe" width="800" height="1000" />
+          <div><span class="tag">Boxeurs français</span><h3>Des parcours, des styles et les prochaines échéances</h3><p>{boxeurs.length} première fiche publiée</p></div>
+        </a>
+        <a class="portrait-card" href="/clubs-boxe-france">
+          <img src="/img/boxing-sparring.jpg" alt="Deux boxeurs en entraînement dans une salle" width="900" height="700" />
+          <div><span class="tag">Clubs</span><h3>Les salles qui forment les boxeurs</h3><p>{clubs.length} club présenté</p></div>
+        </a>
+        <a class="portrait-card" href="/entraineurs-boxe-francais">
+          <img src="/img/boxing-pads.jpg" alt="Boxeur travaillant aux pattes d'ours avec son entraîneur" width="900" height="700" />
+          <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneur présenté</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <p class="photo-credit wrap">Photos de boxe : Unsplash, Anastase Maragos, Eser GOAT et photographes partenaires. Portrait Valentin Guth : Boxing Center.</p>
+  <Footer slot="footer" />
+</Base>

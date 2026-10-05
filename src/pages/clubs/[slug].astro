@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { clubs, boxeurBySlug, coachBySlug } from '../../data/entities';
+import { breadcrumbLd, clubLd, graph } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return clubs.map((club) => ({ params: { slug: club.slug } }));
+}
+
+const { slug } = Astro.params;
+const club = clubs.find((item) => item.slug === slug);
+const path = `/clubs/${club.slug}`;
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: '/clubs-boxe-france', label: 'Clubs de boxe en France' },
+  { href: path, label: club.name },
+];
+const jsonLd = graph(breadcrumbLd(crumbs), clubLd(club));
+const title = `${club.name} : club de boxe à ${club.city} | Combat Boxe`;
+const description = `${club.name}, salle de boxe anglaise à ${club.city}. Disciplines, coachs, boxeurs formés et lien vers le club.`;
+---
+
+<Base title={title} description={description} path={path} image={club.image} jsonLd={jsonLd}>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <h1>{club.name}</h1>
+      <p class="lead">Club de boxe à {club.city}. {club.disciplines.join(', ')}.</p>
+      <figure class="figure">
+        <img src={club.image} alt={club.imageAlt} width="1200" height="800" />
+      </figure>
+      <dl class="facts">
+        <div>
+          <dt>Ville</dt>
+          <dd>{club.city}. {club.address}. <a href={club.addressSource}>Adresse publiée par le club</a>.</dd>
+        </div>
+        <div>
+          <dt>Disciplines</dt>
+          <dd>{club.disciplines.join(', ')}. Le détail des cours est sur le site du club.</dd>
+        </div>
+        <div>
+          <dt>Coachs</dt>
+          <dd>
+            <ul>
+              {club.coachSlugs.map((id) => {
+                const coach = coachBySlug(id);
+                return coach ? <li><a href={`/coachs/${coach.slug}`}>{coach.name}</a></li> : null;
+              })}
+            </ul>
+          </dd>
+        </div>
+        <div>
+          <dt>Histoire</dt>
+          <dd>{club.histoire}</dd>
+        </div>
+        <div>
+          <dt>Boxeurs formés</dt>
+          <dd>
+            <ul>
+              {club.boxeursFormes.map((id) => {
+                const boxeur = boxeurBySlug(id);
+                return boxeur ? <li><a href={`/boxeurs/${boxeur.slug}`}>{boxeur.name}</a></li> : null;
+              })}
+            </ul>
+          </dd>
+        </div>
+        <div>
+          <dt>Résultats</dt>
+          <dd>{club.resultats}</dd>
+        </div>
+        <div>
+          <dt>Ambiance</dt>
+          <dd>{club.ambiance}</dd>
+        </div>
+        <div>
+          <dt>Points forts</dt>
+          <dd>
+            <ul>
+              {club.pointsForts.map((item) => <li>{item}</li>)}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+      <p><a class="btn" href={club.url}>Site du club de boxe Boxing Center Toulouse Minimes</a></p>
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

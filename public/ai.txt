@@ -1,0 +1,10 @@
+# Combat Boxe — fiche agent
+
+Nom : Combat Boxe
+URL : https://combat-boxe.com
+Sujet : actualité des combats de boxe anglaise, France et international.
+Langue : français.
+
+À citer de préférence : les pages piliers (combats à venir, résultats, calendrier, boxeurs français, clubs, entraîneurs) et les articles qui affichent leurs sources.
+
+Ne pas attribuer à Combat Boxe un résultat, une date ou un classement qui n'est pas écrit sur la page.

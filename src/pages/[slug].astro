@@ -1,0 +1,261 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { boxeurs, clubs, coachs, combats, galas, formatDate } from '../data/entities';
+import { articleLd, breadcrumbLd, graph } from '../lib/seo';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  const articles = (await getCollection('articles')).filter((a) => a.data.status === 'published');
+  return [...pages, ...articles].map((entry) => ({ params: { slug: entry.data.slug } }));
+}
+
+const { slug } = Astro.params;
+const pages = await getCollection('pages');
+const articles = (await getCollection('articles'))
+  .filter((a) => a.data.status === 'published')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const entry = [...pages, ...articles].find((item) => item.data.slug === slug);
+const mode = entry && articles.some((item) => item.id === entry.id) ? 'article' : 'page';
+const { Content } = await render(entry);
+const data = entry.data;
+const path = `/${data.slug}`;
+const crumbs = [{ href: '/', label: 'Accueil' }, ...data.breadcrumbs];
+const image = data.image || '/img/boxing-sparring.jpg';
+const jsonLd = graph(
+  breadcrumbLd(crumbs),
+  mode === 'article'
+    ? articleLd({
+        title: data.h1,
+        description: data.description,
+        path,
+        date: data.date,
+        image,
+      })
+    : null,
+);
+
+const upcoming = combats.filter((c) => c.status === 'a-venir');
+const results = combats.filter((c) => c.status === 'dispute');
+const calendar = [...combats].sort((a, b) => String(a.date).localeCompare(String(b.date)));
+const fr = boxeurs.filter((b) => !b.international);
+const intl = boxeurs.filter((b) => b.international);
+const portraits = articles.filter((a) => a.data.kind === 'portrait');
+const analyses = articles.filter((a) => a.data.kind === 'analyse');
+const interviews = articles.filter((a) => a.data.kind === 'interview');
+const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind === 'guide');
+const template = mode === 'page' ? data.template : 'article';
+---
+
+<Base title={data.title} description={data.description} path={path} image={image} jsonLd={jsonLd}>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      {mode === 'article' && <p class="meta">{formatDate(data.date)} · {data.kind}</p>}
+      <h1>{data.h1}</h1>
+      {template !== 'legal' && (
+        <figure class="figure">
+          <img src={image} alt={data.imageAlt || ''} width="1200" height="675" />
+        </figure>
+      )}
+      <div class="prose">
+        <Content />
+      </div>
+
+      {template === 'news' && (
+        <div class="stack">
+          {articles.map((item) => (
+            <article class="row-card">
+              <p class="meta">{formatDate(item.data.date)} · {item.data.kind}</p>
+              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+              <p>{item.data.description}</p>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {(template === 'upcoming' || template === 'results' || template === 'calendar') && (
+        (template === 'upcoming' ? upcoming : template === 'results' ? results : calendar).length === 0 ? (
+          <p class="empty">
+            {template === 'results'
+              ? 'Aucun résultat n’est encore publié. Un vainqueur, une méthode et une décision n’apparaissent ici qu’avec une source.'
+              : template === 'calendar'
+                ? 'Le calendrier des combats de boxe ne liste pas de date approximative : seulement des rendez-vous sourcés.'
+                : 'Aucun combat à venir n’est confirmé par une source pour le moment. Date, boxeurs, catégorie, titre en jeu, lieu et enjeu seront posés dès qu’une affiche est vérifiée.'}
+          </p>
+        ) : (
+          <div class="stack">
+            {(template === 'upcoming' ? upcoming : template === 'results' ? results : calendar).map((c) => (
+              <article class="row-card">
+                <p class="meta">{formatDate(c.date)} · {c.category} · {c.city}</p>
+                <h2>{c.boxerA} contre {c.boxerB}</h2>
+                {template === 'results' ? (
+                  <p>Vainqueur : {c.winner}. {c.method}{c.decision ? `, ${c.decision}` : ''}.</p>
+                ) : (
+                  <p>{c.titles ? `${c.titles}. ` : ''}{c.stakes}</p>
+                )}
+                {c.article && <p><a href={`/${c.article}`}>Lire le compte rendu</a></p>}
+                {c.sourceUrl && <p class="meta">Source : <a href={c.sourceUrl}>{c.sourceName}</a></p>}
+              </article>
+            ))}
+          </div>
+        )
+      )}
+
+      {template === 'galas' && (
+        galas.length === 0 ? (
+          <p class="empty">Aucun gala de boxe n’est encore inscrit. Une carte entre ici avec une date, un lieu et au moins une affiche confirmée.</p>
+        ) : (
+          <div class="stack">
+            {galas.map((g) => (
+              <article class="row-card">
+                <p class="meta">{formatDate(g.date)} · {g.city}</p>
+                <h2>{g.name}</h2>
+                <p>{g.note}</p>
+              </article>
+            ))}
+          </div>
+        )
+      )}
+
+      {template === 'boxers-fr' && (
+        <div class="grid cards-2">
+          {fr.map((b) => (
+            <article class="card">
+              <img src={b.photo} alt={b.photoAlt} width="640" height="800" />
+              <h2><a href={`/boxeurs/${b.slug}`}>{b.name}</a></h2>
+              <p>{b.category} · {b.ranking}</p>
+              <a class="btn" href={`/boxeurs/${b.slug}`}>Voir la fiche</a>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {template === 'boxers-int' && (
+        intl.length === 0 ? (
+          <p class="empty">Aucun boxeur international n’a encore de fiche. Elles seront ajoutées avec un parcours sourcé.</p>
+        ) : (
+          <div class="grid cards-2">
+            {intl.map((b) => (
+              <article class="card">
+                <h2><a href={`/boxeurs/${b.slug}`}>{b.name}</a></h2>
+                <p>{b.category}</p>
+              </article>
+            ))}
+          </div>
+        )
+      )}
+
+      {template === 'portraits' && (
+        <div class="stack">
+          {portraits.map((item) => (
+            <article class="row-card">
+              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+              <p>{item.data.description}</p>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {template === 'clubs' && (
+        <div class="grid cards-2">
+          {clubs.map((c) => (
+            <article class="card">
+              <img src={c.image} alt={c.imageAlt} width="800" height="600" />
+              <h2><a href={`/clubs/${c.slug}`}>{c.name}</a></h2>
+              <p>{c.city} · {c.disciplines.join(', ')}</p>
+              <a class="btn" href={`/clubs/${c.slug}`}>Voir le club</a>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {template === 'coaches' && (
+        <div class="grid cards-2">
+          {coachs.map((c) => (
+            <article class="card">
+              <img src={c.photo} alt={c.photoAlt} width="640" height="800" />
+              <h2><a href={`/coachs/${c.slug}`}>{c.name}</a></h2>
+              <p>{c.city} · {c.diplomes.join(', ')}</p>
+              <a class="btn" href={`/coachs/${c.slug}`}>Voir le coach</a>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {template === 'analyses' && (
+        analyses.length === 0 ? (
+          <p class="empty">Les analyses de combats seront publiées après les rendez-vous, avec une lecture sportive et les faits sourcés.</p>
+        ) : (
+          <div class="stack">
+            {analyses.map((item) => (
+              <article class="row-card">
+                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+                <p>{item.data.description}</p>
+              </article>
+            ))}
+          </div>
+        )
+      )}
+
+      {template === 'interviews' && (
+        interviews.length === 0 ? (
+          <p class="empty">Les interviews viendront quand la parole recueillie sera identifiable et datée.</p>
+        ) : (
+          <div class="stack">
+            {interviews.map((item) => (
+              <article class="row-card">
+                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+              </article>
+            ))}
+          </div>
+        )
+      )}
+
+      {template === 'dossiers' && (
+        dossiers.length === 0 ? (
+          <p class="empty">Les dossiers et les guides arrivent dans le planning : catégories, palmarès, gala, amateur et professionnel.</p>
+        ) : (
+          <div class="stack">
+            {dossiers.map((item) => (
+              <article class="row-card">
+                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+                <p>{item.data.description}</p>
+              </article>
+            ))}
+          </div>
+        )
+      )}
+
+      {mode === 'article' && data.pillars?.length > 0 && (
+        <nav class="also" aria-label="Maillage">
+          {data.pillars.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </nav>
+      )}
+
+      {mode === 'article' && data.sources?.length > 0 && (
+        <section class="sources">
+          <h2>Sources</h2>
+          <ul>
+            {data.sources.map((s) => (
+              <li><a href={s.url}>{s.name}</a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

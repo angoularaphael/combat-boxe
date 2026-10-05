@@ -1,0 +1,52 @@
+---
+const groups = [
+  [
+    ['/combat-de-boxe', 'Combat de boxe'],
+    ['/actualites', 'Actualités'],
+    ['/combats-a-venir', 'Combats à venir'],
+    ['/resultats-boxe', 'Résultats'],
+    ['/calendrier-combats-boxe', 'Calendrier'],
+    ['/galas-boxe', 'Galas'],
+  ],
+  [
+    ['/boxeurs-francais', 'Boxeurs français'],
+    ['/boxeurs-internationaux', 'Boxeurs internationaux'],
+    ['/portraits-boxeurs', 'Portraits'],
+    ['/clubs-boxe-france', 'Clubs de boxe en France'],
+    ['/entraineurs-boxe-francais', 'Entraîneurs'],
+    ['/analyses', 'Analyses'],
+    ['/interviews', 'Interviews'],
+    ['/dossiers', 'Dossiers'],
+  ],
+];
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="/img/logo.png" alt="Combat Boxe" width="220" height="52" />
+      <p>L'actualité des combats de boxe, des boxeurs et des salles, en France et à l'international.</p>
+      <p class="footer-signature">Autour du ring, au plus près des faits.</p>
+    </div>
+    {
+      groups.map((links) => (
+        <ul>
+          {links.map(([href, label]) => (
+            <li>
+              <a href={href}>{label}</a>
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+    <ul>
+      <li><a href="/mentions-legales">Mentions légales</a></li>
+      <li><a href="/confidentialite">Confidentialité</a></li>
+      <li><a href="/llms.txt">À propos du média</a></li>
+    </ul>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>Combat Boxe</span>
+    <span>Média indépendant de boxe anglaise</span>
+  </div>
+</footer>

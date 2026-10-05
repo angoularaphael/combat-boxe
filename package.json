@@ -1,0 +1,19 @@
+{
+  "name": "combat-boxe",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Raphael / Boxing Center",
+  "description": "Combat Boxe, média d'actualité des combats de boxe — combat-boxe.com",
+  "scripts": {
+    "dev": "astro dev --port 3310 --host",
+    "build": "astro build",
+    "preview": "astro preview --port 3310 --host"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^8.2.11",
+    "astro": "^5.18.2"
+  }
+}

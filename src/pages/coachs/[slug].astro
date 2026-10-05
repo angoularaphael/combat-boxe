@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { coachs, clubBySlug } from '../../data/entities';
+import { breadcrumbLd, graph, personLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return coachs.map((coach) => ({ params: { slug: coach.slug } }));
+}
+
+const { slug } = Astro.params;
+const coach = coachs.find((item) => item.slug === slug);
+const path = `/coachs/${coach.slug}`;
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: '/entraineurs-boxe-francais', label: 'Entraîneurs de boxe français' },
+  { href: path, label: coach.name },
+];
+const jsonLd = graph(
+  breadcrumbLd(crumbs),
+  personLd({ ...coach, jobTitle: 'Entraîneur de boxe', country: 'France' }, path),
+);
+const title = `${coach.name} : entraîneur de boxe à ${coach.city} | Combat Boxe`;
+const description = `${coach.name}, coach de boxe anglaise à ${coach.city}. Parcours, diplômes, club et rôle dans la formation.`;
+---
+
+<Base title={title} description={description} path={path} image={coach.photo} jsonLd={jsonLd}>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap fiche">
+      <div>
+        <ol class="crumbs">
+          {crumbs.map((c, i) => (
+            <li>
+              {i > 0 && <span aria-hidden="true"> / </span>}
+              {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+            </li>
+          ))}
+        </ol>
+        <h1>{coach.name}</h1>
+        <p class="lead">Entraîneur de boxe français, coach à {coach.city}, boxeur professionnel en activité.</p>
+        <figure class="fiche-photo">
+          <img src={coach.photo} alt={coach.photoAlt} width="640" height="800" />
+        </figure>
+      </div>
+      <dl class="facts">
+        <div>
+          <dt>Parcours</dt>
+          <dd>{coach.parcours}</dd>
+        </div>
+        <div>
+          <dt>Diplômes</dt>
+          <dd>
+            {coach.diplomes.join(', ')}. <a href={coach.diplomesSource}>Source : fiche coach Boxing Center</a>.
+          </dd>
+        </div>
+        <div>
+          <dt>Clubs associés</dt>
+          <dd>
+            <ul>
+              {coach.clubSlugs.map((id) => {
+                const club = clubBySlug(id);
+                return club ? <li><a href={`/clubs/${club.slug}`}>{club.name}</a></li> : null;
+              })}
+            </ul>
+          </dd>
+        </div>
+        <div>
+          <dt>Boxeurs formés</dt>
+          <dd>{coach.boxeursFormes}</dd>
+        </div>
+        <div>
+          <dt>Méthode de travail</dt>
+          <dd>{coach.methode}</dd>
+        </div>
+        <div>
+          <dt>Résultats obtenus</dt>
+          <dd>{coach.resultats}</dd>
+        </div>
+        <div>
+          <dt>Rôle dans la formation</dt>
+          <dd>{coach.role}</dd>
+        </div>
+      </dl>
+      <div class="actions">
+        <a class="btn" href={coach.ficheUrl}>Fiche coach Valentin Guth</a>
+        {coach.article && <a class="btn alt" href={`/${coach.article}`}>Lire le portrait</a>}
+      </div>
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

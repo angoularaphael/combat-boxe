@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { boxeurs, clubBySlug, coachBySlug } from '../../data/entities';
+import { breadcrumbLd, graph, personLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return boxeurs.map((boxeur) => ({ params: { slug: boxeur.slug } }));
+}
+
+const { slug } = Astro.params;
+const boxeur = boxeurs.find((item) => item.slug === slug);
+const club = clubBySlug(boxeur.clubSlug);
+const coach = coachBySlug(boxeur.coachSlug);
+const path = `/boxeurs/${boxeur.slug}`;
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: boxeur.international ? '/boxeurs-internationaux' : '/boxeurs-francais', label: boxeur.international ? 'Boxeurs internationaux' : 'Boxeurs français' },
+  { href: path, label: boxeur.name },
+];
+const jsonLd = graph(
+  breadcrumbLd(crumbs),
+  personLd({ ...boxeur, jobTitle: 'Boxeur professionnel', country: boxeur.country }, path),
+);
+const title = `${boxeur.name} : boxeur ${boxeur.category.toLowerCase()} | Combat Boxe`;
+const description = `${boxeur.name}, ${boxeur.ranking}. Parcours, club, style et prochaines échéances.`;
+---
+
+<Base title={title} description={description} path={path} image={boxeur.photo} jsonLd={jsonLd}>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap fiche">
+      <div>
+        <ol class="crumbs">
+          {crumbs.map((c, i) => (
+            <li>
+              {i > 0 && <span aria-hidden="true"> / </span>}
+              {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+            </li>
+          ))}
+        </ol>
+        <h1>{boxeur.name}</h1>
+        <p class="lead">{boxeur.ranking}. Catégorie {boxeur.category}.</p>
+        <figure class="fiche-photo">
+          <img src={boxeur.photo} alt={boxeur.photoAlt} width="640" height="800" />
+        </figure>
+      </div>
+      <dl class="facts">
+        <div>
+          <dt>Catégorie</dt>
+          <dd>{boxeur.category}</dd>
+        </div>
+        <div>
+          <dt>Palmarès</dt>
+          <dd>{boxeur.palmares}</dd>
+        </div>
+        <div>
+          <dt>Parcours</dt>
+          <dd>{boxeur.parcours}</dd>
+        </div>
+        <div>
+          <dt>Club d'origine</dt>
+          <dd>{club ? <a href={`/clubs/${club.slug}`}>{club.name}</a> : 'Non précisé'}</dd>
+        </div>
+        <div>
+          <dt>Coach</dt>
+          <dd>
+            {coach ? (
+              <a href={`/coachs/${coach.slug}`}>{coach.name}, également coach dans son club</a>
+            ) : (
+              'Non précisé sur les sources retenues'
+            )}
+          </dd>
+        </div>
+        <div>
+          <dt>Style de boxe</dt>
+          <dd>{boxeur.style}</dd>
+        </div>
+        <div>
+          <dt>Combats marquants</dt>
+          <dd>{boxeur.combatsMarquants}</dd>
+        </div>
+        <div>
+          <dt>Prochaines échéances</dt>
+          <dd>{boxeur.prochaines}</dd>
+        </div>
+        <div>
+          <dt>Bilan indiqué par le club</dt>
+          <dd>
+            {boxeur.recordNote}{' '}
+            <a href={boxeur.rankingSource}>Fiche Boxing Center</a>
+          </dd>
+        </div>
+      </dl>
+      {boxeur.article && (
+        <p><a class="btn" href={`/${boxeur.article}`}>Lire le portrait</a></p>
+      )}
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

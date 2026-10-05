@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="Page introuvable | Combat Boxe"
+  description="Cette page n'existe pas sur Combat Boxe."
+  path="/404"
+>
+  <Header slot="header" />
+  <section class="page-hero">
+    <div class="wrap">
+      <h1>Page introuvable</h1>
+      <p class="lead">Le lien ne correspond à aucun article ni à aucune rubrique.</p>
+      <p><a class="btn" href="/">Retour à l'accueil</a></p>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</Base>

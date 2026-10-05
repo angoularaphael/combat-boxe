@@ -1,0 +1,26 @@
+# Combat Boxe
+
+Média indépendant sur les combats de boxe anglaise, en France et à l'international.
+Site : https://combat-boxe.com
+Mot-clé central : combat de boxe.
+
+## Pages principales
+
+- https://combat-boxe.com/combat-de-boxe
+- https://combat-boxe.com/actualites
+- https://combat-boxe.com/combats-a-venir
+- https://combat-boxe.com/resultats-boxe
+- https://combat-boxe.com/calendrier-combats-boxe
+- https://combat-boxe.com/galas-boxe
+- https://combat-boxe.com/boxeurs-francais
+- https://combat-boxe.com/boxeurs-internationaux
+- https://combat-boxe.com/portraits-boxeurs
+- https://combat-boxe.com/clubs-boxe-france
+- https://combat-boxe.com/entraineurs-boxe-francais
+- https://combat-boxe.com/analyses
+- https://combat-boxe.com/interviews
+- https://combat-boxe.com/dossiers
+
+## Règle éditoriale
+
+Les faits (dates, résultats, classements, titres) sont sourcés. Les textes sont originaux. Les images de rubriques sont produites pour ce site.
