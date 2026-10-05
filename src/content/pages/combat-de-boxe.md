@@ -1,6 +1,6 @@
 ---
 slug: combat-de-boxe
-title: "Combat de boxe : affiches, enjeux et lecture d'un rendez-vous | Combat Boxe"
+title: "Combat de boxe : affiches, calendrier et résultats | Combat Boxe"
 description: "Qu'est-ce qu'un combat de boxe pour Combat Boxe : affiche, catégorie, titre en jeu, lieu, enjeu, puis résultat. Le mot-clé central du média."
 h1: "Combat de boxe : affiches, enjeux et lecture d'un rendez-vous"
 template: hub

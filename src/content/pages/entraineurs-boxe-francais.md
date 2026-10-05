@@ -1,6 +1,6 @@
 ---
 slug: entraineurs-boxe-francais
-title: "Entraîneurs de boxe français : coachs, formateurs et parcours | Combat Boxe"
+title: "Entraîneurs de boxe français : portraits et parcours | Combat Boxe"
 description: "Entraîneur de boxe français et coach de boxe : diplômes, clubs, boxeurs formés, méthode et résultats."
 h1: "Entraîneurs de boxe français : coachs, formateurs et parcours"
 template: coaches

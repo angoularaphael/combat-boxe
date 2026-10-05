@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, formatDate } from '../data/entities';
-import { breadcrumbLd, graph, organizationLd } from '../lib/seo';
+import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
@@ -14,12 +14,13 @@ const upcoming = combats.filter((c) => c.status === 'a-venir').slice(0, 4);
 const results = combats.filter((c) => c.status === 'dispute').slice(0, 4);
 const jsonLd = graph(
   organizationLd,
+  websiteLd,
   breadcrumbLd([{ href: '/', label: 'Accueil' }]),
 );
 ---
 
 <Base
-  title="Combat de boxe : actualité, calendrier et résultats | Combat Boxe"
+  title="Combat de boxe : actualité, calendrier, résultats | Combat Boxe"
   description="Combat Boxe suit les combats de boxe à venir, les résultats, les boxeurs français, les clubs et les entraîneurs, en France et à l'international."
   path="/"
   image="/img/valentin-guth.jpg"

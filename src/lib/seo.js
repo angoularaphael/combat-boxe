@@ -34,7 +34,9 @@ export function articleLd({ title, description, path, date, image }) {
       url: SITE,
       logo: {
         '@type': 'ImageObject',
-        url: canonical('/img/logo.png'),
+        url: canonical('/favicon-512.png'),
+        width: 512,
+        height: 512,
       },
     },
   };
@@ -71,9 +73,26 @@ export function graph(...nodes) {
 
 export const organizationLd = {
   '@type': 'NewsMediaOrganization',
+  '@id': `${SITE}/#organization`,
   name: 'Combat Boxe',
   url: SITE,
-  logo: canonical('/img/logo.png'),
+  logo: {
+    '@type': 'ImageObject',
+    url: canonical('/favicon-512.png'),
+    width: 512,
+    height: 512,
+  },
+  image: canonical('/img/og-combat-boxe.jpg'),
   description:
     'Média indépendant sur les combats de boxe, les résultats, les calendriers, les boxeurs, les clubs et les entraîneurs.',
+};
+
+export const websiteLd = {
+  '@type': 'WebSite',
+  '@id': `${SITE}/#website`,
+  url: SITE,
+  name: 'Combat Boxe',
+  alternateName: 'Combat-Boxe.com',
+  inLanguage: 'fr-FR',
+  publisher: { '@id': `${SITE}/#organization` },
 };

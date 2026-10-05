@@ -1,6 +1,6 @@
 ---
 slug: clubs-boxe-france
-title: "Clubs de boxe en France : salles, formations et clubs à découvrir | Combat Boxe"
+title: "Clubs de boxe en France : salles et formations | Combat Boxe"
 description: "Club de boxe France, salles et clubs formateurs : ville, disciplines, coachs, boxeurs formés et lien vers le club."
 h1: "Clubs de boxe en France : salles, formations et clubs à découvrir"
 template: clubs

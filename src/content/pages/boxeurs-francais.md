@@ -1,6 +1,6 @@
 ---
 slug: boxeurs-francais
-title: "Boxeurs français à suivre : portraits, parcours et prochains combats | Combat Boxe"
+title: "Boxeurs français : portraits et prochains combats | Combat Boxe"
 description: "Boxeurs français et boxeurs professionnels : portraits, catégories, palmarès, clubs et prochaines échéances."
 h1: "Boxeurs français à suivre : portraits, parcours et prochains combats"
 template: boxers-fr

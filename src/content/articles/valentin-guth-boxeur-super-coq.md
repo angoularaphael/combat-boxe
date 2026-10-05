@@ -1,6 +1,6 @@
 ---
 slug: valentin-guth-boxeur-super-coq
-title: "Valentin Guth : le boxeur français classé n°3 chez les super-coqs vise une ceinture nationale"
+title: "Valentin Guth vise une ceinture nationale en 2027 | Combat Boxe"
 description: "Valentin Guth, boxeur professionnel français n°3 chez les super-coqs, vise une ceinture nationale en 2027. Formé au Boxing Center de Toulouse, il est aussi coach."
 h1: "Valentin Guth : le boxeur français classé n°3 chez les super-coqs vise une ceinture nationale"
 date: 2026-10-05

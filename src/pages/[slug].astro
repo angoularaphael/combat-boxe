@@ -49,7 +49,14 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
 const template = mode === 'page' ? data.template : 'article';
 ---
 
-<Base title={data.title} description={data.description} path={path} image={image} jsonLd={jsonLd}>
+<Base
+  title={data.title}
+  description={data.description}
+  path={path}
+  image={image}
+  ogType={mode === 'article' ? 'article' : 'website'}
+  jsonLd={jsonLd}
+>
   <Header slot="header" />
   <article class="page-hero">
     <div class="wrap">

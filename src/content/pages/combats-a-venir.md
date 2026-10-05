@@ -1,6 +1,6 @@
 ---
 slug: combats-a-venir
-title: "Combats de boxe à venir : calendrier, affiches et enjeux | Combat Boxe"
+title: "Combats de boxe à venir : calendrier et enjeux | Combat Boxe"
 description: "Prochains combats de boxe : dates, boxeurs, catégories, titres en jeu, lieux et enjeux. Le calendrier des affiches confirmées."
 h1: "Combats de boxe à venir : calendrier, affiches et enjeux"
 template: upcoming

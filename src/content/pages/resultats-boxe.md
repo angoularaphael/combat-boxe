@@ -1,6 +1,6 @@
 ---
 slug: resultats-boxe
-title: "Résultats boxe : derniers combats, vainqueurs et analyses | Combat Boxe"
+title: "Résultats boxe : derniers combats et analyses | Combat Boxe"
 description: "Résultats boxe et résultat combat boxe : vainqueurs, méthodes de victoire, décisions et liens vers les comptes rendus."
 h1: "Résultats boxe : derniers combats, vainqueurs et analyses"
 template: results
