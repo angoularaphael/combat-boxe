@@ -24,7 +24,7 @@ const jsonLd = graph(
   title="Combat de boxe : actualité, calendrier, résultats | Combat Boxe"
   description="Combat Boxe suit les combats de boxe à venir, les résultats, les boxeurs français, les clubs et les entraîneurs, en France et à l'international."
   path="/"
-  image={une?.data.image || '/img/valentin-guth-hero.jpg'}
+  image={une?.data.photo || '/img/og-combat-boxe.jpg'}
   jsonLd={jsonLd}
 >
   <Header slot="header" />
@@ -36,21 +36,19 @@ const jsonLd = graph(
       </div>
       <div class="lead-grid">
         {une && (
-          <a class="lead-story" href={`/${une.data.slug}`}>
-            <img src={une.data.image} alt={une.data.imageAlt} width="960" height="640" />
+          <a class="lead-story lead-story-edito" href={`/${une.data.slug}`}>
             <span class="story-shade"></span>
             <div class="lead-copy">
               <span class="tag">{kindLabel(une.data.kind)}</span>
               <p class="story-date">{formatDate(une.data.date)}</p>
-              <h1>{une.data.h1}</h1>
+              <h1>{une.data.coverVersus ? une.data.coverVersus.replace(' / ', ' contre ') : une.data.h1}</h1>
               <p>{une.data.description}</p>
               <span class="read-more">Lire l'article</span>
             </div>
           </a>
         )}
         <div class="hero-side">
-          <a class="side-story side-story-dark" href="/combats-a-venir">
-            <img src="/img/boxing-ring-corner.jpg" alt="Deux boxeurs face à face dans un ring" width="900" height="600" />
+          <a class="side-story" href="/combats-a-venir">
             <div>
               <span class="tag">À suivre</span>
               <h2>Les prochains combats qui vont compter</h2>
@@ -59,12 +57,10 @@ const jsonLd = graph(
           </a>
           <div class="side-pair">
             <a class="mini-story" href="/resultats-boxe">
-              <img src="/img/boxing-sparring.jpg" alt="Deux boxeurs en séance de sparring dans une salle" width="700" height="700" />
               <span class="tag">Résultats</span>
               <h3>Vainqueurs, décisions et analyses</h3>
             </a>
             <a class="mini-story" href="/calendrier-combats-boxe">
-              <img src="/img/boxing-gloves.jpg" alt="Gants de boxe posés au bord d'un ring" width="700" height="700" />
               <span class="tag">Calendrier</span>
               <h3>Les dates à retenir autour du ring</h3>
             </a>
@@ -148,12 +144,10 @@ const jsonLd = graph(
           <div><span class="tag">Clubs</span><h3>Les salles qui forment les boxeurs</h3><p>{clubs.length} club présenté</p></div>
         </a>
         <a class="portrait-card" href="/entraineurs-boxe-francais">
-          <img src="/img/boxing-ring-corner.jpg" alt="Deux boxeurs à l'entraînement dans un ring" width="900" height="700" />
           <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneur présenté</p></div>
         </a>
       </div>
     </div>
   </section>
-  <p class="photo-credit wrap">Photos de boxe : Unsplash (Johny Goerend, Eser GOAT, Anastase Maragos et photographes partenaires). Portrait Valentin Guth : Boxing Center.</p>
   <Footer slot="footer" />
 </Base>

@@ -1,14 +1,16 @@
 ---
 slug: mbilli-canelo-riyad-super-moyens
 title: "Mbilli défend sa ceinture WBC contre Canelo le 31 octobre | Combat Boxe"
-description: "Christian Mbilli défend le titre WBC des super-moyens contre Saúl Álvarez le 31 octobre 2026 à Riyad. Date, enjeu et sources du combat."
+description: "Christian Mbilli défend le titre WBC des super-moyens contre Saúl Álvarez le 31 octobre 2026 à Riyad."
 h1: "Christian Mbilli défend sa ceinture WBC face à Canelo Álvarez le 31 octobre à Riyad"
 date: 2026-10-05T18:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/boxing-gloves.jpg
-imageAlt: "Gants de boxe posés au bord d'un ring"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
+coverVersus: "Mbilli / Canelo"
+coverMeta: "31 octobre 2026 · Riyad · Super-moyens"
 breadcrumbs:
   - href: /actualites
     label: Actualités

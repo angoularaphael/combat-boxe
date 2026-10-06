@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, kindLabel } from '../data/entities';
 import { articleLd, breadcrumbLd, graph } from '../lib/seo';
+import Cover from '../components/Cover.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
@@ -23,8 +24,12 @@ const { Content } = await render(entry);
 const data = entry.data;
 const path = `/${data.slug}`;
 const crumbs = [{ href: '/', label: 'Accueil' }, ...data.breadcrumbs];
-const image = data.image || '/img/boxing-sparring.jpg';
-const portraitImage = image.includes('valentin-guth');
+const template = mode === 'page' ? data.template : 'article';
+const image = data.photo || data.image || '/img/og-combat-boxe.jpg';
+const portraitImage = Boolean(data.photo);
+const listing = ['news', 'boxers-fr', 'boxers-int', 'clubs', 'coaches', 'portraits', 'analyses', 'interviews', 'dossiers'].includes(template);
+const showPhoto = template !== 'legal' && portraitImage;
+const showCover = template !== 'legal' && !listing && !portraitImage;
 const jsonLd = graph(
   breadcrumbLd(crumbs),
   mode === 'article'
@@ -47,7 +52,6 @@ const portraits = articles.filter((a) => a.data.kind === 'portrait');
 const analyses = articles.filter((a) => a.data.kind === 'analyse');
 const interviews = articles.filter((a) => a.data.kind === 'interview');
 const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind === 'guide');
-const template = mode === 'page' ? data.template : 'article';
 ---
 
 <Base
@@ -71,10 +75,18 @@ const template = mode === 'page' ? data.template : 'article';
       </ol>
       {mode === 'article' && <p class="meta">{formatDate(data.date)} · {kindLabel(data.kind)}</p>}
       <h1>{data.h1}</h1>
-      {template !== 'legal' && (
-        <figure class={portraitImage ? 'figure figure-portrait' : 'figure'}>
-          <img src={image} alt={data.imageAlt || ''} width={portraitImage ? '640' : '1200'} height={portraitImage ? '800' : '675'} />
+      {showPhoto && (
+        <figure class="figure figure-portrait">
+          <img src={data.photo} alt={data.imageAlt || ''} width="640" height="800" />
         </figure>
+      )}
+      {showCover && (
+        <Cover
+          kicker={mode === 'article' ? kindLabel(data.kind) : 'Combat Boxe'}
+          versus={data.coverVersus || ''}
+          title={data.coverVersus ? '' : data.h1}
+          meta={data.coverMeta || ''}
+        />
       )}
       <div class="prose">
         <Content />
@@ -83,13 +95,10 @@ const template = mode === 'page' ? data.template : 'article';
       {template === 'news' && (
         <div class="stack">
           {articles.map((item) => (
-            <article class="row-card row-card-media">
-              <img src={item.data.image} alt={item.data.imageAlt} width="400" height="250" loading="lazy" />
-              <div>
-                <p class="meta">{formatDate(item.data.date)} · {kindLabel(item.data.kind)}</p>
-                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
-                <p>{item.data.description}</p>
-              </div>
+            <article class="row-card">
+              <p class="meta">{formatDate(item.data.date)} · {kindLabel(item.data.kind)}</p>
+              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+              <p>{item.data.description}</p>
             </article>
           ))}
         </div>
@@ -116,7 +125,6 @@ const template = mode === 'page' ? data.template : 'article';
                   <p>{c.titles ? `${c.titles}. ` : ''}{c.stakes}</p>
                 )}
                 {c.article && <p><a href={`/${c.article}`}>{c.status === 'dispute' ? 'Lire le compte rendu' : 'Lire l\'annonce'}</a></p>}
-                {c.sourceUrl && <p class="meta">Source : <a href={c.sourceUrl}>{c.sourceName}</a></p>}
               </article>
             ))}
           </div>
@@ -170,12 +178,9 @@ const template = mode === 'page' ? data.template : 'article';
       {template === 'portraits' && (
         <div class="stack">
           {portraits.map((item) => (
-            <article class="row-card row-card-media">
-              <img src={item.data.image} alt={item.data.imageAlt} width="400" height="250" loading="lazy" />
-              <div>
-                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
-                <p>{item.data.description}</p>
-              </div>
+            <article class="row-card">
+              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+              <p>{item.data.description}</p>
             </article>
           ))}
         </div>
@@ -257,17 +262,6 @@ const template = mode === 'page' ? data.template : 'article';
             <a href={link.href}>{link.label}</a>
           ))}
         </nav>
-      )}
-
-      {mode === 'article' && data.sources?.length > 0 && (
-        <section class="sources">
-          <h2>Sources</h2>
-          <ul>
-            {data.sources.map((s) => (
-              <li><a href={s.url}>{s.name}</a></li>
-            ))}
-          </ul>
-        </section>
       )}
     </div>
   </article>

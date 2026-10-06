@@ -15,4 +15,4 @@ La mesure d'audience, si elle est activée, passe par Google Analytics 4. L'iden
 
 Les pages ne contiennent pas de formulaire de collecte à ce stade. Si un formulaire est ajouté plus tard, cette page décrira les données demandées, leur durée de conservation et le moyen d'écrire au responsable.
 
-Les photos de boxeurs publiées le sont avec l'accord lié à leur usage par Boxing Center, ou proviennent de banques d'images autorisant leur réutilisation. Les photographies génériques de boxe utilisées au lancement viennent d'Unsplash ; leurs pages sources sont conservées dans la documentation du site.
+Les photographies nominatives (boxeur, club, coach) ne sont publiées que lorsqu'elles représentent vraiment le sujet, avec l'accord lié à leur usage par Boxing Center. Les combats s'illustrent par un bandeau éditorial Combat Boxe, sans photo de banque d'images.

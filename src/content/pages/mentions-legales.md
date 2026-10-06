@@ -13,7 +13,7 @@ Le site combat-boxe.com est un média d'information sur les combats de boxe, éd
 
 Directeur de la publication : Raphael, Boxing Center.
 
-Hébergement : Vercel Inc. Le site est un site statique. Les articles publiés engagent la rédaction sur les faits sourcés indiqués en fin de texte.
+Hébergement : Vercel Inc. Le site est un site statique. Les articles publiés engagent la rédaction sur les faits vérifiés avant publication.
 
 Les marques et les sites vers lesquels Combat Boxe fait un lien, notamment boxe-toulouse.com et boxingcenter.fr, restent la propriété de leurs éditeurs. Un lien vers ces sites ne transfère pas leurs contenus.
 

@@ -8,7 +8,8 @@
     "dev": "astro dev --port 3310 --host",
     "build": "astro build",
     "preview": "astro preview --port 3310 --host",
-    "rediger": "node scripts/rediger-article.mjs"
+    "rediger": "node scripts/rediger-article.mjs",
+    "actu": "node scripts/actu-quotidienne.mjs"
   },
   "engines": {
     "node": ">=20"

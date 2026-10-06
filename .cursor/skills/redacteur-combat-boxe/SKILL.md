@@ -17,7 +17,9 @@ Pour une rédaction hors Cursor, via API : `node scripts/rediger-article.mjs --f
 
 Média de boxe anglaise, France et international. Clair, sérieux, sportif, informatif, accessible. Une analyse peut prendre position après les faits. Le mot-clé central est « combat de boxe ». Boxing Center n'entre dans un texte que si un boxeur, un coach ou un club du réseau est vraiment dans le sujet.
 
-Textes originaux. Aucun paragraphe repris d'actu-boxe.com ni d'un autre média. Pour les images, utiliser en priorité une photo officielle fournie par le boxeur, le club ou le promoteur, ou une photographie réelle issue d'une banque autorisant la réutilisation. Conserver l'URL source et le crédit dans `docs/credits-photos.md`. Ne pas utiliser de visuel généré par IA. Ne pas attribuer une photo générique à un boxeur ou à un combat précis.
+Textes originaux. Aucun paragraphe repris d'actu-boxe.com ni d'un autre média.
+
+Images : ne pas coller de photo Unsplash, banque d'images ou visuel IA. Sur le site, un combat s'illustre par le bandeau éditorial Combat Boxe (noms, date, ville, catégorie). Une photo réelle n'entre que si elle représente vraiment le boxeur, le club ou le coach du papier, fournie ou autorisée. Pas de crédit photo visible en bas de page. Pas de bloc Sources visible : les URLs restent dans le frontmatter pour la rédaction seulement.
 
 ## Écriture naturelle
 
@@ -56,8 +58,11 @@ date: 2026-10-05
 status: published
 family: actualite
 kind: annonce
-image: /img/boxing-sparring.jpg
-imageAlt:
+image: /img/og-combat-boxe.jpg
+imageAlt: Combat Boxe
+coverVersus: NomA / NomB
+coverMeta: 9 octobre 2026 · Saint-Nazaire · Lourds-légers
+photo:
 breadcrumbs:
   - href: /actualites
     label: Actualités

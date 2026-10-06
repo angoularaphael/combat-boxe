@@ -1,0 +1,32 @@
+# Actu quotidienne Combat Boxe
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Chercher et publier une actu
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/actu-quotidienne.mjs
+      - name: Pousser s'il y a du nouveau
+        run: |
+          git add src/content/articles src/data/entities.js public/img
+          git diff --cached --quiet && echo "Rien a publier" && exit 0
+          git -c user.name="Raphael" -c user.email="germainraphaelangoulaonambele@gmail.com" commit -m "Publie l'actualite du jour."
+          git push

@@ -4,7 +4,7 @@ title: "Interviews de boxeurs, de coachs et de clubs | Combat Boxe"
 description: "Interviews de boxe : paroles de boxeurs, de coachs et de clubs, datées et situées, sans citation inventée."
 h1: "Interviews de boxeurs, de coachs et de clubs"
 template: interviews
-image: /img/boxing-pads.jpg
+image: /img/og-combat-boxe.jpg
 imageAlt: "Boxeur et entraîneur pendant une séance de travail"
 breadcrumbs:
   - href: /interviews

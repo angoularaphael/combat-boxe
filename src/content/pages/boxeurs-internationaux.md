@@ -4,7 +4,7 @@ title: "Boxeurs internationaux : affiches et parcours | Combat Boxe"
 description: "Combat boxe international : boxeurs à suivre hors de France, parcours sourcés et liens vers les affiches."
 h1: "Boxeurs internationaux : affiches et parcours à suivre"
 template: boxers-int
-image: /img/boxing-sparring.jpg
+image: /img/og-combat-boxe.jpg
 imageAlt: "Deux boxeurs en action dans une salle"
 breadcrumbs:
   - href: /boxeurs-internationaux

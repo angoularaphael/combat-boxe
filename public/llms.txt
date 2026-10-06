@@ -23,4 +23,4 @@ Mot-clé central : combat de boxe.
 
 ## Règle éditoriale
 
-Les faits (dates, résultats, classements, titres) sont sourcés. Les textes sont originaux. Les images de rubriques sont produites pour ce site.
+Les faits (dates, résultats, classements, titres) sont vérifiés avant publication. Les textes sont originaux. Les combats s'illustrent par un bandeau éditorial. Une photo nominative n'apparaît que si elle représente le sujet.

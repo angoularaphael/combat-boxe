@@ -34,7 +34,7 @@ Il accepte une de ces clés, dans cet ordre :
 
 **À utiliser pour Combat Boxe : Claude Sonnet.** C'est le modèle le plus fiable pour un média : il copie moins, il hallucine moins sur les records, il tient un ton de journaliste sportif.
 
-Ne pas utiliser un modèle d'images (Dall-E, Midjourney, Firefly). Les visuels du site sont des photos réelles.
+Ne pas utiliser un modèle d'images (Dall-E, Midjourney, Firefly). Les combats s'illustrent par le bandeau Combat Boxe. Une photo réelle seulement pour un portrait fourni.
 
 ### Mise en place
 
@@ -48,8 +48,10 @@ Ne pas utiliser un modèle d'images (Dall-E, Midjourney, Firefly). Les visuels d
   "kind": "annonce",
   "family": "actualite",
   "date": "2026-10-05",
-  "image": "/img/boxing-gloves.jpg",
-  "imageAlt": "Gants de boxe posés au bord d'un ring",
+  "image": "/img/og-combat-boxe.jpg",
+  "imageAlt": "Combat Boxe",
+  "coverVersus": "NomA / NomB",
+  "coverMeta": "31 octobre 2026 · Riyad · Super-moyens",
   "title": "Titre SEO, moins de 65 caractères",
   "h1": "Titre de l'article",
   "description": "Meta description",
@@ -96,19 +98,14 @@ L'accueil prend tout seul le dernier article publié. Le fil « L'essentiel du r
 
 Les clés `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` et `GEMINI_API_KEY` restent en local (ou dans un outil d'automation). Elles ne vont pas dans Vercel : le site est statique, il n'appelle pas l'IA au moment de la visite.
 
-## Publication programmée
+## Publication toutes les 24 heures
 
-Une fois le dépôt GitHub connecté, une Cursor Automation peut tourner :
+Un workflow GitHub Actions tourne chaque jour à 8 h (heure de Paris, hiver) : `.github/workflows/actu-quotidienne.yml`.
 
-- Lundi 8 h : annonces et combats à venir.
-- Mercredi 8 h : portrait, dossier ou guide.
-- Dimanche 20 h : résultats du week-end.
+Il faut ajouter le secret `ANTHROPIC_API_KEY` dans GitHub (Settings, Secrets and variables, Actions). Sans ce secret, le job tourne mais n'écrit rien.
 
-Prompt type :
+Le script `npm run actu` lit des pages officielles, ignore les sujets déjà publiés, et n'écrit un article que s'il reste un combat daté avec deux noms.
 
-```text
-Travaille dans le projet Combat Boxe. Applique la skill redacteur-combat-boxe.
-Cherche des sources publiques identifiables. Ne reprends aucune phrase d'un
-autre média. Utilise une photo réelle autorisée. Publie le contenu sourcé,
-mets à jour entities.js, lance le build, commit et pousse.
-```
+Les visuels d'annonce sont des bandeaux Combat Boxe (typographie), pas des photos de banque. Une photo réelle n'apparaît que pour un portrait fourni, comme Valentin Guth.
+
+Ne pas afficher de bloc Sources ni de crédit photo sur le site.

@@ -4,7 +4,7 @@ title: "Galas de boxe : cartes, lieux et titres en jeu | Combat Boxe"
 description: "Gala de boxe et gala boxe à venir : la carte, le lieu, les combats annoncés et les titres en jeu, avec lien vers chaque affiche."
 h1: "Galas de boxe : cartes, lieux et titres en jeu"
 template: galas
-image: /img/boxing-ring-corner.jpg
+image: /img/og-combat-boxe.jpg
 imageAlt: "Boxeurs dans un ring avant un combat d'entraînement"
 breadcrumbs:
   - href: /galas-boxe

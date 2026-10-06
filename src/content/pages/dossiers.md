@@ -4,7 +4,7 @@ title: "Dossiers spéciaux sur la boxe | Combat Boxe"
 description: "Dossiers boxe : catégories de poids, champions français, formation des jeunes, boxe féminine et guides pour lire un combat."
 h1: "Dossiers spéciaux sur la boxe"
 template: dossiers
-image: /img/boxing-training.jpg
+image: /img/og-combat-boxe.jpg
 imageAlt: "Boxeur en entraînement dans un ring"
 breadcrumbs:
   - href: /dossiers

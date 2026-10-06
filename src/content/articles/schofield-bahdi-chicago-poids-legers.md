@@ -7,8 +7,10 @@ date: 2026-10-05T16:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/boxing-ring-corner.jpg
-imageAlt: "Deux boxeurs face à face dans un ring, casques et gants d'entraînement"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
+coverVersus: "Schofield / Bahdi"
+coverMeta: "10 octobre 2026 · Chicago · Poids légers"
 breadcrumbs:
   - href: /actualites
     label: Actualités

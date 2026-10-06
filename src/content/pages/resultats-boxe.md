@@ -4,7 +4,7 @@ title: "Résultats boxe : derniers combats et analyses | Combat Boxe"
 description: "Résultats boxe et résultat combat boxe : vainqueurs, méthodes de victoire, décisions et liens vers les comptes rendus."
 h1: "Résultats boxe : derniers combats, vainqueurs et analyses"
 template: results
-image: /img/boxing-sparring.jpg
+image: /img/og-combat-boxe.jpg
 imageAlt: "Deux boxeurs en action pendant un entraînement"
 breadcrumbs:
   - href: /resultats-boxe

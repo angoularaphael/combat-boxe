@@ -4,7 +4,7 @@ title: "Analyses de combats de boxe | Combat Boxe"
 description: "Analyses de combats de boxe : lecture des enjeux, des décisions et de ce que le résultat change, après les faits sourcés."
 h1: "Analyses de combats de boxe"
 template: analyses
-image: /img/boxing-sparring.jpg
+image: /img/og-combat-boxe.jpg
 imageAlt: "Deux boxeurs pendant une phase de combat"
 breadcrumbs:
   - href: /analyses

@@ -7,8 +7,10 @@ date: 2026-10-05T15:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/boxing-ring-blue.jpg
-imageAlt: "Boxeur au travail au sac, gants noirs, tenue de combat"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
+coverVersus: "Navarrete / Foster"
+coverMeta: "24 octobre 2026 · San Antonio · Super-plumes"
 breadcrumbs:
   - href: /actualites
     label: Actualités

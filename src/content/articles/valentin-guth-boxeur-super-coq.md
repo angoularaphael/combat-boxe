@@ -9,6 +9,7 @@ family: fond
 kind: portrait
 image: /img/valentin-guth-hero.jpg
 imageAlt: "Valentin Guth, boxeur professionnel français chez les super-coqs"
+photo: /img/valentin-guth-hero.jpg
 breadcrumbs:
   - href: /boxeurs-francais
     label: Boxeurs français
