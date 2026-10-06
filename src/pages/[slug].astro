@@ -3,8 +3,9 @@ import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { boxeurs, clubs, coachs, combats, galas, formatDate, kindLabel } from '../data/entities';
-import { articleLd, breadcrumbLd, graph } from '../lib/seo';
+import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../data/entities';
+import { editionPath, editionTitle } from '../lib/archive';
+import { articleLd, breadcrumbLd, collectionLd, graph } from '../lib/seo';
 import Cover from '../components/Cover.astro';
 
 export async function getStaticPaths() {
@@ -21,12 +22,14 @@ const articles = (await getCollection('articles'))
 const entry = [...pages, ...articles].find((item) => item.data.slug === slug);
 const mode = entry && articles.some((item) => item.id === entry.id) ? 'article' : 'page';
 const { Content } = await render(entry);
-const data = entry.data;
+const data = liveArticle(entry.data);
 const path = `/${data.slug}`;
 const crumbs = [{ href: '/', label: 'Accueil' }, ...data.breadcrumbs];
 const template = mode === 'page' ? data.template : 'article';
 const image = data.photo || data.image || '/img/og-combat-boxe.jpg';
 const portraitImage = Boolean(data.photo);
+const linkedBoxer = data.boxeur || boxeurs.find((b) => b.article === data.slug);
+const editions = groupArticlesByDay(articles);
 const listing = ['news', 'boxers-fr', 'boxers-int', 'clubs', 'coaches', 'portraits', 'analyses', 'interviews', 'dossiers'].includes(template);
 const showPhoto = template !== 'legal' && portraitImage;
 const showCover = template !== 'legal' && !listing && !portraitImage;
@@ -40,7 +43,14 @@ const jsonLd = graph(
         date: data.date,
         image,
       })
-    : null,
+    : template === 'news'
+      ? collectionLd({
+          title: data.h1,
+          description: data.description,
+          path,
+          items: articles.map((a) => ({ data: liveArticle(a.data) })),
+        })
+      : null,
 );
 
 const upcoming = combats.filter((c) => c.status === 'a-venir');
@@ -80,6 +90,26 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
           <img src={data.photo} alt={data.imageAlt || ''} width="640" height="800" />
         </figure>
       )}
+      {linkedBoxer && mode === 'article' && (
+        <dl class="facts facts-live">
+          <div>
+            <dt>Catégorie</dt>
+            <dd>{linkedBoxer.category}</dd>
+          </div>
+          <div>
+            <dt>Classement</dt>
+            <dd>{linkedBoxer.ranking}</dd>
+          </div>
+          <div>
+            <dt>Bilan</dt>
+            <dd>{linkedBoxer.recordNote}</dd>
+          </div>
+          <div>
+            <dt>Objectif</dt>
+            <dd>{linkedBoxer.objectif}</dd>
+          </div>
+        </dl>
+      )}
       {showCover && (
         <Cover
           kicker={mode === 'article' ? kindLabel(data.kind) : 'Combat Boxe'}
@@ -93,15 +123,37 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       </div>
 
       {template === 'news' && (
-        <div class="stack">
-          {articles.map((item) => (
-            <article class="row-card">
-              <p class="meta">{formatDate(item.data.date)} · {kindLabel(item.data.kind)}</p>
-              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
-              <p>{item.data.description}</p>
-            </article>
+        <>
+          <nav class="edition-list" aria-label="Actualités par jour">
+            {editions.map(([key, items]) => (
+              <a class="row-card edition-link" href={editionPath(items[0].data.date)}>
+                <p class="meta">{items.length} article{items.length > 1 ? 's' : ''}</p>
+                <h2>{editionTitle(items[0].data.date)}</h2>
+                <p>Voir les articles publiés ce jour-là.</p>
+              </a>
+            ))}
+          </nav>
+          {editions.map(([key, items]) => (
+            <section class="edition-block">
+              <div class="section-head">
+                <h2>{editionTitle(items[0].data.date)}</h2>
+                <a href={editionPath(items[0].data.date)}>Ouvrir l'édition</a>
+              </div>
+              <div class="stack">
+                {items.map((item) => {
+                  const row = liveArticle(item.data);
+                  return (
+                    <article class="row-card">
+                      <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
+                      <h3><a href={`/${row.slug}`}>{row.h1}</a></h3>
+                      <p>{row.description}</p>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
           ))}
-        </div>
+        </>
       )}
 
       {(template === 'upcoming' || template === 'results' || template === 'calendar') && (
@@ -177,12 +229,15 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
 
       {template === 'portraits' && (
         <div class="stack">
-          {portraits.map((item) => (
+          {portraits.map((item) => {
+            const row = liveArticle(item.data);
+            return (
             <article class="row-card">
-              <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
-              <p>{item.data.description}</p>
+              <h2><a href={`/${row.slug}`}>{row.h1}</a></h2>
+              <p>{row.description}</p>
             </article>
-          ))}
+            );
+          })}
         </div>
       )}
 
@@ -190,7 +245,7 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         <div class="grid cards-2">
           {clubs.map((c) => (
             <article class="card">
-              <img src={c.image} alt={c.imageAlt} width="800" height="1000" loading="lazy" />
+              {c.image && <img src={c.image} alt={c.imageAlt || c.name} width="800" height="1000" loading="lazy" />}
               <h2><a href={`/clubs/${c.slug}`}>{c.name}</a></h2>
               <p>{c.city} · {c.disciplines.join(', ')}</p>
               <a class="btn" href={`/clubs/${c.slug}`}>Voir le club</a>

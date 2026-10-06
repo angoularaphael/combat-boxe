@@ -17,6 +17,6 @@ Le coach de boxe n'est pas un à-côté du combat. Il explique souvent pourquoi 
 
 ## Coach à Toulouse, formateur, boxeur
 
-Le premier portrait est celui de [Valentin Guth](/coachs/valentin-guth), coach de boxe à Toulouse, diplômé BPJEPS, boxeur professionnel encore en activité. Le cas intéresse doublement : entraîneur boxeur professionnel, et formateur dans le club qui l'a lui-même formé. Sa fiche sur Boxing Center est liée depuis l'article, sans recopier la page du club.
+Le premier portrait est celui de [Valentin Guth](/coachs/valentin-guth), coach de boxe à Toulouse, diplômé BPJEPS, boxeur professionnel encore en activité. Classement, bilan et objectif sont ceux de [sa fiche boxeur](/boxeurs/valentin-guth). Le cas intéresse doublement : entraîneur encore sur le ring, et formateur dans le club qui l'a lui-même formé.
 
 D'autres coachs de boxe en France entreront quand le parcours sera assez précis pour une fiche, y compris hors de Toulouse. Un nom seul ne suffit pas.

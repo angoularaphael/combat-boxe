@@ -3,14 +3,15 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { boxeurs, clubs, coachs, combats, formatDate, kindLabel } from '../data/entities';
+import { boxeurs, clubs, coachs, combats, formatDate, kindLabel, liveArticle } from '../data/entities';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const une = articles[0];
-const fil = articles.slice(0, 4);
+const une = articles[0] ? { ...articles[0], data: liveArticle(articles[0].data) } : null;
+const fil = articles.slice(0, 4).map((item) => ({ ...item, data: liveArticle(item.data) }));
+const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
 const upcoming = combats.filter((c) => c.status === 'a-venir').slice(0, 4);
 const results = combats.filter((c) => c.status === 'dispute').slice(0, 4);
 const jsonLd = graph(
@@ -135,12 +136,17 @@ const jsonLd = graph(
         <a href="/portraits-boxeurs">Tous les portraits</a>
       </div>
       <div class="portrait-grid">
-        <a class="portrait-card portrait-card-wide" href="/boxeurs-francais">
-          <img src="/img/valentin-guth-hero.jpg" alt="Valentin Guth dans sa salle de boxe" width="800" height="1000" />
-          <div><span class="tag">Boxeurs français</span><h3>Des parcours, des styles et les prochaines échéances</h3><p>{boxeurs.length} première fiche publiée</p></div>
-        </a>
+        {guth && (
+          <a class="portrait-card portrait-card-wide" href={`/boxeurs/${guth.slug}`}>
+            <img src={guth.photo} alt={guth.photoAlt} width="800" height="1000" />
+            <div>
+              <span class="tag">Boxeurs français</span>
+              <h3>{guth.name}</h3>
+              <p>{guth.ranking}</p>
+            </div>
+          </a>
+        )}
         <a class="portrait-card" href="/clubs-boxe-france">
-          <img src="/img/valentin-guth-hero.jpg" alt="Valentin Guth au Boxing Center de Toulouse" width="900" height="700" />
           <div><span class="tag">Clubs</span><h3>Les salles qui forment les boxeurs</h3><p>{clubs.length} club présenté</p></div>
         </a>
         <a class="portrait-card" href="/entraineurs-boxe-francais">

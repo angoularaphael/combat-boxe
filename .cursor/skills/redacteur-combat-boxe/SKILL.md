@@ -90,6 +90,12 @@ Gala : tableau `galas`, avec date, ville, nom, note.
 
 Fiche boxeur, club ou coach : compléter `boxeurs`, `clubs` ou `coachs` dans le même fichier, avec les champs déjà utilisés par les pages. Ne pas inventer un palmarès, un diplôme ou une adresse.
 
+Valentin Guth (et tout boxeur qui est aussi coach) : les faits (classement, bilan, objectif, photo) se mettent à jour **uniquement** dans l'objet `boxeurs`. La fiche coach, le portrait et l'accueil lisent cette fiche. Ne pas recopier le classement dans un article ou une page.
+
+Ne jamais supprimer un article publié. Un combat disputé passe en `status: dispute`, l'annonce reste. L'accueil montre le plus récent ; l'historique vit dans `/actualites` et `/actualites/AAAA-MM-JJ`.
+
+Une photo ne se répète pas sur la même page. Guth illustre Guth, pas le club.
+
 ## Longueur et SEO
 
 Une actu développe le fait et l'enjeu. Un portrait, une analyse ou un guide va au bout du sujet, avec plusieurs H2. Title unique, meta unique, un seul H1. Mots-clés dans des phrases. Pas de liste de mots-clés en bas de page.

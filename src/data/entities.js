@@ -21,9 +21,10 @@ export const boxeurs = [
       "Classement annoncé par Boxing Center : n°3 français chez les super-coqs. Aucune ceinture nationale n'est indiquée à ce stade. L'objectif annoncé est d'en disputer une en 2027.",
     combatsMarquants:
       "Le passage du ring amateur au ring professionnel, au sein du club qui l'a formé. Le détail combat par combat n'est pas repris ici lorsque les bilans publics ne concordent pas.",
+    objectif: 'une ceinture nationale en 2027',
     prochaines:
       "Disputer une ceinture nationale en 2027. Aucune date de gala n'est confirmée sur cette fiche.",
-    photo: '/img/valentin-guth.jpg',
+    photo: '/img/valentin-guth-hero.jpg',
     photoAlt: 'Valentin Guth, boxeur professionnel français chez les super-coqs',
     article: 'valentin-guth-boxeur-super-coq',
   },
@@ -42,7 +43,7 @@ export const clubs = [
       "Salle de boxe anglaise à Toulouse, dans le quartier des Minimes. Le club forme des pratiquants et a accompagné Valentin Guth des rangs amateurs jusqu'au professionnalisme.",
     boxeursFormes: ['valentin-guth'],
     resultats:
-      "Le résultat retenu ici est un parcours : un boxeur formé au club est aujourd'hui professionnel, classé n°3 français chez les super-coqs selon Boxing Center, et coach sur place.",
+      "Un boxeur formé au club est aujourd'hui professionnel et coach sur place. Classement, bilan et objectif sont ceux de sa fiche boxeur.",
     ambiance:
       "Le club met en avant un boxeur que les adhérents peuvent voir encore combattre, puis retrouver à l'entraînement. C'est cette continuité que la fiche retient.",
     pointsForts: [
@@ -51,15 +52,13 @@ export const clubs = [
       'Transmission : le pratiquant formé au club devient à son tour coach',
     ],
     url: 'https://boxe-toulouse.com/',
-    image: '/img/valentin-guth-hero.jpg',
-    imageAlt: 'Valentin Guth au Boxing Center de Toulouse Minimes',
   },
 ];
 
-export const coachs = [
+const coachsRaw = [
   {
     slug: 'valentin-guth',
-    name: 'Valentin Guth',
+    boxeurSlug: 'valentin-guth',
     city: 'Toulouse',
     diplomes: ['BPJEPS mention Boxe', 'BPJEPS mention Sports de Contact'],
     diplomesSource: 'https://boxingcenter.fr/coachs-2/coach-valentin-guth/',
@@ -68,17 +67,31 @@ export const coachs = [
       "Le club le présente auprès des débutants, des loisirs, des enfants et des confirmés. La liste nominative des boxeurs qu'il a menés à un titre n'est pas publiée ici.",
     methode:
       "Une boxe vécue sur le ring, pas seulement expliquée. Il continue sa carrière professionnelle et s'en sert pour transmettre les exigences du combat aux adhérents.",
-    resultats:
-      "Boxeur professionnel classé n°3 français chez les super-coqs selon Boxing Center, avec l'objectif annoncé d'une ceinture nationale en 2027.",
     role: 'Formation des pratiquants du club, des débutants aux confirmés, en parallèle de sa propre carrière.',
     parcours:
       "Formé comme boxeur au Boxing Center de Toulouse, passé professionnel, puis coach diplômé dans le même club. Le parcours sert d'exemple de transmission.",
-    photo: '/img/valentin-guth.jpg',
-    photoAlt: 'Valentin Guth, coach de boxe anglaise à Toulouse',
     ficheUrl: 'https://boxingcenter.fr/coachs-2/coach-valentin-guth/',
-    article: 'valentin-guth-boxeur-super-coq',
   },
 ];
+
+/** Fiches coach : nom, photo, classement et bilan viennent de la fiche boxeur du même slug. */
+export const coachs = coachsRaw.map((coach) => {
+  const boxeur = boxeurs.find((b) => b.slug === (coach.boxeurSlug || coach.slug));
+  if (!boxeur) return coach;
+  return {
+    ...coach,
+    name: boxeur.name,
+    photo: boxeur.photo,
+    photoAlt: `${boxeur.name}, coach de boxe anglaise à ${coach.city}`,
+    resultats: boxeur.palmares,
+    article: boxeur.article,
+    ranking: boxeur.ranking,
+    recordNote: boxeur.recordNote,
+    prochaines: boxeur.prochaines,
+    category: boxeur.category,
+    objectif: boxeur.objectif,
+  };
+});
 
 /** @type {Array<Record<string, string>>} */
 export const combats = [
@@ -291,10 +304,44 @@ export const galas = [
 
 export function formatDate(date) {
   return new Intl.DateTimeFormat('fr-FR', {
+    timeZone: 'Europe/Paris',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   }).format(date instanceof Date ? date : new Date(date));
+}
+
+/** Clé URL d'une édition : 2026-10-05, fuseau Paris. */
+export function parisDayKey(date) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris' }).format(
+    date instanceof Date ? date : new Date(date),
+  );
+}
+
+/** Titre, photo et faits d'un portrait : toujours ceux de la fiche boxeur. */
+export function liveArticle(data) {
+  const boxeur = boxeurs.find((b) => b.article === data.slug);
+  if (!boxeur) return data;
+  return {
+    ...data,
+    title: `${boxeur.name} vise ${boxeur.objectif} | Combat Boxe`,
+    description: `${boxeur.name}, ${boxeur.ranking}. ${boxeur.recordNote} Objectif : ${boxeur.objectif}.`,
+    h1: `${boxeur.name} : ${boxeur.ranking}, vise ${boxeur.objectif}`,
+    photo: boxeur.photo,
+    image: boxeur.photo,
+    imageAlt: boxeur.photoAlt,
+    boxeur,
+  };
+}
+
+export function groupArticlesByDay(articles) {
+  const map = new Map();
+  for (const item of articles) {
+    const key = parisDayKey(item.data.date);
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(item);
+  }
+  return [...map.entries()].sort((a, b) => b[0].localeCompare(a[0]));
 }
 
 export function boxeurBySlug(slug) {

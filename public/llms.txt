@@ -8,6 +8,7 @@ Mot-clé central : combat de boxe.
 
 - https://combat-boxe.com/combat-de-boxe
 - https://combat-boxe.com/actualites
+- https://combat-boxe.com/actualites/2026-10-05
 - https://combat-boxe.com/combats-a-venir
 - https://combat-boxe.com/resultats-boxe
 - https://combat-boxe.com/calendrier-combats-boxe
@@ -23,4 +24,4 @@ Mot-clé central : combat de boxe.
 
 ## Règle éditoriale
 
-Les faits (dates, résultats, classements, titres) sont vérifiés avant publication. Les textes sont originaux. Les combats s'illustrent par un bandeau éditorial. Une photo nominative n'apparaît que si elle représente le sujet.
+Les faits (dates, résultats, classements, titres) sont vérifiés avant publication. Les textes sont originaux. Les combats s'illustrent par un bandeau éditorial. Une photo nominative n'apparaît que si elle représente le sujet, et elle n'est pas répétée sur la même page. Les actualités restent en ligne, classées par jour.

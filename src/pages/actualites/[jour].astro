@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../../data/entities';
+import { editionMeta, editionPath, editionTitle } from '../../lib/archive';
+import { breadcrumbLd, collectionLd, graph } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const articles = (await getCollection('articles')).filter((a) => a.data.status === 'published');
+  return groupArticlesByDay(articles).map(([jour, items]) => ({
+    params: { jour },
+    props: { items },
+  }));
+}
+
+const { jour } = Astro.params;
+const { items } = Astro.props;
+const label = editionTitle(items[0].data.date);
+const path = editionPath(items[0].data.date);
+const description = editionMeta(items);
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: '/actualites', label: 'Actualités' },
+  { href: path, label },
+];
+const rows = items.map((item) => liveArticle(item.data));
+const editions = groupArticlesByDay(
+  (await getCollection('articles')).filter((a) => a.data.status === 'published'),
+);
+const jsonLd = graph(
+  breadcrumbLd(crumbs),
+  collectionLd({
+    title: label,
+    description,
+    path,
+    items: rows.map((data) => ({ data })),
+  }),
+);
+---
+
+<Base title={`${label} | Combat Boxe`} description={description} path={path} jsonLd={jsonLd}>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <p class="meta">{rows.length} article{rows.length > 1 ? 's' : ''} · Combat Boxe</p>
+      <h1>{label}</h1>
+      <p class="lead">
+        Tous les articles publiés le {formatDate(items[0].data.date)}. Une édition n'est pas remplacée : elle reste lisible, jour après jour.
+      </p>
+      <div class="stack">
+        {rows.map((row) => (
+          <article class="row-card">
+            <p class="meta">{kindLabel(row.kind)}</p>
+            <h2><a href={`/${row.slug}`}>{row.h1}</a></h2>
+            <p>{row.description}</p>
+          </article>
+        ))}
+      </div>
+      <nav class="edition-list" aria-label="Autres éditions">
+        <h2>Les autres jours</h2>
+        {editions
+          .filter(([key]) => key !== jour)
+          .map(([, other]) => (
+            <a class="row-card edition-link" href={editionPath(other[0].data.date)}>
+              <p class="meta">{other.length} article{other.length > 1 ? 's' : ''}</p>
+              <h3>{editionTitle(other[0].data.date)}</h3>
+            </a>
+          ))}
+        <p><a href="/actualites">Toute l'actualité</a></p>
+      </nav>
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

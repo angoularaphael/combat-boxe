@@ -20,9 +20,10 @@ const crumbs = [
 const jsonLd = graph(breadcrumbLd(crumbs), clubLd(club));
 const title = `${club.name} : club de boxe à ${club.city} | Combat Boxe`;
 const description = `${club.name}, salle de boxe anglaise à ${club.city}. Disciplines, coachs, boxeurs formés et lien vers le club.`;
+const ogImage = club.image || '/img/og-combat-boxe.jpg';
 ---
 
-<Base title={title} description={description} path={path} image={club.image} jsonLd={jsonLd}>
+<Base title={title} description={description} path={path} image={ogImage} jsonLd={jsonLd}>
   <Header slot="header" />
   <article class="page-hero">
     <div class="wrap">
@@ -36,9 +37,11 @@ const description = `${club.name}, salle de boxe anglaise à ${club.city}. Disci
       </ol>
       <h1>{club.name}</h1>
       <p class="lead">Club de boxe à {club.city}. {club.disciplines.join(', ')}.</p>
-      <figure class="figure figure-portrait">
-        <img src={club.image} alt={club.imageAlt} width="640" height="800" />
-      </figure>
+      {club.image && (
+        <figure class="figure figure-portrait">
+          <img src={club.image} alt={club.imageAlt} width="640" height="800" />
+        </figure>
+      )}
       <dl class="facts">
         <div>
           <dt>Ville</dt>
@@ -69,7 +72,13 @@ const description = `${club.name}, salle de boxe anglaise à ${club.city}. Disci
             <ul>
               {club.boxeursFormes.map((id) => {
                 const boxeur = boxeurBySlug(id);
-                return boxeur ? <li><a href={`/boxeurs/${boxeur.slug}`}>{boxeur.name}</a></li> : null;
+                return boxeur ? (
+                  <li>
+                    <a href={`/boxeurs/${boxeur.slug}`}>{boxeur.name}</a>
+                    {' · '}
+                    {boxeur.ranking}
+                  </li>
+                ) : null;
               })}
             </ul>
           </dd>

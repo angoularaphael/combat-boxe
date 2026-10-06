@@ -39,12 +39,27 @@ const description = `${coach.name}, coach de boxe anglaise à ${coach.city}. Par
           ))}
         </ol>
         <h1>{coach.name}</h1>
-        <p class="lead">Entraîneur de boxe français, coach à {coach.city}, boxeur professionnel en activité.</p>
+        <p class="lead">
+          Entraîneur de boxe français, coach à {coach.city}
+          {coach.ranking ? `, ${coach.ranking}` : ''}.
+        </p>
         <figure class="fiche-photo">
           <img src={coach.photo} alt={coach.photoAlt} width="640" height="800" />
         </figure>
       </div>
       <dl class="facts">
+        <div>
+          <dt>Classement</dt>
+          <dd>{coach.ranking}</dd>
+        </div>
+        <div>
+          <dt>Bilan</dt>
+          <dd>{coach.recordNote}</dd>
+        </div>
+        <div>
+          <dt>Objectif</dt>
+          <dd>{coach.objectif}</dd>
+        </div>
         <div>
           <dt>Parcours</dt>
           <dd>{coach.parcours}</dd>

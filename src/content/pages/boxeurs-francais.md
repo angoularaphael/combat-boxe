@@ -19,7 +19,7 @@ L'actualité de la boxe française passe par ces noms. Un classement national, u
 
 Le nom, la catégorie, le palmarès tel qu'une source le formule, le parcours, le club d'origine, les coachs quand ils sont identifiés, le style sans le romancer, les combats marquants, les prochaines échéances, et les articles du site. Si un chiffre de bilan diverge selon les sources, la fiche dit laquelle elle retient.
 
-Le premier portrait publié est celui de [Valentin Guth](/valentin-guth-boxeur-super-coq), professionnel, n°3 français chez les super-coqs selon Boxing Center, avec l'objectif d'une ceinture nationale en 2027. Sa fiche détaillée est sur [sa page boxeur](/boxeurs/valentin-guth).
+Le premier portrait publié est celui de [Valentin Guth](/boxeurs/valentin-guth). Classement, bilan et objectif sont ceux de sa fiche, le même texte partout sur le site.
 
 ## Professionnels, jeunes talents, suite des combats
 

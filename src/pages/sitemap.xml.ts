@@ -1,18 +1,23 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { boxeurs, clubs, coachs } from '../data/entities';
+import { boxeurs, clubs, coachs, groupArticlesByDay, parisDayKey } from '../data/entities';
 
 export const GET: APIRoute = async () => {
   const site = 'https://combat-boxe.com';
   const buildDate = new Date().toISOString().slice(0, 10);
   const pages = await getCollection('pages');
   const articles = (await getCollection('articles')).filter((a) => a.data.status === 'published');
+  const editions = groupArticlesByDay(articles);
   const urls = [
     { loc: site, lastmod: buildDate, image: `${site}/img/og-combat-boxe.jpg` },
     ...pages.map((p) => ({
       loc: `${site}/${p.data.slug}`,
       lastmod: buildDate,
       image: p.data.image ? `${site}${p.data.image}` : undefined,
+    })),
+    ...editions.map(([jour, items]) => ({
+      loc: `${site}/actualites/${jour}`,
+      lastmod: parisDayKey(items[0].data.date),
     })),
     ...articles.map((a) => ({
       loc: `${site}/${a.data.slug}`,
@@ -27,7 +32,7 @@ export const GET: APIRoute = async () => {
     ...clubs.map((c) => ({
       loc: `${site}/clubs/${c.slug}`,
       lastmod: buildDate,
-      image: `${site}${c.image}`,
+      image: c.image ? `${site}${c.image}` : `${site}/img/og-combat-boxe.jpg`,
     })),
     ...coachs.map((c) => ({
       loc: `${site}/coachs/${c.slug}`,

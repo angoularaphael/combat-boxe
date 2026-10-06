@@ -60,7 +60,27 @@ export function clubLd(club) {
     sport: 'Boxe anglaise',
     url: club.url,
     address: club.address,
-    image: canonical(club.image),
+    image: canonical(club.image || '/img/og-combat-boxe.jpg'),
+  };
+}
+
+export function collectionLd({ title, description, path, items }) {
+  return {
+    '@type': 'CollectionPage',
+    name: title,
+    description,
+    url: canonical(path),
+    inLanguage: 'fr-FR',
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: items.length,
+      itemListElement: items.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: canonical(`/${item.data.slug}`),
+        name: item.data.h1,
+      })),
+    },
   };
 }
 
