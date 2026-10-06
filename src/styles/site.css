@@ -1031,6 +1031,61 @@ a {
   background: linear-gradient(90deg, #c1121f 0 32%, #fff 32% 36%, #1d4e89 36% 68%, #fff 68% 72%, #c1121f 72% 100%);
 }
 
+.cover-split,
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cover-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cover-split img,
+.cover-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.cover-photo-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(11, 19, 26, .2) 10%, rgba(11, 19, 26, .88) 72%);
+}
+
+.cover-edito-photo::before {
+  display: none;
+}
+
+.cover-edito-photo .cover-mark,
+.cover-edito-photo .cover-brand,
+.cover-edito-photo .cover-kicker,
+.cover-edito-photo .cover-versus,
+.cover-edito-photo .cover-title,
+.cover-edito-photo .cover-meta {
+  z-index: 2;
+}
+
+.lead-split {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  z-index: -2;
+}
+
+.lead-split img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
 .cover-mark {
   position: absolute;
   top: 18px;
@@ -1347,6 +1402,229 @@ a {
 
   .quick-access .section-head > a {
     margin-top: 20px;
+  }
+}
+
+.days-band {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.days-nav {
+  margin: 18px 0 28px;
+}
+
+.days-nav-label {
+  margin: 0 0 10px;
+  font-family: var(--display);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+
+.days-nav-track {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 0 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.days-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.days-chip b {
+  font-family: var(--display);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+
+.days-chip.is-current {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.days-chip.is-current b {
+  color: #d7e4ee;
+}
+
+.fight-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 8px 0 12px;
+}
+
+.fight-card {
+  display: block;
+  padding: 16px 16px 18px;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  color: inherit;
+  text-decoration: none;
+  animation: fight-in 0.55s ease both;
+  animation-delay: calc(var(--i, 0) * 80ms);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.fight-card-link:hover,
+.fight-card-link:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--blue);
+}
+
+.fight-date,
+.fight-place,
+.fight-stakes {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.fight-vs {
+  display: grid;
+  gap: 2px;
+  margin: 8px 0 10px;
+}
+
+.fight-a,
+.fight-b {
+  font-family: var(--display);
+  font-size: clamp(1.55rem, 4vw, 2.15rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.fight-a {
+  animation: name-in-left 0.5s ease both;
+  animation-delay: calc(var(--i, 0) * 80ms + 80ms);
+}
+
+.fight-b {
+  animation: name-in-right 0.5s ease both;
+  animation-delay: calc(var(--i, 0) * 80ms + 140ms);
+}
+
+.fight-x {
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue);
+  animation: vs-pulse 2.2s ease-in-out infinite;
+}
+
+.fight-belt {
+  margin: 0 0 6px;
+  font-family: var(--display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fight-stakes {
+  margin-top: 6px;
+}
+
+.schedule-block .fight-card {
+  background: #172735;
+  border-color: #364858;
+  color: #fff;
+}
+
+.schedule-block .fight-date,
+.schedule-block .fight-place,
+.schedule-block .fight-stakes {
+  color: #c5d0d8;
+}
+
+.schedule-block .fight-x {
+  color: #9cc3dd;
+}
+
+.schedule-block .fight-card-link:hover,
+.schedule-block .fight-card-link:focus-visible {
+  border-color: #7aa0bb;
+}
+
+.home-results {
+  margin-top: 36px;
+}
+
+.sources {
+  display: none;
+}
+
+.prose:not(:has(*)) {
+  display: none;
+}
+
+@keyframes fight-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes name-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes name-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes vs-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 760px) {
+  .days-nav-track {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+
+  .fight-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

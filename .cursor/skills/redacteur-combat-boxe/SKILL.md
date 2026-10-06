@@ -19,7 +19,7 @@ Média de boxe anglaise, France et international. Clair, sérieux, sportif, info
 
 Textes originaux. Aucun paragraphe repris d'actu-boxe.com ni d'un autre média.
 
-Images : ne pas coller de photo Unsplash, banque d'images ou visuel IA. Sur le site, un combat s'illustre par le bandeau éditorial Combat Boxe (noms, date, ville, catégorie). Une photo réelle n'entre que si elle représente vraiment le boxeur, le club ou le coach du papier, fournie ou autorisée. Pas de crédit photo visible en bas de page. Pas de bloc Sources visible : les URLs restent dans le frontmatter pour la rédaction seulement.
+Images : ne pas coller de photo Unsplash, banque d'images ou visuel IA. Chercher un portrait Wikimedia Commons du boxeur nommé (`node scripts/recuperer-portraits.mjs "Nom"`). Si un fichier Commons libre existe, il illustre ce papier. Sinon, bandeau éditorial Combat Boxe. Une photo n'entre que si elle représente vraiment le sujet. Pas de crédit sous l'article (licences sur /a-propos). Pas de bloc Sources visible.
 
 ## Écriture naturelle
 
@@ -27,6 +27,7 @@ Images : ne pas coller de photo Unsplash, banque d'images ou visuel IA. Sur le s
 
 - Commencer par le fait ou la scène. Éviter les ouvertures « sur ce média », « cette page présente », « cette rubrique sert à ».
 - Ne pas commenter le travail éditorial dans l'article : éviter « le travail d'un média », « la page reste courte », « le site n'invente pas ».
+- Sur les pages publiques (combats à venir, calendrier, actualités, résultats, galas), ne pas expliquer la méthode : pas de « comment une affiche est ajoutée », pas de bloc Sources visible, pas de mode d'emploi. Afficher les combats et les papiers.
 - Éviter les phrases défensives répétées : « ce n'est pas », « il ne s'agit pas », « pas seulement ». Dire directement ce qui est vrai.
 - Éviter les séries artificielles en trois éléments et les oppositions mécaniques du type « pas X, mais Y ».
 - Varier la longueur des phrases. Ne pas empiler des phrases courtes construites de la même manière.

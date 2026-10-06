@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview --port 3310 --host",
     "rediger": "node scripts/rediger-article.mjs",
-    "actu": "node scripts/actu-quotidienne.mjs"
+    "actu": "node scripts/actu-quotidienne.mjs",
+    "portraits": "node scripts/recuperer-portraits.mjs"
   },
   "engines": {
     "node": ">=20"

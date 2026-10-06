@@ -84,13 +84,26 @@ async function main() {
   const slugs = existingSlugs();
   const feeds = [
     ['FFB evenements', 'https://www.ffboxe.com/evenements/'],
+    ['FFB championnats France', 'https://www.ffboxe.com/championnats-de-france-de-boxe-professionnelle/'],
+    ['WBC events', 'https://wbcboxing.com/en/events/'],
     ['WBC news', 'https://wbcboxing.com/en/news/'],
+    ['ESPN boxing schedule', 'https://www.espn.com/boxing/story/_/id/12508267/boxing-fight-schedule'],
     ['CBS boxing schedule', 'https://www.cbssports.com/boxing/news/boxing-schedule-for-2026-dates-location-fights-canelo-alvarez-sebastian-fundora/'],
-    ['ESPN boxing schedule', 'https://www.espn.co.uk/boxing/story/_/id/12508267/boxing-schedule'],
+    ['CanadianBoxing schedule', 'https://www.canadianboxing.com/schedule.htm'],
+    ['BBC boxing', 'https://www.bbc.com/sport/boxing'],
+    ['L Equipe boxe', 'https://www.lequipe.fr/Boxe/'],
+    ['Boxe Magazine', 'https://boxemag.ouest-france.fr/'],
+    ['Ring Magazine', 'https://www.ringtv.com/'],
+    ['BoxingScene', 'https://www.boxingscene.com/'],
+    ['Queensberry', 'https://queensberry.co.uk/blogs/queensberry-promotions-blog'],
+    ['Most Valuable Promotions', 'https://www.mostvaluablepromotions.com/'],
+    ['Principality Fury Joshua', 'https://www.principalitystadium.wales/event/tyson-fury-v-anthony-joshua/'],
     ['Ville Saint-Nazaire boxe', 'https://www.saintnazaire.fr/agenda/championnat-de-france-de-boxe-professionnelle-et-3-combats-pro/'],
     ['CPB Blois', 'http://www.blois-boxe.com/pages/la-nuit-des-rois.html'],
     ['Sud Ouest Royan', 'https://www.sudouest.fr/sport/boxe/avant-de-penser-aux-jeux-olympiques-le-boxeur-royannais-makan-traore-disputera-son-championnat-de-france-a-domicile-le-31-octobre-30430836.php'],
     ['The O2 Dubois', 'https://www.theo2.co.uk/events/detail/dubois-vs-wardley-2'],
+    ['L Equipe Samake', 'https://www.lequipe.fr/Boxe/Actualites/Bakary-samake-tentera-de-se-relancer-contre-le-portugais-uisma-lima-le-14-novembre-a-levallois/1683337'],
+    ['WBC Kabayel', 'https://wbcboxing.com/en/agit-kabayel-to-defend-wbc-world-heavyweight-title-against-nelson-hysa/'],
   ];
   const pages = [];
   for (const [name, url] of feeds) {
@@ -136,6 +149,14 @@ ${pages.map((p) => `### ${p.name} (${p.url})\n${p.text}`).join('\n\n')}`;
   }
   const out = resolve(articlesDir, `${data.slug}.md`);
   writeFileSync(out, toFrontmatter(data, data.body.trim()));
+  const names = String(data.coverVersus || '')
+    .split('/')
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (names.length) {
+    const { portraitsForNames } = await import('./portraits-commons.mjs');
+    await portraitsForNames(names);
+  }
   console.log('Article publié :', out);
 }
 

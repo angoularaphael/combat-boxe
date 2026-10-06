@@ -20,8 +20,8 @@ Mot-clé central : combat de boxe.
 - https://combat-boxe.com/entraineurs-boxe-francais
 - https://combat-boxe.com/analyses
 - https://combat-boxe.com/interviews
-- https://combat-boxe.com/dossiers
+- https://combat-boxe.com/a-propos
 
 ## Règle éditoriale
 
-Les faits (dates, résultats, classements, titres) sont vérifiés avant publication. Les textes sont originaux. Les combats s'illustrent par un bandeau éditorial. Une photo nominative n'apparaît que si elle représente le sujet, et elle n'est pas répétée sur la même page. Les actualités restent en ligne, classées par jour.
+Les faits (dates, résultats, classements, titres) sont vérifiés avant publication. Les textes sont originaux. Un combat s'illustre par le portrait Commons du boxeur s'il existe, sinon par un bandeau éditorial. Une photo nominative n'apparaît que si elle représente le sujet, et elle n'est pas répétée sur la même page. Les actualités restent en ligne, classées par jour.

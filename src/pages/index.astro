@@ -3,8 +3,11 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { boxeurs, clubs, coachs, combats, formatDate, kindLabel, liveArticle } from '../data/entities';
+import { boxeurs, clubs, coachs, combats, formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../data/entities';
+import { photosForVersus } from '../lib/portraits';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
+import DaysNav from '../components/DaysNav.astro';
+import FightCard from '../components/FightCard.astro';
 
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
@@ -12,7 +15,13 @@ const articles = (await getCollection('articles'))
 const une = articles[0] ? { ...articles[0], data: liveArticle(articles[0].data) } : null;
 const fil = articles.slice(0, 4).map((item) => ({ ...item, data: liveArticle(item.data) }));
 const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
-const upcoming = combats.filter((c) => c.status === 'a-venir').slice(0, 4);
+const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
+const uneImage = une?.data.photo || unePhotos[0] || '/img/og-combat-boxe.jpg';
+const editions = groupArticlesByDay(articles);
+const upcoming = combats
+  .filter((c) => c.status === 'a-venir')
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+  .slice(0, 8);
 const results = combats.filter((c) => c.status === 'dispute').slice(0, 4);
 const jsonLd = graph(
   organizationLd,
@@ -25,7 +34,7 @@ const jsonLd = graph(
   title="Combat de boxe : actualité, calendrier, résultats | Combat Boxe"
   description="Combat Boxe suit les combats de boxe à venir, les résultats, les boxeurs français, les clubs et les entraîneurs, en France et à l'international."
   path="/"
-  image={une?.data.photo || '/img/og-combat-boxe.jpg'}
+  image={uneImage}
   jsonLd={jsonLd}
 >
   <Header slot="header" />
@@ -38,6 +47,16 @@ const jsonLd = graph(
       <div class="lead-grid">
         {une && (
           <a class="lead-story lead-story-edito" href={`/${une.data.slug}`}>
+            {unePhotos.length >= 2 ? (
+              <div class="lead-split" aria-hidden="true">
+                <img src={unePhotos[0]} alt="" width="640" height="800" />
+                <img src={unePhotos[1]} alt="" width="640" height="800" />
+              </div>
+            ) : unePhotos[0] ? (
+              <img src={unePhotos[0]} alt="" width="1200" height="800" />
+            ) : une.data.photo ? (
+              <img src={une.data.photo} alt={une.data.imageAlt || ''} width="1200" height="800" />
+            ) : null}
             <span class="story-shade"></span>
             <div class="lead-copy">
               <span class="tag">{kindLabel(une.data.kind)}</span>
@@ -53,7 +72,7 @@ const jsonLd = graph(
             <div>
               <span class="tag">À suivre</span>
               <h2>Les prochains combats qui vont compter</h2>
-              <p>Dates, affiches, catégories et enjeux : uniquement les rendez-vous confirmés.</p>
+              <p>Dates, affiches, catégories et titres en jeu.</p>
             </div>
           </a>
           <div class="side-pair">
@@ -95,37 +114,34 @@ const jsonLd = graph(
     </div>
   </section>
 
+  <section class="section days-band">
+    <div class="wrap">
+      <DaysNav editions={editions} label="Actualités par jour" />
+    </div>
+  </section>
+
   <section class="section schedule-block">
-    <div class="wrap split-content">
-      <div>
-        <div class="section-head section-head-light">
-          <div><span class="eyebrow">Agenda</span><h2>Prochains combats</h2></div>
-          <a href="/combats-a-venir">Tout le calendrier</a>
-        </div>
-        {upcoming.length === 0 ? (
-          <div class="editorial-empty"><strong>Calendrier en cours de vérification</strong><p>Les premières affiches apparaîtront ici dès que la date, les deux boxeurs et la source seront confirmés.</p></div>
-        ) : (
-          <div class="stack">{upcoming.map((c) => (
-            <article class="row-card">
-              <p class="meta">{formatDate(c.date)} · {c.category} · {c.city}</p>
-              <h3>{c.boxerA} contre {c.boxerB}</h3>
-              {c.titles && <p>{c.titles}</p>}
-              {c.article && <p><a href={`/${c.article}`}>Lire l'annonce</a></p>}
-            </article>
-          ))}</div>
-        )}
+    <div class="wrap">
+      <div class="section-head section-head-light">
+        <div><span class="eyebrow">Agenda</span><h2>Prochains combats</h2></div>
+        <a href="/combats-a-venir">Tout le calendrier</a>
       </div>
-      <div>
-        <div class="section-head section-head-light">
-          <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
-          <a href="/resultats-boxe">Tous les résultats</a>
-        </div>
-        {results.length === 0 ? (
-          <div class="editorial-empty"><strong>Résultats sourcés uniquement</strong><p>Le vainqueur, la méthode et la décision seront publiés dès les premiers comptes rendus vérifiés.</p></div>
-        ) : (
+      {upcoming.length === 0 ? (
+        <div class="editorial-empty"><strong>Calendrier à venir</strong><p>Les prochaines affiches apparaîtront ici.</p></div>
+      ) : (
+        <div class="fight-grid">{upcoming.map((c, index) => (
+          <FightCard fight={c} index={index} />
+        ))}</div>
+      )}
+      {results.length > 0 && (
+        <div class="home-results">
+          <div class="section-head section-head-light">
+            <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
+            <a href="/resultats-boxe">Tous les résultats</a>
+          </div>
           <div class="stack">{results.map((c) => <article class="row-card"><p class="meta">{formatDate(c.date)}</p><h3>{c.winner} bat {c.winner === c.boxerA ? c.boxerB : c.boxerA}</h3></article>)}</div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   </section>
 

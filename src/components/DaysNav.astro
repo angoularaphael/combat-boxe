@@ -1,0 +1,26 @@
+---
+import { editionPath, editionTitle } from '../lib/archive';
+
+const { editions = [], current = '', label = 'Actualités par jour' } = Astro.props;
+---
+
+{
+  editions.length > 0 && (
+    <nav class="days-nav" aria-label={label}>
+      <p class="days-nav-label">{label}</p>
+      <div class="days-nav-track">
+        {editions.map(([key, items]) => (
+          <a
+            class:list={['days-chip', current === key && 'is-current']}
+            href={editionPath(items[0].data.date)}
+          >
+            <span>{editionTitle(items[0].data.date)}</span>
+            <b>
+              {items.length} papier{items.length > 1 ? 's' : ''}
+            </b>
+          </a>
+        ))}
+      </div>
+    </nav>
+  )
+}

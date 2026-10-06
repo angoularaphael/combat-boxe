@@ -1,0 +1,33 @@
+---
+import { formatDate } from '../data/entities';
+
+const { fight, index = 0, verdict = false } = Astro.props;
+const href = fight.article ? `/${fight.article}` : '';
+const Tag = href ? 'a' : 'article';
+---
+
+<Tag
+  class:list={['fight-card', href && 'fight-card-link']}
+  href={href || undefined}
+  style={`--i: ${index}`}
+>
+  <p class="fight-date">{formatDate(fight.date)}</p>
+  <p class="fight-vs">
+    <span class="fight-a">{fight.boxerA}</span>
+    <span class="fight-x">contre</span>
+    <span class="fight-b">{fight.boxerB}</span>
+  </p>
+  <p class="fight-place">
+    {fight.category}
+    {fight.city ? ` · ${fight.city}` : ''}
+  </p>
+  {fight.titles ? <p class="fight-belt">{fight.titles}</p> : null}
+  {verdict ? (
+    <p class="fight-stakes">
+      {fight.winner} {fight.method ? `· ${fight.method}` : ''}
+      {fight.decision ? ` · ${fight.decision}` : ''}
+    </p>
+  ) : fight.stakes ? (
+    <p class="fight-stakes">{fight.stakes}</p>
+  ) : null}
+</Tag>

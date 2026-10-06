@@ -1,9 +1,19 @@
 ---
-const { kicker = '', versus = '', title = '', meta = '' } = Astro.props;
+const { kicker = '', versus = '', title = '', meta = '', photos = [] } = Astro.props;
 const names = versus.split(' / ').map((part) => part.trim()).filter(Boolean);
+const hasPhotos = photos.length > 0;
 ---
 
-<figure class="cover-edito">
+<figure class:list={['cover-edito', hasPhotos && 'cover-edito-photo']}>
+  {photos.length >= 2 ? (
+    <div class="cover-split" aria-hidden="true">
+      <img src={photos[0]} alt="" width="640" height="800" />
+      <img src={photos[1]} alt="" width="640" height="800" />
+    </div>
+  ) : photos.length === 1 ? (
+    <img class="cover-bg" src={photos[0]} alt="" width="1200" height="800" />
+  ) : null}
+  {hasPhotos && <span class="cover-photo-shade" aria-hidden="true"></span>}
   <span class="cover-mark" aria-hidden="true"></span>
   <p class="cover-brand">Combat Boxe</p>
   {kicker && <p class="cover-kicker">{kicker}</p>}

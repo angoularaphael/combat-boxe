@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Saúl Álvarez",
+    "slug": "saul-alvarez",
+    "path": "/img/boxers/saul-alvarez.png",
+    "license": "CC BY 3.0",
+    "artist": "Box Azteca",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=82139445",
+    "wikiTitle": "Canelo Álvarez",
+    "aliases": ["Canelo", "Alvarez", "Canelo Alvarez"]
+  },
+  {
+    "name": "Christian Mbilli",
+    "slug": "christian-mbilli",
+    "path": "/img/boxers/christian-mbilli.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Boxing AIBA",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=50893558",
+    "wikiTitle": "Christian M'billi",
+    "aliases": ["Mbilli", "M'billi", "Christian M'billi"]
+  },
+  {
+    "name": "Daniel Dubois",
+    "slug": "daniel-dubois",
+    "path": "/img/boxers/daniel-dubois.jpg",
+    "license": "CC BY 4.0",
+    "artist": "Editor083",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=195404721",
+    "wikiTitle": "Daniel Dubois",
+    "aliases": ["Dubois"]
+  },
+  {
+    "name": "Ermal Hadribeaj",
+    "slug": "ermal-hadribeaj",
+    "path": "/img/boxers/ermal-hadribeaj.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Donato2024",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=141967124",
+    "wikiTitle": "Ermal Hadribeaj",
+    "aliases": ["Hadribeaj"]
+  },
+  {
+    "name": "Makan Traoré",
+    "slug": "makan-traore",
+    "path": "/img/boxers/makan-traore.png",
+    "license": "CC BY 3.0",
+    "artist": "Sport en France",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=167126227",
+    "wikiTitle": "Makan Traoré (boxer)",
+    "aliases": ["Traoré", "Traore"]
+  }
+]

@@ -34,7 +34,7 @@ Il accepte une de ces clés, dans cet ordre :
 
 **À utiliser pour Combat Boxe : Claude Sonnet.** C'est le modèle le plus fiable pour un média : il copie moins, il hallucine moins sur les records, il tient un ton de journaliste sportif.
 
-Ne pas utiliser un modèle d'images (Dall-E, Midjourney, Firefly). Les combats s'illustrent par le bandeau Combat Boxe. Une photo réelle seulement pour un portrait fourni.
+Ne pas utiliser un modèle d'images (Dall-E, Midjourney, Firefly). L'IA cherche un portrait Wikimedia Commons du boxeur nommé. S'il n'existe pas, bandeau Combat Boxe.
 
 ### Mise en place
 

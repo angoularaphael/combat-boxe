@@ -1,7 +1,7 @@
 ---
 slug: schofield-bahdi-chicago-poids-legers
 title: "Schofield contre Bahdi pour le titre WBA des légers | Combat Boxe"
-description: "Floyd Schofield III affronte Lucas Bahdi le 10 octobre 2026 à Chicago pour le titre WBA des poids légers. Carte, lieu et sources."
+description: "Floyd Schofield III affronte Lucas Bahdi le 10 octobre 2026 à Chicago pour le titre WBA des poids légers."
 h1: "Floyd Schofield contre Lucas Bahdi : le titre WBA des poids légers se joue à Chicago"
 date: 2026-10-05T16:00:00
 status: published
