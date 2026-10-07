@@ -1594,6 +1594,15 @@ a {
   object-position: top center;
 }
 
+.card-salle img {
+  aspect-ratio: 16 / 10;
+  object-position: center center;
+}
+
+.portrait-card-salle > img {
+  object-position: center center;
+}
+
 .site-footer {
   margin-top: 0;
   padding: 54px 0 20px;

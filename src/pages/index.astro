@@ -191,10 +191,12 @@ const jsonLd = graph(
             </div>
           </a>
         )}
-        <a class="portrait-card" href="/clubs-boxe-france">
-          <img src="/img/minimes-ring.jpg" alt="Cours de boxe au ring du Boxing Center Toulouse Minimes" width="1200" height="750" />
-          <div><span class="tag">Clubs</span><h3>Les salles qui forment les boxeurs</h3><p>Boxing Center Toulouse Minimes</p></div>
-        </a>
+        {clubs.map((club) => (
+          <a class="portrait-card portrait-card-salle" href={`/clubs/${club.slug}`}>
+            <img src={club.image} alt={club.imageAlt} width="1200" height="750" />
+            <div><span class="tag">Clubs</span><h3>{club.name}</h3><p>{club.address}</p></div>
+          </a>
+        ))}
         <a class="portrait-card" href="/entraineurs-boxe-francais">
           <img src={coachs[0]?.photo || '/img/boxing-ring-corner.jpg'} alt="" width="800" height="1000" />
           <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneur présenté</p></div>

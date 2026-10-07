@@ -268,14 +268,14 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       {template === 'clubs' && (
         <div class="grid cards-2">
           {clubs.map((c) => (
-            <article class="card">
+            <article class="card card-salle">
               <a class="stretch" href={`/clubs/${c.slug}`}>
-                <img src={c.image || '/img/minimes-ring.jpg'} alt={c.imageAlt || c.name} width="1200" height="750" loading="lazy" />
+                <img src={c.image} alt={c.imageAlt || c.name} width="1200" height="750" loading="lazy" />
                 <h2>{c.name}</h2>
-                <p>{c.city} · {c.disciplines.join(', ')}</p>
+                <p>{c.address}</p>
               </a>
               <p class="card-out">
-                {c.tmbcUrl && <a href={c.tmbcUrl}>Toulouse Minimes Boxing Club</a>}
+                <a href={c.url}>{c.urlLabel || 'Site de la salle'}</a>
                 {c.centerUrl && <a href={c.centerUrl}>Boxing Center</a>}
               </p>
             </article>

@@ -38,8 +38,8 @@ const ogImage = club.image || '/img/og-combat-boxe.jpg';
       <h1>{club.name}</h1>
       <p class="lead">Club de boxe à {club.city}. {club.disciplines.join(', ')}.</p>
       {club.image && (
-        <figure class="figure figure-portrait">
-          <img src={club.image} alt={club.imageAlt} width="640" height="800" />
+        <figure class="figure">
+          <img src={club.image} alt={club.imageAlt} width="1200" height="750" />
         </figure>
       )}
       <dl class="facts">
@@ -54,12 +54,16 @@ const ogImage = club.image || '/img/og-combat-boxe.jpg';
         <div>
           <dt>Coachs</dt>
           <dd>
-            <ul>
-              {club.coachSlugs.map((id) => {
-                const coach = coachBySlug(id);
-                return coach ? <li><a href={`/coachs/${coach.slug}`}>{coach.name}</a></li> : null;
-              })}
-            </ul>
+            {club.coachSlugs.length === 0 ? (
+              <p>Aucun coach n'est encore rattaché à cette fiche.</p>
+            ) : (
+              <ul>
+                {club.coachSlugs.map((id) => {
+                  const coach = coachBySlug(id);
+                  return coach ? <li><a href={`/coachs/${coach.slug}`}>{coach.name}</a></li> : null;
+                })}
+              </ul>
+            )}
           </dd>
         </div>
         <div>
@@ -69,18 +73,22 @@ const ogImage = club.image || '/img/og-combat-boxe.jpg';
         <div>
           <dt>Boxeurs formés</dt>
           <dd>
-            <ul>
-              {club.boxeursFormes.map((id) => {
-                const boxeur = boxeurBySlug(id);
-                return boxeur ? (
-                  <li>
-                    <a href={`/boxeurs/${boxeur.slug}`}>{boxeur.name}</a>
-                    {' · '}
-                    {boxeur.ranking}
-                  </li>
-                ) : null;
-              })}
-            </ul>
+            {club.boxeursFormes.length === 0 ? (
+              <p>Aucun boxeur formé n'est encore publié sur cette fiche.</p>
+            ) : (
+              <ul>
+                {club.boxeursFormes.map((id) => {
+                  const boxeur = boxeurBySlug(id);
+                  return boxeur ? (
+                    <li>
+                      <a href={`/boxeurs/${boxeur.slug}`}>{boxeur.name}</a>
+                      {' · '}
+                      {boxeur.ranking}
+                    </li>
+                  ) : null;
+                })}
+              </ul>
+            )}
           </dd>
         </div>
         <div>
@@ -101,9 +109,8 @@ const ogImage = club.image || '/img/og-combat-boxe.jpg';
         </div>
       </dl>
       <div class="actions">
-        {club.tmbcUrl && <a class="btn" href={club.tmbcUrl}>Toulouse Minimes Boxing Club</a>}
+        <a class="btn" href={club.url}>{club.urlLabel || 'Site de la salle'}</a>
         {club.centerUrl && <a class="btn alt" href={club.centerUrl}>Boxing Center</a>}
-        <a class="btn alt" href={club.url}>Site de la salle</a>
       </div>
     </div>
   </article>

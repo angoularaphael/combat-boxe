@@ -36,30 +36,55 @@ export const boxeurs = [
 
 export const clubs = [
   {
+    slug: 'toulouse-minimes-boxing-club',
+    name: 'Toulouse Minimes Boxing Club',
+    city: 'Toulouse',
+    address: '10 rue de Fenouillet, 31200 Toulouse',
+    addressSource: 'https://toulouse-minimes-boxing-club.fr/',
+    disciplines: ['Boxe anglaise'],
+    coachSlugs: [],
+    histoire:
+      "Club de boxe anglaise aux Minimes, à la Barrière de Paris. Le site du TMBC indique le 10 rue de Fenouillet, avec des cours loisirs, compétiteurs et une école.",
+    boxeursFormes: [],
+    resultats:
+      "Le club présente ses cours et son ring sur toulouse-minimes-boxing-club.fr. Les bilans nominatifs ne sont pas repris ici.",
+    ambiance:
+      "Le ring porte le mur TMBC, Toulouse Minimes Boxing Club, sous les drapeaux de la salle.",
+    pointsForts: [
+      'Boxe anglaise',
+      'Cours loisirs, compétiteurs et école',
+      '10 rue de Fenouillet, métro Barrière de Paris',
+    ],
+    url: 'https://toulouse-minimes-boxing-club.fr/',
+    urlLabel: 'Toulouse Minimes Boxing Club',
+    image: '/img/tmbc-ring.jpg',
+    imageAlt: 'Ring du Toulouse Minimes Boxing Club, mur TMBC au 10 rue de Fenouillet',
+  },
+  {
     slug: 'boxing-center-toulouse-minimes',
-    name: 'Boxing Center Toulouse Minimes',
+    name: 'Boxing Center Minimes',
     city: 'Toulouse',
     address: '12 rue de Fenouillet, 31200 Toulouse',
-    addressSource: 'https://boxingcenter.fr/salle-de-sport-toulouse/salle-de-boxe-toulouse-minimes/',
+    addressSource: 'https://boxe-toulouse.com/',
     disciplines: ['Boxe anglaise'],
     coachSlugs: ['valentin-guth'],
     histoire:
-      "Salle de boxe anglaise à Toulouse, dans le quartier des Minimes. Le club forme des pratiquants et a accompagné Valentin Guth des rangs amateurs jusqu'au professionnalisme.",
+      "Salle Boxing Center au 12 rue de Fenouillet, présentée sur boxe-toulouse.com. Le club forme des pratiquants et a accompagné Valentin Guth des rangs amateurs jusqu'au professionnalisme.",
     boxeursFormes: ['valentin-guth'],
     resultats:
       "Un boxeur formé au club est aujourd'hui professionnel et coach sur place. Classement, bilan et objectif sont ceux de sa fiche boxeur.",
     ambiance:
-      "Le club met en avant un boxeur que les adhérents peuvent voir encore combattre, puis retrouver à l'entraînement. C'est cette continuité que la fiche retient.",
+      "Allée de sacs et ring sous la charpente, avec le blason Boxing Center au mur.",
     pointsForts: [
       "Formation de boxeurs jusqu'au niveau professionnel",
       "Présence d'un boxeur professionnel encore en activité dans l'équipe d'encadrement",
       'Transmission : le pratiquant formé au club devient à son tour coach',
     ],
     url: 'https://boxe-toulouse.com/',
-    tmbcUrl: 'https://toulouse-minimes-boxing-club.fr/',
+    urlLabel: 'boxe-toulouse.com',
     centerUrl: 'https://boxingcenter.fr/',
-    image: '/img/minimes-ring.jpg',
-    imageAlt: 'Cours de boxe anglaise au ring du Boxing Center Toulouse Minimes',
+    image: '/img/bc-minimes-salle.jpg',
+    imageAlt: 'Salle Boxing Center Minimes, allée de sacs et blason au mur, 12 rue de Fenouillet',
   },
 ];
 
