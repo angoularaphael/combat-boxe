@@ -251,7 +251,7 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         <div class="grid cards-2">
           {clubs.map((c) => (
             <a class="card" href={`/clubs/${c.slug}`}>
-              <img src={c.image || '/img/boxing-training.jpg'} alt={c.imageAlt || c.name} width="800" height="1000" loading="lazy" />
+              <img src={c.image || '/img/agenda-clubs.jpg'} alt={c.imageAlt || c.name} width="800" height="450" loading="lazy" />
               <h2>{c.name}</h2>
               <p>{c.city} · {c.disciplines.join(', ')}</p>
             </a>

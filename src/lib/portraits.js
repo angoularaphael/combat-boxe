@@ -10,6 +10,15 @@ function norm(value) {
 
 const local = [{ keys: ['valentin guth', 'guth'], path: '/img/valentin-guth-hero.jpg' }];
 
+const SCENES = [
+  '/img/scene-ropes.jpg',
+  '/img/scene-corner.jpg',
+  '/img/scene-glove.jpg',
+  '/img/scene-canvas.jpg',
+  '/img/scene-speedbag.jpg',
+  '/img/scene-belt.jpg',
+];
+
 export function portraitFor(name) {
   if (!name) return '';
   const n = norm(name);
@@ -17,7 +26,7 @@ export function portraitFor(name) {
   if (localHit) return localHit.path;
   const row = credits.find((item) => {
     const keys = [item.name, ...(item.aliases || [])].map(norm);
-    return keys.includes(n) || keys.some((k) => k.split(' ').pop() === n && n.length > 3);
+    return keys.includes(n) || keys.some((k) => k.split(' ').pop() === n && n.length > 4);
   });
   return row?.path || '';
 }
@@ -42,17 +51,8 @@ export function articleThumb(data) {
   return photos[0] || '';
 }
 
-const STOCK = [
-  '/img/boxing-sparring.jpg',
-  '/img/boxing-ring-blue.jpg',
-  '/img/boxing-ring-corner.jpg',
-  '/img/boxing-gloves.jpg',
-  '/img/boxing-pads.jpg',
-  '/img/boxing-training.jpg',
-];
-
 export function fightMedia(versus, index = 0) {
   const photos = photosForVersus(versus);
-  if (photos.length) return photos;
-  return [STOCK[Math.abs(Number(index) || 0) % STOCK.length]];
+  if (photos.length) return { srcs: photos, kind: 'portrait' };
+  return { srcs: [SCENES[Math.abs(Number(index) || 0) % SCENES.length]], kind: 'scene' };
 }

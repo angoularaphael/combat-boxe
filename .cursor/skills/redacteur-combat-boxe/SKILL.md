@@ -19,7 +19,33 @@ Média de boxe anglaise, France et international. Clair, sérieux, sportif, info
 
 Textes originaux. Aucun paragraphe repris d'actu-boxe.com ni d'un autre média.
 
-Images : ne pas coller de photo Unsplash, banque d'images ou visuel IA. Chercher un portrait Wikimedia Commons du boxeur nommé (`node scripts/recuperer-portraits.mjs "Nom"`). Si un fichier Commons libre existe, il illustre ce papier. Sinon, bandeau éditorial Combat Boxe. Une photo n'entre que si elle représente vraiment le sujet. Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos.
+## Images (à faire tout seul, sans qu'on le redemande)
+
+Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et pose les images. Ne pas attendre une relance.
+
+**Boxeurs nommés (vrai portrait, jamais un autre visage)**
+
+1. Lancer `node scripts/recuperer-portraits.mjs "Prénom Nom"` pour chaque boxeur de l'affiche.
+2. Un fichier Wikimedia Commons libre n'entre que s'il représente **ce** boxeur (pas un mural, pas une affiche, pas un autre combattant, pas un hockeyeur homonyme).
+3. Si le portrait existe, il va sur la carte de combat, la fiche `/combats/[slug]`, le bandeau d'article (`coverVersus`) et le thumb d'actu.
+4. Si Commons n'a rien : **ne pas** coller une photo de salle, de casque, d'inconnu ou d'un autre combat. Utiliser `fightMedia()` : scène d'ambiance Combat Boxe (`/img/scene-*.jpg`) ou bandeau éditorial. **Ne jamais générer le visage d'un boxeur nommé.**
+5. Une même photo de boxeur ne sert pas deux sujets différents sur la même page. Guth illustre Guth, pas le club.
+
+**Agenda, accueil, clubs (visuels de rubrique)**
+
+Les cartes d'entrée (prochains combats, résultats, calendrier, clubs) utilisent les visuels dédiés `/img/agenda-upcoming.jpg`, `agenda-results.jpg`, `agenda-calendar.jpg`, `agenda-clubs.jpg`. Si un nouveau bloc d'agenda n'a pas d'image, **générer** un visuel Combat Boxe (ring, gants, salle), 16:9, sujets **entiers dans le cadre**, sans texte, sans logo, sans visage de boxeur nommé. Ne pas recycler une photo d'agenda sur une fiche de combat nommé.
+
+**Cadrage**
+
+Toute image doit se lire sans coupe de visage, de gant ou de sujet principal.
+
+- Portraits dans les cartes combat : classe `fight-media-portrait`, `object-fit: cover`, `object-position: center 16%`, bandeau d'au moins 200 px de haut.
+- Scènes d'ambiance : `fight-media-scene`, `object-position: center center`.
+- Bandeau article 1 portrait : `cover-edito-single` (photo en portrait 4/5, pas une bandeau trop plat qui ne garde que le front).
+- Accueil / agenda : `object-position: center 28%` sur les 16:9.
+- Vérifier 375 px et ~900 px : pas de front seul, pas de photo floue coupée, pas de carte sans image.
+
+Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos. Pas d'Unsplash. Pas de photo Wikipedia fair-use (seulement Commons libre).
 
 ## Écriture naturelle
 
@@ -95,7 +121,7 @@ Valentin Guth (et tout boxeur qui est aussi coach) : les faits (classement, bila
 
 Ne jamais supprimer un article publié. Un combat disputé passe en `status: dispute`, l'annonce reste. L'accueil montre le plus récent ; l'historique vit dans `/actualites` et `/actualites/AAAA-MM-JJ`.
 
-Une photo ne se répète pas sur la même page. Guth illustre Guth, pas le club.
+Une photo de boxeur ne se répète pas sur deux sujets de la même page. Guth illustre Guth, pas le club. Les visuels d'agenda ne se collent pas sur une carte de combat nommé.
 
 ## Longueur et SEO
 
