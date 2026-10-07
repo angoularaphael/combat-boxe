@@ -21,15 +21,17 @@ Textes originaux. Aucun paragraphe repris d'actu-boxe.com ni d'un autre média.
 
 ## Images (à faire tout seul, sans qu'on le redemande)
 
+Ces consignes sont celles de l'agent Combat Boxe pour combat-boxe.com. Elles ne s'appliquent pas aux autres projets.
+
 Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et pose les images. Ne pas attendre une relance.
 
 **Ordre obligatoire pour un combat nommé**
 
 1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala (ville, promoteur, FFBoxe, presse).
 2. Poser ces fichiers dans `public/img/boxers/` ou `public/img/posters/`, les brancher (`photo-credits.json` / `POSTERS` dans `portraits.js`).
-3. **Se rassurer qu'elles y sont** : ouvrir la carte et la fiche en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Rien n'est coupé au front. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
+3. **Se rassurer qu'elles y sont et qu'elles sont cadrées** : ouvrir la carte, la fiche et l'aperçu (bandeau) en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Yeux et bouche visibles. Pas de crâne seul, pas de grand vide au-dessus de la tête. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
 4. **Seulement s'il n'existe vraiment aucune photo ni affiche** : alors `fightMedia()` peut poser une image de boxe (`/img/scene-*.jpg`). Pas avant. Jamais en premier.
-5. Faire ça **pour tout le monde** sur l'affiche, pas seulement la tête d'affiche. Chaque agent (pas seulement le rédacteur) cherche l'affiche officielle comme pour Schofield contre Bahdi, ouvre **toutes** les cartes et contrôle avant de pousser.
+5. Faire ça **pour tout le monde** sur l'affiche, pas seulement la tête d'affiche. L'agent Combat Boxe cherche l'affiche officielle comme pour Schofield contre Bahdi, ouvre **toutes** les cartes, contrôle le cadrage des aperçus, puis pousse.
 
 **Boxeurs nommés (vrai portrait, jamais un autre visage)**
 
@@ -51,14 +53,15 @@ Les cartes d'entrée (prochains combats, résultats, calendrier, clubs) utilisen
 
 **Cadrage**
 
-Toute image doit se lire sans coupe de visage, de gant ou de sujet principal.
+Toute image doit se lire sans coupe de visage, de gant ou de sujet principal. Les aperçus (cartes et bandeau de fiche) sont aussi à cadrer : si on ne voit que le haut du crâne, recadrer le fichier.
 
-- Portraits dans les cartes combat : classe `fight-media-portrait`, `object-fit: cover`, `object-position: center 16%`, bandeau d'au moins 200 px de haut.
+- Portraits dans les cartes combat : classe `fight-media-portrait`, `object-fit: cover`, `object-position: center 36%`, bandeau d'au moins 200 px de haut.
 - Affiches officielles : classe `fight-media-poster`, `object-position: center 12%` (visages des têtes d'affiche en haut).
 - Scènes d'ambiance : `fight-media-scene`, `object-position: center center`.
-- Bandeau article 1 portrait : `cover-edito-single` (photo en portrait 4/5, pas une bandeau trop plat qui ne garde que le front).
+- Bandeau fiche 2 portraits : `cover-split`, `object-position: center 32%`, hauteur suffisante pour lire les visages.
+- Bandeau article 1 portrait : `cover-edito-single` (photo en portrait 4/5, `object-position: center 18%`).
 - Accueil / agenda : `object-position: center 28%` sur les 16:9.
-- Vérifier 375 px et ~900 px : pas de front seul, pas de photo floue coupée, pas de carte sans image.
+- Vérifier 375 px et ~900 px : pas de front seul, pas de vide au-dessus de la tête, pas de photo floue coupée, pas de carte sans image.
 
 Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos. Pas d'Unsplash. Pas de photo Wikipedia fair-use (seulement Commons libre).
 

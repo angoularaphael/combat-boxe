@@ -366,7 +366,7 @@ a.card {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 32%;
 }
 
 .row-card h3 {
@@ -488,7 +488,7 @@ dd {
     min-height: 300px;
     max-height: none;
     aspect-ratio: auto;
-    object-position: center 10%;
+    object-position: center 18%;
   }
 
   .cover-edito-poster .cover-bg,
@@ -509,6 +509,10 @@ dd {
   .cover-edito {
     min-height: 300px;
     padding: 28px 28px 24px;
+  }
+
+  .cover-edito-photo:not(.cover-edito-single) {
+    min-height: 360px;
   }
 
   .cover-edito-photo:not(.cover-edito-single) .cover-copy {
@@ -1062,6 +1066,10 @@ a {
   gap: 8px;
 }
 
+.cover-edito-photo:not(.cover-edito-single) {
+  min-height: 280px;
+}
+
 .cover-edito-photo:not(.cover-edito-single) .cover-copy {
   position: absolute;
   inset: 0;
@@ -1084,7 +1092,7 @@ a {
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center 8%;
+  object-position: center 18%;
   z-index: 0;
 }
 
@@ -1142,7 +1150,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 16%;
+  object-position: center 32%;
 }
 
 .cover-photo-shade {
@@ -1177,7 +1185,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 16%;
+  object-position: center 32%;
 }
 
 .cover-mark {
@@ -1597,7 +1605,7 @@ a {
 }
 
 .fight-media-portrait img {
-  object-position: center 16%;
+  object-position: center 36%;
 }
 
 .fight-media-scene img {
