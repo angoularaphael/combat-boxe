@@ -70,6 +70,15 @@ const portraits = articles.filter((a) => a.data.kind === 'portrait');
 const analyses = articles.filter((a) => a.data.kind === 'analyse');
 const interviews = articles.filter((a) => a.data.kind === 'interview');
 const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind === 'guide');
+
+function searchBlob(row) {
+  return [row.h1, row.title, row.description, row.coverVersus, kindLabel(row.kind)]
+    .filter(Boolean)
+    .join(' ')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
 ---
 
 <Base
@@ -121,6 +130,11 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       )}
       {template === 'news' && (
         <>
+          <form class="news-search" role="search" action="/actualites" method="get">
+            <label for="news-q">Rechercher une actualité</label>
+            <input id="news-q" name="q" type="search" placeholder="Nom, ville, titre" autocomplete="off" enterkeyhint="search" />
+          </form>
+          <p class="empty news-search-empty" hidden>Aucun papier ne correspond à ces mots.</p>
           {editions.map(([key, items]) => (
             <section class="edition-block">
               <div class="section-head">
@@ -132,7 +146,7 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
                   const row = liveArticle(item.data);
                   const thumb = articleThumb(row);
                   return (
-                    <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
+                    <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`} data-search={searchBlob(row)}>
                       {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
                       <div>
                         <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
@@ -145,6 +159,44 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
               </div>
             </section>
           ))}
+          <script is:inline>
+            (function () {
+              var input = document.getElementById('news-q');
+              var empty = document.querySelector('.news-search-empty');
+              if (!input) return;
+              function fold(value) {
+                return String(value || '')
+                  .normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .toLowerCase();
+              }
+              function apply() {
+                var words = fold(input.value).split(/\s+/).filter(Boolean);
+                var shown = 0;
+                document.querySelectorAll('[data-search]').forEach(function (card) {
+                  var hay = card.getAttribute('data-search') || '';
+                  var ok = words.every(function (word) { return hay.indexOf(word) !== -1; });
+                  card.hidden = !ok;
+                  if (ok) shown += 1;
+                });
+                document.querySelectorAll('.edition-block').forEach(function (block) {
+                  var visible = block.querySelector('[data-search]:not([hidden])');
+                  block.hidden = !visible;
+                });
+                if (empty) empty.hidden = shown > 0;
+                var url = new URL(window.location.href);
+                var text = input.value.trim();
+                if (text) url.searchParams.set('q', text);
+                else url.searchParams.delete('q');
+                history.replaceState(null, '', url);
+              }
+              input.addEventListener('input', apply);
+              var params = new URLSearchParams(window.location.search);
+              var initial = params.get('q') || '';
+              if (initial) input.value = initial;
+              apply();
+            })();
+          </script>
         </>
       )}
 
