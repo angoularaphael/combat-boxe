@@ -161,5 +161,65 @@
     "aliases": [
       "Tsuboi"
     ]
+  },
+  {
+    "name": "Marina Sakharov",
+    "slug": "marina-sakharov",
+    "path": "/img/boxers/marina-sakharov.jpg",
+    "license": "editorial",
+    "artist": "Roméo Boetzlé / DNA",
+    "pageUrl": "https://www.dna.fr/culture-loisirs/2026/10/06/le-centre-culturel-et-sportif-des-roseaux-accueille-une-competition-des-championnats-de-boxe-feminine-ce-samedi",
+    "aliases": [
+      "Sakharov",
+      "Marina Sakharova",
+      "Sakharova"
+    ]
+  },
+  {
+    "name": "Isis Logerie",
+    "slug": "isis-logerie",
+    "path": "/img/boxers/isis-logerie.jpg",
+    "license": "editorial",
+    "artist": "FFBoxe",
+    "pageUrl": "https://www.ffboxe.com/isis-pigazou-logerie-championne-de-france/",
+    "aliases": [
+      "Logerie",
+      "Isis Pigazou Logerie",
+      "Isis Pizagou Logerie"
+    ]
+  },
+  {
+    "name": "Hassana El Qadmi",
+    "slug": "hassana-el-qadmi",
+    "path": "/img/boxers/hassana-el-qadmi.jpg",
+    "license": "editorial",
+    "artist": "CRGEB / Républicain Lorrain",
+    "pageUrl": "https://www.republicain-lorrain.fr/sport/2025/01/25/hassana-el-qadmi-(bc-behren)-sacre-champion-de-france",
+    "aliases": [
+      "El Qadmi",
+      "Qadmi"
+    ]
+  },
+  {
+    "name": "Osleys Iglesias",
+    "slug": "osleys-iglesias",
+    "path": "/img/boxers/osleys-iglesias.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/osleys-iglesias",
+    "aliases": [
+      "Iglesias"
+    ]
+  },
+  {
+    "name": "Oliver Zaren",
+    "slug": "oliver-zaren",
+    "path": "/img/boxers/oliver-zaren.jpg",
+    "license": "editorial",
+    "artist": "BoxingScene",
+    "pageUrl": "https://www.boxingscene.com/articles/steffen-rorstrom-wins-battle-of-unbeatens-primetime-sign-great-dane-oliver-zaren",
+    "aliases": [
+      "Zaren"
+    ]
   }
 ]

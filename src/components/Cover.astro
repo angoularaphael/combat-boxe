@@ -2,10 +2,11 @@
 const { kicker = '', versus = '', title = '', meta = '', photos = [] } = Astro.props;
 const names = versus.split(' / ').map((part) => part.trim()).filter(Boolean);
 const hasPhotos = photos.length > 0;
+const isPoster = String(photos[0] || '').includes('/posters/');
 const layout = photos.length >= 2 ? 'split' : photos.length === 1 ? 'single' : 'plain';
 ---
 
-<figure class:list={['cover-edito', hasPhotos && 'cover-edito-photo', layout === 'single' && 'cover-edito-single']}>
+<figure class:list={['cover-edito', hasPhotos && 'cover-edito-photo', layout === 'single' && 'cover-edito-single', isPoster && 'cover-edito-poster']}>
   {layout === 'split' ? (
     <div class="cover-split" aria-hidden="true">
       <img src={photos[0]} alt="" width="640" height="800" />

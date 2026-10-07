@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Cover from '../../components/Cover.astro';
 import { combats, formatDate, galas } from '../../data/entities';
 import { countryLabel, flagSrc } from '../../lib/flags';
-import { photosForVersus } from '../../lib/portraits';
+import { fightMedia } from '../../lib/portraits';
 import { breadcrumbLd, graph } from '../../lib/seo';
 
 export function getStaticPaths() {
@@ -14,7 +14,7 @@ export function getStaticPaths() {
 
 const { fight } = Astro.props;
 const path = `/combats/${fight.slug}`;
-const photos = photosForVersus(`${fight.boxerA} / ${fight.boxerB}`);
+const photos = fightMedia(`${fight.boxerA} / ${fight.boxerB}`).srcs;
 const flag = flagSrc(fight.country);
 const country = countryLabel(fight.country);
 function cityKey(value = '') {

@@ -6,7 +6,7 @@ import FightCard from '../../components/FightCard.astro';
 import Cover from '../../components/Cover.astro';
 import { combats, formatDate, galas } from '../../data/entities';
 import { countryLabel, flagSrc } from '../../lib/flags';
-import { photosForVersus } from '../../lib/portraits';
+import { fightMedia } from '../../lib/portraits';
 import { breadcrumbLd, graph } from '../../lib/seo';
 
 export function getStaticPaths() {
@@ -26,7 +26,7 @@ function cityKey(value = '') {
     .trim();
 }
 const card = combats.filter((fight) => fight.date === gala.date && cityKey(fight.city) === cityKey(gala.city));
-const photos = photosForVersus(gala.versus || (card[0] ? `${card[0].boxerA} / ${card[0].boxerB}` : ''));
+const photos = fightMedia(gala.versus || (card[0] ? `${card[0].boxerA} / ${card[0].boxerB}` : '')).srcs;
 const crumbs = [
   { href: '/', label: 'Accueil' },
   { href: '/galas-boxe', label: 'Galas' },

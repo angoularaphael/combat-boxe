@@ -23,13 +23,26 @@ Textes originaux. Aucun paragraphe repris d'actu-boxe.com ni d'un autre média.
 
 Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et pose les images. Ne pas attendre une relance.
 
+**Ordre obligatoire pour un combat nommé**
+
+1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala (ville, promoteur, FFBoxe, presse).
+2. Poser ces fichiers dans `public/img/boxers/` ou `public/img/posters/`, les brancher (`photo-credits.json` / `POSTERS` dans `portraits.js`).
+3. **Se rassurer qu'elles y sont** : ouvrir la carte et la fiche en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Rien n'est coupé au front. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
+4. **Seulement s'il n'existe vraiment aucune photo ni affiche** : alors `fightMedia()` peut poser une image de boxe (`/img/scene-*.jpg`). Pas avant. Jamais en premier.
+
 **Boxeurs nommés (vrai portrait, jamais un autre visage)**
 
 1. Lancer `node scripts/recuperer-portraits.mjs "Prénom Nom"` pour chaque boxeur de l'affiche.
 2. Un fichier Wikimedia Commons libre n'entre que s'il représente **ce** boxeur (pas un mural, pas une affiche, pas un autre combattant, pas un hockeyeur homonyme).
-3. Si le portrait existe, il va sur la carte de combat, la fiche `/combats/[slug]`, le bandeau d'article (`coverVersus`) et le thumb d'actu.
-4. Si Commons n'a rien : **ne pas** coller une photo de salle, de casque, d'inconnu ou d'un autre combat. Utiliser `fightMedia()` : scène d'ambiance Combat Boxe (`/img/scene-*.jpg`) ou bandeau éditorial. **Ne jamais générer le visage d'un boxeur nommé.**
-5. Une même photo de boxeur ne sert pas deux sujets différents sur la même page. Guth illustre Guth, pas le club.
+3. Si Commons n'a rien : chercher **tout de suite** une photo réelle (pas une scène IA) : affiche officielle du gala, page FFBoxe, og:image de la ville / du promoteur / de la presse (DNA, Ouest-France, Républicain Lorrain, etc.).
+4. Recadrer pour que **le boxeur nommé** remplisse le cadre. Ne jamais laisser un second combattant, un arbitre ou un corps sans visage sur une carte à son nom.
+5. Une affiche officielle des deux boxeurs va sur la carte. Un portrait réel aussi. Une scène générique, jamais, tant qu'une vraie image existe.
+6. Interdit sur un combat nommé : salle vide, gant accroché, tabouret, ring générique, stock Unsplash, visage généré, photo d'un autre pugiliste.
+7. Une même photo de boxeur ne sert pas deux sujets différents sur la même page. Guth illustre Guth, pas le club.
+
+**Avant de pousser**
+
+Ouvrir le site en local, contrôler les cartes concernées (375 px et ~900 px). Ne pas `git push` tant que les vraies images ne sont pas visibles sur les cartes.
 
 **Agenda, accueil, clubs (visuels de rubrique)**
 
@@ -40,6 +53,7 @@ Les cartes d'entrée (prochains combats, résultats, calendrier, clubs) utilisen
 Toute image doit se lire sans coupe de visage, de gant ou de sujet principal.
 
 - Portraits dans les cartes combat : classe `fight-media-portrait`, `object-fit: cover`, `object-position: center 16%`, bandeau d'au moins 200 px de haut.
+- Affiches officielles : classe `fight-media-poster`, `object-position: center 12%` (visages des têtes d'affiche en haut).
 - Scènes d'ambiance : `fight-media-scene`, `object-position: center center`.
 - Bandeau article 1 portrait : `cover-edito-single` (photo en portrait 4/5, pas une bandeau trop plat qui ne garde que le front).
 - Accueil / agenda : `object-position: center 28%` sur les 16:9.

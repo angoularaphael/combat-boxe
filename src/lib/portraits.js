@@ -19,6 +19,13 @@ const SCENES = [
   '/img/scene-belt.jpg',
 ];
 
+const POSTERS = [
+  {
+    names: ['brice clavier', 'gaetan ntambwe'],
+    path: '/img/posters/clavier-ntambwe.jpg',
+  },
+];
+
 export function portraitFor(name) {
   if (!name) return '';
   const n = norm(name);
@@ -51,7 +58,32 @@ export function articleThumb(data) {
   return photos[0] || '';
 }
 
+function lastToken(value) {
+  return norm(value).split(' ').pop();
+}
+
+export function posterForVersus(versus) {
+  if (!versus) return '';
+  const parts = versus
+    .split('/')
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (parts.length < 2) return '';
+  const hit = POSTERS.find((row) =>
+    parts.every((part) => {
+      const p = norm(part);
+      return row.names.some((name) => {
+        const n = norm(name);
+        return p === n || lastToken(p) === lastToken(n);
+      });
+    }),
+  );
+  return hit?.path || '';
+}
+
 export function fightMedia(versus, index = 0) {
+  const poster = posterForVersus(versus);
+  if (poster) return { srcs: [poster], kind: 'poster' };
   const photos = photosForVersus(versus);
   if (photos.length) return { srcs: photos, kind: 'portrait' };
   return { srcs: [SCENES[Math.abs(Number(index) || 0) % SCENES.length]], kind: 'scene' };
