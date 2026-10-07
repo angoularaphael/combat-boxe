@@ -19,9 +19,9 @@ Le bootstrap clone le **dépôt principal**, installe les dépendances, puis lan
 Ce process :
 
 1. Écoute le port du panel (BotHosting exige un process vivant).
-2. Au démarrage, puis à 8 h et 20 h (heure de Paris), lance `scripts/agent-production.mjs`.
+2. Une fois par jour, à 8 h (heure de Paris). Un seul article. Un redémarrage le même jour n'en écrit pas un deuxième.
 3. Lit des pages officielles (FFBoxe, WBC, promoteurs, presse).
-4. Si un fait nouveau est sourcé : article markdown publié.
+4. Si un fait nouveau est sourcé et qu'aucun papier n'est déjà sorti ce jour-là : article markdown publié.
 5. Combats / résultats / galas : JSON (`src/data/combats-auto.json`, `combats-updates.json`, `galas-auto.json`).
 6. Photos réelles : Commons, puis pages promoteurs. Affiches dans `posters.json`. Cadrage 640x800 (`sharp`).
 7. Commit au nom de Raphael et `git push` vers le dépôt principal. Vercel affiche.

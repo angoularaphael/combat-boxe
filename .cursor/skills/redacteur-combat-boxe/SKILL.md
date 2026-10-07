@@ -7,7 +7,7 @@ description: Rédige et publie les articles, fiches et mises à jour de calendri
 
 ## Production (sans Cursor, sans GitHub Actions)
 
-En production, Combat Boxe tourne **tout seul** sur un process BotHosting, comme BOXPLUS. Pas d'Actions sur le compte GitHub principal. Le serveur clone le dépôt principal, lance `node scripts/serveur-production.mjs`, publie à 8 h et 20 h (heure de Paris), pousse sur `angoularaphael/combat-boxe`. Vercel déploie.
+En production, Combat Boxe tourne **tout seul** sur un process BotHosting, comme BOXPLUS. Pas d'Actions sur le compte GitHub principal. Le serveur clone le dépôt principal, lance `node scripts/serveur-production.mjs`, publie **un article par jour** à 8 h (heure de Paris), pousse sur `angoularaphael/combat-boxe`. Vercel déploie.
 
 Fichiers panel : `deploy/bothosting/index.js` et `.env` (`ANTHROPIC_API_KEY`, `GIT_PUSH_TOKEN` d'un compte machine). Sans la clé Claude, les photos manquantes sont quand même cherchées. Sans le jeton git, rien n'arrive sur le dépôt principal.
 

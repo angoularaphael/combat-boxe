@@ -76,6 +76,20 @@ function existingSlugs() {
     .map((name) => name.replace(/\.md$/, ''));
 }
 
+function jourParis() {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris' }).format(new Date());
+}
+
+function articleDejaAujourdhui() {
+  const jour = jourParis();
+  for (const name of readdirSync(articlesDir).filter((n) => n.endsWith('.md'))) {
+    const md = readFileSync(resolve(articlesDir, name), 'utf8');
+    const hit = md.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})/m);
+    if (hit && hit[1] === jour) return true;
+  }
+  return false;
+}
+
 function combatsConnus() {
   const entities = readFileSync(resolve(root, 'src/data/entities.js'), 'utf8');
   const rows = [];
@@ -203,7 +217,9 @@ export async function runProductionAgent() {
 
   const knownFights = combatsConnus();
 
-  if (process.env.ANTHROPIC_API_KEY) {
+  if (process.env.ANTHROPIC_API_KEY && articleDejaAujourdhui()) {
+    console.log('Un article est deja sorti aujourd hui. Pas d appel Claude.');
+  } else if (process.env.ANTHROPIC_API_KEY) {
     const pages = [];
     for (const [name, url] of FEEDS) {
       const page = await fetchPage(url);
@@ -278,7 +294,8 @@ Format :
   }]
 }
 
-article vaut null s'il n'y a pas de fait NOUVEAU assez precis (date, deux boxeurs, lieu, source) ou si le slug existe deja.
+Un seul article par jour. Aujourd'hui (Paris) : ${jourParis()}.
+article vaut null s'il n'y a pas de fait NOUVEAU assez precis (date, deux boxeurs, lieu, source), si le slug existe deja, ou si un article du jour existe deja.
 fights : seulement des combats absents du calendrier fourni, avec date complete, deux noms, ville et sourceUrl.
 fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés.
 galas : soiree nouvelle avec date, nom, ville.

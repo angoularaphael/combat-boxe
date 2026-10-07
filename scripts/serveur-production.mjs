@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Process long Combat Boxe (BotHosting). Pas de GitHub Actions.
- * Tourne en continu, publie deux fois par jour, pousse sur le depot principal.
+ * Tourne en continu, publie un article par jour, pousse sur le depot principal.
  */
 import { createServer } from 'node:http';
 import { execSync } from 'node:child_process';
@@ -12,7 +12,7 @@ import { runProductionAgent } from './agent-production.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = Number(process.env.PORT || process.env.BOT_HTTP_PORT || 3000);
-const HOURS = String(process.env.AGENT_HOURS || '8,20')
+const HOURS = String(process.env.AGENT_HOURS || '8')
   .split(',')
   .map((h) => Number(h.trim()))
   .filter((h) => h >= 0 && h <= 23);
