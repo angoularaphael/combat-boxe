@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Agent Combat Boxe — BotHosting
+ * Agent Combat Boxe — 157.180.7.37:22077
  *
  * Upload sur le serveur :
  *   /home/container/index.js  (ce fichier)
- *   /home/container/.env      (voir .env.example)
+ *   /home/container/.env
  *
  * Startup panel : node index.js
  *
