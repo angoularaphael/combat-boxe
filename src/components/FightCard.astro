@@ -13,7 +13,7 @@ const country = countryLabel(fight.country);
 <a class="fight-card fight-card-link" href={href} style={`--i: ${index}`}>
   <div class:list={['fight-media', media.kind === 'portrait' && 'fight-media-portrait', media.kind === 'poster' && 'fight-media-poster', media.kind === 'scene' && 'fight-media-scene', media.srcs.length > 1 && 'fight-media-split']} aria-hidden="true">
     {media.srcs.map((src) => (
-      <img src={src} alt="" width="640" height="360" loading="lazy" />
+      <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
     ))}
   </div>
   <p class="fight-date">

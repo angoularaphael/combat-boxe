@@ -3,7 +3,7 @@
  * Une scene generique n'est pas telechargee ici.
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { portraitsForNames, loadRegistry, saveRegistry } from './portraits-commons.mjs';
 import { bufferEstUnePhoto, cadrerPortrait, reduireAffiche } from './cadrer-portrait.mjs';
@@ -216,7 +216,17 @@ export async function photosPourNoms(names) {
   const commons = await portraitsForNames(missing);
   for (const row of commons) {
     const file = fileForCredit(row);
-    if (file && existsSync(file)) await cadrerPortrait(file);
+    if (file && existsSync(file)) {
+      const framed = await cadrerPortrait(file);
+      if (framed) {
+        const web = `/img/boxers/${basename(framed)}`;
+        if (row.path !== web) {
+          row.path = web;
+          const registry = loadRegistry().map((item) => (item.slug === row.slug ? { ...item, path: web } : item));
+          saveRegistry(registry);
+        }
+      }
+    }
     saved.push(row);
   }
   for (const name of missing) {

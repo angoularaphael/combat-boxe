@@ -9,11 +9,11 @@ const layout = photos.length >= 2 ? 'split' : photos.length === 1 ? 'single' : '
 <figure class:list={['cover-edito', hasPhotos && 'cover-edito-photo', layout === 'single' && 'cover-edito-single', isPoster && 'cover-edito-poster']}>
   {layout === 'split' ? (
     <div class="cover-split" aria-hidden="true">
-      <img src={photos[0]} alt="" width="640" height="800" />
-      <img src={photos[1]} alt="" width="640" height="800" />
+      <img src={photos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
+      <img src={photos[1]} alt="" width="640" height="800" decoding="async" />
     </div>
   ) : layout === 'single' ? (
-    <img class="cover-bg cover-bg-portrait" src={photos[0]} alt="" width="640" height="800" />
+    <img class="cover-bg cover-bg-portrait" src={photos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
   ) : null}
   {layout === 'split' && <span class="cover-photo-shade" aria-hidden="true"></span>}
   <div class="cover-copy">

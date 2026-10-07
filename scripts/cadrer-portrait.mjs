@@ -58,8 +58,8 @@ export async function reduireAffiche(filePath) {
   try {
     await sharp(filePath)
       .rotate()
-      .resize({ width: 1400, withoutEnlargement: true })
-      .jpeg({ quality: 86, mozjpeg: true })
+    .resize({ width: 1000, withoutEnlargement: true })
+    .jpeg({ quality: 76, mozjpeg: true })
       .toFile(tmp);
     unlinkSync(filePath);
     renameSync(tmp, filePath);

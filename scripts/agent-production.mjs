@@ -398,7 +398,7 @@ Format :
     "sourceName": "...",
     "sourceUrl": "https://...",
     "pillars": [{"href":"/combats-a-venir","label":"Combats a venir"}],
-    "body": "article markdown sans H1. Plusieurs paragraphes. Decrire chaque boxeur a partir des pages. Donner le pronostic seulement si un bilan ou un resultat recent est dans les pages. Citer la salle, la chaine et l'heure des qu'elles sont ecrites dans les pages. Pas de liste de sources, pas d'emoji"
+    "body": "article markdown sans H1. Au moins huit paragraphes, voix de chroniqueur. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Developpe chaque boxeur a partir des bilans et parcours ecrits dans les pages. Parle de la carte autour. Termine par plusieurs paragraphes de lecture, puis un dernier paragraphe qui donne le pronostic et nomme le vainqueur pressenti. Pas de cote inventee. Si aucun bilan, statut de champion, combat precedent ou avantage de salle n'est dans les pages, le dernier paragraphe ne nomme pas de vainqueur. Pas de liste de sources, pas d'emoji"
     }
   ],
   "fights": [{
@@ -414,8 +414,9 @@ Format :
     "channel": "",
     "aboutA": "",
     "aboutB": "",
-    "prediction": "",
-    "stakes": "",
+    "analysis": "trois paragraphes separes par une ligne vide. Chronique du combat, faits des pages seulement.",
+    "prediction": "deux paragraphes separes par une ligne vide. Le dernier nomme le vainqueur pressenti.",
+    "stakes": "une phrase courte pour la carte",
     "winner": "",
     "method": "",
     "decision": "",
@@ -443,6 +444,7 @@ Format :
     "channel": "",
     "aboutA": "",
     "aboutB": "",
+    "analysis": "",
     "prediction": "",
     "sourceUrl": "https://..."
   }],
@@ -462,10 +464,10 @@ Format :
 
 Aujourd'hui (Paris) : ${jourParis()}.
 Ecris jusqu'a ${places} articles, un par fait distinct. Un fait peut etre un combat principal, un lever de rideau, un resultat, une signature, une pesee, une conference ou une soiree. Pas seulement l'affiche principale. Tableau vide s'il n'y a pas assez de faits nouveaux. N'invente pas pour remplir le quota.
-Chaque article : slug different, sourceUrl, date, et au moins cinq paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Si la page donne un bilan ou un resultat recent, termine par un pronostic argumente a partir de ces faits, sans cote inventee. Si la page ne donne pas de base, n'annonce pas de vainqueur. Parle aussi des autres combats de la meme soiree quand les pages les citent. Champs vides (venue, time, channel, aboutA, aboutB, prediction) si le fait n'est pas dans les pages. Ignore les slugs deja publies.
-fights : combats absents du calendrier, date complete, deux noms, ville, sourceUrl. Remplis venue, time, channel, aboutA, aboutB, prediction, stakes avec les memes regles.
+Chaque article : slug different, sourceUrl, date, et au moins huit paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un long passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Termine par une lecture de plusieurs paragraphes, puis un dernier paragraphe de pronostic qui nomme le vainqueur pressenti. Sans bilan, sans statut de champion, sans combat precedent ni avantage de salle dans les pages, ce dernier paragraphe ne nomme personne. Pas de cote inventee. Parle aussi des autres combats de la meme soiree quand les pages les citent. analysis : trois paragraphes separes par une ligne vide, pour la fiche combat. prediction : deux paragraphes separes par une ligne vide, le dernier donne le choix. Champs vides si le fait n'est pas dans les pages. Ignore les slugs deja publies.
+fights : combats absents du calendrier, date complete, deux noms, ville, sourceUrl. Remplis venue, time, channel, aboutA, aboutB, analysis, prediction, stakes. stakes reste une seule phrase pour la carte. analysis et prediction portent la longueur.
 fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés.
-notes : pour un combat DEJA au calendrier, complete aboutA, aboutB, prediction, venue, time, channel si les pages du jour le permettent. Ne repete pas une fiche deja complete. prediction vide si aucun bilan n'est dans les pages.
+notes : pour un combat DEJA au calendrier, complete analysis, prediction, aboutA, aboutB, venue, time, channel si les pages du jour le permettent. Ne repete pas une fiche deja complete. prediction vide si aucune base n'est dans les pages.
 galas : soiree nouvelle avec date, nom, ville, et dans note la salle, la chaine et l'heure si la page les donne.
 posters : uniquement une URL d'affiche officielle (les deux visages), jamais un logo.`;
 

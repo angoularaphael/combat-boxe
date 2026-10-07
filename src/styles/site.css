@@ -602,12 +602,34 @@ dl.facts {
   text-transform: uppercase;
 }
 
+.fight-read {
+  max-width: 720px;
+  margin: 8px 0 8px;
+}
+
+.fight-read p {
+  margin: 0 0 16px;
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
 .person-grid p,
 .pronostic p,
 .same-card p,
 .same-card li {
   margin: 0;
   font-size: 16px;
+}
+
+.pronostic p {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.pronostic p + p {
+  margin-top: 14px;
 }
 
 .same-card ul {

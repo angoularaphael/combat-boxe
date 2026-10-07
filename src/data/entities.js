@@ -3,6 +3,7 @@ import { countryCodeFromCity, slugifyName } from '../lib/flags.js';
 import combatsAuto from './combats-auto.json';
 import galasAuto from './galas-auto.json';
 import combatsUpdates from './combats-updates.json';
+import { lectures } from './lectures.js';
 
 export const boxeurs = [
   {
@@ -660,6 +661,7 @@ function venueFromGalaCity(city = '') {
 function enrichFight(fight) {
   const slug = fight.slug || `${slugifyName(fight.boxerA)}-${slugifyName(fight.boxerB)}`;
   const logistics = logisticsFrom(fight.stakes || '');
+  const lecture = lectures.find((row) => sameFight(fight, row));
   return {
     ...fight,
     slug,
@@ -670,7 +672,8 @@ function enrichFight(fight) {
     channel: fight.channel || logistics.channel,
     aboutA: fight.aboutA || '',
     aboutB: fight.aboutB || '',
-    prediction: fight.prediction || '',
+    analysis: fight.analysis || lecture?.analysis || '',
+    prediction: fight.prediction || lecture?.prediction || '',
   };
 }
 

@@ -38,7 +38,7 @@ Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et 
 **Ordre obligatoire pour un combat nommé**
 
 1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala (ville, promoteur, FFBoxe, presse).
-2. Poser ces fichiers dans `public/img/boxers/` ou `public/img/posters/`, les brancher (`photo-credits.json` / `src/data/posters.json`).
+2. Poser ces fichiers dans `public/img/boxers/` (portrait, enregistré en `prenom-nom.jpg`, recadré 640 x 800 avant d'être gardé) ou `public/img/posters/` (affiche, jpeg plafonné à 1000 px de large). Les brancher dans `photo-credits.json` ou `src/data/posters.json`. Le process du matin commit `public/img` avec le papier.
 3. **Se rassurer qu'elles y sont et qu'elles sont cadrées** : ouvrir la carte, la fiche et l'aperçu (bandeau) en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Yeux et bouche visibles. Pas de crâne seul, pas de grand vide au-dessus de la tête. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
 4. **Seulement s'il n'existe vraiment aucune photo ni affiche** : alors `fightMedia()` peut poser une image de boxe (`/img/scene-*.jpg`). Pas avant. Jamais en premier.
 5. Faire ça **pour tout le monde** sur l'affiche, pas seulement la tête d'affiche. L'agent Combat Boxe cherche l'affiche officielle comme pour Schofield contre Bahdi, ouvre **toutes** les cartes, contrôle le cadrage des aperçus, puis pousse.
@@ -89,7 +89,8 @@ Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la 
 - Sur les pages publiques (combats à venir, calendrier, actualités, résultats, galas), ne pas expliquer la méthode : pas de « comment une affiche est ajoutée », pas de bloc Sources visible, pas de mode d'emploi. Afficher les combats et les papiers.
 - Éviter les phrases défensives répétées : « ce n'est pas », « il ne s'agit pas », « pas seulement ». Dire directement ce qui est vrai.
 - Éviter les séries artificielles en trois éléments et les oppositions mécaniques du type « pas X, mais Y ».
-- Un papier parle longtemps : la salle, l'heure, la chaîne dès qu'elles sont sourcées, un passage sur chaque personne, les autres combats de la soirée, puis un pronostic seulement si un bilan ou un résultat récent est dans la source. Pas de cote inventée, pas de vainqueur annoncé sans cette base.
+- Un papier parle longtemps, comme une chronique : la salle, l'heure, la chaîne dès qu'elles sont sourcées, un long passage sur chaque personne, les autres combats de la soirée. À la fin, plusieurs paragraphes de lecture, puis un dernier paragraphe qui donne le pronostic et nomme le vainqueur pressenti. Pas une seule phrase. Pas de cote inventée. Sans bilan, sans statut de champion, sans combat précédent ni avantage de salle dans la source, ce dernier paragraphe ne nomme personne.
+- La fiche combat reçoit les mêmes textes : `analysis` (au moins trois paragraphes) et `prediction` (au moins deux, le dernier est le choix). `stakes` reste une phrase courte pour les cartes. Un combat déjà au calendrier se complète dans `combats-updates.json`, pas en réécrivant toute la fiche.
 - Couvrir aussi les levers de rideau, les pesées, les conférences et les soirées. L'affiche principale n'est pas le seul sujet.
 - Ne pas écrire « le fait sportif utile, ici », « le point utile est ailleurs », « ce profil intéresse parce que ». Nommer directement l'enjeu sportif.
 - Garder les règles de vérification dans les sources et la préparation, pas dans le corps du papier sauf si une incertitude factuelle doit réellement être signalée au lecteur.

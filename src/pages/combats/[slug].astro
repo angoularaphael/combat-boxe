@@ -30,6 +30,9 @@ const sameCard = combats.filter(
   (item) => item.slug !== fight.slug && item.date === fight.date && cityKey(item.city) === cityKey(fight.city),
 );
 const place = placeLine(fight.city, country);
+const paragraphs = (value) => String(value || '').split(/\n\n+/).map((part) => part.trim()).filter(Boolean);
+const analysis = paragraphs(fight.analysis);
+const prediction = fight.status === 'dispute' ? [] : paragraphs(fight.prediction);
 const crumbs = [
   { href: '/', label: 'Accueil' },
   { href: fight.status === 'dispute' ? '/resultats-boxe' : '/combats-a-venir', label: fight.status === 'dispute' ? 'Résultats' : 'Combats à venir' },
@@ -108,7 +111,11 @@ const description = `${fight.boxerA} contre ${fight.boxerB}, ${formatDate(fight.
           </>
         )}
       </dl>
-      {fight.stakes && <p class="lead">{fight.stakes}</p>}
+      {analysis.length > 0 ? (
+        <div class="fight-read">
+          {analysis.map((part) => <p>{part}</p>)}
+        </div>
+      ) : fight.stakes && <p class="lead">{fight.stakes}</p>}
       {(fight.aboutA || fight.aboutB) && (
         <div class="person-grid">
           {fight.aboutA && (
@@ -125,12 +132,6 @@ const description = `${fight.boxerA} contre ${fight.boxerB}, ${formatDate(fight.
           )}
         </div>
       )}
-      {fight.prediction && (
-        <section class="pronostic">
-          <h2>Pronostic</h2>
-          <p>{fight.prediction}</p>
-        </section>
-      )}
       {(relatedGala || sameCard.length > 0) && (
         <section class="same-card">
           <h2>Sur la même soirée</h2>
@@ -145,6 +146,12 @@ const description = `${fight.boxerA} contre ${fight.boxerB}, ${formatDate(fight.
               ))}
             </ul>
           )}
+        </section>
+      )}
+      {prediction.length > 0 && (
+        <section class="pronostic">
+          <h2>Pronostic</h2>
+          {prediction.map((part) => <p>{part}</p>)}
         </section>
       )}
       <nav class="also">

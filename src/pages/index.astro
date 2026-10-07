@@ -58,11 +58,11 @@ const jsonLd = graph(
           <a class="lead-story lead-story-edito" href={`/${une.data.slug}`}>
             {unePhotos.length >= 2 ? (
               <div class="lead-split" aria-hidden="true">
-                <img src={unePhotos[0]} alt="" width="640" height="800" />
-                <img src={unePhotos[1]} alt="" width="640" height="800" />
+                <img src={unePhotos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
+                <img src={unePhotos[1]} alt="" width="640" height="800" decoding="async" />
               </div>
             ) : unePhotos[0] ? (
-              <img src={unePhotos[0]} alt="" width="1200" height="800" />
+              <img src={unePhotos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
             ) : une.data.photo ? (
               <img src={une.data.photo} alt={une.data.imageAlt || ''} width="1200" height="800" />
             ) : null}
@@ -78,7 +78,7 @@ const jsonLd = graph(
         )}
         <div class="hero-side">
           <a class="side-story" href="/combats-a-venir">
-            <img src="/img/agenda-upcoming.jpg" alt="" width="800" height="450" />
+            <img src="/img/agenda-upcoming.jpg" alt="" width="800" height="450" decoding="async" />
             <div>
               <span class="tag">À suivre</span>
               <h2>Les prochains combats qui vont compter</h2>
@@ -87,12 +87,12 @@ const jsonLd = graph(
           </a>
           <div class="side-pair">
             <a class="mini-story" href="/resultats-boxe">
-              <img src="/img/agenda-results.jpg" alt="" width="640" height="360" />
+              <img src="/img/agenda-results.jpg" alt="" width="640" height="360" decoding="async" />
               <span class="tag">Résultats</span>
               <h3>Vainqueurs, décisions et analyses</h3>
             </a>
             <a class="mini-story" href="/calendrier-combats-boxe">
-              <img src="/img/agenda-calendar.jpg" alt="" width="640" height="360" />
+              <img src="/img/agenda-calendar.jpg" alt="" width="640" height="360" decoding="async" />
               <span class="tag">Calendrier</span>
               <h3>Les dates à retenir autour du ring</h3>
             </a>
@@ -183,7 +183,7 @@ const jsonLd = graph(
       <div class="portrait-grid">
         {guth && (
           <a class="portrait-card portrait-card-wide" href={`/boxeurs/${guth.slug}`}>
-            <img src={guth.photo} alt={guth.photoAlt} width="800" height="1000" />
+            <img src={guth.photo} alt={guth.photoAlt} width="640" height="800" loading="lazy" decoding="async" />
             <div>
               <span class="tag">Boxeurs français</span>
               <h3>{guth.name}</h3>
@@ -193,12 +193,12 @@ const jsonLd = graph(
         )}
         {clubs.map((club) => (
           <a class="portrait-card portrait-card-salle" href={`/clubs/${club.slug}`}>
-            <img src={club.image} alt={club.imageAlt} width="1200" height="750" />
+            <img src={club.image} alt={club.imageAlt} width="1200" height="750" loading="lazy" decoding="async" />
             <div><span class="tag">Clubs</span><h3>{club.name}</h3><p>{club.address}</p></div>
           </a>
         ))}
         <a class="portrait-card" href="/entraineurs-boxe-francais">
-          <img src={coachs[0]?.photo || '/img/boxing-ring-corner.jpg'} alt="" width="800" height="1000" />
+          <img src={coachs[0]?.photo || '/img/boxing-ring-corner.jpg'} alt="" width="640" height="800" loading="lazy" decoding="async" />
           <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneur présenté</p></div>
         </a>
       </div>
