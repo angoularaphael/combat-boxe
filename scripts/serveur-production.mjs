@@ -129,8 +129,11 @@ const server = createServer((req, res) => {
 server.listen(PORT, '0.0.0.0', () => {
   log(`Ecoute sur ${PORT}`);
   log(`Horaires Paris : ${HOURS.join('h, ')}h`);
-  if (!existsSync(resolve(root, '.env')) && !process.env.ANTHROPIC_API_KEY) {
-    log('Pas de ANTHROPIC_API_KEY : les articles ne partiront pas, les photos oui.');
+  const hasLlm = ['ANTHROPIC_API_KEY', 'OPENAI_API_KEY', 'GEMINI_API_KEY'].some((key) =>
+    String(process.env[key] || '').trim(),
+  );
+  if (!existsSync(resolve(root, '.env')) && !hasLlm) {
+    log('Pas de cle IA : les articles ne partiront pas, les photos oui.');
   }
   if (!process.env.GIT_PUSH_TOKEN) {
     log('Pas de GIT_PUSH_TOKEN : le depot principal ne sera pas mis a jour.');

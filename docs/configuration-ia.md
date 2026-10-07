@@ -30,7 +30,9 @@ Ce process :
 
 | Variable | Rôle |
 | --- | --- |
-| `ANTHROPIC_API_KEY` | Rédaction et calendrier. Sans elle, seules les photos partent. |
+| `ANTHROPIC_API_KEY` | Rédaction et calendrier (Claude). Optionnel si OpenAI ou Gemini est pose. |
+| `OPENAI_API_KEY` | Remplacement si Anthropic est bloque (paiement 3DS, etc.). Modele `gpt-4.1`. |
+| `GEMINI_API_KEY` | Troisieme choix. |
 | `GIT_PUSH_TOKEN` | Jeton d'un **autre compte GitHub** (compte machine), avec droit d'écriture sur `angoularaphael/combat-boxe`. Le compte principal ne lance rien. |
 
 Créer un PAT (fine-grained : Contents write sur ce dépôt, ou classic `repo` si le dépôt est privé) sur le compte machine, pas sur le compte Raphael.
@@ -58,19 +60,19 @@ Pour un papier hors cron, `scripts/rediger-article.mjs` accepte une de ces clés
 
 | Variable | Modèle recommandé | Intérêt |
 | --- | --- | --- |
-| `ANTHROPIC_API_KEY` | `claude-sonnet-4-5` | Meilleur choix éditorial |
-| `OPENAI_API_KEY` | `gpt-4.1` | Solide, un peu plus générique |
+| `ANTHROPIC_API_KEY` | `claude-sonnet-4-5` | Meilleur choix éditorial si le paiement passe |
+| `OPENAI_API_KEY` | `gpt-4.1` | Remplacement sur la meme tache, souvent moins cher |
 | `GEMINI_API_KEY` | `gemini-2.5-pro` | Bon en français, souvent moins cher |
 
-**À utiliser pour Combat Boxe : Claude Sonnet.**
+**Combat Boxe : Claude si la cle marche, sinon GPT-4.1.** L'agent de production suit le meme ordre.
 
 Ne pas utiliser un modèle d'images. L'agent cherche une vraie photo du boxeur nommé (Commons, puis affiche / page promoteur). Une scène générique (`/img/scene-*.jpg`) seulement s'il n'existe vraiment aucune photo.
 
 ### Mise en place locale (optionnel)
 
-1. Créer la clé sur [Anthropic](https://console.anthropic.com/).
-2. Copier `.env.example` vers `.env` (jamais commité).
-3. Coller `ANTHROPIC_API_KEY`.
+1. Creer une cle sur [OpenAI](https://platform.openai.com/api-keys) (ou Anthropic si le 3DS passe).
+2. Copier `.env.example` vers `.env` (jamais commite).
+3. Coller `OPENAI_API_KEY` ou `ANTHROPIC_API_KEY`.
 4. Pour un article hors agent : `node scripts/rediger-article.mjs --faits faits.json`.
 
 Sans `--faits`, `rediger-article.mjs` refuse de tourner.

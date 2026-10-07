@@ -9,7 +9,7 @@ description: Rédige et publie les articles, fiches et mises à jour de calendri
 
 En production, Combat Boxe tourne **tout seul** sur un process BotHosting, comme BOXPLUS. Pas d'Actions sur le compte GitHub principal. Le serveur clone le dépôt principal, lance `node scripts/serveur-production.mjs`, publie **un article par jour** à 8 h (heure de Paris), pousse sur `angoularaphael/combat-boxe`. Vercel déploie.
 
-Fichiers panel : `deploy/bothosting/index.js` et `.env` (`ANTHROPIC_API_KEY`, `GIT_PUSH_TOKEN` d'un compte machine). Sans la clé Claude, les photos manquantes sont quand même cherchées. Sans le jeton git, rien n'arrive sur le dépôt principal.
+Fichiers panel : `deploy/bothosting/index.js` et `.env` (`OPENAI_API_KEY` ou `ANTHROPIC_API_KEY`, plus `GIT_PUSH_TOKEN` d'un compte machine). Sans cle IA, les photos manquantes sont quand meme cherchees. Sans le jeton git, rien n'arrive sur le depot principal.
 
 Cursor n'est qu'un secours ponctuel. Le circuit quotidien, c'est le serveur.
 
@@ -21,7 +21,7 @@ Le site est dans `combat-boxe/`. Astro, contenu markdown et données dans `src/d
 
 L'accueil (`src/pages/index.astro`) affiche tout seul le dernier article publié et les quatre plus récents. Les combats de `entities.js` et `combats-auto.json` apparaissent dans Combats à venir, Calendrier, Galas et à l'accueil. Il ne faut pas recoder la une à la main.
 
-Hors Cursor : le process BotHosting, ou `node scripts/agent-production.mjs` (un tour) / `node scripts/rediger-article.mjs --faits faits.json` (voir `docs/configuration-ia.md`). Claude Sonnet en priorité.
+Hors Cursor : le process BotHosting, ou `node scripts/agent-production.mjs` (un tour) / `node scripts/rediger-article.mjs --faits faits.json` (voir `docs/configuration-ia.md`). Claude si la cle est la, sinon GPT-4.1.
 
 ## Voix
 

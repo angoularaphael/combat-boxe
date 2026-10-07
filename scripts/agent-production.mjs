@@ -211,15 +211,126 @@ function combatValide(fight) {
   return true;
 }
 
+function clePresente(name) {
+  return Boolean(String(process.env[name] || '').trim());
+}
+
+function llmProvider() {
+  const forced = String(process.env.IA_MODEL || '').trim();
+  if (clePresente('ANTHROPIC_API_KEY')) {
+    return {
+      name: 'anthropic',
+      model: forced.startsWith('claude') ? forced : 'claude-sonnet-4-5',
+    };
+  }
+  if (clePresente('OPENAI_API_KEY')) {
+    return {
+      name: 'openai',
+      model: forced.startsWith('gpt-') ? forced : 'gpt-4.1',
+    };
+  }
+  if (clePresente('GEMINI_API_KEY')) {
+    return {
+      name: 'gemini',
+      model: forced.startsWith('gemini') ? forced : 'gemini-2.5-pro',
+    };
+  }
+  return null;
+}
+
+function parseJsonReply(raw) {
+  const cleaned = String(raw || '')
+    .replace(/```json|```/g, '')
+    .trim();
+  const start = cleaned.indexOf('{');
+  const end = cleaned.lastIndexOf('}');
+  if (start < 0 || end <= start) throw new Error('Reponse IA sans JSON');
+  return JSON.parse(cleaned.slice(start, end + 1));
+}
+
+async function callAnthropic(model, system, user) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': process.env.ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model,
+      max_tokens: 4000,
+      system,
+      messages: [{ role: 'user', content: user }],
+    }),
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error?.message || JSON.stringify(json));
+  return json.content.map((part) => part.text).join('\n');
+}
+
+async function callOpenAI(model, system, user) {
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.2,
+      max_tokens: 4000,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: system },
+        { role: 'user', content: user },
+      ],
+    }),
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error?.message || JSON.stringify(json));
+  return json.choices?.[0]?.message?.content || '';
+}
+
+async function callGemini(model, system, user) {
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: system }] },
+        contents: [{ role: 'user', parts: [{ text: user }] }],
+        generationConfig: {
+          temperature: 0.2,
+          maxOutputTokens: 4000,
+          responseMimeType: 'application/json',
+        },
+      }),
+    },
+  );
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error?.message || JSON.stringify(json));
+  return json.candidates?.[0]?.content?.parts?.map((part) => part.text).join('\n') || '';
+}
+
+async function callEditorialJson(provider, system, user) {
+  let raw = '';
+  if (provider.name === 'anthropic') raw = await callAnthropic(provider.model, system, user);
+  else if (provider.name === 'openai') raw = await callOpenAI(provider.model, system, user);
+  else raw = await callGemini(provider.model, system, user);
+  return parseJsonReply(raw);
+}
+
 export async function runProductionAgent() {
   loadEnv();
   console.log('Agent production Combat Boxe');
 
   const knownFights = combatsConnus();
 
-  if (process.env.ANTHROPIC_API_KEY && articleDejaAujourdhui()) {
-    console.log('Un article est deja sorti aujourd hui. Pas d appel Claude.');
-  } else if (process.env.ANTHROPIC_API_KEY) {
+  const llm = llmProvider();
+  if (llm && articleDejaAujourdhui()) {
+    console.log('Un article est deja sorti aujourd hui. Pas d appel IA.');
+  } else if (llm) {
     const pages = [];
     for (const [name, url] of FEEDS) {
       const page = await fetchPage(url);
@@ -309,28 +420,8 @@ ${pages
   .map((p) => `### ${p.name} (${p.url})\n${p.text}\nImages: ${(p.images || []).join(' ')}`)
   .join('\n\n')}`;
 
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: process.env.IA_MODEL || 'claude-sonnet-4-5',
-        max_tokens: 4000,
-        system,
-        messages: [{ role: 'user', content: user }],
-      }),
-    });
-    const json = await res.json();
-    if (!res.ok) throw new Error(json.error?.message || JSON.stringify(json));
-    const raw = json.content
-      .map((p) => p.text)
-      .join('\n')
-      .replace(/```json|```/g, '')
-      .trim();
-    const data = JSON.parse(raw);
+    console.log('IA :', llm.name, llm.model);
+    const data = await callEditorialJson(llm, system, user);
 
     const article = data.article;
     if (article?.slug && !slugs.includes(article.slug) && article.sourceUrl && article.body) {
@@ -361,7 +452,7 @@ ${pages
       await enregistrerAffiche(poster);
     }
   } else {
-    console.log('ANTHROPIC_API_KEY manquante : pas d article, les photos tournent quand meme.');
+    console.log('Pas de cle IA (Anthropic, OpenAI ou Gemini) : pas d article, les photos tournent quand meme.');
   }
 
   const names = nomsDuSite();
