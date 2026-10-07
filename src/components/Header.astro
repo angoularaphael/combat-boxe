@@ -1,4 +1,6 @@
 ---
+import { siteSearchIndex } from '../lib/site-search';
+
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
   ['/', 'Accueil'],
@@ -11,6 +13,8 @@ const links = [
   ['/clubs-boxe-france', 'Clubs'],
   ['/entraineurs-boxe-francais', 'Entraîneurs'],
 ];
+const searchIndex = await siteSearchIndex();
+const searchJson = JSON.stringify(searchIndex).replace(/</g, '\\u003c');
 ---
 
 <header class="site-header">
@@ -40,4 +44,144 @@ const links = [
       ))
     }
   </nav>
+  <div class="wrap site-search">
+    <form role="search" action="/actualites" method="get" autocomplete="off">
+      <label class="site-search-label" for="site-q">Rechercher sur le site</label>
+      <input id="site-q" name="q" type="search" placeholder="Nom, combat, ville" enterkeyhint="search" />
+    </form>
+    <div class="site-search-panel" hidden>
+      <p class="site-search-count" aria-live="polite"></p>
+      <div class="site-search-list"></div>
+    </div>
+  </div>
+  <script id="site-search-data" type="application/json" set:html={searchJson}></script>
+  <script is:inline>
+    (function () {
+      var input = document.getElementById('site-q');
+      var root = document.querySelector('.site-search');
+      var panel = document.querySelector('.site-search-panel');
+      var count = document.querySelector('.site-search-count');
+      var list = document.querySelector('.site-search-list');
+      var dataNode = document.getElementById('site-search-data');
+      if (!input || !panel || !list || !dataNode) return;
+      var index = [];
+      try { index = JSON.parse(dataNode.textContent || '[]'); } catch (err) { index = []; }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (char) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char];
+        });
+      }
+
+      function foldParts(value) {
+        var src = String(value || '');
+        var folded = '';
+        var map = [];
+        for (var i = 0; i < src.length; i++) {
+          var piece = src[i].normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+          for (var j = 0; j < piece.length; j++) {
+            folded += piece[j];
+            map.push(i);
+          }
+        }
+        return { src: src, folded: folded, map: map };
+      }
+
+      function isWord(char) {
+        return /[0-9A-Za-z\u00C0-\u024F'’-]/u.test(char);
+      }
+
+      function highlight(sentence, words) {
+        var parts = foldParts(sentence);
+        var ranges = [];
+        words.forEach(function (word) {
+          var from = 0;
+          while (from < parts.folded.length) {
+            var at = parts.folded.indexOf(word, from);
+            if (at < 0) break;
+            var start = parts.map[at];
+            var end = parts.map[at + word.length - 1] + 1;
+            while (start > 0 && isWord(parts.src[start - 1])) start -= 1;
+            while (end < parts.src.length && isWord(parts.src[end])) end += 1;
+            ranges.push([start, end]);
+            from = at + word.length;
+          }
+        });
+        ranges.sort(function (a, b) { return a[0] - b[0]; });
+        var merged = [];
+        ranges.forEach(function (range) {
+          var last = merged[merged.length - 1];
+          if (!last || range[0] > last[1]) merged.push([range[0], range[1]]);
+          else last[1] = Math.max(last[1], range[1]);
+        });
+        var html = '';
+        var cursor = 0;
+        merged.forEach(function (range) {
+          html += escapeHtml(parts.src.slice(cursor, range[0]));
+          html += '<mark class="search-hit">' + escapeHtml(parts.src.slice(range[0], range[1])) + '</mark>';
+          cursor = range[1];
+        });
+        return html + escapeHtml(parts.src.slice(cursor));
+      }
+
+      function sentences(entry) {
+        return [entry.title].concat(String(entry.text || '').split(/\.\s+/)).filter(Boolean);
+      }
+
+      function pickSentence(entry, words) {
+        var bits = sentences(entry);
+        var i;
+        for (i = 0; i < bits.length; i++) {
+          var folded = foldParts(bits[i]).folded;
+          if (words.every(function (word) { return folded.indexOf(word) !== -1; })) return bits[i];
+        }
+        for (i = 0; i < bits.length; i++) {
+          var hay = foldParts(bits[i]).folded;
+          if (words.some(function (word) { return hay.indexOf(word) !== -1; })) return bits[i];
+        }
+        return entry.title;
+      }
+
+      function render() {
+        var words = foldParts(input.value).folded.split(/\s+/).filter(function (word) { return word.length >= 2; });
+        if (!words.length) {
+          panel.hidden = true;
+          list.innerHTML = '';
+          count.textContent = '';
+          return;
+        }
+        var hits = index.filter(function (entry) {
+          var hay = foldParts(entry.title + ' ' + entry.text).folded;
+          return words.every(function (word) { return hay.indexOf(word) !== -1; });
+        });
+        var total = hits.length;
+        if (!total) {
+          count.textContent = 'Aucun résultat';
+          list.innerHTML = '';
+          panel.hidden = false;
+          return;
+        }
+        count.textContent = total + (total > 1 ? ' résultats' : ' résultat');
+        list.innerHTML = hits.slice(0, 12).map(function (entry) {
+          var sentence = pickSentence(entry, words);
+          return '<a href="' + escapeHtml(entry.href) + '"><span class="site-search-kind">' + escapeHtml(entry.kind) + '</span><p>' + highlight(sentence, words) + '</p></a>';
+        }).join('');
+        panel.hidden = false;
+      }
+
+      input.addEventListener('input', render);
+      input.addEventListener('focus', render);
+      document.addEventListener('click', function (event) {
+        if (root && !root.contains(event.target)) panel.hidden = true;
+      });
+      input.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') panel.hidden = true;
+      });
+      var initial = new URLSearchParams(window.location.search).get('q');
+      if (initial) {
+        input.value = initial;
+        render();
+      }
+    })();
+  </script>
 </header>
