@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Process long Combat Boxe (BotHosting). Pas de GitHub Actions.
- * Tourne en continu, publie un article par jour, pousse sur le depot principal.
+ * Tourne en continu, publie jusqu'a 6 articles par jour, pousse sur le depot principal.
  */
 import { createServer } from 'node:http';
 import { execSync } from 'node:child_process';

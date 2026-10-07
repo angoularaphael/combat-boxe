@@ -80,14 +80,21 @@ function jourParis() {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris' }).format(new Date());
 }
 
-function articleDejaAujourdhui() {
+function quotaArticles() {
+  const n = Number.parseInt(process.env.AGENT_ARTICLES || '6', 10);
+  if (!Number.isFinite(n) || n < 1) return 6;
+  return Math.min(n, 12);
+}
+
+function articlesDuJour() {
   const jour = jourParis();
+  let count = 0;
   for (const name of readdirSync(articlesDir).filter((n) => n.endsWith('.md'))) {
     const md = readFileSync(resolve(articlesDir, name), 'utf8');
     const hit = md.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})/m);
-    if (hit && hit[1] === jour) return true;
+    if (hit && hit[1] === jour) count += 1;
   }
-  return false;
+  return count;
 }
 
 function combatsConnus() {
@@ -328,8 +335,11 @@ export async function runProductionAgent() {
   const knownFights = combatsConnus();
 
   const llm = llmProvider();
-  if (llm && articleDejaAujourdhui()) {
-    console.log('Un article est deja sorti aujourd hui. Pas d appel IA.');
+  const quota = quotaArticles();
+  const deja = articlesDuJour();
+  const places = Math.max(0, quota - deja);
+  if (llm && places === 0) {
+    console.log(`Quota du jour atteint (${deja}/${quota}). Pas d appel IA.`);
   } else if (llm) {
     const pages = [];
     for (const [name, url] of FEEDS) {
@@ -349,7 +359,8 @@ Si un fait n'est pas explicite dans les pages, tu ne le poses pas.
 
 Format :
 {
-  "article": null ou {
+  "articles": [
+    {
     "slug": "...",
     "title": "...",
     "h1": "...",
@@ -363,7 +374,8 @@ Format :
     "sourceUrl": "https://...",
     "pillars": [{"href":"/combats-a-venir","label":"Combats a venir"}],
     "body": "article markdown sans H1, francais journalistique, faits uniquement, pas de liste de sources, pas d'emoji"
-  },
+    }
+  ],
   "fights": [{
     "status": "a-venir" ou "dispute",
     "date": "YYYY-MM-DD",
@@ -405,8 +417,8 @@ Format :
   }]
 }
 
-Un seul article par jour. Aujourd'hui (Paris) : ${jourParis()}.
-article vaut null s'il n'y a pas de fait NOUVEAU assez precis (date, deux boxeurs, lieu, source), si le slug existe deja, ou si un article du jour existe deja.
+Aujourd'hui (Paris) : ${jourParis()}.
+Ecris jusqu'a ${places} articles, un par fait distinct (un combat, un resultat, une signature). Tableau vide s'il n'y a pas assez de faits nouveaux. N'invente pas pour remplir le quota. Chaque article a un slug different, une sourceUrl, une date, deux boxeurs et un lieu. Ignore les slugs deja publies.
 fights : seulement des combats absents du calendrier fourni, avec date complete, deux noms, ville et sourceUrl.
 fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés.
 galas : soiree nouvelle avec date, nom, ville.
@@ -423,14 +435,28 @@ ${pages
     console.log('IA :', llm.name, llm.model);
     const data = await callEditorialJson(llm, system, user);
 
-    const article = data.article;
-    if (article?.slug && !slugs.includes(article.slug) && article.sourceUrl && article.body) {
-      const out = resolve(articlesDir, `${article.slug}.md`);
-      writeFileSync(out, toFrontmatter(article, String(article.body).trim()));
+    const candidats = []
+      .concat(Array.isArray(data.articles) ? data.articles : [])
+      .concat(data.article ? [data.article] : []);
+    const vus = new Set(slugs);
+    let ecrits = 0;
+    for (const article of candidats) {
+      if (ecrits >= places) break;
+      const slug = String(article?.slug || '')
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9-]+/g, '-')
+        .replace(/^-|-$/g, '');
+      if (!slug || vus.has(slug) || !article.sourceUrl || !article.body) continue;
+      if (!/^https?:\/\//.test(article.sourceUrl)) continue;
+      vus.add(slug);
+      const out = resolve(articlesDir, `${slug}.md`);
+      writeFileSync(out, toFrontmatter({ ...article, slug }, String(article.body).trim()));
+      ecrits += 1;
       console.log('Article publie :', out);
-    } else {
-      console.log('Pas de nouvel article.');
     }
+    if (!ecrits) console.log('Pas de nouvel article.');
+    else console.log(`Articles du jour : ${deja + ecrits}/${quota}`);
 
     const nouveaux = (data.fights || []).filter(
       (fight) => combatValide(fight) && !dejaAuCalendrier(fight, knownFights),
