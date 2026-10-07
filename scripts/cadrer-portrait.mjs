@@ -1,22 +1,19 @@
 /**
  * Recadre un portrait pour les cartes Combat Boxe.
  *
- * Apercu carte : bandeau 200 px de haut, largeur pleine (ou 2 colonnes en split).
- * Fichier portrait : 640 x 800. object-position 36 % aligne le visage dans
- * cette bande de 200 px. Un clipart ou une ceinture dessinee est refuse.
+ * Fichier 640x800. Les cartes split sont en 4/5 par boxeur, object-position
+ * en haut : on garde le haut du crâne, on coupe vers le bas si besoin.
  */
 import { renameSync, unlinkSync, existsSync } from 'node:fs';
 import sharp from 'sharp';
 
-function pipelineCadrage(filePath) {
-  return sharp(filePath).rotate().resize(640, 800, { fit: 'cover', position: 'attention' });
-}
+const W = 640;
+const H = 800;
 
 export async function bufferEstUnePhoto(buf) {
   if (!buf || buf.length < 6000) return false;
   try {
-    const img = sharp(buf);
-    const meta = await img.metadata();
+    const meta = await sharp(buf).metadata();
     if (!meta.width || !meta.height || meta.width < 180 || meta.height < 180) return false;
     const stats = await sharp(buf).stats();
     const avgStd = stats.channels.reduce((sum, ch) => sum + ch.stdev, 0) / stats.channels.length;
@@ -36,17 +33,18 @@ export async function bufferEstUnePhoto(buf) {
 
 export async function cadrerPortrait(filePath) {
   if (!existsSync(filePath)) return false;
-  const ext = (filePath.split('.').pop() || 'jpg').toLowerCase();
-  const tmp = `${filePath}.cadrage.tmp`;
+  const tmp = `${filePath}.cadrage.tmp.jpg`;
   try {
-    let img = pipelineCadrage(filePath);
-    if (ext === 'png') img = img.png({ quality: 90 });
-    else if (ext === 'webp') img = img.webp({ quality: 88 });
-    else img = img.jpeg({ quality: 88, mozjpeg: true });
-    await img.toFile(tmp);
+    await sharp(filePath)
+      .rotate()
+      .resize(W, H, { fit: 'cover', position: 'top' })
+      .jpeg({ quality: 88, mozjpeg: true })
+      .toFile(tmp);
     unlinkSync(filePath);
-    renameSync(tmp, filePath);
-    return filePath;
+    const dest = filePath.replace(/\.(png|webp|jpeg)$/i, '.jpg');
+    renameSync(tmp, dest);
+    if (filePath !== dest && existsSync(filePath)) unlinkSync(filePath);
+    return dest;
   } catch (err) {
     if (existsSync(tmp)) unlinkSync(tmp);
     console.log('Cadrage ignore :', filePath, err.message);

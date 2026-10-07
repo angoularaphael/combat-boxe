@@ -63,20 +63,20 @@ Les cartes d'entrée (prochains combats, résultats, calendrier, clubs) utilisen
 
 **Cadrage (selon la taille réelle de l'aperçu, pas seulement le fichier)**
 
-L'aperçu d'une carte combat fait **200 px de haut**, toute la largeur (ou deux colonnes en split). Ce n'est pas la photo entière. Recadrer le fichier pour que **cette bande de 200 px** montre le visage (yeux et bouche), pas le crâne, pas les pieds, pas une ceinture dessinée.
+Deux portraits côte à côte : chaque case est en **4/5** (bandeau split `8/5`). Un seul portrait : carte en **4/5**. On ne coupe plus les têtes avec un bandeau paysage de 200 px.
 
-- Portrait nommé : fichier **640 x 800**. La carte utilise `object-position: center 36%` : le visage doit tomber vers 36 % du haut du fichier, pour survivre à la coupe 200 px.
+- Portrait nommé : fichier **640 x 800**, recadré depuis le **haut** (`position: top`). Le crâne reste dans le fichier. `object-position: center top` partout (cartes, une, thumbs, covers).
 - Photo de combat paysage (les deux boxeurs) : `public/img/posters/`, ne pas la forcer en 640 x 800. Classe `fight-media-poster`.
 - Si le fichier est plus large que haut, c'est une affiche ou une action. S'il est plus haut que large, c'est un portrait.
 - Interdit d'enregistrer : clipart, ceinture vectorielle, logo, illustration sur fond blanc. BoxingTitleFights pose souvent une ceinture par défaut : la refuser.
-- Avant de pousser : controler la carte a 375 px et ~900 px, pas seulement le fichier plein ecran.
+- Avant de pousser : controler la carte a 375 px et ~900 px, pas seulement le fichier plein ecran. Yeux, bouche et haut du crâne visibles.
 
-- Portraits dans les cartes combat : classe `fight-media-portrait`, `object-fit: cover`, `object-position: center 36%`, bandeau 200 px.
-- Affiches officielles : classe `fight-media-poster`, `object-position: center 12%` (visages des têtes d'affiche en haut).
+- Portraits dans les cartes combat : classe `fight-media-portrait`, split `8/5` (4/5 par boxeur), `object-position: center top`.
+- Affiches officielles : classe `fight-media-poster`, `object-position: center 12%`.
 - Scènes d'ambiance : `fight-media-scene`, `object-position: center center`.
-- Bandeau fiche 2 portraits : `cover-split`, `object-position: center 32%`.
-- Bandeau article 1 portrait : `cover-edito-single` (`object-position: center 18%`).
-- Accueil / agenda : `object-position: center 28%` sur les 16:9.
+- Bandeau fiche 2 portraits : `cover-split`, `object-position: center top`.
+- Bandeau article 1 portrait : `cover-edito-single` (`object-position: center top`).
+- Accueil / liste d'actus : `object-position: center top`.
 
 Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos. Pas d'Unsplash. Pas de photo Wikipedia fair-use (seulement Commons libre).
 
