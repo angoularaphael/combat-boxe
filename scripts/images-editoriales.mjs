@@ -7,6 +7,7 @@ import { dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { portraitsForNames, loadRegistry, saveRegistry } from './portraits-commons.mjs';
 import { bufferEstUnePhoto, cadrerPortrait, reduireAffiche } from './cadrer-portrait.mjs';
+import sharp from 'sharp';
 
 const UA = 'CombatBoxe/1.0 (https://combat-boxe.com; media independant de boxe)';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -85,7 +86,8 @@ function scorePhoto(url, name) {
   if (u.includes(slug)) score += 6;
   if (last.length > 4 && u.includes(last)) score += 3;
   if (/\/photos\/|profile|portrait|headshot|fighter|boxer|cdn\/shop\/files/.test(u)) score += 4;
-  if (/og:|opengraph|social/.test(u)) score += 1;
+  if (/og:|opengraph|social|thumb|-\d{2,3}x\d{2,3}|small|tiny|blur/.test(u)) score -= 4;
+  if (/-\d{3,4}w|large|original|full/.test(u)) score += 3;
   if (/banner|header|nav-|hero-site|advert|belt|clipart/.test(u)) score -= 3;
   if (/\.(jpe?g|png|webp)(\?|$)/.test(u)) score += 2;
   return score;
@@ -101,8 +103,18 @@ function extractImageUrls(html, pageUrl) {
     urls.push(absoluteUrl(m[1], pageUrl));
   }
   for (const m of html.matchAll(/srcset=["']([^"']+)/gi)) {
-    const first = m[1].split(',')[0].trim().split(/\s+/)[0];
-    urls.push(absoluteUrl(first, pageUrl));
+    let best = '';
+    let bestW = 0;
+    for (const part of m[1].split(',')) {
+      const bits = part.trim().split(/\s+/);
+      const src = bits[0];
+      const w = Number((bits[1] || '').replace('w', '')) || 0;
+      if (w >= bestW) {
+        bestW = w;
+        best = src;
+      }
+    }
+    if (best) urls.push(absoluteUrl(best, pageUrl));
   }
   return [...new Set(urls.filter(Boolean).filter(looksLikePhoto))];
 }
@@ -138,6 +150,9 @@ async function downloadBuffer(url) {
     if (type.includes('html') || type.includes('javascript')) return null;
     const buf = Buffer.from(await res.arrayBuffer());
     if (!(await bufferEstUnePhoto(buf))) return null;
+    const meta = await sharp(buf).metadata();
+    const longSide = Math.max(meta.width || 0, meta.height || 0);
+    if (longSide < 900) return null;
     return buf;
   } catch {
     return null;

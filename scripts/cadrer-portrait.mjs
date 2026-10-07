@@ -38,7 +38,7 @@ export async function cadrerPortrait(filePath) {
     await sharp(filePath)
       .rotate()
       .resize(W, H, { fit: 'cover', position: 'top' })
-      .jpeg({ quality: 88, mozjpeg: true })
+      .jpeg({ quality: 90, mozjpeg: true })
       .toFile(tmp);
     unlinkSync(filePath);
     const dest = filePath.replace(/\.(png|webp|jpeg)$/i, '.jpg');

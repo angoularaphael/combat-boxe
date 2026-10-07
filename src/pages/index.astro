@@ -4,11 +4,9 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
-import { photosForVersus } from '../lib/portraits';
+import { photosForVersus, posterForVersus } from '../lib/portraits';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
-import FightCard from '../components/FightCard.astro';
-import GalaCard from '../components/GalaCard.astro';
 
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
@@ -23,15 +21,15 @@ const todayKey = parisDayKey(new Date());
 const upcomingGalas = galas
   .filter((gala) => String(gala.date) >= todayKey)
   .sort((a, b) => String(a.date).localeCompare(String(b.date)))
-  .slice(0, 4);
+  .slice(0, 2);
 const upcoming = combats
   .filter((c) => c.status === 'a-venir')
   .sort((a, b) => String(a.date).localeCompare(String(b.date)))
-  .slice(0, 8);
+  .slice(0, 2);
 const results = combats
   .filter((c) => c.status === 'dispute')
   .sort((a, b) => String(b.date).localeCompare(String(a.date)))
-  .slice(0, 6);
+  .slice(0, 2);
 const jsonLd = graph(
   organizationLd,
   websiteLd,
@@ -136,26 +134,18 @@ const jsonLd = graph(
     <div class="wrap">
       <div class="section-head section-head-light">
         <div><span class="eyebrow">Agenda</span><h2>Prochains combats</h2></div>
-        <a href="/combats-a-venir">Tout le calendrier</a>
+        <a href="/combats-a-venir">Tous les combats</a>
       </div>
       {upcoming.length === 0 ? (
-        <div class="editorial-empty"><strong>Calendrier à venir</strong><p>Les prochaines affiches apparaîtront ici.</p></div>
+        <div class="editorial-empty"><strong>Aucun combat annoncé</strong><p>Les prochaines affiches apparaîtront ici.</p></div>
       ) : (
-        <div class="fight-grid">{upcoming.map((c, index) => (
-          <FightCard fight={c} index={index} />
-        ))}</div>
-      )}
-      {upcomingGalas.length > 0 && (
-        <div class="home-results">
-          <div class="section-head section-head-light">
-            <div><span class="eyebrow">Soirées</span><h2>Galas à venir</h2></div>
-            <a href="/galas-boxe">Tous les galas</a>
-          </div>
-          <div class="fight-grid">
-            {upcomingGalas.map((gala, index) => (
-              <GalaCard gala={gala} index={index} />
-            ))}
-          </div>
+        <div class="fight-grid">
+          {upcoming.map((c) => (
+            <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
+              <p>{formatDate(c.date)}{c.city ? ` · ${c.city}` : ''}</p>
+              <h3>{c.boxerA} contre {c.boxerB}</h3>
+            </a>
+          ))}
         </div>
       )}
       <div class="home-results">
@@ -166,11 +156,36 @@ const jsonLd = graph(
         {results.length === 0 ? (
           <p class="empty">Aucun résultat n’est encore publié.</p>
         ) : (
-          <div class="fight-grid">{results.map((c, index) => (
-            <FightCard fight={c} index={index} verdict={true} />
-          ))}</div>
+          <div class="fight-grid">
+            {results.map((c) => (
+              <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
+                <p>{formatDate(c.date)} · {c.winner}</p>
+                <h3>{c.boxerA} contre {c.boxerB}</h3>
+              </a>
+            ))}
+          </div>
         )}
       </div>
+      {upcomingGalas.length > 0 && (
+        <div class="home-results">
+          <div class="section-head section-head-light">
+            <div><span class="eyebrow">Soirées</span><h2>Galas à venir</h2></div>
+            <a href="/galas-boxe">Tous les galas</a>
+          </div>
+          <div class="fight-grid">
+            {upcomingGalas.map((gala) => {
+              const photo = posterForVersus(gala.versus || '');
+              return (
+                <a class="preview-card" href={gala.href}>
+                  {photo && <img src={photo} alt="" width="1000" height="625" loading="lazy" decoding="async" />}
+                  <p>{formatDate(gala.date)}{gala.city ? ` · ${gala.city}` : ''}</p>
+                  <h3>{gala.name}</h3>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   </section>
 
@@ -193,13 +208,12 @@ const jsonLd = graph(
         )}
         {clubs.map((club) => (
           <a class="portrait-card portrait-card-salle" href={`/clubs/${club.slug}`}>
-            <img src={club.image} alt={club.imageAlt} width="1200" height="750" loading="lazy" decoding="async" />
+            {club.image && <img src={club.image} alt={club.imageAlt} width="1200" height="750" loading="lazy" decoding="async" />}
             <div><span class="tag">Clubs</span><h3>{club.name}</h3><p>{club.address}</p></div>
           </a>
         ))}
         <a class="portrait-card" href="/entraineurs-boxe-francais">
-          <img src={coachs[0]?.photo || '/img/boxing-ring-corner.jpg'} alt="" width="640" height="800" loading="lazy" decoding="async" />
-          <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneur présenté</p></div>
+          <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneurs présentés</p></div>
         </a>
       </div>
     </div>

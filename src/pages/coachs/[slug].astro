@@ -39,48 +39,57 @@ const description = `${coach.name}, coach de boxe anglaise à ${coach.city}. Par
           ))}
         </ol>
         <h1>{coach.name}</h1>
-        <p class="lead">
-          Entraîneur de boxe français, coach à {coach.city}
-          {coach.ranking ? `, ${coach.ranking}` : ''}.
-        </p>
-        <figure class="fiche-photo">
-          <img src={coach.photo} alt={coach.photoAlt} width="640" height="800" />
-        </figure>
+        <p class="lead">Coach de boxe à {coach.city}{coach.ranking ? `, ${coach.ranking}` : ''}.</p>
+        {coach.photo && (
+          <figure class="fiche-photo">
+            <img src={coach.photo} alt={coach.photoAlt || coach.name} width="640" height="800" />
+          </figure>
+        )}
       </div>
       <dl class="facts">
-        <div>
-          <dt>Classement</dt>
-          <dd>{coach.ranking}</dd>
-        </div>
-        <div>
-          <dt>Bilan</dt>
-          <dd>{coach.recordNote}</dd>
-        </div>
-        <div>
-          <dt>Objectif</dt>
-          <dd>{coach.objectif}</dd>
-        </div>
+        {coach.ranking && (
+          <div>
+            <dt>Classement</dt>
+            <dd>{coach.ranking}</dd>
+          </div>
+        )}
+        {coach.recordNote && (
+          <div>
+            <dt>Bilan</dt>
+            <dd>{coach.recordNote}</dd>
+          </div>
+        )}
+        {coach.objectif && (
+          <div>
+            <dt>Objectif</dt>
+            <dd>{coach.objectif}</dd>
+          </div>
+        )}
         <div>
           <dt>Parcours</dt>
           <dd>{coach.parcours}</dd>
         </div>
-        <div>
-          <dt>Diplômes</dt>
-          <dd>
-            {coach.diplomes.join(', ')}. <a href={coach.diplomesSource}>Source : fiche coach Boxing Center</a>.
-          </dd>
-        </div>
-        <div>
-          <dt>Clubs associés</dt>
-          <dd>
-            <ul>
-              {coach.clubSlugs.map((id) => {
-                const club = clubBySlug(id);
-                return club ? <li><a href={`/clubs/${club.slug}`}>{club.name}</a></li> : null;
-              })}
-            </ul>
-          </dd>
-        </div>
+        {coach.diplomes?.length > 0 && (
+          <div>
+            <dt>Diplômes</dt>
+            <dd>
+              {coach.diplomes.join(', ')}. <a href={coach.diplomesSource}>Source : fiche du coach</a>.
+            </dd>
+          </div>
+        )}
+        {coach.clubSlugs?.length > 0 && (
+          <div>
+            <dt>Clubs associés</dt>
+            <dd>
+              <ul>
+                {coach.clubSlugs.map((id) => {
+                  const club = clubBySlug(id);
+                  return club ? <li><a href={`/clubs/${club.slug}`}>{club.name}</a></li> : null;
+                })}
+              </ul>
+            </dd>
+          </div>
+        )}
         <div>
           <dt>Boxeurs formés</dt>
           <dd>{coach.boxeursFormes}</dd>
@@ -89,17 +98,19 @@ const description = `${coach.name}, coach de boxe anglaise à ${coach.city}. Par
           <dt>Méthode de travail</dt>
           <dd>{coach.methode}</dd>
         </div>
-        <div>
-          <dt>Résultats obtenus</dt>
-          <dd>{coach.resultats}</dd>
-        </div>
+        {coach.resultats && (
+          <div>
+            <dt>Résultats obtenus</dt>
+            <dd>{coach.resultats}</dd>
+          </div>
+        )}
         <div>
           <dt>Rôle dans la formation</dt>
           <dd>{coach.role}</dd>
         </div>
       </dl>
       <div class="actions">
-        <a class="btn" href={coach.ficheUrl}>Fiche coach Valentin Guth</a>
+        <a class="btn" href={coach.ficheUrl}>Fiche de {coach.name}</a>
         {coach.article && <a class="btn alt" href={`/${coach.article}`}>Lire le portrait</a>}
       </div>
     </div>

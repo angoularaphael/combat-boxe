@@ -10,3 +10,5 @@ breadcrumbs:
   - href: /galas-boxe
     label: Galas
 ---
+
+Chaque carte est une soirée : date, ville, affiche. Le combat isolé est sur les [combats à venir](/combats-a-venir).

@@ -34,19 +34,20 @@ async function pageImage(lang, title) {
   const json = await wikiJson(lang, {
     action: 'query',
     prop: 'pageimages|extracts',
-    piprop: 'original|name',
-    pithumbsize: '1200',
+    piprop: 'thumbnail|name',
+    pithumbsize: '1600',
     exintro: '1',
     explaintext: '1',
     redirects: '1',
     titles: title,
   });
   const page = json && Object.values(json.query?.pages || {})[0];
-  if (!page || page.missing || !page.original?.source) return null;
+  if (!page || page.missing || !page.thumbnail?.source) return null;
   const extract = `${page.title || ''} ${page.extract || ''}`.toLowerCase();
   const isBoxer = /boxeur|boxer|boxing|boxe anglaise|poids lourds|super-|ボクサー|pugil|olympi/.test(extract);
   if (!isBoxer) return null;
-  const source = page.original.source;
+  if ((page.thumbnail.width || 0) < 1000) return null;
+  const source = page.thumbnail.source;
   if (!source.includes('/wikipedia/commons/')) return null;
   return { source, file: page.pageimage || '', title: page.title };
 }
