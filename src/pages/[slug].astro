@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../data/entities';
+import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
 import { editionPath, editionTitle } from '../lib/archive';
 import { articleLd, breadcrumbLd, collectionLd, graph } from '../lib/seo';
 import { articleThumb, photosForVersus } from '../lib/portraits';
@@ -58,6 +58,10 @@ const jsonLd = graph(
       : null,
 );
 
+const todayKey = parisDayKey(new Date());
+const upcomingGalas = galas
+  .filter((gala) => String(gala.date) >= todayKey)
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 const upcoming = combats
   .filter((c) => c.status === 'a-venir')
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
@@ -145,6 +149,20 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
               </div>
             </section>
           ))}
+        </>
+      )}
+
+      {(template === 'upcoming' || template === 'calendar') && upcomingGalas.length > 0 && (
+        <>
+          <div class="section-head">
+            <h2>Soirées et galas</h2>
+            <a href="/galas-boxe">Tous les galas</a>
+          </div>
+          <div class="fight-grid">
+            {upcomingGalas.map((gala, index) => (
+              <GalaCard gala={gala} index={index} />
+            ))}
+          </div>
         </>
       )}
 

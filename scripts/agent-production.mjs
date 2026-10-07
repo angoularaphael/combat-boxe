@@ -188,7 +188,7 @@ async function fetchPage(url) {
       .replace(/<style[\s\S]*?<\/style>/gi, ' ')
       .replace(/<[^>]+>/g, ' ')
       .replace(/\s+/g, ' ')
-      .slice(0, 8000);
+      .slice(0, 12000);
     return { text, images: [...new Set(images)] };
   } catch {
     return { text: '', images: [] };
@@ -208,6 +208,31 @@ function appendUnique(path, rows, keyFn) {
   }
   if (added) writeJson(path, current);
   return added;
+}
+
+function mergeRows(path, rows, keyFn) {
+  const current = readJson(path);
+  let changed = 0;
+  for (const row of rows) {
+    const key = keyFn(row);
+    if (!key) continue;
+    const index = current.findIndex((item) => keyFn(item) === key);
+    if (index < 0) {
+      current.push(row);
+      changed += 1;
+      continue;
+    }
+    const next = { ...current[index] };
+    for (const [field, value] of Object.entries(row)) {
+      if (value) next[field] = value;
+    }
+    if (JSON.stringify(next) !== JSON.stringify(current[index])) {
+      current[index] = next;
+      changed += 1;
+    }
+  }
+  if (changed) writeJson(path, current);
+  return changed;
 }
 
 function combatValide(fight) {
@@ -265,7 +290,7 @@ async function callAnthropic(model, system, user) {
     },
     body: JSON.stringify({
       model,
-      max_tokens: 4000,
+      max_tokens: 12000,
       system,
       messages: [{ role: 'user', content: user }],
     }),
@@ -285,7 +310,7 @@ async function callOpenAI(model, system, user) {
     body: JSON.stringify({
       model,
       temperature: 0.2,
-      max_tokens: 4000,
+      max_tokens: 12000,
       response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: system },
@@ -309,7 +334,7 @@ async function callGemini(model, system, user) {
         contents: [{ role: 'user', parts: [{ text: user }] }],
         generationConfig: {
           temperature: 0.2,
-          maxOutputTokens: 4000,
+          maxOutputTokens: 12000,
           responseMimeType: 'application/json',
         },
       }),
@@ -373,7 +398,7 @@ Format :
     "sourceName": "...",
     "sourceUrl": "https://...",
     "pillars": [{"href":"/combats-a-venir","label":"Combats a venir"}],
-    "body": "article markdown sans H1, francais journalistique, faits uniquement, pas de liste de sources, pas d'emoji"
+    "body": "article markdown sans H1. Plusieurs paragraphes. Decrire chaque boxeur a partir des pages. Donner le pronostic seulement si un bilan ou un resultat recent est dans les pages. Citer la salle, la chaine et l'heure des qu'elles sont ecrites dans les pages. Pas de liste de sources, pas d'emoji"
     }
   ],
   "fights": [{
@@ -384,6 +409,12 @@ Format :
     "category": "",
     "titles": "",
     "city": "",
+    "venue": "",
+    "time": "",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "prediction": "",
     "stakes": "",
     "winner": "",
     "method": "",
@@ -403,11 +434,23 @@ Format :
     "sourceName": "",
     "sourceUrl": "https://..."
   }],
+  "notes": [{
+    "date": "YYYY-MM-DD",
+    "boxerA": "...",
+    "boxerB": "...",
+    "venue": "",
+    "time": "",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "prediction": "",
+    "sourceUrl": "https://..."
+  }],
   "galas": [{
     "date": "YYYY-MM-DD",
     "name": "...",
     "city": "...",
-    "note": "...",
+    "note": "soirée, salle, chaine, heure si la page les donne",
     "sourceUrl": "https://..."
   }],
   "posters": [{
@@ -418,10 +461,12 @@ Format :
 }
 
 Aujourd'hui (Paris) : ${jourParis()}.
-Ecris jusqu'a ${places} articles, un par fait distinct (un combat, un resultat, une signature). Tableau vide s'il n'y a pas assez de faits nouveaux. N'invente pas pour remplir le quota. Chaque article a un slug different, une sourceUrl, une date, deux boxeurs et un lieu. Ignore les slugs deja publies.
-fights : seulement des combats absents du calendrier fourni, avec date complete, deux noms, ville et sourceUrl.
+Ecris jusqu'a ${places} articles, un par fait distinct. Un fait peut etre un combat principal, un lever de rideau, un resultat, une signature, une pesee, une conference ou une soiree. Pas seulement l'affiche principale. Tableau vide s'il n'y a pas assez de faits nouveaux. N'invente pas pour remplir le quota.
+Chaque article : slug different, sourceUrl, date, et au moins cinq paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Si la page donne un bilan ou un resultat recent, termine par un pronostic argumente a partir de ces faits, sans cote inventee. Si la page ne donne pas de base, n'annonce pas de vainqueur. Parle aussi des autres combats de la meme soiree quand les pages les citent. Champs vides (venue, time, channel, aboutA, aboutB, prediction) si le fait n'est pas dans les pages. Ignore les slugs deja publies.
+fights : combats absents du calendrier, date complete, deux noms, ville, sourceUrl. Remplis venue, time, channel, aboutA, aboutB, prediction, stakes avec les memes regles.
 fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés.
-galas : soiree nouvelle avec date, nom, ville.
+notes : pour un combat DEJA au calendrier, complete aboutA, aboutB, prediction, venue, time, channel si les pages du jour le permettent. Ne repete pas une fiche deja complete. prediction vide si aucun bilan n'est dans les pages.
+galas : soiree nouvelle avec date, nom, ville, et dans note la salle, la chaine et l'heure si la page les donne.
 posters : uniquement une URL d'affiche officielle (les deux visages), jamais un logo.`;
 
     const user = `Slugs deja publies : ${slugs.join(', ')}
@@ -464,8 +509,14 @@ ${pages
     const addedFights = appendUnique(combatsAutoPath, nouveaux, fightKey);
     if (addedFights) console.log('Combats ajoutes :', addedFights);
 
+    const notes = (data.notes || []).filter(
+      (row) => row?.date && row?.boxerA && row?.boxerB && row?.sourceUrl && /^https?:\/\//.test(row.sourceUrl),
+    );
+    const addedNotes = mergeRows(updatesPath, notes, fightKey);
+    if (addedNotes) console.log('Fiches completees :', addedNotes);
+
     const updates = (data.fightUpdates || []).filter(combatValide);
-    const addedUpdates = appendUnique(updatesPath, updates, fightKey);
+    const addedUpdates = mergeRows(updatesPath, updates, fightKey);
     if (addedUpdates) console.log('Resultats mis a jour :', addedUpdates);
 
     const galas = (data.galas || []).filter(

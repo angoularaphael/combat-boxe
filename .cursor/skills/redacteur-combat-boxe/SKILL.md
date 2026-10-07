@@ -89,7 +89,8 @@ Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la 
 - Sur les pages publiques (combats à venir, calendrier, actualités, résultats, galas), ne pas expliquer la méthode : pas de « comment une affiche est ajoutée », pas de bloc Sources visible, pas de mode d'emploi. Afficher les combats et les papiers.
 - Éviter les phrases défensives répétées : « ce n'est pas », « il ne s'agit pas », « pas seulement ». Dire directement ce qui est vrai.
 - Éviter les séries artificielles en trois éléments et les oppositions mécaniques du type « pas X, mais Y ».
-- Varier la longueur des phrases. Ne pas empiler des phrases courtes construites de la même manière.
+- Un papier parle longtemps : la salle, l'heure, la chaîne dès qu'elles sont sourcées, un passage sur chaque personne, les autres combats de la soirée, puis un pronostic seulement si un bilan ou un résultat récent est dans la source. Pas de cote inventée, pas de vainqueur annoncé sans cette base.
+- Couvrir aussi les levers de rideau, les pesées, les conférences et les soirées. L'affiche principale n'est pas le seul sujet.
 - Ne pas écrire « le fait sportif utile, ici », « le point utile est ailleurs », « ce profil intéresse parce que ». Nommer directement l'enjeu sportif.
 - Garder les règles de vérification dans les sources et la préparation, pas dans le corps du papier sauf si une incertitude factuelle doit réellement être signalée au lecteur.
 

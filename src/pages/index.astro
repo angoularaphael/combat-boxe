@@ -3,11 +3,12 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { boxeurs, clubs, coachs, combats, formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../data/entities';
+import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
 import { photosForVersus } from '../lib/portraits';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
 import FightCard from '../components/FightCard.astro';
+import GalaCard from '../components/GalaCard.astro';
 
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
@@ -18,6 +19,11 @@ const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
 const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
 const uneImage = une?.data.photo || unePhotos[0] || '/img/og-combat-boxe.jpg';
 const editions = groupArticlesByDay(articles);
+const todayKey = parisDayKey(new Date());
+const upcomingGalas = galas
+  .filter((gala) => String(gala.date) >= todayKey)
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+  .slice(0, 4);
 const upcoming = combats
   .filter((c) => c.status === 'a-venir')
   .sort((a, b) => String(a.date).localeCompare(String(b.date)))
@@ -138,6 +144,19 @@ const jsonLd = graph(
         <div class="fight-grid">{upcoming.map((c, index) => (
           <FightCard fight={c} index={index} />
         ))}</div>
+      )}
+      {upcomingGalas.length > 0 && (
+        <div class="home-results">
+          <div class="section-head section-head-light">
+            <div><span class="eyebrow">Soirées</span><h2>Galas à venir</h2></div>
+            <a href="/galas-boxe">Tous les galas</a>
+          </div>
+          <div class="fight-grid">
+            {upcomingGalas.map((gala, index) => (
+              <GalaCard gala={gala} index={index} />
+            ))}
+          </div>
+        </div>
       )}
       <div class="home-results">
         <div class="section-head section-head-light">

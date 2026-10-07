@@ -37,6 +37,17 @@ export function countryLabel(code) {
   return COUNTRY_LABELS[code] || '';
 }
 
+export function placeLine(city = '', country = '') {
+  const fold = (value) =>
+    String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+  if (!city) return country || '';
+  if (!country || fold(city).includes(fold(country))) return city;
+  return `${city} · ${country}`;
+}
+
 export function flagSrc(code) {
   if (!code) return '';
   return `https://flagcdn.com/w80/${code}.png`;

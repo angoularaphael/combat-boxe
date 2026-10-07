@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import FightCard from '../../components/FightCard.astro';
 import Cover from '../../components/Cover.astro';
 import { combats, formatDate, galas } from '../../data/entities';
-import { countryLabel, flagSrc } from '../../lib/flags';
+import { countryLabel, flagSrc, placeLine } from '../../lib/flags';
 import { fightMedia } from '../../lib/portraits';
 import { breadcrumbLd, graph } from '../../lib/seo';
 
@@ -54,8 +54,10 @@ const crumbs = [
       </ol>
       <p class="meta">
         {flag && <img class="fight-flag" src={flag} alt="" title={country} width="24" height="16" />}
-        {formatDate(gala.date)} · {gala.city}
-        {country ? ` · ${country}` : ''}
+        {formatDate(gala.date)}
+        {gala.time ? ` · ${gala.time}` : ''}
+        {` · ${placeLine(gala.city, country)}`}
+        {gala.channel ? ` · ${gala.channel}` : ''}
       </p>
       <h1>{gala.name}</h1>
       <Cover

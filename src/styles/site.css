@@ -307,6 +307,7 @@ h2 {
   background: #fff;
   border: 1px solid var(--line);
   box-shadow: 0 12px 28px rgba(16, 29, 41, 0.12);
+  animation: rise-in 0.22s ease;
 }
 
 .site-search-count {
@@ -428,6 +429,7 @@ mark.search-hit {
   border-top: 1px solid var(--line);
   color: inherit;
   text-decoration: none;
+  animation: rise-in 0.45s ease both;
 }
 
 a.row-card:hover h2,
@@ -485,6 +487,74 @@ dl.facts {
   max-width: 720px;
   padding: 8px 18px 4px;
   border: 1px solid var(--line);
+}
+
+.facts-live > div {
+  animation: rise-in 0.4s ease both;
+}
+
+.facts-live > div:nth-child(2) { animation-delay: 50ms; }
+.facts-live > div:nth-child(3) { animation-delay: 100ms; }
+.facts-live > div:nth-child(4) { animation-delay: 150ms; }
+.facts-live > div:nth-child(5) { animation-delay: 200ms; }
+.facts-live > div:nth-child(6) { animation-delay: 250ms; }
+
+.person-grid,
+.pronostic,
+.same-card {
+  max-width: 720px;
+  margin: 22px 0;
+  animation: rise-in 0.5s ease both;
+}
+
+.person-grid {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .person-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.person-grid section,
+.pronostic,
+.same-card {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+}
+
+.person-grid h2,
+.pronostic h2,
+.same-card h2 {
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: clamp(22px, 4vw, 28px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.person-grid p,
+.pronostic p,
+.same-card p,
+.same-card li {
+  margin: 0;
+  font-size: 16px;
+}
+
+.same-card ul {
+  margin: 10px 0 0;
+  padding-left: 1.1rem;
+}
+
+.same-card li + li {
+  margin-top: 8px;
+}
+
+.pronostic {
+  border-left: 4px solid #e25b00;
 }
 
 dl.facts div {
@@ -1688,6 +1758,12 @@ a {
   animation: fight-in 0.55s ease both;
   animation-delay: calc(var(--i, 0) * 80ms);
   transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.fight-card:hover,
+.fight-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: #c4b39a;
 }
 
 .fight-media {

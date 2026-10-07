@@ -1,6 +1,6 @@
 ---
 import { formatDate } from '../data/entities';
-import { countryLabel, flagSrc } from '../lib/flags';
+import { countryLabel, flagSrc, placeLine } from '../lib/flags';
 import { fightMedia } from '../lib/portraits';
 
 const { gala, index = 0 } = Astro.props;
@@ -20,11 +20,12 @@ const media = fightMedia(gala.versus || '', index);
       <img class="fight-flag" src={flag} alt="" title={country} width="24" height="16" />
     )}
     {formatDate(gala.date)}
+    {gala.time ? ` · ${gala.time}` : ''}
     {country ? ` · ${country}` : ''}
   </p>
   <p class="fight-vs">
     <span class="fight-a">{gala.name}</span>
   </p>
-  <p class="fight-place">{gala.city}</p>
+  <p class="fight-place">{placeLine(gala.city, country)}{gala.channel ? ` · ${gala.channel}` : ''}</p>
   {gala.note ? <p class="fight-stakes">{gala.note}</p> : null}
 </a>

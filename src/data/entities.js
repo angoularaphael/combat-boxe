@@ -600,13 +600,48 @@ function mergeAutoFights(manual, auto) {
   return [...manual, ...extra];
 }
 
+function logisticsFrom(text = '') {
+  const source = String(text || '');
+  const venueMatch = source.match(
+    /(?:à l['’]|à la |à |au |aux )([^.,]{2,80}?(?:Arena|Center|Centre|Cordouan|Soucoupe|Roseaux|Capitole|Stadium|Palais des Sports|Casino de Montréal|Marcel-Cerdan|gymnase)[^.,]{0,40})/i,
+  );
+  const timeMatch = source.match(/\b(\d{1,2}\s*h(?:eures)?(?:\s*\d{2})?)\b/i);
+  const channels = ['DAZN', 'TNT', 'Netflix', 'Paramount+', 'Sky Sports', 'ESPN'].filter((name) => {
+    if (name === 'TNT') return /\bTNT\b/.test(source);
+    if (name === 'ESPN') return /\bESPN\b/.test(source);
+    return source.includes(name);
+  });
+  const venue = venueMatch ? venueMatch[1].trim() : '';
+  return {
+    venue: venue ? venue.charAt(0).toUpperCase() + venue.slice(1) : '',
+    time: timeMatch ? timeMatch[1].replace(/\s+/g, ' ') : '',
+    channel: channels.join(', '),
+  };
+}
+
+function venueFromGalaCity(city = '') {
+  const part = String(city).split(',').slice(1).join(',').trim();
+  if (!part) return '';
+  if (/arena|center|centre|cordouan|soucoupe|roseaux|capitole|stadium|palais|casino|cerdan|gymnase/i.test(part)) {
+    return part;
+  }
+  return '';
+}
+
 function enrichFight(fight) {
   const slug = fight.slug || `${slugifyName(fight.boxerA)}-${slugifyName(fight.boxerB)}`;
+  const logistics = logisticsFrom(fight.stakes || '');
   return {
     ...fight,
     slug,
     country: fight.country || countryCodeFromCity(fight.city),
     href: `/combats/${slug}`,
+    venue: fight.venue || logistics.venue,
+    time: fight.time || logistics.time,
+    channel: fight.channel || logistics.channel,
+    aboutA: fight.aboutA || '',
+    aboutB: fight.aboutB || '',
+    prediction: fight.prediction || '',
   };
 }
 
@@ -626,17 +661,34 @@ function enrichGala(gala) {
   const related = combatsMerged.find(
     (fight) => fight.date === gala.date && cityKey(fight.city) === cityKey(gala.city),
   );
+  const logistics = logisticsFrom(`${gala.note || ''} ${gala.city || ''}`);
   return {
     ...gala,
     slug,
     country: gala.country || countryCodeFromCity(gala.city),
     href: `/galas/${slug}`,
     versus: related ? `${related.boxerA} / ${related.boxerB}` : '',
+    venue: gala.venue || logistics.venue || venueFromGalaCity(gala.city),
+    time: gala.time || logistics.time,
+    channel: gala.channel || logistics.channel,
   };
 }
 
-export const combats = combatsMerged.map(enrichFight);
+function withCardLogistics(fights, galaList) {
+  return fights.map((fight) => {
+    const gala = galaList.find((item) => item.date === fight.date && cityKey(item.city) === cityKey(fight.city));
+    if (!gala) return fight;
+    return {
+      ...fight,
+      venue: fight.venue || gala.venue || '',
+      time: fight.time || gala.time || '',
+      channel: fight.channel || gala.channel || '',
+    };
+  });
+}
+
 export const galas = [...galasRaw, ...galasAuto].map(enrichGala);
+export const combats = withCardLogistics(combatsMerged.map(enrichFight), galas);
 
 export function fightBySlug(slug) {
   return combats.find((item) => item.slug === slug);

@@ -4,7 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Cover from '../../components/Cover.astro';
 import { combats, formatDate, galas } from '../../data/entities';
-import { countryLabel, flagSrc } from '../../lib/flags';
+import { countryLabel, flagSrc, placeLine } from '../../lib/flags';
 import { fightMedia } from '../../lib/portraits';
 import { breadcrumbLd, graph } from '../../lib/seo';
 
@@ -26,6 +26,10 @@ function cityKey(value = '') {
     .trim();
 }
 const relatedGala = galas.find((gala) => gala.date === fight.date && cityKey(gala.city) === cityKey(fight.city));
+const sameCard = combats.filter(
+  (item) => item.slug !== fight.slug && item.date === fight.date && cityKey(item.city) === cityKey(fight.city),
+);
+const place = placeLine(fight.city, country);
 const crumbs = [
   { href: '/', label: 'Accueil' },
   { href: fight.status === 'dispute' ? '/resultats-boxe' : '/combats-a-venir', label: fight.status === 'dispute' ? 'Résultats' : 'Combats à venir' },
@@ -49,8 +53,7 @@ const description = `${fight.boxerA} contre ${fight.boxerB}, ${formatDate(fight.
       </ol>
       <p class="meta">
         {flag && <img class="fight-flag" src={flag} alt="" title={country} width="24" height="16" />}
-        {formatDate(fight.date)} · {fight.city}
-        {country ? ` · ${country}` : ''}
+        {formatDate(fight.date)} · {place}
       </p>
       <h1>{fight.boxerA} contre {fight.boxerB}</h1>
       <Cover
@@ -72,9 +75,27 @@ const description = `${fight.boxerA} contre ${fight.boxerB}, ${formatDate(fight.
         )}
         <div>
           <dt>Lieu</dt>
-          <dd>{fight.city}{country ? ` · ${country}` : ''}</dd>
+          <dd>{place}</dd>
         </div>
-        {fight.status === 'dispute' ? (
+        {fight.venue && (
+          <div>
+            <dt>Salle</dt>
+            <dd>{fight.venue}</dd>
+          </div>
+        )}
+        {fight.time && (
+          <div>
+            <dt>Heure</dt>
+            <dd>{fight.time}</dd>
+          </div>
+        )}
+        {fight.channel && (
+          <div>
+            <dt>Diffusion</dt>
+            <dd>{fight.channel}</dd>
+          </div>
+        )}
+        {fight.status === 'dispute' && (
           <>
             <div>
               <dt>Vainqueur</dt>
@@ -85,14 +106,47 @@ const description = `${fight.boxerA} contre ${fight.boxerB}, ${formatDate(fight.
               <dd>{fight.method}{fight.decision ? ` · ${fight.decision}` : ''}</dd>
             </div>
           </>
-        ) : fight.stakes ? (
-          <div>
-            <dt>Enjeu</dt>
-            <dd>{fight.stakes}</dd>
-          </div>
-        ) : null}
+        )}
       </dl>
-      {fight.stakes && fight.status === 'dispute' && <p class="lead">{fight.stakes}</p>}
+      {fight.stakes && <p class="lead">{fight.stakes}</p>}
+      {(fight.aboutA || fight.aboutB) && (
+        <div class="person-grid">
+          {fight.aboutA && (
+            <section>
+              <h2>{fight.boxerA}</h2>
+              <p>{fight.aboutA}</p>
+            </section>
+          )}
+          {fight.aboutB && (
+            <section>
+              <h2>{fight.boxerB}</h2>
+              <p>{fight.aboutB}</p>
+            </section>
+          )}
+        </div>
+      )}
+      {fight.prediction && (
+        <section class="pronostic">
+          <h2>Pronostic</h2>
+          <p>{fight.prediction}</p>
+        </section>
+      )}
+      {(relatedGala || sameCard.length > 0) && (
+        <section class="same-card">
+          <h2>Sur la même soirée</h2>
+          {relatedGala?.note && <p>{relatedGala.note}</p>}
+          {sameCard.length > 0 && (
+            <ul>
+              {sameCard.map((item) => (
+                <li>
+                  <a href={item.href}>{item.boxerA} contre {item.boxerB}</a>
+                  {item.titles ? ` · ${item.titles}` : item.category ? ` · ${item.category}` : ''}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
       <nav class="also">
         {fight.article && <a href={`/${fight.article}`}>Lire l'article</a>}
         {relatedGala && <a href={relatedGala.href}>Voir le gala</a>}
