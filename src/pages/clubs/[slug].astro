@@ -100,7 +100,11 @@ const ogImage = club.image || '/img/og-combat-boxe.jpg';
           </dd>
         </div>
       </dl>
-      <p><a class="btn" href={club.url}>Site du club de boxe Boxing Center Toulouse Minimes</a></p>
+      <div class="actions">
+        {club.tmbcUrl && <a class="btn" href={club.tmbcUrl}>Toulouse Minimes Boxing Club</a>}
+        {club.centerUrl && <a class="btn alt" href={club.centerUrl}>Boxing Center</a>}
+        <a class="btn alt" href={club.url}>Site de la salle</a>
+      </div>
     </div>
   </article>
   <Footer slot="footer" />

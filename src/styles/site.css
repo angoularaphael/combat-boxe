@@ -81,6 +81,26 @@ a:hover {
   min-height: 72px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-open {
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 0 14px;
+  border: 1px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 .logo img {
   height: 46px;
   width: auto;
@@ -236,6 +256,24 @@ h2 {
   margin: 18px 0 8px;
 }
 
+.actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .actions .btn {
+    width: auto;
+  }
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -270,8 +308,18 @@ h2 {
 }
 
 .site-search {
-  position: relative;
-  margin-bottom: 12px;
+  position: absolute;
+  z-index: 40;
+  top: 100%;
+  right: 0;
+  left: 0;
+  width: min(100% - 32px, var(--wrap));
+  margin: 0 auto;
+  padding-bottom: 12px;
+}
+
+.site-search[hidden] {
+  display: none;
 }
 
 .site-search-label {
@@ -390,6 +438,24 @@ mark.search-hit {
 .card a.stretch {
   text-decoration: none;
   color: inherit;
+}
+
+.card-out {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+}
+
+.card-out a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-family: var(--display);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .card img {
@@ -1612,8 +1678,14 @@ a {
 
 @media (min-width: 900px) {
   .header-bar {
+    position: relative;
     justify-content: center;
     min-height: 88px;
+  }
+
+  .header-actions {
+    position: absolute;
+    right: 0;
   }
 
   .logo img {

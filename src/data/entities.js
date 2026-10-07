@@ -56,6 +56,10 @@ export const clubs = [
       'Transmission : le pratiquant formé au club devient à son tour coach',
     ],
     url: 'https://boxe-toulouse.com/',
+    tmbcUrl: 'https://toulouse-minimes-boxing-club.fr/',
+    centerUrl: 'https://boxingcenter.fr/',
+    image: '/img/minimes-ring.jpg',
+    imageAlt: 'Cours de boxe anglaise au ring du Boxing Center Toulouse Minimes',
   },
 ];
 

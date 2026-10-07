@@ -33,7 +33,10 @@ const searchJson = JSON.stringify(searchIndex).replace(/</g, '\\u003c');
     <a class="logo" href="/" aria-label="Combat Boxe, accueil">
       <img src="/img/logo.png" alt="Combat Boxe, l'actu sportive autour du ring" width="234" height="100" />
     </a>
-    <label class="nav-burger" for="nav-toggle"><span></span><span></span><span></span><b>Menu</b></label>
+    <div class="header-actions">
+      <button class="search-open" id="search-open" type="button" aria-expanded="false" aria-controls="site-search">Recherche</button>
+      <label class="nav-burger" for="nav-toggle"><span></span><span></span><span></span><b>Menu</b></label>
+    </div>
   </div>
   <nav class="nav-panel wrap" aria-label="Rubriques">
     {
@@ -44,7 +47,7 @@ const searchJson = JSON.stringify(searchIndex).replace(/</g, '\\u003c');
       ))
     }
   </nav>
-  <div class="wrap site-search">
+  <div class="wrap site-search" id="site-search" hidden>
     <form role="search" action="/actualites" method="get" autocomplete="off">
       <label class="site-search-label" for="site-q">Rechercher sur le site</label>
       <input id="site-q" name="q" type="search" placeholder="Nom, combat, ville" enterkeyhint="search" />
@@ -58,12 +61,13 @@ const searchJson = JSON.stringify(searchIndex).replace(/</g, '\\u003c');
   <script is:inline>
     (function () {
       var input = document.getElementById('site-q');
-      var root = document.querySelector('.site-search');
+      var root = document.getElementById('site-search');
+      var toggle = document.getElementById('search-open');
       var panel = document.querySelector('.site-search-panel');
       var count = document.querySelector('.site-search-count');
       var list = document.querySelector('.site-search-list');
       var dataNode = document.getElementById('site-search-data');
-      if (!input || !panel || !list || !dataNode) return;
+      if (!input || !panel || !list || !dataNode || !root || !toggle) return;
       var index = [];
       try { index = JSON.parse(dataNode.textContent || '[]'); } catch (err) { index = []; }
 
@@ -169,18 +173,36 @@ const searchJson = JSON.stringify(searchIndex).replace(/</g, '\\u003c');
         panel.hidden = false;
       }
 
+      function openSearch() {
+        root.hidden = false;
+        toggle.setAttribute('aria-expanded', 'true');
+        input.focus();
+        render();
+      }
+      function closeSearch() {
+        root.hidden = true;
+        panel.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      toggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        if (root.hidden) openSearch();
+        else closeSearch();
+      });
       input.addEventListener('input', render);
       input.addEventListener('focus', render);
       document.addEventListener('click', function (event) {
-        if (root && !root.contains(event.target)) panel.hidden = true;
+        if (root.hidden) return;
+        if (root.contains(event.target) || toggle.contains(event.target)) return;
+        closeSearch();
       });
       input.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') panel.hidden = true;
+        if (event.key === 'Escape') closeSearch();
       });
       var initial = new URLSearchParams(window.location.search).get('q');
       if (initial) {
         input.value = initial;
-        render();
+        openSearch();
       }
     })();
   </script>
