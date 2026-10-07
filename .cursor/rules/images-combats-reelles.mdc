@@ -1,0 +1,24 @@
+---
+description: Vraies photos des boxeurs nommes, verification visuelle obligatoire, image de boxe seulement si rien n existe.
+alwaysApply: true
+---
+
+# Images des combats (tous les agents)
+
+S’applique a **tout** agent, pas seulement le redacteur. Des qu’une carte, une fiche ou un article nomme un combat ou un boxeur.
+
+## Pour tout le monde
+
+Chaque boxeur nomme a droit a la meme recherche que Floyd Schofield contre Lucas Bahdi : affiche officielle du combat (promoteur, Fight Week, Golden Boy, Queensberry, MVP, FFBoxe, ville, presse) et portraits des deux visages. Ne pas s’arreter aux quatre premieres cartes. Ne pas pousser tant que les cartes restantes n’ont pas ete ouvertes.
+
+## Ordre
+
+1. Chercher les **vraies images de ce combat** : affiche officielle avec les deux visages, sinon portraits des deux boxeurs.
+2. Les poser dans `public/img/boxers/` ou `public/img/posters/`, les brancher (`photo-credits.json` / `POSTERS` dans `portraits.js`).
+3. **Verifier dans le navigateur** (375 px et ~900 px) que les visages affiches sont bien ceux des noms, sans coupe au front, sans photo d’un autre pugiliste.
+4. **Seulement s’il n’existe vraiment aucune photo ni affiche** : image de boxe generique (`/img/scene-*.jpg`). Pas avant. Jamais en premier.
+
+## Interdit
+
+- Ring vide, gant accroche, tabouret, salle, stock, visage genere, photo d’un autre pugiliste sur un combat nomme.
+- Pousser sans avoir ouvert **toutes** les cartes concernees, pas seulement la tete d’affiche.

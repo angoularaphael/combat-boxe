@@ -221,5 +221,334 @@
     "aliases": [
       "Zaren"
     ]
+  },
+  {
+    "name": "Floyd Schofield III",
+    "slug": "floyd-schofield",
+    "path": "/img/boxers/floyd-schofield.png",
+    "license": "editorial",
+    "artist": "Golden Boy Promotions",
+    "pageUrl": "https://www.goldenboy.com/the-event/schofield-vs-bahdi/",
+    "aliases": [
+      "Schofield",
+      "Floyd Schofield",
+      "Kid Austin"
+    ]
+  },
+  {
+    "name": "Lucas Bahdi",
+    "slug": "lucas-bahdi",
+    "path": "/img/boxers/lucas-bahdi.jpg",
+    "license": "editorial",
+    "artist": "BoxingScene",
+    "pageUrl": "https://www.boxingscene.com/articles/big-year-lucas-bahdi-signs-with-mvp",
+    "aliases": [
+      "Bahdi"
+    ]
+  },
+  {
+    "name": "Fabio Wardley",
+    "slug": "fabio-wardley",
+    "path": "/img/boxers/fabio-wardley.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/fabio-wardley",
+    "aliases": [
+      "Wardley"
+    ]
+  },
+  {
+    "name": "Sebastian Fundora",
+    "slug": "sebastian-fundora",
+    "path": "/img/boxers/sebastian-fundora.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/sebastian-fundora",
+    "aliases": [
+      "Fundora"
+    ]
+  },
+  {
+    "name": "Emanuel Navarrete",
+    "slug": "emanuel-navarrete",
+    "path": "/img/boxers/emanuel-navarrete.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/emanuel-navarrete",
+    "aliases": [
+      "Navarrete"
+    ]
+  },
+  {
+    "name": "Dalton Smith",
+    "slug": "dalton-smith",
+    "path": "/img/boxers/dalton-smith.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/dalton-smith",
+    "aliases": []
+  },
+  {
+    "name": "Alberto Puello",
+    "slug": "alberto-puello",
+    "path": "/img/boxers/alberto-puello.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/alberto-puello",
+    "aliases": [
+      "Puello"
+    ]
+  },
+  {
+    "name": "Joshua Buatsi",
+    "slug": "joshua-buatsi",
+    "path": "/img/boxers/joshua-buatsi.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/joshua-buatsi",
+    "aliases": [
+      "Buatsi"
+    ]
+  },
+  {
+    "name": "Willy Hutchinson",
+    "slug": "willy-hutchinson",
+    "path": "/img/boxers/willy-hutchinson.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/willy-hutchinson",
+    "aliases": [
+      "Hutchinson"
+    ]
+  },
+  {
+    "name": "Agit Kabayel",
+    "slug": "agit-kabayel",
+    "path": "/img/boxers/agit-kabayel.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/agit-kabayel",
+    "aliases": [
+      "Kabayel"
+    ]
+  },
+  {
+    "name": "Anthony Cacace",
+    "slug": "anthony-cacace",
+    "path": "/img/boxers/anthony-cacace.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/anthony-cacace",
+    "aliases": [
+      "Cacace"
+    ]
+  },
+  {
+    "name": "Nick Ball",
+    "slug": "nick-ball",
+    "path": "/img/boxers/nick-ball.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/nick-ball",
+    "aliases": []
+  },
+  {
+    "name": "Takuma Inoue",
+    "slug": "takuma-inoue",
+    "path": "/img/boxers/takuma-inoue.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/takuma-inoue",
+    "aliases": [
+      "Inoue"
+    ]
+  },
+  {
+    "name": "Steven Butler",
+    "slug": "steven-butler",
+    "path": "/img/boxers/steven-butler.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/steven-butler",
+    "aliases": [
+      "Butler"
+    ]
+  },
+  {
+    "name": "Ricardo Malajika",
+    "slug": "ricardo-malajika",
+    "path": "/img/boxers/ricardo-malajika.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/ricardo-malajika",
+    "aliases": [
+      "Malajika"
+    ]
+  },
+  {
+    "name": "Sam Goodman",
+    "slug": "sam-goodman",
+    "path": "/img/boxers/sam-goodman.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/sam-goodman",
+    "aliases": [
+      "Goodman"
+    ]
+  },
+  {
+    "name": "Ryosuke Nishida",
+    "slug": "ryosuke-nishida",
+    "path": "/img/boxers/ryosuke-nishida.jpg",
+    "license": "editorial",
+    "artist": "Boxing Title Fights",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/ryosuke-nishida",
+    "aliases": [
+      "Nishida"
+    ]
+  },
+  {
+    "name": "Cheavon Clarke",
+    "slug": "cheavon-clarke",
+    "path": "/img/boxers/cheavon-clarke.jpg",
+    "license": "editorial",
+    "artist": "Matchroom Boxing",
+    "pageUrl": "https://www.matchroomboxing.com/news/cheavon-clarke-signs-promotional-deal-with-matchroom/",
+    "aliases": []
+  },
+  {
+    "name": "Louie O'Doherty",
+    "slug": "louie-odoherty",
+    "path": "/img/boxers/louie-odoherty.jpg",
+    "license": "editorial",
+    "artist": "Queensberry Promotions",
+    "pageUrl": "https://queensberry.co.uk/pages/louie-odoherty",
+    "aliases": ["O'Doherty", "O Doherty"]
+  },
+  {
+    "name": "Michael Gomez Jr",
+    "slug": "michael-gomez-jr",
+    "path": "/img/boxers/michael-gomez-jr.jpg",
+    "license": "editorial",
+    "artist": "Queensberry Promotions",
+    "pageUrl": "https://queensberry.co.uk/pages/michael-gomez-jnr",
+    "aliases": ["Michael Gomez Jnr", "Gomez Jr", "Gomez Jnr"]
+  },
+  {
+    "name": "Solomon Dacres",
+    "slug": "solomon-dacres",
+    "path": "/img/boxers/solomon-dacres.jpg",
+    "license": "editorial",
+    "artist": "Queensberry Promotions",
+    "pageUrl": "https://queensberry.co.uk/pages/solomon-dacres",
+    "aliases": ["Dacres"]
+  },
+  {
+    "name": "O'Shaquie Foster",
+    "slug": "oshaquie-foster",
+    "path": "/img/boxers/oshaquie-foster.jpg",
+    "license": "editorial",
+    "artist": "BoxingScene",
+    "pageUrl": "https://www.boxingscene.com/articles/king-130-oshaquie-foster-living-his-msg-dream",
+    "aliases": ["Foster"]
+  },
+  {
+    "name": "Elif Nur Turhan",
+    "slug": "elif-nur-turhan",
+    "path": "/img/boxers/elif-nur-turhan.jpg",
+    "license": "editorial",
+    "artist": "Most Valuable Promotions",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/elif-turhan/",
+    "aliases": ["Turhan", "Elif Turhan"]
+  },
+  {
+    "name": "Alycia Baumgardner",
+    "slug": "alycia-baumgardner",
+    "path": "/img/boxers/alycia-baumgardner.jpg",
+    "license": "editorial",
+    "artist": "Most Valuable Promotions",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/alycia-baumgardner/",
+    "aliases": ["Baumgardner"]
+  },
+  {
+    "name": "Tiara Brown",
+    "slug": "tiara-brown",
+    "path": "/img/boxers/tiara-brown.jpg",
+    "license": "editorial",
+    "artist": "Most Valuable Promotions",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/tiara-brown/",
+    "aliases": []
+  },
+  {
+    "name": "Ellie Scotney",
+    "slug": "ellie-scotney",
+    "path": "/img/boxers/ellie-scotney.jpg",
+    "license": "editorial",
+    "artist": "Most Valuable Promotions",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/ellie-scotney/",
+    "aliases": ["Scotney"]
+  },
+  {
+    "name": "Skye Nicolson",
+    "slug": "skye-nicolson",
+    "path": "/img/boxers/skye-nicolson.jpg",
+    "license": "editorial",
+    "artist": "Most Valuable Promotions",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/skye-nicolson/",
+    "aliases": ["Nicolson"]
+  },
+  {
+    "name": "Miyo Yoshida",
+    "slug": "miyo-yoshida",
+    "path": "/img/boxers/miyo-yoshida.jpg",
+    "license": "editorial",
+    "artist": "Most Valuable Promotions",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/miyo-yoshida/",
+    "aliases": ["Yoshida"]
+  },
+  {
+    "name": "Mikiah Kreps",
+    "slug": "mikiah-kreps",
+    "path": "/img/boxers/mikiah-kreps.jpg",
+    "license": "editorial",
+    "artist": "Most Valuable Promotions",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/mikiah-kreps/",
+    "aliases": ["Kreps"]
+  },
+  {
+    "name": "Erik Bazinyan",
+    "slug": "erik-bazinyan",
+    "path": "/img/boxers/erik-bazinyan.jpg",
+    "license": "editorial",
+    "artist": "Eye of the Tiger Management",
+    "pageUrl": "https://eottm.com/fighter/erik-bazinyan/",
+    "aliases": ["Bazinyan"]
+  },
+  {
+    "name": "Nelson Hysa",
+    "slug": "nelson-hysa",
+    "path": "/img/boxers/nelson-hysa.jpg",
+    "license": "editorial",
+    "artist": "Queensberry Promotions",
+    "pageUrl": "https://queensberry.co.uk/pages/nelson-hysa",
+    "aliases": ["Hysa"]
+  },
+  {
+    "name": "Conor Wallace",
+    "slug": "conor-wallace",
+    "path": "/img/boxers/conor-wallace.jpg",
+    "license": "editorial",
+    "artist": "Matchroom Boxing",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/conor-wallace/",
+    "aliases": ["Wallace"]
+  },
+  {
+    "name": "Maloway Canlers",
+    "slug": "maloway-canlers",
+    "path": "/img/boxers/maloway-canlers.jpg",
+    "license": "editorial",
+    "artist": "Denis Boulanger / FFBoxe / Sud Ouest",
+    "pageUrl": "https://www.sudouest.fr/charente-maritime/royan/royan-la-boxe-c-est-ma-vie-je-n-ai-besoin-de-rien-d-autre-18005542.php",
+    "aliases": ["Canlers"]
   }
 ]

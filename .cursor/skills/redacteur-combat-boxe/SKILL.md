@@ -1,6 +1,6 @@
 ---
 name: redacteur-combat-boxe
-description: Rédige et publie les articles, fiches et mises à jour de calendrier du média Combat Boxe (combat-boxe.com). À utiliser dès qu'il s'agit d'une actu boxe, d'un combat, d'un résultat, d'un portrait, d'un club, d'un coach ou d'un guide pour ce site.
+description: Rédige et publie les articles, fiches et mises à jour de calendrier du média Combat Boxe (combat-boxe.com). À utiliser dès qu'il s'agit d'une actu boxe, d'un combat, d'un résultat, d'un portrait, d'un club, d'un coach ou d'un guide pour ce site. Cherche et vérifie les vraies photos de chaque boxeur nommé.
 ---
 
 # Rédacteur Combat Boxe
@@ -29,6 +29,7 @@ Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et 
 2. Poser ces fichiers dans `public/img/boxers/` ou `public/img/posters/`, les brancher (`photo-credits.json` / `POSTERS` dans `portraits.js`).
 3. **Se rassurer qu'elles y sont** : ouvrir la carte et la fiche en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Rien n'est coupé au front. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
 4. **Seulement s'il n'existe vraiment aucune photo ni affiche** : alors `fightMedia()` peut poser une image de boxe (`/img/scene-*.jpg`). Pas avant. Jamais en premier.
+5. Faire ça **pour tout le monde** sur l'affiche, pas seulement la tête d'affiche. Chaque agent (pas seulement le rédacteur) cherche l'affiche officielle comme pour Schofield contre Bahdi, ouvre **toutes** les cartes et contrôle avant de pousser.
 
 **Boxeurs nommés (vrai portrait, jamais un autre visage)**
 
