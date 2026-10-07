@@ -6,10 +6,11 @@ import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../data/entities';
 import { editionPath, editionTitle } from '../lib/archive';
 import { articleLd, breadcrumbLd, collectionLd, graph } from '../lib/seo';
-import { photosForVersus } from '../lib/portraits';
+import { articleThumb, photosForVersus } from '../lib/portraits';
 import Cover from '../components/Cover.astro';
 import DaysNav from '../components/DaysNav.astro';
 import FightCard from '../components/FightCard.astro';
+import GalaCard from '../components/GalaCard.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
@@ -63,8 +64,6 @@ const upcoming = combats
 const results = combats
   .filter((c) => c.status === 'dispute')
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
-const calendar = [...combats].sort((a, b) => String(a.date).localeCompare(String(b.date)));
-const fightRows = template === 'upcoming' ? upcoming : template === 'results' ? results : calendar;
 const fr = boxeurs.filter((b) => !b.international);
 const intl = boxeurs.filter((b) => b.international);
 const portraits = articles.filter((a) => a.data.kind === 'portrait');
@@ -131,12 +130,16 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
               <div class="stack">
                 {items.map((item) => {
                   const row = liveArticle(item.data);
+                  const thumb = articleThumb(row);
                   return (
-                    <article class="row-card">
-                      <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
-                      <h3><a href={`/${row.slug}`}>{row.h1}</a></h3>
-                      <p>{row.description}</p>
-                    </article>
+                    <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
+                      {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
+                      <div>
+                        <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
+                        <h3>{row.h1}</h3>
+                        <p>{row.description}</p>
+                      </div>
+                    </a>
                   );
                 })}
               </div>
@@ -146,17 +149,31 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       )}
 
       {(template === 'upcoming' || template === 'results' || template === 'calendar') && (
-        fightRows.length === 0 ? (
+        (template === 'results' ? results : upcoming).length === 0 ? (
           <p class="empty">
             {template === 'results' ? 'Aucun résultat n’est encore publié.' : 'Aucun combat à venir n’est encore inscrit.'}
           </p>
         ) : (
           <div class="fight-grid">
-            {fightRows.map((c, index) => (
+            {(template === 'results' ? results : upcoming).map((c, index) => (
               <FightCard fight={c} index={index} verdict={template === 'results'} />
             ))}
           </div>
         )
+      )}
+
+      {(template === 'upcoming' || template === 'calendar') && results.length > 0 && (
+        <>
+          <div class="section-head" style="margin-top: 36px">
+            <h2>Derniers résultats</h2>
+            <a href="/resultats-boxe">Tous les résultats</a>
+          </div>
+          <div class="fight-grid">
+            {results.map((c, index) => (
+              <FightCard fight={c} index={index} verdict={true} />
+            ))}
+          </div>
+        </>
       )}
 
       {showCover && (
@@ -176,13 +193,9 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         galas.length === 0 ? (
           <p class="empty">Aucun gala n’est encore inscrit.</p>
         ) : (
-          <div class="stack">
-            {galas.map((g) => (
-              <article class="row-card">
-                <p class="meta">{formatDate(g.date)} · {g.city}</p>
-                <h2>{g.name}</h2>
-                <p>{g.note}</p>
-              </article>
+          <div class="fight-grid">
+            {galas.map((g, index) => (
+              <GalaCard gala={g} index={index} />
             ))}
           </div>
         )
@@ -191,12 +204,11 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       {template === 'boxers-fr' && (
         <div class="grid cards-2">
           {fr.map((b) => (
-            <article class="card">
+            <a class="card" href={`/boxeurs/${b.slug}`}>
               <img src={b.photo} alt={b.photoAlt} width="640" height="800" loading="lazy" />
-              <h2><a href={`/boxeurs/${b.slug}`}>{b.name}</a></h2>
+              <h2>{b.name}</h2>
               <p>{b.category} · {b.ranking}</p>
-              <a class="btn" href={`/boxeurs/${b.slug}`}>Voir la fiche</a>
-            </article>
+            </a>
           ))}
         </div>
       )}
@@ -207,10 +219,11 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         ) : (
           <div class="grid cards-2">
             {intl.map((b) => (
-              <article class="card">
-                <h2><a href={`/boxeurs/${b.slug}`}>{b.name}</a></h2>
+              <a class="card" href={`/boxeurs/${b.slug}`}>
+                <img src={b.photo || '/img/boxing-ring-corner.jpg'} alt={b.photoAlt || b.name} width="640" height="800" loading="lazy" />
+                <h2>{b.name}</h2>
                 <p>{b.category}</p>
-              </article>
+              </a>
             ))}
           </div>
         )
@@ -220,11 +233,15 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         <div class="stack">
           {portraits.map((item) => {
             const row = liveArticle(item.data);
+            const thumb = articleThumb(row);
             return (
-            <article class="row-card">
-              <h2><a href={`/${row.slug}`}>{row.h1}</a></h2>
-              <p>{row.description}</p>
-            </article>
+            <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
+              {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
+              <div>
+                <h2>{row.h1}</h2>
+                <p>{row.description}</p>
+              </div>
+            </a>
             );
           })}
         </div>
@@ -233,12 +250,11 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       {template === 'clubs' && (
         <div class="grid cards-2">
           {clubs.map((c) => (
-            <article class="card">
-              {c.image && <img src={c.image} alt={c.imageAlt || c.name} width="800" height="1000" loading="lazy" />}
-              <h2><a href={`/clubs/${c.slug}`}>{c.name}</a></h2>
+            <a class="card" href={`/clubs/${c.slug}`}>
+              <img src={c.image || '/img/boxing-training.jpg'} alt={c.imageAlt || c.name} width="800" height="1000" loading="lazy" />
+              <h2>{c.name}</h2>
               <p>{c.city} · {c.disciplines.join(', ')}</p>
-              <a class="btn" href={`/clubs/${c.slug}`}>Voir le club</a>
-            </article>
+            </a>
           ))}
         </div>
       )}
@@ -246,12 +262,11 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       {template === 'coaches' && (
         <div class="grid cards-2">
           {coachs.map((c) => (
-            <article class="card">
+            <a class="card" href={`/coachs/${c.slug}`}>
               <img src={c.photo} alt={c.photoAlt} width="640" height="800" loading="lazy" />
-              <h2><a href={`/coachs/${c.slug}`}>{c.name}</a></h2>
+              <h2>{c.name}</h2>
               <p>{c.city} · {c.diplomes.join(', ')}</p>
-              <a class="btn" href={`/coachs/${c.slug}`}>Voir le coach</a>
-            </article>
+            </a>
           ))}
         </div>
       )}
@@ -262,10 +277,10 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         ) : (
           <div class="stack">
             {analyses.map((item) => (
-              <article class="row-card">
-                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+              <a class="row-card" href={`/${item.data.slug}`}>
+                <h2>{item.data.h1}</h2>
                 <p>{item.data.description}</p>
-              </article>
+              </a>
             ))}
           </div>
         )
@@ -277,9 +292,9 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         ) : (
           <div class="stack">
             {interviews.map((item) => (
-              <article class="row-card">
-                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
-              </article>
+              <a class="row-card" href={`/${item.data.slug}`}>
+                <h2>{item.data.h1}</h2>
+              </a>
             ))}
           </div>
         )
@@ -291,10 +306,10 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         ) : (
           <div class="stack">
             {dossiers.map((item) => (
-              <article class="row-card">
-                <h2><a href={`/${item.data.slug}`}>{item.data.h1}</a></h2>
+              <a class="row-card" href={`/${item.data.slug}`}>
+                <h2>{item.data.h1}</h2>
                 <p>{item.data.description}</p>
-              </article>
+              </a>
             ))}
           </div>
         )

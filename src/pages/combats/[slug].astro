@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Cover from '../../components/Cover.astro';
+import { combats, formatDate, galas } from '../../data/entities';
+import { countryLabel, flagSrc } from '../../lib/flags';
+import { photosForVersus } from '../../lib/portraits';
+import { breadcrumbLd, graph } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return combats.map((fight) => ({ params: { slug: fight.slug }, props: { fight } }));
+}
+
+const { fight } = Astro.props;
+const path = `/combats/${fight.slug}`;
+const photos = photosForVersus(`${fight.boxerA} / ${fight.boxerB}`);
+const flag = flagSrc(fight.country);
+const country = countryLabel(fight.country);
+function cityKey(value = '') {
+  return String(value)
+    .split(',')[0]
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+const relatedGala = galas.find((gala) => gala.date === fight.date && cityKey(gala.city) === cityKey(fight.city));
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: fight.status === 'dispute' ? '/resultats-boxe' : '/combats-a-venir', label: fight.status === 'dispute' ? 'Résultats' : 'Combats à venir' },
+  { href: path, label: `${fight.boxerA} contre ${fight.boxerB}` },
+];
+const title = `${fight.boxerA} contre ${fight.boxerB} | Combat Boxe`;
+const description = `${fight.boxerA} contre ${fight.boxerB}, ${formatDate(fight.date)}, ${fight.city}. ${fight.titles || fight.category}.`;
+---
+
+<Base title={title} description={description} path={path} image={photos[0] || '/img/og-combat-boxe.jpg'} jsonLd={graph(breadcrumbLd(crumbs))}>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <p class="meta">
+        {flag && <img class="fight-flag" src={flag} alt="" title={country} width="24" height="16" />}
+        {formatDate(fight.date)} · {fight.city}
+        {country ? ` · ${country}` : ''}
+      </p>
+      <h1>{fight.boxerA} contre {fight.boxerB}</h1>
+      <Cover
+        kicker={fight.status === 'dispute' ? 'Résultat' : 'Combat'}
+        versus={`${fight.boxerA} / ${fight.boxerB}`}
+        meta={`${formatDate(fight.date)} · ${fight.city} · ${fight.category}`}
+        photos={photos}
+      />
+      <dl class="facts facts-live">
+        <div>
+          <dt>Catégorie</dt>
+          <dd>{fight.category}</dd>
+        </div>
+        {fight.titles && (
+          <div>
+            <dt>Titre</dt>
+            <dd>{fight.titles}</dd>
+          </div>
+        )}
+        <div>
+          <dt>Lieu</dt>
+          <dd>{fight.city}{country ? ` · ${country}` : ''}</dd>
+        </div>
+        {fight.status === 'dispute' ? (
+          <>
+            <div>
+              <dt>Vainqueur</dt>
+              <dd>{fight.winner}</dd>
+            </div>
+            <div>
+              <dt>Verdict</dt>
+              <dd>{fight.method}{fight.decision ? ` · ${fight.decision}` : ''}</dd>
+            </div>
+          </>
+        ) : fight.stakes ? (
+          <div>
+            <dt>Enjeu</dt>
+            <dd>{fight.stakes}</dd>
+          </div>
+        ) : null}
+      </dl>
+      {fight.stakes && fight.status === 'dispute' && <p class="lead">{fight.stakes}</p>}
+      <nav class="also">
+        {fight.article && <a href={`/${fight.article}`}>Lire l'article</a>}
+        {relatedGala && <a href={relatedGala.href}>Voir le gala</a>}
+        <a href={fight.status === 'dispute' ? '/resultats-boxe' : '/combats-a-venir'}>
+          {fight.status === 'dispute' ? 'Tous les résultats' : 'Tous les combats'}
+        </a>
+      </nav>
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

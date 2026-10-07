@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { groupArticlesByDay, kindLabel, liveArticle } from '../../data/entities';
+import { articleThumb } from '../../lib/portraits';
 import { editionMeta, editionPath, editionTitle } from '../../lib/archive';
 import { breadcrumbLd, collectionLd, graph } from '../../lib/seo';
 import DaysNav from '../../components/DaysNav.astro';
@@ -57,13 +58,19 @@ const jsonLd = graph(
       <h1>{label}</h1>
       <DaysNav editions={editions} current={jour} label="Les autres jours" />
       <div class="stack">
-        {rows.map((row) => (
-          <article class="row-card">
-            <p class="meta">{kindLabel(row.kind)}</p>
-            <h2><a href={`/${row.slug}`}>{row.h1}</a></h2>
-            <p>{row.description}</p>
-          </article>
-        ))}
+        {rows.map((row) => {
+          const thumb = articleThumb(row);
+          return (
+          <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
+            {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
+            <div>
+              <p class="meta">{kindLabel(row.kind)}</p>
+              <h2>{row.h1}</h2>
+              <p>{row.description}</p>
+            </div>
+          </a>
+          );
+        })}
       </div>
     </div>
   </article>

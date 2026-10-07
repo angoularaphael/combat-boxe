@@ -22,7 +22,10 @@ const upcoming = combats
   .filter((c) => c.status === 'a-venir')
   .sort((a, b) => String(a.date).localeCompare(String(b.date)))
   .slice(0, 8);
-const results = combats.filter((c) => c.status === 'dispute').slice(0, 4);
+const results = combats
+  .filter((c) => c.status === 'dispute')
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+  .slice(0, 6);
 const jsonLd = graph(
   organizationLd,
   websiteLd,
@@ -69,6 +72,7 @@ const jsonLd = graph(
         )}
         <div class="hero-side">
           <a class="side-story" href="/combats-a-venir">
+            <img src="/img/boxing-sparring.jpg" alt="" width="800" height="500" />
             <div>
               <span class="tag">À suivre</span>
               <h2>Les prochains combats qui vont compter</h2>
@@ -77,10 +81,12 @@ const jsonLd = graph(
           </a>
           <div class="side-pair">
             <a class="mini-story" href="/resultats-boxe">
+              <img src="/img/boxing-gloves.jpg" alt="" width="640" height="400" />
               <span class="tag">Résultats</span>
               <h3>Vainqueurs, décisions et analyses</h3>
             </a>
             <a class="mini-story" href="/calendrier-combats-boxe">
+              <img src="/img/boxing-pads.jpg" alt="" width="640" height="400" />
               <span class="tag">Calendrier</span>
               <h3>Les dates à retenir autour du ring</h3>
             </a>
@@ -133,15 +139,19 @@ const jsonLd = graph(
           <FightCard fight={c} index={index} />
         ))}</div>
       )}
-      {results.length > 0 && (
-        <div class="home-results">
-          <div class="section-head section-head-light">
-            <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
-            <a href="/resultats-boxe">Tous les résultats</a>
-          </div>
-          <div class="stack">{results.map((c) => <article class="row-card"><p class="meta">{formatDate(c.date)}</p><h3>{c.winner} bat {c.winner === c.boxerA ? c.boxerB : c.boxerA}</h3></article>)}</div>
+      <div class="home-results">
+        <div class="section-head section-head-light">
+          <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
+          <a href="/resultats-boxe">Tous les résultats</a>
         </div>
-      )}
+        {results.length === 0 ? (
+          <p class="empty">Aucun résultat n’est encore publié.</p>
+        ) : (
+          <div class="fight-grid">{results.map((c, index) => (
+            <FightCard fight={c} index={index} verdict={true} />
+          ))}</div>
+        )}
+      </div>
     </div>
   </section>
 
@@ -163,9 +173,11 @@ const jsonLd = graph(
           </a>
         )}
         <a class="portrait-card" href="/clubs-boxe-france">
+          <img src="/img/boxing-training.jpg" alt="" width="800" height="1000" />
           <div><span class="tag">Clubs</span><h3>Les salles qui forment les boxeurs</h3><p>{clubs.length} club présenté</p></div>
         </a>
         <a class="portrait-card" href="/entraineurs-boxe-francais">
+          <img src={coachs[0]?.photo || '/img/boxing-ring-corner.jpg'} alt="" width="800" height="1000" />
           <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneur présenté</p></div>
         </a>
       </div>

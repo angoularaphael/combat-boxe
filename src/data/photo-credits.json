@@ -7,7 +7,13 @@
     "artist": "Box Azteca",
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=82139445",
     "wikiTitle": "Canelo Álvarez",
-    "aliases": ["Canelo", "Alvarez", "Canelo Alvarez"]
+    "aliases": [
+      "Canelo",
+      "Alvarez",
+      "Canelo Alvarez",
+      "Canelo Álvarez",
+      "Saúl Alvarez"
+    ]
   },
   {
     "name": "Christian Mbilli",
@@ -17,7 +23,11 @@
     "artist": "Boxing AIBA",
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=50893558",
     "wikiTitle": "Christian M'billi",
-    "aliases": ["Mbilli", "M'billi", "Christian M'billi"]
+    "aliases": [
+      "Mbilli",
+      "M'billi",
+      "Christian M'billi"
+    ]
   },
   {
     "name": "Daniel Dubois",
@@ -27,7 +37,9 @@
     "artist": "Editor083",
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=195404721",
     "wikiTitle": "Daniel Dubois",
-    "aliases": ["Dubois"]
+    "aliases": [
+      "Dubois"
+    ]
   },
   {
     "name": "Ermal Hadribeaj",
@@ -37,7 +49,9 @@
     "artist": "Donato2024",
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=141967124",
     "wikiTitle": "Ermal Hadribeaj",
-    "aliases": ["Hadribeaj"]
+    "aliases": [
+      "Hadribeaj"
+    ]
   },
   {
     "name": "Makan Traoré",
@@ -47,6 +61,105 @@
     "artist": "Sport en France",
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=167126227",
     "wikiTitle": "Makan Traoré (boxer)",
-    "aliases": ["Traoré", "Traore"]
+    "aliases": [
+      "Traoré",
+      "Traore"
+    ]
+  },
+  {
+    "name": "Tyson Fury",
+    "slug": "tyson-fury",
+    "path": "/img/boxers/tyson-fury.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Mike DiDomizio",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=87653411",
+    "wikiTitle": "Tyson Fury",
+    "aliases": [
+      "Fury"
+    ]
+  },
+  {
+    "name": "Anthony Joshua",
+    "slug": "anthony-joshua",
+    "path": "/img/boxers/anthony-joshua.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "JazzyJoeyD",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=140637337",
+    "wikiTitle": "Anthony Joshua",
+    "aliases": [
+      "Joshua"
+    ]
+  },
+  {
+    "name": "Chris Billam-Smith",
+    "slug": "chris-billam-smith",
+    "path": "/img/boxers/chris-billam-smith.png",
+    "license": "CC BY 3.0",
+    "artist": "AFC Bournemouth",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=148307336",
+    "wikiTitle": "Chris Billam-Smith",
+    "aliases": [
+      "Billam-Smith"
+    ]
+  },
+  {
+    "name": "Tenshin Nasukawa",
+    "slug": "tenshin-nasukawa",
+    "path": "/img/boxers/tenshin-nasukawa.jpg",
+    "license": "CC BY 4.0",
+    "artist": "RuinDig/Yuki Uchida",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=142873767",
+    "wikiTitle": "Tenshin Nasukawa",
+    "aliases": [
+      "Nasukawa"
+    ]
+  },
+  {
+    "name": "Bakhodir Jalolov",
+    "slug": "bakhodir-jalolov",
+    "path": "/img/boxers/bakhodir-jalolov.jpg",
+    "license": "CC BY 4.0",
+    "artist": "Unknown author Unknown author",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=138963243",
+    "wikiTitle": "Bakhodir Jalolov",
+    "aliases": [
+      "Jalolov"
+    ]
+  },
+  {
+    "name": "Ramla Ali",
+    "slug": "ramla-ali",
+    "path": "/img/boxers/ramla-ali.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Wikiknowssfuff",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=197579171",
+    "wikiTitle": "Ramla Ali",
+    "aliases": [
+      "Ali"
+    ]
+  },
+  {
+    "name": "Ben Whittaker",
+    "slug": "ben-whittaker",
+    "path": "/img/boxers/ben-whittaker.jpg",
+    "license": "CC BY 3.0",
+    "artist": "National Lottery Good Causes",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=123620632",
+    "wikiTitle": "Ben Whittaker",
+    "aliases": [
+      "Whittaker"
+    ]
+  },
+  {
+    "name": "Tomoya Tsuboi",
+    "slug": "tomoya-tsuboi",
+    "path": "/img/boxers/tomoya-tsuboi.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Yuuchihiro",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=124200727",
+    "wikiTitle": "Tomoya Tsuboi",
+    "aliases": [
+      "Tsuboi"
+    ]
   }
 ]

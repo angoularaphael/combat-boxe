@@ -19,7 +19,7 @@ Média de boxe anglaise, France et international. Clair, sérieux, sportif, info
 
 Textes originaux. Aucun paragraphe repris d'actu-boxe.com ni d'un autre média.
 
-Images : ne pas coller de photo Unsplash, banque d'images ou visuel IA. Chercher un portrait Wikimedia Commons du boxeur nommé (`node scripts/recuperer-portraits.mjs "Nom"`). Si un fichier Commons libre existe, il illustre ce papier. Sinon, bandeau éditorial Combat Boxe. Une photo n'entre que si elle représente vraiment le sujet. Pas de crédit sous l'article (licences sur /a-propos). Pas de bloc Sources visible.
+Images : ne pas coller de photo Unsplash, banque d'images ou visuel IA. Chercher un portrait Wikimedia Commons du boxeur nommé (`node scripts/recuperer-portraits.mjs "Nom"`). Si un fichier Commons libre existe, il illustre ce papier. Sinon, bandeau éditorial Combat Boxe. Une photo n'entre que si elle représente vraiment le sujet. Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos.
 
 ## Écriture naturelle
 

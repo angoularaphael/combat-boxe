@@ -1,4 +1,5 @@
 /** Fiches et combats publiés. Un combat n'entre ici que s'il a une date, des noms et une source. */
+import { countryCodeFromCity, slugifyName } from '../lib/flags.js';
 
 export const boxeurs = [
   {
@@ -94,7 +95,7 @@ export const coachs = coachsRaw.map((coach) => {
 });
 
 /** @type {Array<Record<string, string>>} */
-export const combats = [
+const combatsRaw = [
   {
     status: 'a-venir',
     date: '2026-10-08',
@@ -360,10 +361,87 @@ export const combats = [
     city: 'Belfast, Royaume-Uni',
     stakes: 'Cacace défend la ceinture WBA à la SSE Arena, carte DAZN.',
   },
+  {
+    status: 'dispute',
+    date: '2026-10-03',
+    boxerA: 'Ben Whittaker',
+    boxerB: 'Conor Wallace',
+    category: 'Mi-lourds',
+    titles: 'Eliminatoire IBF des mi-lourds',
+    city: 'Birmingham, Royaume-Uni',
+    winner: 'Ben Whittaker',
+    method: 'Décision unanime',
+    decision: '117-111, 116-112, 115-113',
+    stakes: 'Whittaker devient challenger obligatoire IBF, à l’Utilita Arena de Birmingham.',
+  },
+  {
+    status: 'dispute',
+    date: '2026-09-27',
+    boxerA: 'Takuma Inoue',
+    boxerB: 'Tenshin Nasukawa',
+    category: 'Poids coqs',
+    titles: 'Championnat du monde WBC des poids coqs',
+    city: 'Tokyo, Japon',
+    winner: 'Takuma Inoue',
+    method: 'Décision unanime',
+    decision: '116-111, 116-111, 114-113',
+    stakes: 'Inoue conserve sa ceinture à la Toyota Arena, revanche du combat de novembre 2025.',
+  },
+  {
+    status: 'dispute',
+    date: '2026-09-27',
+    boxerA: 'Ricardo Malajika',
+    boxerB: 'Tomoya Tsuboi',
+    category: 'Super-mouches',
+    titles: 'Championnat du monde WBC des super-mouches',
+    city: 'Tokyo, Japon',
+    winner: 'Ricardo Malajika',
+    method: 'Décision partagée',
+    decision: '116-112, 115-113, 113-115',
+    stakes: 'Malajika, Sud-Africain, prend la ceinture vacante à Tokyo.',
+  },
+  {
+    status: 'dispute',
+    date: '2026-09-27',
+    boxerA: 'Sam Goodman',
+    boxerB: 'Ryosuke Nishida',
+    category: 'Super-coqs',
+    titles: 'Titre IBF intérimaire des super-coqs',
+    city: 'Tokyo, Japon',
+    winner: 'Sam Goodman',
+    method: 'Décision unanime',
+    decision: '116-109, 115-110, 114-111',
+    stakes: 'Goodman s’empare de la ceinture intérimaire IBF à Tokyo.',
+  },
+  {
+    status: 'dispute',
+    date: '2026-09-27',
+    boxerA: 'Ryusei Matsumoto',
+    boxerB: 'Russell Acosta',
+    category: 'Poids pailles',
+    titles: 'Titre WBO intérimaire des poids pailles',
+    city: 'Tokyo, Japon',
+    winner: 'Ryusei Matsumoto',
+    method: 'Décision unanime',
+    decision: '118-110, 116-112, 115-113',
+    stakes: 'Matsumoto conserve la ceinture intérimaire WBO à Tokyo.',
+  },
 ];
 
 /** @type {Array<Record<string, string>>} */
-export const galas = [
+const galasRaw = [
+  {
+    date: '2026-09-27',
+    name: 'Inoue contre Nasukawa 2',
+    city: 'Tokyo, Toyota Arena',
+    note: 'Quatre titres mondiaux à la Toyota Arena. Affiche principale : Inoue conserve le WBC des poids coqs.',
+  },
+  {
+    date: '2026-10-03',
+    name: 'Whittaker contre Wallace',
+    city: 'Birmingham, Utilita Arena',
+    note: 'Eliminatoire IBF des mi-lourds. Whittaker l’emporte aux points.',
+  },
   {
     date: '2026-10-08',
     name: 'Iglesias contre Zaren',
@@ -479,6 +557,50 @@ export const galas = [
     note: 'Défense du titre WBA des super-plumes. Carte DAZN.',
   },
 ];
+
+function enrichFight(fight) {
+  const slug = fight.slug || `${slugifyName(fight.boxerA)}-${slugifyName(fight.boxerB)}`;
+  return {
+    ...fight,
+    slug,
+    country: fight.country || countryCodeFromCity(fight.city),
+    href: `/combats/${slug}`,
+  };
+}
+
+function cityKey(value = '') {
+  return String(value)
+    .split(',')[0]
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
+function enrichGala(gala) {
+  const slug = gala.slug || slugifyName(gala.name);
+  const related = combatsRaw.find(
+    (fight) => fight.date === gala.date && cityKey(fight.city) === cityKey(gala.city),
+  );
+  return {
+    ...gala,
+    slug,
+    country: gala.country || countryCodeFromCity(gala.city),
+    href: `/galas/${slug}`,
+    versus: related ? `${related.boxerA} / ${related.boxerB}` : '',
+  };
+}
+
+export const combats = combatsRaw.map(enrichFight);
+export const galas = galasRaw.map(enrichGala);
+
+export function fightBySlug(slug) {
+  return combats.find((item) => item.slug === slug);
+}
+
+export function galaBySlug(slug) {
+  return galas.find((item) => item.slug === slug);
+}
 
 export function formatDate(date) {
   return new Intl.DateTimeFormat('fr-FR', {

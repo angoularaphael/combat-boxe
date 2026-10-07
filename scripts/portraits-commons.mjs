@@ -44,7 +44,7 @@ async function pageImage(lang, title) {
   const page = json && Object.values(json.query?.pages || {})[0];
   if (!page || page.missing || !page.original?.source) return null;
   const extract = `${page.title || ''} ${page.extract || ''}`.toLowerCase();
-  const isBoxer = /boxeur|boxer|boxing|boxe anglaise|poids lourds|super-/.test(extract);
+  const isBoxer = /boxeur|boxer|boxing|boxe anglaise|poids lourds|super-|ボクサー|pugil|olympi/.test(extract);
   if (!isBoxer) return null;
   const source = page.original.source;
   if (!source.includes('/wikipedia/commons/')) return null;
@@ -73,6 +73,51 @@ async function commonsLicense(fileName) {
   return { license, artist, pageUrl: info?.descriptionshorturl || info?.descriptionurl || '' };
 }
 
+function licenseOk(license = '') {
+  const t = license.toLowerCase();
+  return t.includes('cc') || t.includes('public domain') || t.includes('pd') || t.includes('cc0');
+}
+
+async function commonsImageSearch(name) {
+  const url = new URL('https://commons.wikimedia.org/w/api.php');
+  url.search = new URLSearchParams({
+    action: 'query',
+    format: 'json',
+    origin: '*',
+    generator: 'search',
+    gsrsearch: `"${name}" (boxer OR boxeur OR boxing OR boxe OR ボクサー)`,
+    gsrnamespace: '6',
+    gsrlimit: '8',
+    prop: 'imageinfo',
+    iiprop: 'url|mime|extmetadata',
+  }).toString();
+  const res = await fetch(url, { headers: { 'user-agent': UA } });
+  if (!res.ok) return null;
+  const json = await res.json();
+  const pages = Object.values(json.query?.pages || {});
+  for (const page of pages) {
+    const info = page.imageinfo?.[0];
+    if (!info || !String(info.mime || '').startsWith('image/')) continue;
+    if (!String(info.url || '').includes('/wikipedia/commons/')) continue;
+    const meta = info.extmetadata || {};
+    const blob = `${page.title || ''} ${meta.ImageDescription?.value || ''} ${meta.Categories?.value || ''}`.toLowerCase();
+    if (!/boxer|boxeur|boxing|boxe|pugil|ボクサー/.test(blob)) continue;
+    if (/hockey|nhl|footballer|soccer|baseball|cricket/.test(blob)) continue;
+    if (/mural|graffiti|covid|affiche|poster|notice|fermeture/.test(blob)) continue;
+    const license = meta.LicenseShortName?.value || meta.UsageTerms?.value || '';
+    if (!licenseOk(license)) continue;
+    return {
+      source: info.url,
+      file: String(page.title || '').replace(/^File:/i, ''),
+      title: name,
+      license,
+      artist: (meta.Artist?.value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim(),
+      pageUrl: info.descriptionshorturl || info.descriptionurl || '',
+    };
+  }
+  return null;
+}
+
 export async function findPortrait(name, extraTitles = []) {
   const titles = [
     `${name} (boxer)`,
@@ -80,18 +125,12 @@ export async function findPortrait(name, extraTitles = []) {
     ...extraTitles,
     name,
   ];
-  for (const lang of ['en', 'fr']) {
+  for (const lang of ['en', 'fr', 'ja', 'de', 'es']) {
     for (const title of titles) {
       const hit = await pageImage(lang, title);
       if (!hit) continue;
       const cred = await commonsLicense(hit.file);
-      const license = (cred?.license || '').toLowerCase();
-      const ok =
-        license.includes('cc') ||
-        license.includes('public domain') ||
-        license.includes('pd') ||
-        license.includes('cc0');
-      if (!ok) continue;
+      if (!licenseOk(cred?.license)) continue;
       return {
         name,
         lang,
@@ -104,7 +143,18 @@ export async function findPortrait(name, extraTitles = []) {
       };
     }
   }
-  return null;
+  const commons = await commonsImageSearch(name);
+  if (!commons) return null;
+  return {
+    name,
+    lang: 'commons',
+    wikiTitle: commons.title,
+    source: commons.source,
+    file: commons.file,
+    license: commons.license,
+    artist: commons.artist,
+    pageUrl: commons.pageUrl,
+  };
 }
 
 export async function savePortrait(found) {

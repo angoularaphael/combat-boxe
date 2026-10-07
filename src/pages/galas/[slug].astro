@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FightCard from '../../components/FightCard.astro';
+import Cover from '../../components/Cover.astro';
+import { combats, formatDate, galas } from '../../data/entities';
+import { countryLabel, flagSrc } from '../../lib/flags';
+import { photosForVersus } from '../../lib/portraits';
+import { breadcrumbLd, graph } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return galas.map((gala) => ({ params: { slug: gala.slug }, props: { gala } }));
+}
+
+const { gala } = Astro.props;
+const path = `/galas/${gala.slug}`;
+const flag = flagSrc(gala.country);
+const country = countryLabel(gala.country);
+function cityKey(value = '') {
+  return String(value)
+    .split(',')[0]
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+const card = combats.filter((fight) => fight.date === gala.date && cityKey(fight.city) === cityKey(gala.city));
+const photos = photosForVersus(gala.versus || (card[0] ? `${card[0].boxerA} / ${card[0].boxerB}` : ''));
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: '/galas-boxe', label: 'Galas' },
+  { href: path, label: gala.name },
+];
+---
+
+<Base
+  title={`${gala.name} | Combat Boxe`}
+  description={`${gala.name}, ${formatDate(gala.date)}, ${gala.city}. ${gala.note || ''}`}
+  path={path}
+  image={photos[0] || '/img/og-combat-boxe.jpg'}
+  jsonLd={graph(breadcrumbLd(crumbs))}
+>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <p class="meta">
+        {flag && <img class="fight-flag" src={flag} alt="" title={country} width="24" height="16" />}
+        {formatDate(gala.date)} · {gala.city}
+        {country ? ` · ${country}` : ''}
+      </p>
+      <h1>{gala.name}</h1>
+      <Cover
+        kicker="Gala"
+        versus={gala.versus || ''}
+        title={gala.versus ? '' : gala.name}
+        meta={`${formatDate(gala.date)} · ${gala.city}`}
+        photos={photos}
+      />
+      {gala.note && <p class="lead">{gala.note}</p>}
+      {card.length > 0 && (
+        <div class="fight-grid">
+          {card.map((fight, index) => (
+            <FightCard fight={fight} index={index} verdict={fight.status === 'dispute'} />
+          ))}
+        </div>
+      )}
+      <nav class="also">
+        <a href="/galas-boxe">Tous les galas</a>
+        <a href="/combats-a-venir">Combats à venir</a>
+      </nav>
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

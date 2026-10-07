@@ -1,17 +1,28 @@
 ---
 import { formatDate } from '../data/entities';
+import { countryLabel, flagSrc } from '../lib/flags';
+import { fightMedia } from '../lib/portraits';
 
 const { fight, index = 0, verdict = false } = Astro.props;
-const href = fight.article ? `/${fight.article}` : '';
-const Tag = href ? 'a' : 'article';
+const href = fight.href || (fight.article ? `/${fight.article}` : `/combats/${fight.slug}`);
+const photos = fightMedia(`${fight.boxerA} / ${fight.boxerB}`, index);
+const flag = flagSrc(fight.country);
+const country = countryLabel(fight.country);
 ---
 
-<Tag
-  class:list={['fight-card', href && 'fight-card-link']}
-  href={href || undefined}
-  style={`--i: ${index}`}
->
-  <p class="fight-date">{formatDate(fight.date)}</p>
+<a class="fight-card fight-card-link" href={href} style={`--i: ${index}`}>
+  <div class:list={['fight-media', photos.length > 1 && 'fight-media-split']} aria-hidden="true">
+    {photos.map((src) => (
+      <img src={src} alt="" width="320" height="400" loading="lazy" />
+    ))}
+  </div>
+  <p class="fight-date">
+    {flag && (
+      <img class="fight-flag" src={flag} alt="" title={country} width="24" height="16" />
+    )}
+    {formatDate(fight.date)}
+    {country ? ` · ${country}` : ''}
+  </p>
   <p class="fight-vs">
     <span class="fight-a">{fight.boxerA}</span>
     <span class="fight-x">contre</span>
@@ -30,4 +41,4 @@ const Tag = href ? 'a' : 'article';
   ) : fight.stakes ? (
     <p class="fight-stakes">{fight.stakes}</p>
   ) : null}
-</Tag>
+</a>
