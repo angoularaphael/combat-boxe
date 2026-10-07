@@ -11,4 +11,4 @@ breadcrumbs:
     label: Entraîneurs
 ---
 
-Les entraîneurs présentés ici sont ceux que Boxing Center publie, un par un, sur [boxingcenter.fr](https://boxingcenter.fr/coachs-2/) : Valentin Tapia, Mehdi, Brice, Samuel Pinto, Zouhir, Sonia, Valentin Guth et Hicham. La salle des Minimes ajoute Chloé, David et Clément, sur [boxe-toulouse.com](https://boxe-toulouse.com/coachs/). Saint-Cyprien ajoute Dadi et Tawee, sur [club-boxe-toulouse.com](https://club-boxe-toulouse.com/coachs/).
+Deux entraîneurs : Valentin Guth, boxeur et coach au Boxing Center Minimes, et Dadi, coach de boxe anglaise à Saint-Cyprien.
