@@ -423,7 +423,10 @@
     "license": "editorial",
     "artist": "Queensberry Promotions",
     "pageUrl": "https://queensberry.co.uk/pages/louie-odoherty",
-    "aliases": ["O'Doherty", "O Doherty"]
+    "aliases": [
+      "O'Doherty",
+      "O Doherty"
+    ]
   },
   {
     "name": "Michael Gomez Jr",
@@ -432,7 +435,11 @@
     "license": "editorial",
     "artist": "Queensberry Promotions",
     "pageUrl": "https://queensberry.co.uk/pages/michael-gomez-jnr",
-    "aliases": ["Michael Gomez Jnr", "Gomez Jr", "Gomez Jnr"]
+    "aliases": [
+      "Michael Gomez Jnr",
+      "Gomez Jr",
+      "Gomez Jnr"
+    ]
   },
   {
     "name": "Solomon Dacres",
@@ -441,7 +448,9 @@
     "license": "editorial",
     "artist": "Queensberry Promotions",
     "pageUrl": "https://queensberry.co.uk/pages/solomon-dacres",
-    "aliases": ["Dacres"]
+    "aliases": [
+      "Dacres"
+    ]
   },
   {
     "name": "O'Shaquie Foster",
@@ -450,7 +459,9 @@
     "license": "editorial",
     "artist": "BoxingScene",
     "pageUrl": "https://www.boxingscene.com/articles/king-130-oshaquie-foster-living-his-msg-dream",
-    "aliases": ["Foster"]
+    "aliases": [
+      "Foster"
+    ]
   },
   {
     "name": "Elif Nur Turhan",
@@ -459,7 +470,10 @@
     "license": "editorial",
     "artist": "Most Valuable Promotions",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/elif-turhan/",
-    "aliases": ["Turhan", "Elif Turhan"]
+    "aliases": [
+      "Turhan",
+      "Elif Turhan"
+    ]
   },
   {
     "name": "Alycia Baumgardner",
@@ -468,7 +482,9 @@
     "license": "editorial",
     "artist": "Most Valuable Promotions",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/alycia-baumgardner/",
-    "aliases": ["Baumgardner"]
+    "aliases": [
+      "Baumgardner"
+    ]
   },
   {
     "name": "Tiara Brown",
@@ -486,7 +502,9 @@
     "license": "editorial",
     "artist": "Most Valuable Promotions",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/ellie-scotney/",
-    "aliases": ["Scotney"]
+    "aliases": [
+      "Scotney"
+    ]
   },
   {
     "name": "Skye Nicolson",
@@ -495,7 +513,9 @@
     "license": "editorial",
     "artist": "Most Valuable Promotions",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/skye-nicolson/",
-    "aliases": ["Nicolson"]
+    "aliases": [
+      "Nicolson"
+    ]
   },
   {
     "name": "Miyo Yoshida",
@@ -504,7 +524,9 @@
     "license": "editorial",
     "artist": "Most Valuable Promotions",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/miyo-yoshida/",
-    "aliases": ["Yoshida"]
+    "aliases": [
+      "Yoshida"
+    ]
   },
   {
     "name": "Mikiah Kreps",
@@ -513,7 +535,9 @@
     "license": "editorial",
     "artist": "Most Valuable Promotions",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/mikiah-kreps/",
-    "aliases": ["Kreps"]
+    "aliases": [
+      "Kreps"
+    ]
   },
   {
     "name": "Erik Bazinyan",
@@ -522,7 +546,9 @@
     "license": "editorial",
     "artist": "Eye of the Tiger Management",
     "pageUrl": "https://eottm.com/fighter/erik-bazinyan/",
-    "aliases": ["Bazinyan"]
+    "aliases": [
+      "Bazinyan"
+    ]
   },
   {
     "name": "Nelson Hysa",
@@ -531,7 +557,9 @@
     "license": "editorial",
     "artist": "Queensberry Promotions",
     "pageUrl": "https://queensberry.co.uk/pages/nelson-hysa",
-    "aliases": ["Hysa"]
+    "aliases": [
+      "Hysa"
+    ]
   },
   {
     "name": "Conor Wallace",
@@ -540,7 +568,9 @@
     "license": "editorial",
     "artist": "Matchroom Boxing",
     "pageUrl": "https://www.matchroomboxing.com/fighters/conor-wallace/",
-    "aliases": ["Wallace"]
+    "aliases": [
+      "Wallace"
+    ]
   },
   {
     "name": "Maloway Canlers",
@@ -549,6 +579,19 @@
     "license": "editorial",
     "artist": "Denis Boulanger / FFBoxe / Sud Ouest",
     "pageUrl": "https://www.sudouest.fr/charente-maritime/royan/royan-la-boxe-c-est-ma-vie-je-n-ai-besoin-de-rien-d-autre-18005542.php",
-    "aliases": ["Canlers"]
+    "aliases": [
+      "Canlers"
+    ]
+  },
+  {
+    "name": "Ryusei Matsumoto",
+    "slug": "ryusei-matsumoto",
+    "path": "/img/boxers/ryusei-matsumoto.jpg",
+    "license": "editorial",
+    "artist": "boxingtitlefights.com",
+    "pageUrl": "https://www.boxingtitlefights.com/boxer/ryusei-matsumoto",
+    "aliases": [
+      "Matsumoto"
+    ]
   }
 ]

@@ -5,13 +5,23 @@ description: Rédige et publie les articles, fiches et mises à jour de calendri
 
 # Rédacteur Combat Boxe
 
+## Production (sans Cursor, sans GitHub Actions)
+
+En production, Combat Boxe tourne **tout seul** sur un process BotHosting, comme BOXPLUS. Pas d'Actions sur le compte GitHub principal. Le serveur clone le dépôt principal, lance `node scripts/serveur-production.mjs`, publie à 8 h et 20 h (heure de Paris), pousse sur `angoularaphael/combat-boxe`. Vercel déploie.
+
+Fichiers panel : `deploy/bothosting/index.js` et `.env` (`ANTHROPIC_API_KEY`, `GIT_PUSH_TOKEN` d'un compte machine). Sans la clé Claude, les photos manquantes sont quand même cherchées. Sans le jeton git, rien n'arrive sur le dépôt principal.
+
+Cursor n'est qu'un secours ponctuel. Le circuit quotidien, c'est le serveur.
+
+## Si on rédige quand même à la main
+
 L'agent publie. Une demande du type « publie un article sur tel combat » se termine par les fichiers en `status: published`, le commit et le push. Pas de brouillon laissé en attente.
 
-Le site est dans `combat-boxe/`. Astro, contenu markdown et données dans `src/data/entities.js`.
+Le site est dans `combat-boxe/`. Astro, contenu markdown et données dans `src/data/entities.js` (plus les JSON auto ci-dessus).
 
-L'accueil (`src/pages/index.astro`) affiche tout seul le dernier article publié et les quatre plus récents. Les combats de `entities.js` apparaissent dans Combats à venir, Calendrier, Galas et à l'accueil. Il ne faut pas recoder la une à la main.
+L'accueil (`src/pages/index.astro`) affiche tout seul le dernier article publié et les quatre plus récents. Les combats de `entities.js` et `combats-auto.json` apparaissent dans Combats à venir, Calendrier, Galas et à l'accueil. Il ne faut pas recoder la une à la main.
 
-Pour une rédaction hors Cursor, via API : `node scripts/rediger-article.mjs --faits faits.json` (voir `docs/configuration-ia.md`). Claude Sonnet en priorité.
+Hors Cursor : le process BotHosting, ou `node scripts/agent-production.mjs` (un tour) / `node scripts/rediger-article.mjs --faits faits.json` (voir `docs/configuration-ia.md`). Claude Sonnet en priorité.
 
 ## Voix
 
@@ -28,7 +38,7 @@ Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et 
 **Ordre obligatoire pour un combat nommé**
 
 1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala (ville, promoteur, FFBoxe, presse).
-2. Poser ces fichiers dans `public/img/boxers/` ou `public/img/posters/`, les brancher (`photo-credits.json` / `POSTERS` dans `portraits.js`).
+2. Poser ces fichiers dans `public/img/boxers/` ou `public/img/posters/`, les brancher (`photo-credits.json` / `src/data/posters.json`).
 3. **Se rassurer qu'elles y sont et qu'elles sont cadrées** : ouvrir la carte, la fiche et l'aperçu (bandeau) en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Yeux et bouche visibles. Pas de crâne seul, pas de grand vide au-dessus de la tête. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
 4. **Seulement s'il n'existe vraiment aucune photo ni affiche** : alors `fightMedia()` peut poser une image de boxe (`/img/scene-*.jpg`). Pas avant. Jamais en premier.
 5. Faire ça **pour tout le monde** sur l'affiche, pas seulement la tête d'affiche. L'agent Combat Boxe cherche l'affiche officielle comme pour Schofield contre Bahdi, ouvre **toutes** les cartes, contrôle le cadrage des aperçus, puis pousse.
@@ -129,9 +139,9 @@ Maillage dans le corps, plus le tableau `pillars` :
 - club vers `/clubs-boxe-france`
 - coach vers `/entraineurs-boxe-francais`
 
-Combat confirmé : ajouter l'objet dans `combats` de `src/data/entities.js` avec `status` `a-venir` ou `dispute`, `date`, `boxerA`, `boxerB`, `category`, `titles`, `city`, `stakes` ou `winner`, `method`, `decision`, `article`, `sourceName`, `sourceUrl`. Sans date précise, sans les deux noms ou sans `sourceUrl`, ne pas l'ajouter.
+Combat confirmé : l'agent de production l'ajoute dans `src/data/combats-auto.json` (lu par `entities.js`) avec `status` `a-venir` ou `dispute`, `date`, `boxerA`, `boxerB`, `category`, `titles`, `city`, `stakes` ou `winner`, `method`, `decision`, `sourceName`, `sourceUrl`. Sans date précise, sans les deux noms ou sans `sourceUrl`, ne pas l'ajouter. Un résultat sur un combat déjà au calendrier va dans `combats-updates.json`.
 
-Gala : tableau `galas`, avec date, ville, nom, note.
+Gala : `src/data/galas-auto.json`, avec date, ville, nom, note, `sourceUrl`.
 
 Fiche boxeur, club ou coach : compléter `boxeurs`, `clubs` ou `coachs` dans le même fichier, avec les champs déjà utilisés par les pages. Ne pas inventer un palmarès, un diplôme ou une adresse.
 
@@ -151,4 +161,4 @@ Article trop court ou générique. Faux résultat. Date approximative. Classemen
 
 ## Après publication
 
-`npm run build` dans `combat-boxe/`. Si le build passe et que le dépôt a un `origin` GitHub, commit des fichiers de la publication puis `git push origin HEAD`.
+En production, le process BotHosting commit et pousse tout seul vers le dépôt principal. En local : `npm run build` dans `combat-boxe/`. Si le build passe et que le dépôt a un `origin` GitHub, commit des fichiers de la publication puis `git push origin HEAD`.

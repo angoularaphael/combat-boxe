@@ -1,5 +1,8 @@
 /** Fiches et combats publiés. Un combat n'entre ici que s'il a une date, des noms et une source. */
 import { countryCodeFromCity, slugifyName } from '../lib/flags.js';
+import combatsAuto from './combats-auto.json';
+import galasAuto from './galas-auto.json';
+import combatsUpdates from './combats-updates.json';
 
 export const boxeurs = [
   {
@@ -558,6 +561,45 @@ const galasRaw = [
   },
 ];
 
+function nameKey(value = '') {
+  return String(value)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
+function fightPairKey(fight) {
+  return `${fight.date}|${nameKey(fight.boxerA)}|${nameKey(fight.boxerB)}`;
+}
+
+function sameFight(a, b) {
+  if (!a || !b || a.date !== b.date) return false;
+  const left = `${nameKey(a.boxerA)}|${nameKey(a.boxerB)}`;
+  const right = `${nameKey(b.boxerA)}|${nameKey(b.boxerB)}`;
+  const swapped = `${nameKey(b.boxerB)}|${nameKey(b.boxerA)}`;
+  return left === right || left === swapped;
+}
+
+function applyFightUpdate(fight) {
+  const update = combatsUpdates.find((row) => sameFight(fight, row));
+  return update ? { ...fight, ...update } : fight;
+}
+
+function mergeAutoFights(manual, auto) {
+  const seen = new Set(manual.map(fightPairKey));
+  const extra = [];
+  for (const fight of auto) {
+    if (!fight?.boxerA || !fight?.boxerB || !fight?.date) continue;
+    const key = fightPairKey(fight);
+    const swapped = `${fight.date}|${nameKey(fight.boxerB)}|${nameKey(fight.boxerA)}`;
+    if (seen.has(key) || seen.has(swapped)) continue;
+    seen.add(key);
+    extra.push(fight);
+  }
+  return [...manual, ...extra];
+}
+
 function enrichFight(fight) {
   const slug = fight.slug || `${slugifyName(fight.boxerA)}-${slugifyName(fight.boxerB)}`;
   return {
@@ -577,9 +619,11 @@ function cityKey(value = '') {
     .trim();
 }
 
+const combatsMerged = mergeAutoFights(combatsRaw, combatsAuto).map(applyFightUpdate);
+
 function enrichGala(gala) {
   const slug = gala.slug || slugifyName(gala.name);
-  const related = combatsRaw.find(
+  const related = combatsMerged.find(
     (fight) => fight.date === gala.date && cityKey(fight.city) === cityKey(gala.city),
   );
   return {
@@ -591,8 +635,8 @@ function enrichGala(gala) {
   };
 }
 
-export const combats = combatsRaw.map(enrichFight);
-export const galas = galasRaw.map(enrichGala);
+export const combats = combatsMerged.map(enrichFight);
+export const galas = [...galasRaw, ...galasAuto].map(enrichGala);
 
 export function fightBySlug(slug) {
   return combats.find((item) => item.slug === slug);

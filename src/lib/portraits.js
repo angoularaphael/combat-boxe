@@ -1,4 +1,5 @@
 import credits from '../data/photo-credits.json';
+import POSTERS from '../data/posters.json';
 
 function norm(value) {
   return String(value)
@@ -17,21 +18,6 @@ const SCENES = [
   '/img/scene-canvas.jpg',
   '/img/scene-speedbag.jpg',
   '/img/scene-belt.jpg',
-];
-
-const POSTERS = [
-  {
-    names: ['brice clavier', 'gaetan ntambwe'],
-    path: '/img/posters/clavier-ntambwe.jpg',
-  },
-  {
-    names: ['floyd schofield iii', 'floyd schofield', 'lucas bahdi'],
-    path: '/img/posters/schofield-bahdi.jpg',
-  },
-  {
-    names: ['bakary samake', 'uisma lima'],
-    path: '/img/posters/samake-lima.jpg',
-  },
 ];
 
 export function portraitFor(name) {

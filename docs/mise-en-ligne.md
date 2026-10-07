@@ -31,3 +31,9 @@ npm run dev
 Le site répond sur le port 3310.
 
 Production actuelle : https://combat-boxe.vercel.app/
+
+## Agent éditorial (BotHosting)
+
+Le site public reste sur Vercel. L'agent qui rédige et pose les photos tourne sur un serveur BotHosting, comme BOXPLUS, **sans GitHub Actions** sur le compte principal.
+
+Voir `docs/configuration-ia.md` et `deploy/bothosting/`.
