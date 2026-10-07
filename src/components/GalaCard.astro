@@ -1,18 +1,20 @@
 ---
 import { formatDate } from '../data/entities';
 import { countryLabel, flagSrc, placeLine } from '../lib/flags';
-import { posterForVersus } from '../lib/portraits';
+import { fightMedia } from '../lib/portraits';
 
-const { gala } = Astro.props;
+const { gala, index = 0 } = Astro.props;
 const flag = flagSrc(gala.country);
 const country = countryLabel(gala.country);
-const photo = posterForVersus(gala.versus || '');
+const media = fightMedia(gala.versus || '', index, { allowScene: false });
 ---
 
 <a class="fight-card fight-card-link" href={gala.href}>
-  {photo && (
-    <div class="fight-media fight-media-poster" aria-hidden="true">
-      <img src={photo} alt="" width="1000" height="625" loading="lazy" decoding="async" />
+  {media.srcs.length > 0 && (
+    <div class:list={['fight-media', media.kind === 'portrait' && 'fight-media-portrait', media.kind === 'poster' && 'fight-media-poster', media.srcs.length > 1 && 'fight-media-split']} aria-hidden="true">
+      {media.srcs.map((src) => (
+        <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
+      ))}
     </div>
   )}
   <p class="fight-date">

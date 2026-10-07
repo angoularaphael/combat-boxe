@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
-import { photosForVersus, posterForVersus } from '../lib/portraits';
+import { fightMedia, photosForVersus } from '../lib/portraits';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
 
@@ -14,6 +14,7 @@ const articles = (await getCollection('articles'))
 const une = articles[0] ? { ...articles[0], data: liveArticle(articles[0].data) } : null;
 const fil = articles.slice(0, 4).map((item) => ({ ...item, data: liveArticle(item.data) }));
 const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
+const coachPhoto = coachs.find((c) => c.photo && c.slug !== 'valentin-guth');
 const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
 const uneImage = une?.data.photo || unePhotos[0] || '/img/og-combat-boxe.jpg';
 const editions = groupArticlesByDay(articles);
@@ -140,12 +141,22 @@ const jsonLd = graph(
         <div class="editorial-empty"><strong>Aucun combat annoncé</strong><p>Les prochaines affiches apparaîtront ici.</p></div>
       ) : (
         <div class="fight-grid">
-          {upcoming.map((c) => (
-            <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
-              <p>{formatDate(c.date)}{c.city ? ` · ${c.city}` : ''}</p>
-              <h3>{c.boxerA} contre {c.boxerB}</h3>
-            </a>
-          ))}
+          {upcoming.map((c, index) => {
+            const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
+            return (
+              <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
+                {media.srcs.length > 0 && (
+                  <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
+                    {media.srcs.map((src) => (
+                      <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
+                    ))}
+                  </span>
+                )}
+                <p>{formatDate(c.date)}{c.city ? ` · ${c.city}` : ''}</p>
+                <h3>{c.boxerA} contre {c.boxerB}</h3>
+              </a>
+            );
+          })}
         </div>
       )}
       <div class="home-results">
@@ -157,12 +168,22 @@ const jsonLd = graph(
           <p class="empty">Aucun résultat n’est encore publié.</p>
         ) : (
           <div class="fight-grid">
-            {results.map((c) => (
-              <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
-                <p>{formatDate(c.date)} · {c.winner}</p>
-                <h3>{c.boxerA} contre {c.boxerB}</h3>
-              </a>
-            ))}
+            {results.map((c, index) => {
+              const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
+              return (
+                <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
+                  {media.srcs.length > 0 && (
+                    <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
+                      {media.srcs.map((src) => (
+                        <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
+                      ))}
+                    </span>
+                  )}
+                  <p>{formatDate(c.date)} · {c.winner}</p>
+                  <h3>{c.boxerA} contre {c.boxerB}</h3>
+                </a>
+              );
+            })}
           </div>
         )}
       </div>
@@ -173,11 +194,17 @@ const jsonLd = graph(
             <a href="/galas-boxe">Tous les galas</a>
           </div>
           <div class="fight-grid">
-            {upcomingGalas.map((gala) => {
-              const photo = posterForVersus(gala.versus || '');
+            {upcomingGalas.map((gala, index) => {
+              const media = fightMedia(gala.versus || '', index, { allowScene: false });
               return (
                 <a class="preview-card" href={gala.href}>
-                  {photo && <img src={photo} alt="" width="1000" height="625" loading="lazy" decoding="async" />}
+                  {media.srcs.length > 0 && (
+                    <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
+                      {media.srcs.map((src) => (
+                        <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
+                      ))}
+                    </span>
+                  )}
                   <p>{formatDate(gala.date)}{gala.city ? ` · ${gala.city}` : ''}</p>
                   <h3>{gala.name}</h3>
                 </a>
@@ -213,6 +240,9 @@ const jsonLd = graph(
           </a>
         ))}
         <a class="portrait-card" href="/entraineurs-boxe-francais">
+          {coachPhoto?.photo && (
+            <img src={coachPhoto.photo} alt="" width="640" height="800" loading="lazy" decoding="async" />
+          )}
           <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>{coachs.length} entraîneurs présentés</p></div>
         </a>
       </div>

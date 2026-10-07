@@ -75,10 +75,11 @@ export function posterForVersus(versus) {
   return hit?.path || '';
 }
 
-export function fightMedia(versus, index = 0) {
+export function fightMedia(versus, index = 0, options = {}) {
   const poster = posterForVersus(versus);
   if (poster) return { srcs: [poster], kind: 'poster' };
   const photos = photosForVersus(versus);
   if (photos.length) return { srcs: photos, kind: 'portrait' };
+  if (options.allowScene === false) return { srcs: [], kind: 'none' };
   return { srcs: [SCENES[Math.abs(Number(index) || 0) % SCENES.length]], kind: 'scene' };
 }

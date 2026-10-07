@@ -1859,9 +1859,21 @@ a {
 
 .preview-card img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
+}
+
+.preview-media {
+  display: grid;
+  grid-template-columns: 1fr;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #172735;
+}
+
+.preview-media-split {
+  grid-template-columns: 1fr 1fr;
 }
 
 .preview-card p,
