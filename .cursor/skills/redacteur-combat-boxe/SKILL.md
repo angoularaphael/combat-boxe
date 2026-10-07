@@ -61,17 +61,22 @@ Ouvrir le site en local, contrôler les cartes concernées (375 px et ~900 px). 
 
 Les cartes d'entrée (prochains combats, résultats, calendrier, clubs) utilisent les visuels dédiés `/img/agenda-upcoming.jpg`, `agenda-results.jpg`, `agenda-calendar.jpg`, `agenda-clubs.jpg`. Si un nouveau bloc d'agenda n'a pas d'image, **générer** un visuel Combat Boxe (ring, gants, salle), 16:9, sujets **entiers dans le cadre**, sans texte, sans logo, sans visage de boxeur nommé. Ne pas recycler une photo d'agenda sur une fiche de combat nommé.
 
-**Cadrage**
+**Cadrage (selon la taille réelle de l'aperçu, pas seulement le fichier)**
 
-Toute image doit se lire sans coupe de visage, de gant ou de sujet principal. Les aperçus (cartes et bandeau de fiche) sont aussi à cadrer : si on ne voit que le haut du crâne, recadrer le fichier.
+L'aperçu d'une carte combat fait **200 px de haut**, toute la largeur (ou deux colonnes en split). Ce n'est pas la photo entière. Recadrer le fichier pour que **cette bande de 200 px** montre le visage (yeux et bouche), pas le crâne, pas les pieds, pas une ceinture dessinée.
 
-- Portraits dans les cartes combat : classe `fight-media-portrait`, `object-fit: cover`, `object-position: center 36%`, bandeau d'au moins 200 px de haut.
+- Portrait nommé : fichier **640 x 800**. La carte utilise `object-position: center 36%` : le visage doit tomber vers 36 % du haut du fichier, pour survivre à la coupe 200 px.
+- Photo de combat paysage (les deux boxeurs) : `public/img/posters/`, ne pas la forcer en 640 x 800. Classe `fight-media-poster`.
+- Si le fichier est plus large que haut, c'est une affiche ou une action. S'il est plus haut que large, c'est un portrait.
+- Interdit d'enregistrer : clipart, ceinture vectorielle, logo, illustration sur fond blanc. BoxingTitleFights pose souvent une ceinture par défaut : la refuser.
+- Avant de pousser : controler la carte a 375 px et ~900 px, pas seulement le fichier plein ecran.
+
+- Portraits dans les cartes combat : classe `fight-media-portrait`, `object-fit: cover`, `object-position: center 36%`, bandeau 200 px.
 - Affiches officielles : classe `fight-media-poster`, `object-position: center 12%` (visages des têtes d'affiche en haut).
 - Scènes d'ambiance : `fight-media-scene`, `object-position: center center`.
-- Bandeau fiche 2 portraits : `cover-split`, `object-position: center 32%`, hauteur suffisante pour lire les visages.
-- Bandeau article 1 portrait : `cover-edito-single` (photo en portrait 4/5, `object-position: center 18%`).
+- Bandeau fiche 2 portraits : `cover-split`, `object-position: center 32%`.
+- Bandeau article 1 portrait : `cover-edito-single` (`object-position: center 18%`).
 - Accueil / agenda : `object-position: center 28%` sur les 16:9.
-- Vérifier 375 px et ~900 px : pas de front seul, pas de vide au-dessus de la tête, pas de photo floue coupée, pas de carte sans image.
 
 Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos. Pas d'Unsplash. Pas de photo Wikipedia fair-use (seulement Commons libre).
 

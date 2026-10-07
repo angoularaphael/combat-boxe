@@ -588,10 +588,21 @@
     "slug": "ryusei-matsumoto",
     "path": "/img/boxers/ryusei-matsumoto.jpg",
     "license": "editorial",
-    "artist": "boxingtitlefights.com",
-    "pageUrl": "https://www.boxingtitlefights.com/boxer/ryusei-matsumoto",
+    "artist": "Sankei / Kazuto Kura",
+    "pageUrl": "https://www.sankei.com/gallery/20260927-UKERPVNSJJDVRICAWV7HUGGZC4/",
     "aliases": [
       "Matsumoto"
+    ]
+  },
+  {
+    "name": "Russell Acosta",
+    "slug": "russell-acosta",
+    "path": "/img/boxers/russell-acosta.jpg",
+    "license": "editorial",
+    "artist": "Sankei / Keisuke Kato",
+    "pageUrl": "https://www.sankei.com/gallery/20260927-UKERPVNSJJDVRICAWV7HUGGZC4/",
+    "aliases": [
+      "Acosta"
     ]
   }
 ]

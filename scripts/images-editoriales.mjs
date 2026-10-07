@@ -66,7 +66,11 @@ function absoluteUrl(src, pageUrl) {
 function looksLikePhoto(url) {
   const u = url.toLowerCase();
   if (!u.startsWith('http')) return false;
-  if (/logo|favicon|sprite|icon-|wordmark|placeholder|avatar-default|badge|spinner|pixel|1x1|tracking/.test(u)) {
+  if (
+    /logo|favicon|sprite|icon-|wordmark|placeholder|avatar-default|badge|spinner|pixel|1x1|tracking|clipart|vector|illustration|belt|ceinture|title-belt|champion-belt|no-photo|nophoto|default-boxer/.test(
+      u,
+    )
+  ) {
     return false;
   }
   if (/\.(svg)(\?|$)/.test(u)) return false;
@@ -82,7 +86,7 @@ function scorePhoto(url, name) {
   if (last.length > 4 && u.includes(last)) score += 3;
   if (/\/photos\/|profile|portrait|headshot|fighter|boxer|cdn\/shop\/files/.test(u)) score += 4;
   if (/og:|opengraph|social/.test(u)) score += 1;
-  if (/banner|header|nav-|hero-site|advert/.test(u)) score -= 3;
+  if (/banner|header|nav-|hero-site|advert|belt|clipart/.test(u)) score -= 3;
   if (/\.(jpe?g|png|webp)(\?|$)/.test(u)) score += 2;
   return score;
 }
