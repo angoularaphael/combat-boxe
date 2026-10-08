@@ -310,7 +310,7 @@ async function callOpenAI(model, system, user) {
     body: JSON.stringify({
       model,
       temperature: 0.2,
-      max_tokens: 12000,
+      ...( /^(gpt-5|gpt-6|o\d)/.test(model) ? { max_completion_tokens: 12000 } : { max_tokens: 12000 } ),
       response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: system },
