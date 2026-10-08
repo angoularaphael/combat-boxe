@@ -53,12 +53,17 @@ function git(args, extraEnv = {}) {
   });
 }
 
-function repoHttps() {
+function authedRepoUrl() {
   const raw = process.env.BOT_REPO_URL || 'https://github.com/boxing-center/combat-boxe.git';
+  const token = process.env.GIT_PUSH_TOKEN || '';
   try {
     const url = new URL(raw);
     url.username = '';
     url.password = '';
+    if (token && url.hostname === 'github.com') {
+      url.username = 'x-access-token';
+      url.password = token;
+    }
     return url.toString();
   } catch {
     return 'https://github.com/boxing-center/combat-boxe.git';
@@ -66,11 +71,11 @@ function repoHttps() {
 }
 
 function pointOrigin() {
-  const target = repoHttps();
+  const target = authedRepoUrl().replace(/"/g, '');
   try {
-    git(`remote set-url origin ${target}`);
+    git(`remote set-url origin "${target}"`);
   } catch {
-    git(`remote add origin ${target}`);
+    git(`remote add origin "${target}"`);
   }
 }
 
@@ -106,7 +111,7 @@ async function cycle(reason) {
       git(`fetch origin ${BRANCH}`, pushEnv());
       git(`pull --ff-only origin ${BRANCH}`, pushEnv());
     } catch (err) {
-      log(`Pull ignore : ${(err.stderr || err.message || err).toString().trim().slice(0, 200)}`);
+      log(`Pull ignore : ${(err.stderr || err.message || err).toString().replace(/x-access-token:[^@\s"]+/g, 'x-access-token:***').trim().slice(0, 200)}`);
     }
 
     await runProductionAgent();
@@ -128,7 +133,7 @@ async function cycle(reason) {
     lastStatus = `pousse (${reason})`;
   } catch (err) {
     lastStatus = `erreur (${reason})`;
-    console.error('[Combat Boxe]', err.stderr?.toString?.() || err.message || err);
+    console.error('[Combat Boxe]', (err.stderr?.toString?.() || err.message || err).toString().replace(/x-access-token:[^@\s"]+/g, 'x-access-token:***'));
   } finally {
     busy = false;
   }
