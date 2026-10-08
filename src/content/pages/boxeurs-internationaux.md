@@ -10,3 +10,5 @@ breadcrumbs:
   - href: /boxeurs-internationaux
     label: Boxeurs internationaux
 ---
+
+Christian Mbilli, Anthony Joshua et Tyson Fury ont une fiche. Le portrait et le bilan viennent d'une page précise, et la provenance de la photo est écrite dessous.

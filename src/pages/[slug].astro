@@ -9,6 +9,7 @@ import { articleLd, breadcrumbLd, collectionLd, graph } from '../lib/seo';
 import { articleThumb, photosForVersus } from '../lib/portraits';
 import Cover from '../components/Cover.astro';
 import DaysNav from '../components/DaysNav.astro';
+import BoxerCard from '../components/BoxerCard.astro';
 import FightCard from '../components/FightCard.astro';
 import GalaCard from '../components/GalaCard.astro';
 
@@ -224,13 +225,9 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       )}
 
       {template === 'boxers-fr' && (
-        <div class="grid cards-2">
+        <div class="boxer-grid">
           {fr.map((b) => (
-            <a class="card" href={`/boxeurs/${b.slug}`}>
-              <img src={b.photo} alt={b.photoAlt} width="640" height="800" loading="lazy" />
-              <h2>{b.name}</h2>
-              <p>{b.category} · {b.ranking}</p>
-            </a>
+            <BoxerCard boxeur={b} />
           ))}
         </div>
       )}
@@ -239,13 +236,9 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         intl.length === 0 ? (
           <p class="empty">Aucun boxeur international n’a encore de fiche.</p>
         ) : (
-          <div class="grid cards-2">
+          <div class="boxer-grid">
             {intl.map((b) => (
-              <a class="card" href={`/boxeurs/${b.slug}`}>
-                <img src={b.photo || '/img/boxing-ring-corner.jpg'} alt={b.photoAlt || b.name} width="640" height="800" loading="lazy" />
-                <h2>{b.name}</h2>
-                <p>{b.category}</p>
-              </a>
+              <BoxerCard boxeur={b} />
             ))}
           </div>
         )

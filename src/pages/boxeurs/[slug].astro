@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { boxeurs, clubBySlug, coachBySlug } from '../../data/entities';
+import { creditForPhoto, creditLine } from '../../lib/credits';
 import { breadcrumbLd, graph, personLd } from '../../lib/seo';
 
 export function getStaticPaths() {
@@ -13,6 +14,10 @@ const { slug } = Astro.params;
 const boxeur = boxeurs.find((item) => item.slug === slug);
 const club = clubBySlug(boxeur.clubSlug);
 const coach = coachBySlug(boxeur.coachSlug);
+const credit = creditForPhoto(boxeur.photo);
+const sourceHref = boxeur.photoSource || credit?.pageUrl || '';
+const sourceLabel = boxeur.photoSourceLabel || creditLine(credit);
+const deNom = /^[aeiouyàâäéèêëïîôùûüh]/i.test(boxeur.name || '') ? "d'" : 'de ';
 const path = `/boxeurs/${boxeur.slug}`;
 const crumbs = [
   { href: '/', label: 'Accueil' },
@@ -44,6 +49,9 @@ const description = `${boxeur.name}, ${boxeur.ranking}. Parcours, club, style et
         <p class="lead">{boxeur.ranking}. Catégorie {boxeur.category}.</p>
         <figure class="fiche-photo">
           <img src={boxeur.photo} alt={boxeur.photoAlt} width="640" height="800" />
+          {sourceHref && (
+            <figcaption>Portrait {deNom}{boxeur.name}. Source : <a href={sourceHref}>{sourceLabel}</a></figcaption>
+          )}
         </figure>
       </div>
       <dl class="facts">

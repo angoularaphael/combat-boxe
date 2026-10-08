@@ -78,7 +78,7 @@ Deux portraits côte à côte : chaque case est en **4/5** (bandeau split `8/5`)
 - Bandeau article 1 portrait : `cover-edito-single` (`object-position: center top`).
 - Accueil / liste d'actus : `object-position: center top`.
 
-Pas de crédit sous l'article. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos. Pas d'Unsplash. Pas de photo Wikipedia fair-use (seulement Commons libre).
+Pas de crédit sous l'article, sauf la ligne de provenance sous un portrait de boxeur : auteur et licence, ou page de la salle. Ne pas republier une photo Getty, UFC ou d'un autre média sous prétexte de citer la source. Pas de bloc Sources visible. Ne pas expliquer la méthode photo sur /a-propos. Pas d'Unsplash. Pas de photo Wikipedia fair-use (seulement Commons libre).
 
 ## Écriture naturelle
 

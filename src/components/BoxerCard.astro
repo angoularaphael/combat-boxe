@@ -1,0 +1,26 @@
+---
+import { creditForPhoto, creditLine } from '../lib/credits';
+
+const { boxeur } = Astro.props;
+const credit = boxeur.photoCredit || creditForPhoto(boxeur.photo);
+const sourceHref = boxeur.photoSource || credit?.pageUrl || boxeur.rankingSource || '';
+const sourceLabel = boxeur.photoSourceLabel || creditLine(credit) || 'Boxing Center';
+const deNom = /^[aeiouyàâäéèêëïîôùûüh]/i.test(boxeur.name || '') ? "d'" : 'de ';
+---
+
+<article class="boxer-card">
+  <a class="boxer-hit" href={`/boxeurs/${boxeur.slug}`}>
+    <img src={boxeur.photo} alt={boxeur.photoAlt || boxeur.name} width="640" height="800" loading="lazy" decoding="async" />
+    {boxeur.ranking && <p class="boxer-rank">{boxeur.ranking}</p>}
+    <h2>{boxeur.name}</h2>
+    <p>{boxeur.category}{boxeur.country ? ` · ${boxeur.country}` : ''}</p>
+    {boxeur.gym && <p>{boxeur.gym}</p>}
+    {boxeur.record && <p class="boxer-record">{boxeur.record}</p>}
+    {boxeur.verified && <p class="boxer-verified">{boxeur.verified}</p>}
+  </a>
+  {sourceHref && (
+    <p class="boxer-source">
+      Portrait {deNom}{boxeur.name}. Source : <a href={sourceHref}>{sourceLabel}</a>
+    </p>
+  )}
+</article>
