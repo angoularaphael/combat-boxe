@@ -1,18 +1,40 @@
 [
   {
-    "names": ["brice clavier", "gaetan ntambwe"],
+    "names": [
+      "brice clavier",
+      "gaetan ntambwe"
+    ],
     "path": "/img/posters/clavier-ntambwe.jpg"
   },
   {
-    "names": ["floyd schofield iii", "floyd schofield", "lucas bahdi"],
+    "names": [
+      "floyd schofield iii",
+      "floyd schofield",
+      "lucas bahdi"
+    ],
     "path": "/img/posters/schofield-bahdi.jpg"
   },
   {
-    "names": ["bakary samake", "uisma lima"],
+    "names": [
+      "bakary samake",
+      "uisma lima"
+    ],
     "path": "/img/posters/samake-lima.jpg"
   },
   {
-    "names": ["ryusei matsumoto", "russell acosta"],
+    "names": [
+      "ryusei matsumoto",
+      "russell acosta"
+    ],
     "path": "/img/posters/matsumoto-acosta.jpg"
+  },
+  {
+    "names": [
+      "brice clavier",
+      "gaëtan ntambwe"
+    ],
+    "path": "/img/posters/brice-clavier-gaetan-ntambwe.jpg",
+    "sourceName": "Ville de Saint-Nazaire",
+    "sourceUrl": "https://www.saintnazaire.fr/wp-content/uploads/2026/09/1-70.jpg"
   }
 ]

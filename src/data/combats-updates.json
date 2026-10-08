@@ -8,9 +8,9 @@
     "channel": "DAZN",
     "aboutA": "The Ring présente Iglesias comme le « boogeyman » de la division des super-moyens.",
     "aboutB": "The Ring indique que Zaren accueille l’occasion de tenter de créer la surprise face à Iglesias.",
-    "analysis": "Osleys Iglesias et Oliver Zaren s’affrontent le 8 octobre au Capitole de Québec pour le championnat IBF des super-moyens. Le calendrier canadien annonce une diffusion sur DAZN et une distance de douze rounds.\n\nLa présentation de The Ring place Iglesias au centre de l’attention en le décrivant comme le « boogeyman » de la division. Zaren, de son côté, accueille la possibilité de le surprendre, selon le titre de l’entretien publié par le magazine.\n\nLes autres combats annoncés sur la carte sont Mathieu contre Shishkin en super-moyens, Santana contre Asanau en poids légers et Khataev contre McCrory en mi-lourds. Les sources disponibles ne détaillent pas les bilans ou les résultats récents des boxeurs.",
+    "analysis": "Iglesias et Zaren sont annoncés au Capitole de Québec pour un combat de championnat IBF des super-moyens, disputé sur douze rounds selon le calendrier consulté.\n\nLa soirée comprend également Mathieu contre Shishkin, Santana contre Asanau et Khataev contre McCrory. Les trois combats d’undercard sont annoncés en direct sur DAZN par The Ring.\n\nLes pages consultées ne donnent pas ici de bilan détaillé ni de résultat pour les deux boxeurs. Elles permettent de confirmer le cadre du combat, mais pas d’établir une comparaison sportive étayée.",
     "prediction": "",
-    "sourceUrl": "https://www.ringtv.com/"
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   },
   {
     "date": "2026-10-09",
@@ -37,5 +37,31 @@
     "analysis": "Kabayel effectuera la première défense de son titre mondial WBC des poids lourds le 28 novembre à Düsseldorf, face à Nelson Hysa. Le WBC situe le combat à l’ESPRIT Arena et précise que le champion boxera à domicile.\n\nLes deux hommes sont invaincus selon leurs bilans publiés. Kabayel compte 27 victoires, dont 19 KO ; Hysa en totalise 25, dont 23 KO. La puissance de frappe de Hysa est identifiée par le WBC comme un atout important dans sa tentative de conquête.\n\nLe champion arrive avec des repères récents dans des combats de titre : il a stoppé Zhilei Zhang au sixième round pour prendre le titre intérimaire, puis Damian Knyba au troisième pour défendre cette ceinture. Hysa, lui, a construit son parcours sur le circuit européen et remporté le titre WBC CISBB en 2023.",
     "prediction": "Hysa possède un bilan invaincu et une proportion élevée de victoires par KO, ce qui fait de sa puissance un enjeu évident pour le champion. Kabayel dispose toutefois du statut de champion, d’une expérience récente des combats pour les titres et de l’avantage de combattre à domicile.\n\nAu regard de son statut de champion et de son parcours récent dans les combats de titre, Agit Kabayel est le vainqueur pressenti.",
     "sourceUrl": "https://wbcboxing.com/en/agit-kabayel-to-defend-wbc-world-heavyweight-title-against-nelson-hysa/"
+  },
+  {
+    "date": "2026-10-10",
+    "boxerA": "Floyd Schofield III",
+    "boxerB": "Lucas Bahdi",
+    "venue": "Wintrust Arena",
+    "time": "",
+    "channel": "DAZN et DAZN Global",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Schofield et Bahdi doivent se disputer le titre mondial WBA vacant des poids légers à Chicago. Le calendrier indique un combat de douze rounds à la Wintrust Arena.\n\nRicardo Sandoval contre Sergio Mendoza, pour le titre WBC des poids mouches, figure également à l’affiche. Le programme mentionne aussi Abdullaev contre Agrba et Walsh contre Craycraft.\n\nLes pages consultées ne fournissent pas de bilans détaillés pour Schofield et Bahdi. Sans ces éléments, l’analyse peut situer l’enjeu et la carte, mais pas dégager un favori.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-12-11",
+    "boxerA": "Tyson Fury",
+    "boxerB": "Anthony Joshua",
+    "venue": "Principality Stadium",
+    "time": "17:00",
+    "channel": "Netflix",
+    "aboutA": "La page du Principality Stadium présente Fury comme l’un des poids lourds britanniques ayant dominé la catégorie pendant plus d’une décennie et détenu des titres mondiaux.",
+    "aboutB": "La page du Principality Stadium présente Joshua comme l’un des poids lourds britanniques ayant dominé la catégorie pendant plus d’une décennie et détenu des titres mondiaux.",
+    "analysis": "Le combat est prévu le 11 décembre au Principality Stadium de Cardiff. L’événement débute à 17 heures, tandis que le combat principal est annoncé dans les premières heures du matin, après une soirée complète de boxe.\n\nFury et Joshua ont tous deux détenu des titres mondiaux et n’ont jamais combattu l’un contre l’autre chez les professionnels, selon la présentation de la salle. La page ne détaille ni leurs bilans ni leurs combats précédents.\n\nLe Principality Stadium annonce une diffusion en direct sur Netflix et met en avant sa capacité maximale de 80 000 places. Aucun autre combat de la carte n’est nommé dans la page consultée.",
+    "prediction": "",
+    "sourceUrl": "https://www.principalitystadium.wales/event/tyson-fury-v-anthony-joshua/"
   }
 ]
