@@ -8,7 +8,7 @@
  *
  * Startup panel : node index.js
  *
- * Clone le depot principal angoularaphael/combat-boxe, lance l'agent
+ * Clone le depot principal boxing-center/combat-boxe, lance l'agent
  * en continu. Pas de GitHub Actions. Les push partent vers ce depot,
  * Vercel deploie.
  */
@@ -19,7 +19,7 @@ const path = require('path');
 const ROOT = __dirname;
 const ENV_FILE = path.join(ROOT, '.env');
 const APP_DIR = path.join(ROOT, 'combat-boxe-app');
-const WANTED_REPO = 'https://github.com/angoularaphael/combat-boxe.git';
+const WANTED_REPO = 'https://github.com/boxing-center/combat-boxe.git';
 
 function log(msg) {
   console.log(`[Combat Boxe bootstrap] ${msg}`);
@@ -72,6 +72,13 @@ function gitOrigin(dir) {
   }
 }
 
+function repoPath(url) {
+  return String(url || '')
+    .replace(/^https:\/\/([^@/]+@)?github\.com\//i, '')
+    .replace(/\.git\/?$/, '')
+    .toLowerCase();
+}
+
 loadEnvFile(ENV_FILE);
 process.env.PORT = process.env.PORT || process.env.BOT_HTTP_PORT || '3000';
 const branch = process.env.BOT_REPO_BRANCH || 'main';
@@ -79,11 +86,12 @@ const branch = process.env.BOT_REPO_BRANCH || 'main';
 log(`.env ${fs.existsSync(ENV_FILE) ? 'OK' : 'MANQUANT'}`);
 log(`PORT=${process.env.PORT}`);
 
+const wanted = process.env.BOT_REPO_URL || WANTED_REPO;
 const origin = fs.existsSync(APP_DIR) ? gitOrigin(APP_DIR) : '';
-const wrong = Boolean(origin) && !/combat-boxe\.git/i.test(origin);
+const wrong = Boolean(origin) && repoPath(origin) !== repoPath(wanted);
 if (!fs.existsSync(path.join(APP_DIR, 'scripts', 'serveur-production.mjs')) || wrong) {
   if (fs.existsSync(APP_DIR)) {
-    log(`Ancien depot retire (${origin || 'incomplet'})`);
+    log(`Ancien depot retire (${origin.replace(/\/\/[^@/]+@/, '//***@') || 'incomplet'})`);
     fs.rmSync(APP_DIR, { recursive: true, force: true });
   }
   log('Clone combat-boxe');
@@ -91,6 +99,7 @@ if (!fs.existsSync(path.join(APP_DIR, 'scripts', 'serveur-production.mjs')) || w
 } else {
   log('Mise a jour repo…');
   try {
+    run(`git remote set-url origin "${cloneUrl()}"`, APP_DIR);
     run(`git fetch origin && git reset --hard origin/${branch}`, APP_DIR);
   } catch {
     log('git pull ignore');

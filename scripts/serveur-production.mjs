@@ -53,6 +53,27 @@ function git(args, extraEnv = {}) {
   });
 }
 
+function repoHttps() {
+  const raw = process.env.BOT_REPO_URL || 'https://github.com/boxing-center/combat-boxe.git';
+  try {
+    const url = new URL(raw);
+    url.username = '';
+    url.password = '';
+    return url.toString();
+  } catch {
+    return 'https://github.com/boxing-center/combat-boxe.git';
+  }
+}
+
+function pointOrigin() {
+  const target = repoHttps();
+  try {
+    git(`remote set-url origin ${target}`);
+  } catch {
+    git(`remote add origin ${target}`);
+  }
+}
+
 function pushEnv() {
   const token = process.env.GIT_PUSH_TOKEN || '';
   if (!token) return { ...process.env, GIT_TERMINAL_PROMPT: '0' };
@@ -81,6 +102,7 @@ async function cycle(reason) {
   log(`Cycle : ${reason}`);
   try {
     try {
+      pointOrigin();
       git(`fetch origin ${BRANCH}`, pushEnv());
       git(`pull --ff-only origin ${BRANCH}`, pushEnv());
     } catch (err) {

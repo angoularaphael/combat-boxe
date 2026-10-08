@@ -2,7 +2,7 @@
 
 Le site en ligne : [https://combat-boxe.vercel.app/](https://combat-boxe.vercel.app/)
 
-Le dépôt GitHub principal (`angoularaphael/combat-boxe`) est relié à Vercel. Quand l'agent pousse un article, un combat ou une photo sur `main`, Vercel déploie tout seul.
+Le dépôt GitHub principal (`boxing-center/combat-boxe`) est relié à Vercel. Quand l'agent pousse un article, un combat ou une photo sur `main`, Vercel déploie tout seul.
 
 ## Production : process BotHosting, pas GitHub Actions
 
@@ -33,9 +33,9 @@ Ce process :
 | `ANTHROPIC_API_KEY` | Rédaction et calendrier (Claude). Optionnel si OpenAI ou Gemini est pose. |
 | `OPENAI_API_KEY` | Remplacement si Anthropic est bloque (paiement 3DS, etc.). Modele `gpt-4.1`. |
 | `GEMINI_API_KEY` | Troisieme choix. |
-| `GIT_PUSH_TOKEN` | Jeton d'un **autre compte GitHub** (compte machine), avec droit d'écriture sur `angoularaphael/combat-boxe`. Le compte principal ne lance rien. |
+| `GIT_PUSH_TOKEN` | Jeton fine-grained d'un compte membre de l'org `boxing-center`, avec Contents en ecriture sur `boxing-center/combat-boxe`. |
 
-Créer un PAT (fine-grained : Contents write sur ce dépôt, ou classic `repo` si le dépôt est privé) sur le compte machine, pas sur le compte Raphael.
+Créer le jeton ici : [https://github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new). Resource owner : `boxing-center`. Dépôt : `combat-boxe` seulement. Permission : Contents, Read and write. Si l'org demande une approbation, la valider dans les réglages de l'organisation. Coller le jeton dans `GIT_PUSH_TOKEN` du `.env` serveur, avec `BOT_REPO_URL=https://github.com/boxing-center/combat-boxe.git`.
 
 Les clés IA ne vont **pas** dans Vercel : le site public n'appelle pas l'IA.
 
