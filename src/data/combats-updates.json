@@ -1,1 +1,41 @@
-[]
+[
+  {
+    "date": "2026-10-08",
+    "boxerA": "Osleys Iglesias",
+    "boxerB": "Oliver Zaren",
+    "venue": "Capitole de Québec",
+    "time": "10:00 AM EST",
+    "channel": "DAZN",
+    "aboutA": "The Ring présente Iglesias comme le « boogeyman » de la division des super-moyens.",
+    "aboutB": "The Ring indique que Zaren accueille l’occasion de tenter de créer la surprise face à Iglesias.",
+    "analysis": "Osleys Iglesias et Oliver Zaren s’affrontent le 8 octobre au Capitole de Québec pour le championnat IBF des super-moyens. Le calendrier canadien annonce une diffusion sur DAZN et une distance de douze rounds.\n\nLa présentation de The Ring place Iglesias au centre de l’attention en le décrivant comme le « boogeyman » de la division. Zaren, de son côté, accueille la possibilité de le surprendre, selon le titre de l’entretien publié par le magazine.\n\nLes autres combats annoncés sur la carte sont Mathieu contre Shishkin en super-moyens, Santana contre Asanau en poids légers et Khataev contre McCrory en mi-lourds. Les sources disponibles ne détaillent pas les bilans ou les résultats récents des boxeurs.",
+    "prediction": "",
+    "sourceUrl": "https://www.ringtv.com/"
+  },
+  {
+    "date": "2026-10-09",
+    "boxerA": "Brice Clavier",
+    "boxerB": "Gaëtan Ntambwe",
+    "venue": "La Soucoupe, Saint-Nazaire",
+    "time": "19h–23h50",
+    "channel": "",
+    "aboutA": "Le Nazairien Brice Clavier affiche un bilan de 14 victoires, 7 défaites et 1 match nul. La Ville de Saint-Nazaire indique qu’il a obtenu plusieurs succès convaincants devant son public.",
+    "aboutB": "Gaëtan Ntambwe est présenté par la Ville de Saint-Nazaire comme un adversaire redoutable, prêt à livrer une bataille sans concession. Aucun bilan n’est indiqué.",
+    "analysis": "Brice Clavier et Gaëtan Ntambwe doivent disputer le championnat de France professionnel des lourds-légers à Saint-Nazaire, sur dix rounds de trois minutes. Clavier, boxeur local, tentera de décrocher le titre devant son public.\n\nClavier arrive avec un bilan de 14 victoires, 7 défaites et 1 nul. La page municipale rappelle également ses succès devant le public nazairien, un élément qui donne à ce rendez-vous une dimension particulière pour le boxeur local.\n\nNtambwe est décrit comme un adversaire redoutable, mais la page ne donne ni son bilan ni des détails sur son parcours. La soirée annonce aussi trois autres professionnels de la ville : Romain Bartra, Idriss Gharroumi et Jonas Zozo.",
+    "prediction": "Le bilan publié pour Clavier et l’avantage de combattre devant le public nazairien constituent des repères, même si la page ne permet pas de comparer complètement les deux parcours.\n\nSur la base des éléments connus et de l’avantage de salle annoncé, Brice Clavier est le vainqueur pressenti.",
+    "sourceUrl": "https://www.saintnazaire.fr/agenda/championnat-de-france-de-boxe-professionnelle-et-3-combats-pro/"
+  },
+  {
+    "date": "2026-11-28",
+    "boxerA": "Agit Kabayel",
+    "boxerB": "Nelson Hysa",
+    "venue": "ESPRIT Arena, Düsseldorf",
+    "time": "",
+    "channel": "",
+    "aboutA": "Agit Kabayel est le champion du monde WBC des poids lourds. Il affiche 27 victoires, dont 19 KO. Il a battu Zhilei Zhang par KO au sixième round en février 2025, défendu son titre intérimaire en arrêtant Damian Knyba au troisième round en janvier 2026, puis a été élevé au rang de champion du monde en juin.",
+    "aboutB": "Nelson Hysa est invaincu avec 25 victoires, dont 23 KO. Il a remporté le titre WBC CISBB le 18 novembre 2023 et est présenté comme un puncheur dont la puissance sera déterminante dans sa tentative de détrôner Kabayel.",
+    "analysis": "Kabayel effectuera la première défense de son titre mondial WBC des poids lourds le 28 novembre à Düsseldorf, face à Nelson Hysa. Le WBC situe le combat à l’ESPRIT Arena et précise que le champion boxera à domicile.\n\nLes deux hommes sont invaincus selon leurs bilans publiés. Kabayel compte 27 victoires, dont 19 KO ; Hysa en totalise 25, dont 23 KO. La puissance de frappe de Hysa est identifiée par le WBC comme un atout important dans sa tentative de conquête.\n\nLe champion arrive avec des repères récents dans des combats de titre : il a stoppé Zhilei Zhang au sixième round pour prendre le titre intérimaire, puis Damian Knyba au troisième pour défendre cette ceinture. Hysa, lui, a construit son parcours sur le circuit européen et remporté le titre WBC CISBB en 2023.",
+    "prediction": "Hysa possède un bilan invaincu et une proportion élevée de victoires par KO, ce qui fait de sa puissance un enjeu évident pour le champion. Kabayel dispose toutefois du statut de champion, d’une expérience récente des combats pour les titres et de l’avantage de combattre à domicile.\n\nAu regard de son statut de champion et de son parcours récent dans les combats de titre, Agit Kabayel est le vainqueur pressenti.",
+    "sourceUrl": "https://wbcboxing.com/en/agit-kabayel-to-defend-wbc-world-heavyweight-title-against-nelson-hysa/"
+  }
+]

@@ -604,5 +604,16 @@
     "aliases": [
       "Acosta"
     ]
+  },
+  {
+    "name": "Ricardo Sandoval",
+    "slug": "ricardo-sandoval",
+    "path": "/img/boxers/ricardo-sandoval.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/ricardo-sandoval/",
+    "aliases": [
+      "Sandoval"
+    ]
   }
 ]
