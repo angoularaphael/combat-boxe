@@ -626,5 +626,55 @@
     "aliases": [
       "Sandoval"
     ]
+  },
+  {
+    "name": "Mathieu",
+    "slug": "mathieu",
+    "path": "/img/boxers/mathieu.jpg",
+    "license": "Public domain",
+    "artist": "Cpl. Christopher O'Quin",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=23066311",
+    "wikiTitle": "Mathieu",
+    "aliases": []
+  },
+  {
+    "name": "Santana",
+    "slug": "santana",
+    "path": "/img/boxers/santana.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Fritz Rudolf Loewa",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=14999796",
+    "wikiTitle": "Santana",
+    "aliases": []
+  },
+  {
+    "name": "Asanau",
+    "slug": "asanau",
+    "path": "/img/boxers/asanau.jpg",
+    "license": "CC BY 4.0",
+    "artist": "БелТА",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=112358816",
+    "wikiTitle": "Dsmitryj Assanau",
+    "aliases": []
+  },
+  {
+    "name": "Abdullaev",
+    "slug": "abdullaev",
+    "path": "/img/boxers/abdullaev.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Chabe01",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=151065723",
+    "wikiTitle": "Abdullaev",
+    "aliases": []
+  },
+  {
+    "name": "Walsh",
+    "slug": "walsh",
+    "path": "/img/boxers/walsh.jpg",
+    "license": "CC BY 3.0",
+    "artist": "Norwich Boxing",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=52515715",
+    "wikiTitle": "Walsh",
+    "aliases": []
   }
 ]
