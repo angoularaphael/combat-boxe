@@ -2256,15 +2256,30 @@ a {
 
 .front-fil a {
   display: grid;
-  gap: 4px;
-  min-height: 72px;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 88px;
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
 }
 
-.front-fil a span {
+.front-fil img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+.front-fil-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.front-fil a .front-fil-copy > span:first-child {
   color: var(--blue-dark);
   font-family: var(--display);
   font-size: 15px;
@@ -2274,10 +2289,27 @@ a {
 }
 
 .front-fil a strong {
+  color: var(--ink);
   font-family: var(--display);
-  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
   font-weight: 700;
+  letter-spacing: 0;
   line-height: 1.05;
+  text-transform: none;
+}
+
+.front-fil a .front-fil-dek {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
 }
 
 .front-meter {

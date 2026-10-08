@@ -81,12 +81,22 @@ const jsonLd = graph(
       )}
       {suite.length > 0 && (
         <div class="front-fil">
-          {suite.map((item) => (
-            <a href={`/${item.data.slug}`}>
-              <span>{formatDate(item.data.date)}</span>
-              <strong>{item.data.h1}</strong>
-            </a>
-          ))}
+          {suite.map((item) => {
+            const photos = photosForVersus(item.data.coverVersus || '');
+            const thumb = item.data.photo || photos[0] || item.data.image;
+            return (
+              <a href={`/${item.data.slug}`}>
+                {thumb && (
+                  <img src={thumb} alt="" width="96" height="96" loading="lazy" decoding="async" />
+                )}
+                <span class="front-fil-copy">
+                  <span>{kindLabel(item.data.kind)} · {formatDate(item.data.date)}</span>
+                  <strong>{item.data.h1}</strong>
+                  <span class="front-fil-dek">{item.data.description}</span>
+                </span>
+              </a>
+            );
+          })}
         </div>
       )}
       <ul class="front-meter">
