@@ -148,6 +148,8 @@ Maillage dans le corps, plus le tableau `pillars` :
 
 Combat confirmé : l'agent de production l'ajoute dans `src/data/combats-auto.json` (lu par `entities.js`) avec `status` `a-venir` ou `dispute`, `date`, `boxerA`, `boxerB`, `category`, `titles`, `city`, `stakes` ou `winner`, `method`, `decision`, `sourceName`, `sourceUrl`. Sans date précise, sans les deux noms ou sans `sourceUrl`, ne pas l'ajouter. Un résultat sur un combat déjà au calendrier va dans `combats-updates.json`.
 
+Vidéo ou interview réelle : la poser dans `combats-updates.json`, champ `clips`, sur le combat déjà daté. Chaque entrée a `kind` (`video` ou `interview`), `title`, `text`, `url`, `sourceName`, et `poster` seulement si l'image montre cette vidéo ou cette conférence. L'accueil et les combats à venir lisent ce champ. Sans URL vérifiée, pas d'aperçu.
+
 Gala : `src/data/galas-auto.json`, avec date, ville, nom, note, `sourceUrl`.
 
 Fiche boxeur, club ou coach : compléter `boxeurs`, `clubs` ou `coachs` dans le même fichier, avec les champs déjà utilisés par les pages. Ne pas inventer un palmarès, un diplôme ou une adresse.

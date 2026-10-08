@@ -7,6 +7,7 @@ import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay,
 import { photosForVersus, posterForVersus } from '../lib/portraits';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
+import ClipRow from '../components/ClipRow.astro';
 
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
@@ -32,6 +33,14 @@ const upcomingGalas = upcomingGalasAll.slice(0, 2);
 const upcoming = upcomingAll.slice(0, 2);
 const results = resultsAll.slice(0, 2);
 const suite = articles.slice(1, 5).map((item) => ({ ...item, data: liveArticle(item.data) }));
+const watch = upcomingAll
+  .flatMap((fight) =>
+    (fight.clips || []).map((clip) => ({
+      ...clip,
+      context: `${fight.boxerA} contre ${fight.boxerB}`,
+    })),
+  )
+  .slice(0, 4);
 const meter = [
   [articles.length, articles.length > 1 ? 'papiers' : 'papier'],
   [upcomingAll.length, upcomingAll.length > 1 ? 'affiches' : 'affiche'],
@@ -104,6 +113,21 @@ const jsonLd = graph(
       <DaysNav editions={editions} label="Actualités par jour" />
     </div>
   </section>
+
+  {watch.length > 0 && (
+    <section class="section clip-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">À voir</span>
+            <h2>Vidéos et interviews</h2>
+          </div>
+          <a href="/combats-a-venir">Combats à venir</a>
+        </div>
+        <ClipRow clips={watch} />
+      </div>
+    </section>
+  )}
 
   <section class="bill">
     <div class="wrap">

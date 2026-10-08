@@ -1,0 +1,25 @@
+---
+const { clips = [] } = Astro.props;
+const rows = clips.filter((clip) => clip?.url && clip?.title);
+---
+
+{
+  rows.length > 0 && (
+    <ul class="clip-row">
+      {rows.map((clip) => (
+        <li>
+          <a class="clip-card" href={clip.url} target="_blank" rel="noopener noreferrer">
+            {clip.poster && (
+              <img src={clip.poster} alt="" width="640" height="360" loading="lazy" decoding="async" />
+            )}
+            <span class="clip-kind">{clip.kind === 'interview' ? 'Interview' : 'Vidéo'}</span>
+            <strong>{clip.title}</strong>
+            {clip.text && <p>{clip.text}</p>}
+            {clip.sourceName && <span class="clip-source">{clip.sourceName}</span>}
+            {clip.context && <span class="clip-context">{clip.context}</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

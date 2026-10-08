@@ -16,27 +16,16 @@
     "date": "2026-10-09",
     "boxerA": "Brice Clavier",
     "boxerB": "Gaëtan Ntambwe",
-    "venue": "La Soucoupe, Saint-Nazaire",
-    "time": "19h–23h50",
-    "channel": "",
-    "aboutA": "Le Nazairien Brice Clavier affiche un bilan de 14 victoires, 7 défaites et 1 match nul. La Ville de Saint-Nazaire indique qu’il a obtenu plusieurs succès convaincants devant son public.",
-    "aboutB": "Gaëtan Ntambwe est présenté par la Ville de Saint-Nazaire comme un adversaire redoutable, prêt à livrer une bataille sans concession. Aucun bilan n’est indiqué.",
-    "analysis": "Brice Clavier et Gaëtan Ntambwe doivent disputer le championnat de France professionnel des lourds-légers à Saint-Nazaire, sur dix rounds de trois minutes. Clavier, boxeur local, tentera de décrocher le titre devant son public.\n\nClavier arrive avec un bilan de 14 victoires, 7 défaites et 1 nul. La page municipale rappelle également ses succès devant le public nazairien, un élément qui donne à ce rendez-vous une dimension particulière pour le boxeur local.\n\nNtambwe est décrit comme un adversaire redoutable, mais la page ne donne ni son bilan ni des détails sur son parcours. La soirée annonce aussi trois autres professionnels de la ville : Romain Bartra, Idriss Gharroumi et Jonas Zozo.",
-    "prediction": "Le bilan publié pour Clavier et l’avantage de combattre devant le public nazairien constituent des repères, même si la page ne permet pas de comparer complètement les deux parcours.\n\nSur la base des éléments connus et de l’avantage de salle annoncé, Brice Clavier est le vainqueur pressenti.",
-    "sourceUrl": "https://www.saintnazaire.fr/agenda/championnat-de-france-de-boxe-professionnelle-et-3-combats-pro/"
-  },
-  {
-    "date": "2026-11-28",
-    "boxerA": "Agit Kabayel",
-    "boxerB": "Nelson Hysa",
-    "venue": "ESPRIT Arena, Düsseldorf",
-    "time": "",
-    "channel": "",
-    "aboutA": "Agit Kabayel est le champion du monde WBC des poids lourds. Il affiche 27 victoires, dont 19 KO. Il a battu Zhilei Zhang par KO au sixième round en février 2025, défendu son titre intérimaire en arrêtant Damian Knyba au troisième round en janvier 2026, puis a été élevé au rang de champion du monde en juin.",
-    "aboutB": "Nelson Hysa est invaincu avec 25 victoires, dont 23 KO. Il a remporté le titre WBC CISBB le 18 novembre 2023 et est présenté comme un puncheur dont la puissance sera déterminante dans sa tentative de détrôner Kabayel.",
-    "analysis": "Kabayel effectuera la première défense de son titre mondial WBC des poids lourds le 28 novembre à Düsseldorf, face à Nelson Hysa. Le WBC situe le combat à l’ESPRIT Arena et précise que le champion boxera à domicile.\n\nLes deux hommes sont invaincus selon leurs bilans publiés. Kabayel compte 27 victoires, dont 19 KO ; Hysa en totalise 25, dont 23 KO. La puissance de frappe de Hysa est identifiée par le WBC comme un atout important dans sa tentative de conquête.\n\nLe champion arrive avec des repères récents dans des combats de titre : il a stoppé Zhilei Zhang au sixième round pour prendre le titre intérimaire, puis Damian Knyba au troisième pour défendre cette ceinture. Hysa, lui, a construit son parcours sur le circuit européen et remporté le titre WBC CISBB en 2023.",
-    "prediction": "Hysa possède un bilan invaincu et une proportion élevée de victoires par KO, ce qui fait de sa puissance un enjeu évident pour le champion. Kabayel dispose toutefois du statut de champion, d’une expérience récente des combats pour les titres et de l’avantage de combattre à domicile.\n\nAu regard de son statut de champion et de son parcours récent dans les combats de titre, Agit Kabayel est le vainqueur pressenti.",
-    "sourceUrl": "https://wbcboxing.com/en/agit-kabayel-to-defend-wbc-world-heavyweight-title-against-nelson-hysa/"
+    "clips": [
+      {
+        "kind": "interview",
+        "title": "Clavier avant La Soucoupe",
+        "text": "Brice Clavier parle du titre de France et du style de Gaëtan Ntambwe.",
+        "url": "https://www.ouest-france.fr/sport/boxe/boxe-brice-clavier-et-la-soucoupe-de-saint-nazaire-prets-pour-le-titre-de-champion-de-france-03c46952-c0c8-11f1-aef6-9f33a81faeff",
+        "sourceName": "Ouest-France",
+        "poster": "/img/posters/clavier-ntambwe.jpg"
+      }
+    ]
   },
   {
     "date": "2026-10-10",
@@ -50,6 +39,51 @@
     "analysis": "Schofield et Bahdi doivent se disputer le titre mondial WBA vacant des poids légers à Chicago. Le calendrier indique un combat de douze rounds à la Wintrust Arena.\n\nRicardo Sandoval contre Sergio Mendoza, pour le titre WBC des poids mouches, figure également à l’affiche. Le programme mentionne aussi Abdullaev contre Agrba et Walsh contre Craycraft.\n\nLes pages consultées ne fournissent pas de bilans détaillés pour Schofield et Bahdi. Sans ces éléments, l’analyse peut situer l’enjeu et la carte, mais pas dégager un favori.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-10-17",
+    "boxerA": "Daniel Dubois",
+    "boxerB": "Fabio Wardley",
+    "clips": [
+      {
+        "kind": "video",
+        "title": "Face-à-face avant la revanche",
+        "text": "Daniel Dubois dit de Fabio Wardley qu'il est un homme mort, au lancement du 17 octobre.",
+        "url": "https://www.bbc.com/sport/boxing/videos/cr4v2k7vkw5o",
+        "sourceName": "BBC Sport",
+        "poster": "/img/clips/dubois-wardley-faceoff.jpg"
+      },
+      {
+        "kind": "interview",
+        "title": "Wardley et Dubois au micro de Steve Bunce",
+        "text": "Les deux boxeurs expliquent pourquoi ils visent la victoire à l'O2.",
+        "url": "https://www.bbc.co.uk/programmes/p0p7n5xt",
+        "sourceName": "BBC Radio 5 Live"
+      }
+    ]
+  },
+  {
+    "date": "2026-11-28",
+    "boxerA": "Agit Kabayel",
+    "boxerB": "Nelson Hysa",
+    "venue": "ESPRIT Arena, Düsseldorf",
+    "time": "",
+    "channel": "",
+    "aboutA": "Agit Kabayel est le champion du monde WBC des poids lourds. Il affiche 27 victoires, dont 19 KO. Il a battu Zhilei Zhang par KO au sixième round en février 2025, défendu son titre intérimaire en arrêtant Damian Knyba au troisième round en janvier 2026, puis a été élevé au rang de champion du monde en juin.",
+    "aboutB": "Nelson Hysa est invaincu avec 25 victoires, dont 23 KO. Il a remporté le titre WBC CISBB le 18 novembre 2023 et est présenté comme un puncheur dont la puissance sera déterminante dans sa tentative de détrôner Kabayel.",
+    "analysis": "Kabayel effectuera la première défense de son titre mondial WBC des poids lourds le 28 novembre à Düsseldorf, face à Nelson Hysa. Le WBC situe le combat à l’ESPRIT Arena et précise que le champion boxera à domicile.\n\nLes deux hommes sont invaincus selon leurs bilans publiés. Kabayel compte 27 victoires, dont 19 KO ; Hysa en totalise 25, dont 23 KO. La puissance de frappe de Hysa est identifiée par le WBC comme un atout important dans sa tentative de conquête.\n\nLe champion arrive avec des repères récents dans des combats de titre : il a stoppé Zhilei Zhang au sixième round pour prendre le titre intérimaire, puis Damian Knyba au troisième pour défendre cette ceinture. Hysa, lui, a construit son parcours sur le circuit européen et remporté le titre WBC CISBB en 2023.",
+    "prediction": "Hysa possède un bilan invaincu et une proportion élevée de victoires par KO, ce qui fait de sa puissance un enjeu évident pour le champion. Kabayel dispose toutefois du statut de champion, d’une expérience récente des combats pour les titres et de l’avantage de combattre à domicile.\n\nAu regard de son statut de champion et de son parcours récent dans les combats de titre, Agit Kabayel est le vainqueur pressenti.",
+    "sourceUrl": "https://wbcboxing.com/en/agit-kabayel-to-defend-wbc-world-heavyweight-title-against-nelson-hysa/",
+    "clips": [
+      {
+        "kind": "interview",
+        "title": "Kabayel répond à Hysa",
+        "text": "À Düsseldorf, Agit Kabayel parle du respect et de sa première défense du titre WBC.",
+        "url": "https://www.youtube.com/watch?v=vzq-ZF5oIDw",
+        "sourceName": "Queensberry",
+        "poster": "/img/clips/kabayel-hysa-conference.jpg"
+      }
+    ]
   },
   {
     "date": "2026-12-11",
