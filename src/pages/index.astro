@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
-import { fightMedia, photosForVersus } from '../lib/portraits';
+import { photosForVersus, posterForVersus } from '../lib/portraits';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
 
@@ -15,7 +15,8 @@ const une = articles[0] ? { ...articles[0], data: liveArticle(articles[0].data) 
 const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
 const coachPhoto = coachs.find((c) => c.photo && c.slug !== 'valentin-guth');
 const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
-const uneImage = une?.data.photo || unePhotos[0] || '/img/og-combat-boxe.jpg';
+const unePoster = une ? posterForVersus(une.data.coverVersus || '') : '';
+const uneImage = unePoster || une?.data.photo || unePhotos[0] || une?.data.image || '/img/og-combat-boxe.jpg';
 const editions = groupArticlesByDay(articles);
 const todayKey = parisDayKey(new Date());
 const upcomingGalasAll = galas
@@ -52,58 +53,49 @@ const jsonLd = graph(
   jsonLd={jsonLd}
 >
   <Header slot="header" />
-  <section class="front">
-    <div class="wrap">
-      <div class="front-rule">
-        <span>La une</span>
-        <p>Boxe anglaise, résultats et salles</p>
+  {une && (
+    <a class="stage" href={`/${une.data.slug}`}>
+      <div class:list={['stage-visual', unePoster && 'is-poster', !unePoster && unePhotos.length >= 2 && 'is-split']}>
+        {unePoster ? (
+          <img src={unePoster} alt="" width="1400" height="788" decoding="async" fetchpriority="high" />
+        ) : unePhotos.length >= 2 ? (
+          <>
+            <img src={unePhotos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
+            <img src={unePhotos[1]} alt="" width="640" height="800" decoding="async" />
+          </>
+        ) : (
+          <img src={uneImage} alt={une.data.imageAlt || ''} width="1400" height="788" decoding="async" fetchpriority="high" />
+        )}
       </div>
-      {une && (
-        <a class="front-une" href={`/${une.data.slug}`}>
-          <div class:list={['front-une-media', unePhotos.length >= 2 && 'is-split']}>
-            {unePhotos.length >= 2 ? (
-              <>
-                <img src={unePhotos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
-                <img src={unePhotos[1]} alt="" width="640" height="800" decoding="async" />
-              </>
-            ) : (
-              <img src={uneImage} alt={une.data.imageAlt || ''} width="1200" height="800" decoding="async" fetchpriority="high" />
-            )}
-          </div>
-          <div class="front-une-copy">
-            <span class="tag">{kindLabel(une.data.kind)}</span>
-            <span class="front-date">{formatDate(une.data.date)}</span>
-            <h1>{une.data.coverVersus ? une.data.coverVersus.replace(' / ', ' contre ') : une.data.h1}</h1>
-            <p>{une.data.description}</p>
-            <span class="front-read">Lire le papier</span>
-          </div>
-        </a>
-      )}
-      {suite.length > 0 && (
-        <div class="front-fil">
-          {suite.map((item) => {
-            const photos = photosForVersus(item.data.coverVersus || '');
-            const thumb = item.data.photo || photos[0] || item.data.image;
-            return (
-              <a href={`/${item.data.slug}`}>
-                {thumb && (
-                  <img src={thumb} alt="" width="96" height="96" loading="lazy" decoding="async" />
-                )}
-                <span class="front-fil-copy">
-                  <span>{kindLabel(item.data.kind)} · {formatDate(item.data.date)}</span>
-                  <strong>{item.data.h1}</strong>
-                  <span class="front-fil-dek">{item.data.description}</span>
-                </span>
-              </a>
-            );
-          })}
-        </div>
-      )}
-      <ul class="front-meter">
+      <div class="stage-copy">
+        <span class="stage-kicker">La une · {kindLabel(une.data.kind)} · {formatDate(une.data.date)}</span>
+        <h1>{une.data.coverVersus ? une.data.coverVersus.replace(' / ', ' contre ') : une.data.h1}</h1>
+        <p>{une.data.description}</p>
+      </div>
+    </a>
+  )}
+
+  <section class="sheet">
+    <div class="wrap">
+      <p class="sheet-line">Les dates, les verdicts et les salles, au même endroit.</p>
+      <ul class="sheet-stats">
         {meter.map(([count, label]) => (
           <li><strong>{count}</strong><span>{label}</span></li>
         ))}
       </ul>
+      {suite.length > 0 && (
+        <ol class="sheet-index">
+          {suite.map((item, index) => (
+            <li>
+              <a href={`/${item.data.slug}`}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{item.data.h1}</strong>
+              </a>
+            </li>
+          ))}
+        </ol>
+      )}
+      <p class="sheet-more"><a href="/actualites">Toutes les actualités</a></p>
     </div>
   </section>
 
@@ -113,92 +105,39 @@ const jsonLd = graph(
     </div>
   </section>
 
-  <section class="section front-agenda">
+  <section class="bill">
     <div class="wrap">
-      <div class="front-cols">
-        <div>
-          <div class="section-head">
-            <div><span class="eyebrow">Agenda</span><h2>Prochains combats</h2></div>
-            <a href="/combats-a-venir">Tous les combats</a>
-          </div>
-          {upcoming.length === 0 ? (
-            <div class="editorial-empty"><strong>Aucun combat annoncé</strong><p>Les prochaines affiches apparaîtront ici.</p></div>
-          ) : (
-            <div class="front-stack">
-              {upcoming.map((c, index) => {
-                const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
-                return (
-                  <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
-                    {media.srcs.length > 0 && (
-                      <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
-                        {media.srcs.map((src) => (
-                          <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
-                        ))}
-                      </span>
-                    )}
-                    <p>{formatDate(c.date)}{c.city ? ` · ${c.city}` : ''}</p>
-                    <h3>{c.boxerA} contre {c.boxerB}</h3>
-                  </a>
-                );
-              })}
-            </div>
-          )}
-        </div>
-        <div>
-          <div class="section-head">
-            <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
-            <a href="/resultats-boxe">Tous les résultats</a>
-          </div>
-          {results.length === 0 ? (
-            <p class="empty">Aucun résultat n’est encore publié.</p>
-          ) : (
-            <div class="front-stack">
-              {results.map((c, index) => {
-                const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
-                return (
-                  <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
-                    {media.srcs.length > 0 && (
-                      <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
-                        {media.srcs.map((src) => (
-                          <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
-                        ))}
-                      </span>
-                    )}
-                    <p>{formatDate(c.date)} · {c.winner}</p>
-                    <h3>{c.boxerA} contre {c.boxerB}</h3>
-                  </a>
-                );
-              })}
-            </div>
-          )}
-        </div>
-        {upcomingGalas.length > 0 && (
-          <div>
-            <div class="section-head">
-              <div><span class="eyebrow">Soirées</span><h2>Galas à venir</h2></div>
-              <a href="/galas-boxe">Tous les galas</a>
-            </div>
-            <div class="front-stack">
-              {upcomingGalas.map((gala, index) => {
-                const media = fightMedia(gala.versus || '', index, { allowScene: false });
-                return (
-                  <a class="preview-card" href={gala.href}>
-                    {media.srcs.length > 0 && (
-                      <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
-                        {media.srcs.map((src) => (
-                          <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
-                        ))}
-                      </span>
-                    )}
-                    <p>{formatDate(gala.date)}{gala.city ? ` · ${gala.city}` : ''}</p>
-                    <h3>{gala.name}</h3>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        )}
+      <div class="bill-head">
+        <h2>Les prochaines dates</h2>
+        <p>Combats, verdicts et soirées.</p>
       </div>
+      <div class="bill-grid">
+        {upcoming.map((c) => (
+          <a class="bill-card" href={c.href || `/combats/${c.slug}`}>
+            <span class="bill-mark">Combat</span>
+            <span class="bill-date">{formatDate(c.date)}</span>
+            <strong>{c.boxerA} contre {c.boxerB}</strong>
+            {c.city && <span class="bill-place">{c.city}</span>}
+          </a>
+        ))}
+        {results.map((c) => (
+          <a class="bill-card" href={c.href || `/combats/${c.slug}`}>
+            <span class="bill-mark">Verdict</span>
+            <span class="bill-date">{formatDate(c.date)}</span>
+            <strong>{c.boxerA} contre {c.boxerB}</strong>
+            <span class="bill-place">{c.winner}</span>
+          </a>
+        ))}
+        {upcomingGalas.map((gala) => (
+          <a class="bill-card" href={gala.href}>
+            <span class="bill-mark">Soirée</span>
+            <span class="bill-date">{formatDate(gala.date)}</span>
+            <strong>{gala.name}</strong>
+            {gala.city && <span class="bill-place">{gala.city}</span>}
+          </a>
+        ))}
+      </div>
+      <a class="bill-go" href="/calendrier-combats-boxe">Ouvrir le calendrier</a>
     </div>
   </section>
 
