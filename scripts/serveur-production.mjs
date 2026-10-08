@@ -79,15 +79,13 @@ function pointOrigin() {
   }
 }
 
-function pushEnv() {
-  const token = process.env.GIT_PUSH_TOKEN || '';
-  if (!token) return { ...process.env, GIT_TERMINAL_PROMPT: '0' };
+function gitAuthEnv() {
   return {
     ...process.env,
     GIT_TERMINAL_PROMPT: '0',
     GIT_CONFIG_COUNT: '1',
-    GIT_CONFIG_KEY_0: 'http.extraHeader',
-    GIT_CONFIG_VALUE_0: `Authorization: Bearer ${token}`,
+    GIT_CONFIG_KEY_0: 'credential.helper',
+    GIT_CONFIG_VALUE_0: '',
   };
 }
 
@@ -108,8 +106,8 @@ async function cycle(reason) {
   try {
     try {
       pointOrigin();
-      git(`fetch origin ${BRANCH}`, pushEnv());
-      git(`pull --ff-only origin ${BRANCH}`, pushEnv());
+      git(`fetch origin ${BRANCH}`, gitAuthEnv());
+      git(`pull --ff-only origin ${BRANCH}`, gitAuthEnv());
     } catch (err) {
       log(`Pull ignore : ${(err.stderr || err.message || err).toString().replace(/x-access-token:[^@\s"]+/g, 'x-access-token:***').trim().slice(0, 200)}`);
     }
@@ -128,7 +126,7 @@ async function cycle(reason) {
       return;
     }
     git(`-c user.name="${AUTHOR_NAME}" -c user.email="${AUTHOR_EMAIL}" commit -m "Publie l'actualite, le calendrier et les visuels du jour."`);
-    git(`push origin HEAD:${BRANCH}`, pushEnv());
+    git(`push origin HEAD:${BRANCH}`, gitAuthEnv());
     log('Pousse sur le depot principal. Vercel deploie.');
     lastStatus = `pousse (${reason})`;
   } catch (err) {
