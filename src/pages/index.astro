@@ -12,25 +12,31 @@ const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const une = articles[0] ? { ...articles[0], data: liveArticle(articles[0].data) } : null;
-const fil = articles.slice(0, 4).map((item) => ({ ...item, data: liveArticle(item.data) }));
 const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
 const coachPhoto = coachs.find((c) => c.photo && c.slug !== 'valentin-guth');
 const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
 const uneImage = une?.data.photo || unePhotos[0] || '/img/og-combat-boxe.jpg';
 const editions = groupArticlesByDay(articles);
 const todayKey = parisDayKey(new Date());
-const upcomingGalas = galas
+const upcomingGalasAll = galas
   .filter((gala) => String(gala.date) >= todayKey)
-  .sort((a, b) => String(a.date).localeCompare(String(b.date)))
-  .slice(0, 2);
-const upcoming = combats
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+const upcomingAll = combats
   .filter((c) => c.status === 'a-venir')
-  .sort((a, b) => String(a.date).localeCompare(String(b.date)))
-  .slice(0, 2);
-const results = combats
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+const resultsAll = combats
   .filter((c) => c.status === 'dispute')
-  .sort((a, b) => String(b.date).localeCompare(String(a.date)))
-  .slice(0, 2);
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+const upcomingGalas = upcomingGalasAll.slice(0, 2);
+const upcoming = upcomingAll.slice(0, 2);
+const results = resultsAll.slice(0, 2);
+const suite = articles.slice(1, 5).map((item) => ({ ...item, data: liveArticle(item.data) }));
+const meter = [
+  [articles.length, articles.length > 1 ? 'papiers' : 'papier'],
+  [upcomingAll.length, upcomingAll.length > 1 ? 'affiches' : 'affiche'],
+  [upcomingGalasAll.length, upcomingGalasAll.length > 1 ? 'soirées' : 'soirée'],
+  [clubs.length, clubs.length > 1 ? 'salles' : 'salle'],
+];
 const jsonLd = graph(
   organizationLd,
   websiteLd,
@@ -46,82 +52,48 @@ const jsonLd = graph(
   jsonLd={jsonLd}
 >
   <Header slot="header" />
-  <section class="news-hero">
+  <section class="front">
     <div class="wrap">
-      <div class="edition-line">
-        <span>Combat Boxe</span>
-        <p>Actualité, résultats, calendriers et visages de la boxe anglaise</p>
+      <div class="front-rule">
+        <span>La une</span>
+        <p>Boxe anglaise, résultats et salles</p>
       </div>
-      <div class="lead-grid">
-        {une && (
-          <a class="lead-story lead-story-edito" href={`/${une.data.slug}`}>
+      {une && (
+        <a class="front-une" href={`/${une.data.slug}`}>
+          <div class:list={['front-une-media', unePhotos.length >= 2 && 'is-split']}>
             {unePhotos.length >= 2 ? (
-              <div class="lead-split" aria-hidden="true">
+              <>
                 <img src={unePhotos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
                 <img src={unePhotos[1]} alt="" width="640" height="800" decoding="async" />
-              </div>
-            ) : unePhotos[0] ? (
-              <img src={unePhotos[0]} alt="" width="640" height="800" decoding="async" fetchpriority="high" />
-            ) : une.data.photo ? (
-              <img src={une.data.photo} alt={une.data.imageAlt || ''} width="1200" height="800" />
-            ) : null}
-            <span class="story-shade"></span>
-            <div class="lead-copy">
-              <span class="tag">{kindLabel(une.data.kind)}</span>
-              <p class="story-date">{formatDate(une.data.date)}</p>
-              <h1>{une.data.coverVersus ? une.data.coverVersus.replace(' / ', ' contre ') : une.data.h1}</h1>
-              <p>{une.data.description}</p>
-              <span class="read-more">Lire l'article</span>
-            </div>
-          </a>
-        )}
-        <div class="hero-side">
-          <a class="side-story" href="/combats-a-venir">
-            <img src="/img/agenda-upcoming.jpg" alt="" width="800" height="450" decoding="async" />
-            <div>
-              <span class="tag">À suivre</span>
-              <h2>Les prochains combats qui vont compter</h2>
-              <p>Dates, affiches, catégories et titres en jeu.</p>
-            </div>
-          </a>
-          <div class="side-pair">
-            <a class="mini-story" href="/resultats-boxe">
-              <img src="/img/agenda-results.jpg" alt="" width="640" height="360" decoding="async" />
-              <span class="tag">Résultats</span>
-              <h3>Vainqueurs, décisions et analyses</h3>
-            </a>
-            <a class="mini-story" href="/calendrier-combats-boxe">
-              <img src="/img/agenda-calendar.jpg" alt="" width="640" height="360" decoding="async" />
-              <span class="tag">Calendrier</span>
-              <h3>Les dates à retenir autour du ring</h3>
-            </a>
+              </>
+            ) : (
+              <img src={uneImage} alt={une.data.imageAlt || ''} width="1200" height="800" decoding="async" fetchpriority="high" />
+            )}
           </div>
+          <div class="front-une-copy">
+            <span class="tag">{kindLabel(une.data.kind)}</span>
+            <span class="front-date">{formatDate(une.data.date)}</span>
+            <h1>{une.data.coverVersus ? une.data.coverVersus.replace(' / ', ' contre ') : une.data.h1}</h1>
+            <p>{une.data.description}</p>
+            <span class="front-read">Lire le papier</span>
+          </div>
+        </a>
+      )}
+      {suite.length > 0 && (
+        <div class="front-fil">
+          {suite.map((item) => (
+            <a href={`/${item.data.slug}`}>
+              <span>{formatDate(item.data.date)}</span>
+              <strong>{item.data.h1}</strong>
+            </a>
+          ))}
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section quick-access">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Le fil</span>
-          <h2>L'essentiel du ring</h2>
-        </div>
-        <a href="/actualites">Toutes les actualités</a>
-      </div>
-      <div class="news-list">
-        {fil.map((item, index) => (
-          <a href={`/${item.data.slug}`} class="news-item">
-            <span class="news-index">{String(index + 1).padStart(2, '0')}</span>
-            <div>
-              <span class="tag tag-blue">{kindLabel(item.data.kind)}</span>
-              <h3>{item.data.h1}</h3>
-            </div>
-            <span class="news-arrow">Lire</span>
-          </a>
+      )}
+      <ul class="front-meter">
+        {meter.map(([count, label]) => (
+          <li><strong>{count}</strong><span>{label}</span></li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
@@ -131,119 +103,125 @@ const jsonLd = graph(
     </div>
   </section>
 
-  <section class="section schedule-block">
+  <section class="section front-agenda">
     <div class="wrap">
-      <div class="section-head section-head-light">
-        <div><span class="eyebrow">Agenda</span><h2>Prochains combats</h2></div>
-        <a href="/combats-a-venir">Tous les combats</a>
-      </div>
-      {upcoming.length === 0 ? (
-        <div class="editorial-empty"><strong>Aucun combat annoncé</strong><p>Les prochaines affiches apparaîtront ici.</p></div>
-      ) : (
-        <div class="fight-grid">
-          {upcoming.map((c, index) => {
-            const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
-            return (
-              <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
-                {media.srcs.length > 0 && (
-                  <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
-                    {media.srcs.map((src) => (
-                      <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
-                    ))}
-                  </span>
-                )}
-                <p>{formatDate(c.date)}{c.city ? ` · ${c.city}` : ''}</p>
-                <h3>{c.boxerA} contre {c.boxerB}</h3>
-              </a>
-            );
-          })}
+      <div class="front-cols">
+        <div>
+          <div class="section-head">
+            <div><span class="eyebrow">Agenda</span><h2>Prochains combats</h2></div>
+            <a href="/combats-a-venir">Tous les combats</a>
+          </div>
+          {upcoming.length === 0 ? (
+            <div class="editorial-empty"><strong>Aucun combat annoncé</strong><p>Les prochaines affiches apparaîtront ici.</p></div>
+          ) : (
+            <div class="front-stack">
+              {upcoming.map((c, index) => {
+                const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
+                return (
+                  <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
+                    {media.srcs.length > 0 && (
+                      <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
+                        {media.srcs.map((src) => (
+                          <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
+                        ))}
+                      </span>
+                    )}
+                    <p>{formatDate(c.date)}{c.city ? ` · ${c.city}` : ''}</p>
+                    <h3>{c.boxerA} contre {c.boxerB}</h3>
+                  </a>
+                );
+              })}
+            </div>
+          )}
         </div>
-      )}
-      <div class="home-results">
-        <div class="section-head section-head-light">
-          <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
-          <a href="/resultats-boxe">Tous les résultats</a>
+        <div>
+          <div class="section-head">
+            <div><span class="eyebrow">Verdicts</span><h2>Derniers résultats</h2></div>
+            <a href="/resultats-boxe">Tous les résultats</a>
+          </div>
+          {results.length === 0 ? (
+            <p class="empty">Aucun résultat n’est encore publié.</p>
+          ) : (
+            <div class="front-stack">
+              {results.map((c, index) => {
+                const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
+                return (
+                  <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
+                    {media.srcs.length > 0 && (
+                      <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
+                        {media.srcs.map((src) => (
+                          <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
+                        ))}
+                      </span>
+                    )}
+                    <p>{formatDate(c.date)} · {c.winner}</p>
+                    <h3>{c.boxerA} contre {c.boxerB}</h3>
+                  </a>
+                );
+              })}
+            </div>
+          )}
         </div>
-        {results.length === 0 ? (
-          <p class="empty">Aucun résultat n’est encore publié.</p>
-        ) : (
-          <div class="fight-grid">
-            {results.map((c, index) => {
-              const media = fightMedia(`${c.boxerA} / ${c.boxerB}`, index, { allowScene: false });
-              return (
-                <a class="preview-card" href={c.href || `/combats/${c.slug}`}>
-                  {media.srcs.length > 0 && (
-                    <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
-                      {media.srcs.map((src) => (
-                        <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
-                      ))}
-                    </span>
-                  )}
-                  <p>{formatDate(c.date)} · {c.winner}</p>
-                  <h3>{c.boxerA} contre {c.boxerB}</h3>
-                </a>
-              );
-            })}
+        {upcomingGalas.length > 0 && (
+          <div>
+            <div class="section-head">
+              <div><span class="eyebrow">Soirées</span><h2>Galas à venir</h2></div>
+              <a href="/galas-boxe">Tous les galas</a>
+            </div>
+            <div class="front-stack">
+              {upcomingGalas.map((gala, index) => {
+                const media = fightMedia(gala.versus || '', index, { allowScene: false });
+                return (
+                  <a class="preview-card" href={gala.href}>
+                    {media.srcs.length > 0 && (
+                      <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
+                        {media.srcs.map((src) => (
+                          <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
+                        ))}
+                      </span>
+                    )}
+                    <p>{formatDate(gala.date)}{gala.city ? ` · ${gala.city}` : ''}</p>
+                    <h3>{gala.name}</h3>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
-      {upcomingGalas.length > 0 && (
-        <div class="home-results">
-          <div class="section-head section-head-light">
-            <div><span class="eyebrow">Soirées</span><h2>Galas à venir</h2></div>
-            <a href="/galas-boxe">Tous les galas</a>
-          </div>
-          <div class="fight-grid">
-            {upcomingGalas.map((gala, index) => {
-              const media = fightMedia(gala.versus || '', index, { allowScene: false });
-              return (
-                <a class="preview-card" href={gala.href}>
-                  {media.srcs.length > 0 && (
-                    <span class:list={['preview-media', media.srcs.length > 1 && 'preview-media-split']}>
-                      {media.srcs.map((src) => (
-                        <img src={src} alt="" width="640" height="800" loading="lazy" decoding="async" />
-                      ))}
-                    </span>
-                  )}
-                  <p>{formatDate(gala.date)}{gala.city ? ` · ${gala.city}` : ''}</p>
-                  <h3>{gala.name}</h3>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      )}
     </div>
   </section>
 
-  <section class="section discover">
+  <section class="section front-people">
     <div class="wrap">
       <div class="section-head">
-        <div><span class="eyebrow">Au-delà du combat</span><h2>Les visages et les salles</h2></div>
+        <div><span class="eyebrow">Le ring d'à côté</span><h2>Visages et salles</h2></div>
         <a href="/portraits-boxeurs">Tous les portraits</a>
       </div>
-      <div class="portrait-grid">
+      <div class="front-faces">
         {guth && (
-          <a class="portrait-card portrait-card-wide" href={`/boxeurs/${guth.slug}`}>
+          <a class="front-face" href={`/boxeurs/${guth.slug}`}>
             <img src={guth.photo} alt={guth.photoAlt} width="640" height="800" loading="lazy" decoding="async" />
-            <div>
-              <span class="tag">Boxeurs français</span>
-              <h3>{guth.name}</h3>
-              <p>{guth.ranking}</p>
-            </div>
+            <span class="tag">Boxeur</span>
+            <h3>{guth.name}</h3>
+            <p>{guth.ranking}</p>
           </a>
         )}
         {clubs.map((club) => (
-          <a class="portrait-card portrait-card-salle" href={`/clubs/${club.slug}`}>
+          <a class="front-face" href={`/clubs/${club.slug}`}>
             {club.image && <img src={club.image} alt={club.imageAlt} width="1200" height="750" loading="lazy" decoding="async" />}
-            <div><span class="tag">Clubs</span><h3>{club.name}</h3><p>{club.address}</p></div>
+            <span class="tag">Salle</span>
+            <h3>{club.name}</h3>
+            <p>{club.address}</p>
           </a>
         ))}
-        <a class="portrait-card" href="/entraineurs-boxe-francais">
+        <a class="front-face" href="/entraineurs-boxe-francais">
           {coachPhoto?.photo && (
             <img src={coachPhoto.photo} alt="" width="640" height="800" loading="lazy" decoding="async" />
           )}
-          <div><span class="tag">Coachs</span><h3>Ceux qui construisent le combat</h3><p>Valentin Guth et Dadi</p></div>
+          <span class="tag">Entraîneurs</span>
+          <h3>Guth et Dadi</h3>
+          <p>Minimes et Saint-Cyprien</p>
         </a>
       </div>
     </div>
