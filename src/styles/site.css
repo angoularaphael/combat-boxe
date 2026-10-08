@@ -2180,6 +2180,7 @@ a {
   height: 280px;
   object-fit: cover;
   object-position: center 28%;
+  animation: stage-settle 900ms ease both;
 }
 
 .stage-copy {
@@ -2213,6 +2214,25 @@ a {
   font-size: 16px;
 }
 
+@keyframes stage-settle {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: none; }
+}
+
+.stage-kicker,
+.stage-copy h1,
+.stage-copy p {
+  animation: rise-in 650ms ease both;
+}
+
+.stage-copy h1 {
+  animation-delay: 90ms;
+}
+
+.stage-copy p {
+  animation-delay: 170ms;
+}
+
 .sheet {
   padding: 34px 0 8px;
   background: var(--paper);
@@ -2222,6 +2242,7 @@ a {
   max-width: 28ch;
   margin: 0 0 18px;
   font-size: 18px;
+  animation: rise-in 550ms ease both;
 }
 
 .sheet-stats {
@@ -2238,7 +2259,12 @@ a {
   padding: 16px;
   background: #101820;
   color: #fff;
+  animation: rise-in 550ms ease both;
 }
+
+.sheet-stats li:nth-child(2) { animation-delay: 70ms; }
+.sheet-stats li:nth-child(3) { animation-delay: 140ms; }
+.sheet-stats li:nth-child(4) { animation-delay: 210ms; }
 
 .sheet-stats strong {
   display: block;
@@ -2272,6 +2298,12 @@ a {
   border-bottom: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
+  transition: padding 220ms ease, background 220ms ease;
+}
+
+.sheet-index a:hover {
+  padding-inline: 10px;
+  background: #fff;
 }
 
 .sheet-index span {
@@ -2332,10 +2364,20 @@ a {
   background: #172430;
   color: #fff;
   text-decoration: none;
+  animation: rise-in 600ms ease both;
+  transition: transform 220ms ease, border-color 220ms ease;
 }
+
+.bill-card:nth-child(2) { animation-delay: 60ms; }
+.bill-card:nth-child(3) { animation-delay: 120ms; }
+.bill-card:nth-child(4) { animation-delay: 180ms; }
+.bill-card:nth-child(5) { animation-delay: 240ms; }
+.bill-card:nth-child(6) { animation-delay: 300ms; }
 
 .bill-card:hover {
   color: #fff;
+  border-color: #5f7690;
+  transform: translateY(-4px);
 }
 
 .bill-mark {
@@ -2382,10 +2424,13 @@ a {
   letter-spacing: 0.05em;
   text-decoration: none;
   text-transform: uppercase;
+  transition: background 200ms ease, transform 200ms ease;
 }
 
 .bill-go:hover {
   color: #fff;
+  background: #2c3e50;
+  transform: translateY(-2px);
 }
 
 .front-people {
@@ -2420,6 +2465,13 @@ a {
   background: #fff;
   color: var(--ink);
   text-decoration: none;
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.front-face:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+  transform: translateY(-3px);
 }
 
 .front-face img {
@@ -2428,6 +2480,11 @@ a {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center 28%;
+  transition: transform 500ms ease;
+}
+
+.front-face:hover img {
+  transform: scale(1.04);
 }
 
 .front-face .tag {
