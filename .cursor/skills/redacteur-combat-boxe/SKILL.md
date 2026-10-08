@@ -37,7 +37,7 @@ Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et 
 
 **Ordre obligatoire pour un combat nommé**
 
-1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala. Photo nette, la plus grande du `srcset`, au moins 900 px de long côté. Le visage est celui du nom, l'affiche est celle des deux boxeurs. Refuser vignette, flou, tête coupée, logo, ceinture seule, autre sportif.
+1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala. Photo nette, la plus grande du `srcset`, au moins 900 px de long côté. Le visage est celui du nom, l'affiche est celle des deux boxeurs. Refuser vignette, flou, tête coupée, logo, ceinture seule, autre sportif. Refuser aussi la photo d'identité : fond blanc ou gris clair sur les deux bords, visage seul, pas d'épaules. Prendre la photo de ring ou de soirée où le buste, les gants ou la salle se voient.
 2. Poser le portrait dans `public/img/boxers/prenom-nom.jpg` (640 x 800, jpeg qualité haute) et l'affiche dans `public/img/posters/` (1000 px max). Brancher `photo-credits.json` ou `src/data/posters.json`. Le process du matin commit `public/img` avec le papier.
 3. **Se rassurer qu'elles y sont et qu'elles sont cadrées** : ouvrir la carte, la fiche et l'aperçu (bandeau) en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Yeux et bouche visibles. Pas de crâne seul, pas de grand vide au-dessus de la tête. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
 4. **Seulement s'il n'existe vraiment aucune photo ni affiche** : alors `fightMedia()` peut poser une image de boxe (`/img/scene-*.jpg`). Pas avant. Jamais en premier.

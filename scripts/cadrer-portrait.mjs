@@ -25,10 +25,58 @@ export async function bufferEstUnePhoto(buf) {
       if (sample[i] > 228 && sample[i + 1] > 228 && sample[i + 2] > 228) white += 1;
     }
     if (white / pixels > 0.38) return false;
+    if (await bordsLaterauxBlancs(buf)) return false;
     return true;
   } catch {
     return false;
   }
+}
+
+function ratioClair(raw) {
+  let light = 0;
+  const pixels = raw.length / 3;
+  for (let i = 0; i < raw.length; i += 3) {
+    if (raw[i] > 214 && raw[i + 1] > 214 && raw[i + 2] > 214) light += 1;
+  }
+  return pixels ? light / pixels : 1;
+}
+
+/** Photo d'identite : les deux cotes sont un fond blanc, le visage remplit le cadre. */
+export async function bordsLaterauxBlancs(input) {
+  const meta = await sharp(input).rotate().metadata();
+  const w = meta.width || 0;
+  const h = meta.height || 0;
+  if (w < 80 || h < 80) return true;
+  const band = Math.max(8, Math.round(w * 0.08));
+  const left = await sharp(input)
+    .rotate()
+    .extract({ left: 0, top: 0, width: band, height: h })
+    .resize(6, 24, { fit: 'fill' })
+    .removeAlpha()
+    .raw()
+    .toBuffer();
+  const right = await sharp(input)
+    .rotate()
+    .extract({ left: w - band, top: 0, width: band, height: h })
+    .resize(6, 24, { fit: 'fill' })
+    .removeAlpha()
+    .raw()
+    .toBuffer();
+  return ratioClair(left) > 0.62 && ratioClair(right) > 0.62;
+}
+
+/** Plus le score est haut, plus la photo a un ring, un buste, une salle. Negatif : a jeter. */
+export async function notePortrait(input) {
+  if (await bordsLaterauxBlancs(input)) return -20;
+  const meta = await sharp(input).rotate().metadata();
+  const w = meta.width || 0;
+  const h = meta.height || 0;
+  let score = h >= w ? 6 : -4;
+  const stats = await sharp(input).stats();
+  const avgStd = stats.channels.reduce((sum, ch) => sum + ch.stdev, 0) / Math.max(1, stats.channels.length);
+  score += Math.min(8, avgStd / 8);
+  if (Math.max(w, h) >= 1400) score += 3;
+  return score;
 }
 
 export async function cadrerPortrait(filePath) {

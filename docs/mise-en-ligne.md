@@ -2,9 +2,17 @@
 
 ## Vercel
 
-1. Créer un projet Vercel pointé sur le dossier `combat-boxe` (racine du projet Astro).
-2. Framework : Astro. Commande de build : `npm run build`.
-3. Ajouter le domaine `combat-boxe.com` et le `www` si besoin, puis suivre les DNS indiqués par Vercel (enregistrements A ou CNAME).
+Le dépôt est [boxing-center/combat-boxe](https://github.com/boxing-center/combat-boxe). Chaque push sur `main` doit déployer seul.
+
+1. Sur vercel.com, compte qui doit posséder le site : Add New, Project.
+2. Import Git Repository. Si `boxing-center` n'apparaît pas : Adjust GitHub App Permissions, puis autoriser l'organisation `boxing-center` et le dépôt `combat-boxe`.
+3. Framework : Astro. Racine du dépôt (le projet Astro est à la racine, pas dans un sous-dossier). Build : `npm run build`. Branche de production : `main`.
+4. Deploy. Puis Settings, Domains : ajouter `combat-boxe.com`. Si le domaine est encore sur l'ancien projet, le retirer là-bas avant, sinon Vercel le refuse.
+5. Au bureau d'enregistrement, poser les DNS indiqués par Vercel.
+
+Après ça, le push du matin (BotHosting) déclenche le déploiement. Plus de redeploy à la main.
+
+Les variables déjà utilisées, si elles existaient sur l'ancien projet : `PUBLIC_GA_ID`, `PUBLIC_GSC_VERIFICATION`. Les recopier telles quelles. Sans elles, le site se construit quand même.
 
 ## Google Analytics 4
 
@@ -30,7 +38,7 @@ npm run dev
 
 Le site répond sur le port 3310.
 
-Production actuelle : https://combat-boxe.vercel.app/
+Production actuelle : https://combat-boxe.com/
 
 ## Agent éditorial (BotHosting)
 

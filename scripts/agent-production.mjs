@@ -86,8 +86,7 @@ function quotaArticles() {
   return Math.min(n, 12);
 }
 
-function articlesDuJour() {
-  const jour = jourParis();
+function articlesDuJour(jour = jourParis()) {
   let count = 0;
   for (const name of readdirSync(articlesDir).filter((n) => n.endsWith('.md'))) {
     const md = readFileSync(resolve(articlesDir, name), 'utf8');
@@ -95,6 +94,20 @@ function articlesDuJour() {
     if (hit && hit[1] === jour) count += 1;
   }
   return count;
+}
+
+function jourDecale(iso, delta) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  dt.setUTCDate(dt.getUTCDate() + delta);
+  return dt.toISOString().slice(0, 10);
+}
+
+function joursSansPapier() {
+  const aujourdhui = jourParis();
+  return [1, 2]
+    .map((n) => jourDecale(aujourdhui, -n))
+    .filter((jour) => articlesDuJour(jour) === 0);
 }
 
 function combatsConnus() {
@@ -391,7 +404,7 @@ Format :
     "description": "...",
     "kind": "annonce",
     "family": "actualite",
-    "date": "2026-10-07T08:00:00",
+    "date": "${jourParis()}T08:00:00",
     "coverVersus": "NomA / NomB",
     "coverMeta": "date · ville · categorie",
     "sourceName": "...",
@@ -462,6 +475,8 @@ Format :
 }
 
 Aujourd'hui (Paris) : ${jourParis()}.
+Jours recents sans aucun papier : ${joursSansPapier().join(', ') || 'aucun'}.
+Si un fait des pages est date d'un de ces jours vides, l'article prend cette date-la, pas aujourd'hui. N'invente pas un papier pour boucher un trou.
 Ecris jusqu'a ${places} articles, un par fait distinct. Un fait peut etre un combat principal, un lever de rideau, un resultat, une signature, une pesee, une conference ou une soiree. Pas seulement l'affiche principale. Tableau vide s'il n'y a pas assez de faits nouveaux. N'invente pas pour remplir le quota.
 Chaque article : slug different, sourceUrl, date, et au moins huit paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un long passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Termine par une lecture de plusieurs paragraphes, puis un dernier paragraphe de pronostic qui nomme le vainqueur pressenti. Sans bilan, sans statut de champion, sans combat precedent ni avantage de salle dans les pages, ce dernier paragraphe ne nomme personne. Pas de cote inventee. Parle aussi des autres combats de la meme soiree quand les pages les citent. analysis : trois paragraphes separes par une ligne vide, pour la fiche combat. prediction : deux paragraphes separes par une ligne vide, le dernier donne le choix. Champs vides si le fait n'est pas dans les pages. Ignore les slugs deja publies.
 fights : combats absents du calendrier, date complete, deux noms, ville, sourceUrl. Remplis venue, time, channel, aboutA, aboutB, analysis, prediction, stakes. stakes reste une seule phrase pour la carte. analysis et prediction portent la longueur.

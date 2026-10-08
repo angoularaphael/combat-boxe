@@ -562,6 +562,17 @@
     ]
   },
   {
+    "name": "Souleymane Cissokho",
+    "slug": "souleymane-cissokho",
+    "path": "/img/boxers/souleymane-cissokho.jpg",
+    "license": "CC BY 4.0",
+    "artist": "Wikimedia Commons",
+    "pageUrl": "https://commons.wikimedia.org/wiki/File:Souleymane_Cissokho_porteur_de_la_flamme_olympique_Paris_2024_(3).jpg",
+    "aliases": [
+      "Cissokho"
+    ]
+  },
+  {
     "name": "Conor Wallace",
     "slug": "conor-wallace",
     "path": "/img/boxers/conor-wallace.jpg",

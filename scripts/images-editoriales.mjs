@@ -6,7 +6,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { portraitsForNames, loadRegistry, saveRegistry } from './portraits-commons.mjs';
-import { bufferEstUnePhoto, cadrerPortrait, reduireAffiche } from './cadrer-portrait.mjs';
+import { bordsLaterauxBlancs, bufferEstUnePhoto, cadrerPortrait, notePortrait, reduireAffiche } from './cadrer-portrait.mjs';
 import sharp from 'sharp';
 
 const UA = 'CombatBoxe/1.0 (https://combat-boxe.com; media independant de boxe)';
@@ -186,6 +186,7 @@ async function saveEditorialPortrait(name, buf, pageUrl, artist) {
 
 async function findEditorialPortrait(name) {
   const pages = promoterPages(name);
+  let best = null;
   for (const pageUrl of pages) {
     const html = await fetchHtml(pageUrl);
     if (!html) continue;
@@ -197,16 +198,19 @@ async function findEditorialPortrait(name) {
     const ranked = extractImageUrls(html, pageUrl)
       .map((url) => ({ url, score: scorePhoto(url, name) }))
       .sort((a, b) => b.score - a.score)
-      .slice(0, 6);
+      .slice(0, 8);
     for (const item of ranked) {
       if (item.score < 2) continue;
       const buf = await downloadBuffer(item.url);
       if (!buf) continue;
-      const host = new URL(pageUrl).hostname.replace(/^www\./, '');
-      return saveEditorialPortrait(name, buf, pageUrl, host);
+      const note = await notePortrait(buf);
+      if (note < 0) continue;
+      if (!best || note > best.note) best = { buf, note, pageUrl };
     }
   }
-  return null;
+  if (!best) return null;
+  const host = new URL(best.pageUrl).hostname.replace(/^www\./, '');
+  return saveEditorialPortrait(name, best.buf, best.pageUrl, host);
 }
 
 function aDejaUnePhoto(name) {
@@ -222,8 +226,13 @@ export async function photosPourNoms(names) {
   for (const name of unique) {
     const existing = aDejaUnePhoto(name);
     if (existing) {
-      saved.push(existing);
-      continue;
+      const file = fileForCredit(existing);
+      const moche = file && existsSync(file) ? await bordsLaterauxBlancs(readFileSync(file)) : false;
+      if (!moche) {
+        saved.push(existing);
+        continue;
+      }
+      console.log('Portrait d identite a remplacer :', name);
     }
     missing.push(name);
   }
