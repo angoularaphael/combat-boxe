@@ -104,5 +104,31 @@
     "analysis": "Le combat est prévu le 11 décembre au Principality Stadium de Cardiff. L’événement débute à 17 heures, tandis que le combat principal est annoncé dans les premières heures du matin, après une soirée complète de boxe.\n\nFury et Joshua ont tous deux détenu des titres mondiaux et n’ont jamais combattu l’un contre l’autre chez les professionnels, selon la présentation de la salle. La page ne détaille ni leurs bilans ni leurs combats précédents.\n\nLe Principality Stadium annonce une diffusion en direct sur Netflix et met en avant sa capacité maximale de 80 000 places. Aucun autre combat de la carte n’est nommé dans la page consultée.",
     "prediction": "",
     "sourceUrl": "https://www.principalitystadium.wales/event/tyson-fury-v-anthony-joshua/"
+  },
+  {
+    "date": "2026-10-10",
+    "boxerA": "Ricardo Sandoval",
+    "boxerB": "Sergio Mendoza",
+    "venue": "Wintrust Arena",
+    "time": "",
+    "channel": "DAZN et DAZN Global",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le WBC présente Sandoval-Mendoza comme un combat pour le titre mondial des poids mouches. La rencontre est programmée le 10 octobre à Chicago et figure en combat d’undercard dans le programme de la soirée Schofield-Bahdi. Les pages consultées ne donnent pas de bilan ni d’éléments de parcours permettant une analyse technique plus poussée.",
+    "prediction": "",
+    "sourceUrl": "https://wbcboxing.com/en/news/"
+  },
+  {
+    "date": "2026-10-24",
+    "boxerA": "Samuel Molina",
+    "boxerB": "Mohamed Sahnoun",
+    "venue": "",
+    "time": "",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le WBC annonce que Samuel Molina défendra le titre WBC International Silver des poids welters face à Mohammed Sahnoun. Le calendrier situe le combat le 24 octobre à Malaga. Les pages disponibles ne précisent ni la salle, ni l’horaire, ni le diffuseur.",
+    "prediction": "",
+    "sourceUrl": "https://wbcboxing.com/en/news/"
   }
 ]
