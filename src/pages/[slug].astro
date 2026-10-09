@@ -10,6 +10,7 @@ import { articleThumb, photosForVersus } from '../lib/portraits';
 import Cover from '../components/Cover.astro';
 import DaysNav from '../components/DaysNav.astro';
 import BoxerCard from '../components/BoxerCard.astro';
+import BoxerSwitch from '../components/BoxerSwitch.astro';
 import FightCard from '../components/FightCard.astro';
 import GalaCard from '../components/GalaCard.astro';
 
@@ -95,6 +96,9 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       </ol>
       {mode === 'article' && <p class="meta">{formatDate(data.date)} · {kindLabel(data.kind)}</p>}
       <h1>{data.h1}</h1>
+      {(template === 'boxers-fr' || template === 'boxers-int') && (
+        <BoxerSwitch current={template === 'boxers-fr' ? 'fr' : 'int'} />
+      )}
       {template === 'news' && <DaysNav editions={editions} label="Actualités par jour" />}
       {showPhoto && (
         <figure class="figure figure-portrait">

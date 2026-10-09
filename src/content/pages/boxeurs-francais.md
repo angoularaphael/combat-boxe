@@ -11,4 +11,4 @@ breadcrumbs:
     label: Boxeurs français
 ---
 
-Valentin Guth est le boxeur professionnel dont la fiche est ouverte ici : 3e français chez les super-coqs, formé au Boxing Center, encore sur le ring. Il est aussi coach aux Minimes. Boxing Center présente aussi [Johnson Suffo](https://boxingcenter.fr/johnson-boxeur-pro-boxing-center/) comme boxeur professionnel formé dans son école. Le bilan combat par combat n'est pas publié sur cette page. La salle des Minimes écrit qu'elle a formé plus de huit boxeurs professionnels ; les autres noms ne sont pas donnés.
+Valentin Guth, Souleymane Cissokho et Makan Traoré ont chacun une fiche et un portrait. Les affiches du calendrier, Clavier, Sakharov ou la soirée de Royan, restent des articles à part.

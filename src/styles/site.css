@@ -2022,6 +2022,34 @@ a {
   }
 }
 
+.boxer-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0 8px;
+}
+
+.boxer-switch a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.boxer-switch a[aria-current='page'] {
+  background: #101820;
+  border-color: #101820;
+  color: #fff;
+}
+
 .boxer-grid {
   display: grid;
   grid-template-columns: 1fr;

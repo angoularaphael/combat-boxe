@@ -1,0 +1,8 @@
+---
+const { current } = Astro.props;
+---
+
+<nav class="boxer-switch" aria-label="Choisir les boxeurs">
+  <a href="/boxeurs-francais" aria-current={current === 'fr' ? 'page' : undefined}>Français</a>
+  <a href="/boxeurs-internationaux" aria-current={current === 'int' ? 'page' : undefined}>Internationaux</a>
+</nav>

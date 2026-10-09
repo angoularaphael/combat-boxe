@@ -2,6 +2,7 @@
 import { siteSearchIndex } from '../lib/site-search';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const onBoxers = path === '/boxeurs-francais' || path === '/boxeurs-internationaux' || path.startsWith('/boxeurs/');
 const links = [
   ['/', 'Accueil'],
   ['/actualites', 'Actualités'],
@@ -41,7 +42,7 @@ const searchJson = JSON.stringify(searchIndex).replace(/</g, '\\u003c');
   <nav class="nav-panel wrap" aria-label="Rubriques">
     {
       links.map(([href, label]) => (
-        <a href={href} aria-current={path === href ? 'page' : undefined}>
+        <a href={href} aria-current={path === href || (href === '/boxeurs-francais' && onBoxers) ? 'page' : undefined}>
           {label}
         </a>
       ))
