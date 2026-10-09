@@ -12,6 +12,35 @@ function xml(value: string) {
     .replace(/"/g, '&quot;');
 }
 
+function priority(loc: string, site: string) {
+  if (loc === site) return '1.0';
+  const slug = loc.slice(site.length + 1);
+  if (
+    [
+      'combat-de-boxe',
+      'actualites',
+      'combats-a-venir',
+      'resultats-boxe',
+      'calendrier-combats-boxe',
+      'galas-boxe',
+      'boxeurs-francais',
+      'boxeurs-internationaux',
+      'clubs-boxe-france',
+    ].includes(slug)
+  ) {
+    return '0.9';
+  }
+  if (slug.startsWith('actualites/')) return '0.6';
+  if (slug.startsWith('boxeurs/') || slug.startsWith('combats/') || slug.startsWith('galas/')) return '0.7';
+  return '0.5';
+}
+
+function changefreq(loc: string, site: string) {
+  const slug = loc === site ? '' : loc.slice(site.length + 1);
+  if (slug === '' || slug === 'actualites' || slug === 'combats-a-venir' || slug === 'resultats-boxe') return 'daily';
+  return 'weekly';
+}
+
 function imageLoc(site: string, path?: string) {
   if (!path || path.includes('undefined')) return '';
   const abs = path.startsWith('http') ? path : `${site}${path.startsWith('/') ? path : `/${path}`}`;
@@ -68,7 +97,7 @@ export const GET: APIRoute = async () => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls
   .map(
-    (u) => `  <url><loc>${xml(u.loc)}</loc><lastmod>${xml(u.lastmod)}</lastmod>${imageLoc(site, u.image)}</url>`,
+    (u) => `  <url><loc>${xml(u.loc)}</loc><lastmod>${xml(u.lastmod)}</lastmod><changefreq>${changefreq(u.loc, site)}</changefreq><priority>${priority(u.loc, site)}</priority>${imageLoc(site, u.image)}</url>`,
   )
   .join('\n')}
 </urlset>`;

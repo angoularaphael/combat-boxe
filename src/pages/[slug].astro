@@ -153,6 +153,18 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
           ))}
         </>
       )}
+      {template === 'news' && (
+        <script is:inline>
+          (function () {
+            var q = (new URLSearchParams(location.search).get('q') || '').trim().toLowerCase();
+            if (!q) return;
+            document.querySelectorAll('.row-card').forEach(function (card) {
+              var text = (card.textContent || '').toLowerCase();
+              if (text.indexOf(q) === -1) card.hidden = true;
+            });
+          })();
+        </script>
+      )}
 
       {showCover && (
         <Cover

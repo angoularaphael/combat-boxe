@@ -1,4 +1,8 @@
+import keywords from '../data/seo-keywords.json';
+
 const SITE = 'https://combat-boxe.com';
+
+export const searchKeywords = [...keywords.principaux, ...keywords.longue_traine];
 
 export function canonical(path) {
   if (!path || path === '/') return SITE;
@@ -103,6 +107,7 @@ export const organizationLd = {
     height: 512,
   },
   image: canonical('/img/og-combat-boxe.jpg'),
+  knowsAbout: searchKeywords,
   description:
     'Média indépendant sur les combats de boxe, les résultats, les calendriers, les boxeurs, les clubs et les entraîneurs.',
 };
@@ -115,4 +120,9 @@ export const websiteLd = {
   alternateName: 'Combat-Boxe.com',
   inLanguage: 'fr-FR',
   publisher: { '@id': `${SITE}/#organization` },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE}/actualites?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
 };
