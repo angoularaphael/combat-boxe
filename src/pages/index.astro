@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
 import { photosForVersus, posterForVersus } from '../lib/portraits';
+import { editionPath, editionTitle } from '../lib/archive';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
 import ClipRow from '../components/ClipRow.astro';
@@ -12,14 +13,19 @@ import ClipRow from '../components/ClipRow.astro';
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const une = articles[0] ? { ...articles[0], data: liveArticle(articles[0].data) } : null;
+const todayKey = parisDayKey(new Date());
+const todayArticles = articles.filter((item) => parisDayKey(item.data.date) === todayKey);
+const editionArticles = todayArticles.length
+  ? todayArticles
+  : articles.filter((item) => articles[0] && parisDayKey(item.data.date) === parisDayKey(articles[0].data.date));
+const uneEntry = editionArticles[0] || null;
+const une = uneEntry ? { ...uneEntry, data: liveArticle(uneEntry.data) } : null;
 const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
 const coachPhoto = coachs.find((c) => c.photo && c.slug !== 'valentin-guth');
 const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
 const unePoster = une ? posterForVersus(une.data.coverVersus || '') : '';
 const uneImage = unePoster || une?.data.photo || unePhotos[0] || une?.data.image || '/img/og-combat-boxe.jpg';
 const editions = groupArticlesByDay(articles);
-const todayKey = parisDayKey(new Date());
 const upcomingGalasAll = galas
   .filter((gala) => String(gala.date) >= todayKey)
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
@@ -32,7 +38,7 @@ const resultsAll = combats
 const upcomingGalas = upcomingGalasAll.slice(0, 2);
 const upcoming = upcomingAll.slice(0, 2);
 const results = resultsAll.slice(0, 2);
-const suite = articles.slice(1, 5).map((item) => ({ ...item, data: liveArticle(item.data) }));
+const suite = editionArticles.slice(1).map((item) => ({ ...item, data: liveArticle(item.data) }));
 const watch = upcomingAll
   .flatMap((fight) =>
     (fight.clips || []).map((clip) => ({
@@ -93,24 +99,30 @@ const jsonLd = graph(
         ))}
       </ul>
       {suite.length > 0 && (
-        <ol class="sheet-index">
-          {suite.map((item, index) => (
-            <li>
-              <a href={`/${item.data.slug}`}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{item.data.h1}</strong>
-              </a>
-            </li>
-          ))}
-        </ol>
+        <>
+          <h2 class="sheet-day">{editionTitle(une.data.date)}</h2>
+          <ol class="sheet-index">
+            {suite.map((item, index) => (
+              <li>
+                <a href={`/${item.data.slug}`}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{item.data.h1}</strong>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </>
       )}
-      <p class="sheet-more"><a href="/actualites">Toutes les actualités</a></p>
+      <p class="sheet-more">
+        <a href={une ? editionPath(une.data.date) : '/actualites'}>L'édition du jour</a>
+        <a href="/actualites">Toutes les actualités</a>
+      </p>
     </div>
   </section>
 
   <section class="section days-band">
     <div class="wrap">
-      <DaysNav editions={editions} label="Actualités par jour" />
+      <DaysNav editions={editions} current={todayKey} label="Actualités par jour" />
     </div>
   </section>
 

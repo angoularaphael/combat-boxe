@@ -2486,6 +2486,11 @@ a {
   text-transform: uppercase;
 }
 
+.sheet-day {
+  margin: 22px 0 8px;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
 .sheet-index {
   margin: 26px 0 0;
   padding: 0;
@@ -2525,6 +2530,9 @@ a {
 }
 
 .sheet-more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
   margin: 8px 0 0;
 }
 
