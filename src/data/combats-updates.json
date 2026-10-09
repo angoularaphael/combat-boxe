@@ -6,11 +6,42 @@
     "venue": "Capitole de Québec",
     "time": "10:00 AM EST",
     "channel": "DAZN",
-    "aboutA": "The Ring présente Iglesias comme le « boogeyman » de la division des super-moyens.",
-    "aboutB": "The Ring indique que Zaren accueille l’occasion de tenter de créer la surprise face à Iglesias.",
-    "analysis": "Iglesias et Zaren sont annoncés au Capitole de Québec pour un combat de championnat IBF des super-moyens, disputé sur douze rounds selon le calendrier consulté.\n\nLa soirée comprend également Mathieu contre Shishkin, Santana contre Asanau et Khataev contre McCrory. Les trois combats d’undercard sont annoncés en direct sur DAZN par The Ring.\n\nLes pages consultées ne donnent pas ici de bilan détaillé ni de résultat pour les deux boxeurs. Elles permettent de confirmer le cadre du combat, mais pas d’établir une comparaison sportive étayée.",
+    "status": "dispute",
+    "winner": "Osleys Iglesias",
+    "method": "Arrêt au septième round",
+    "decision": "1 min 31 s",
+    "aboutA": "Osleys Iglesias conserve les titres IBF et IBO. Il passe à 16 victoires, aucune défaite, dont 15 arrêts.",
+    "aboutB": "Oliver Zaren, préparé par Mikkel Kessler, subit sa première défaite et tombe à 19 victoires, 1 défaite et 1 nul.",
+    "analysis": "Le 8 octobre 2026, au Capitole de Québec, Iglesias a arrêté Zaren à 1 min 31 s du septième round. Eddie Claudio a stoppé le combat quand la serviette est arrivée du coin. Zaren avait été envoyé deux fois au tapis au sixième round.\n\nC'était la première défense IBF d'Iglesias, et la sixième de son titre IBO. La carte Eye of the Tiger était suivie sur DAZN. La pesée de la veille les avait donnés à 167,6 et 167,7 livres.\n\nSur la même soirée, Mathieu a battu Shishkin aux points, décision partagée. Beaudoin a dominé Alfonzo par décision unanime. Khataev a arrêté McCrory au premier round. Asanau a battu Santana aux points.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-10-08",
+    "boxerA": "Mathieu",
+    "boxerB": "Shishkin",
+    "status": "dispute",
+    "winner": "Wilkens Mathieu",
+    "method": "Décision partagée",
+    "decision": "98-92, 98-92, 93-97"
+  },
+  {
+    "date": "2026-10-08",
+    "boxerA": "Santana",
+    "boxerB": "Asanau",
+    "status": "dispute",
+    "winner": "Dzmitry Asanau",
+    "method": "Décision unanime",
+    "decision": "98-91, 98-91, 97-92"
+  },
+  {
+    "date": "2026-10-08",
+    "boxerA": "Khataev",
+    "boxerB": "McCrory",
+    "status": "dispute",
+    "winner": "Imam Khataev",
+    "method": "Arrêt au premier round",
+    "decision": "1 min 09 s"
   },
   {
     "date": "2026-10-09",
@@ -28,10 +59,10 @@
     ],
     "venue": "La Soucoupe",
     "time": "19h à 23h50",
-    "aboutA": "Brice Clavier, boxeur nazairien, affiche 14 victoires, 7 défaites et 1 match nul. La Ville mentionne plusieurs succès convaincants devant son public.",
-    "aboutB": "Gaëtan Ntambwe est présenté comme un adversaire redoutable, prêt à livrer une bataille sans concession. Aucun bilan n’est donné.",
-    "analysis": "Le championnat de France professionnel des lourds-légers est annoncé sur dix rounds de trois minutes à La Soucoupe, à Saint-Nazaire.\n\nClavier arrive avec un bilan connu et plusieurs succès mentionnés devant son public. Ntambwe est décrit comme un adversaire redoutable, mais la page ne précise pas son bilan ni son parcours.\n\nLa ceinture nationale et le contexte local donnent à l’affiche son relief. Les éléments publiés ne permettent pas de comparer plus précisément les styles des deux boxeurs.",
-    "prediction": "Le bilan de Clavier et les succès annoncés devant son public constituent les seuls repères de comparaison explicitement publiés.\n\nAvec ces éléments et l’avantage de salle, Brice Clavier est le vainqueur pressenti.",
+    "aboutA": "Brice Clavier, 34 ans, de la Team Cazeaux, est à 14 victoires dont 7 avant la limite, 7 défaites dont 3 avant la limite, et 1 match nul. Il est co-challenger pour le titre.",
+    "aboutB": "Gaëtan Ntambwe, 31 ans, d'Hénin-Beaumont, est à 11 victoires et 2 défaites. Il est lui aussi co-challenger. Bronze aux championnats de l'Union européenne en 2018, champion de France amateur des mi-lourds en 2019.",
+    "analysis": "Le titre de France des lourds-légers se joue ce 9 octobre à La Soucoupe, en dix rounds de trois minutes. Ni Clavier ni Ntambwe n'est tenant : Ouest-France les présente tous les deux comme co-challengers, pour une seconde chance de prendre la ceinture.\n\nEn mars 2023, Clavier s'était incliné par KO dès la première reprise à Cayenne contre Léonardo Mosquea. Ntambwe a été dominé en mars dernier par Sofiane Abdeljabbar. Le bilan du Nazairien est plus chargé en défaites. Celui de Ntambwe est plus court, et plus propre.\n\nSur la même carte, Romain Bartra rencontre Patrik Velky chez les welters, en six reprises. Velky est à 5 victoires, 6 défaites et 1 nul. Cinq combats amateurs complètent la soirée. La Ville annonce le gala de 19 h à 23 h 50.",
+    "prediction": "Clavier lui-même lit le style amateur de Ntambwe comme un problème : il avance un 70-30 en faveur de son adversaire. Son entraîneur, Stéphane Cazeaux, ramène le combat à 50-50 à cause du public de La Soucoupe.\n\nLe bilan plus propre de Ntambwe et cette lecture du style pèsent plus que l'avantage de salle, que le coin ne présente pas comme décisif. Gaëtan Ntambwe est le vainqueur pressenti.",
     "sourceUrl": "https://www.saintnazaire.fr/agenda/championnat-de-france-de-boxe-professionnelle-et-3-combats-pro/"
   },
   {

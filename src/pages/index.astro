@@ -24,7 +24,7 @@ const upcomingGalasAll = galas
   .filter((gala) => String(gala.date) >= todayKey)
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 const upcomingAll = combats
-  .filter((c) => c.status === 'a-venir')
+  .filter((c) => c.status === 'a-venir' && String(c.date) >= todayKey)
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 const resultsAll = combats
   .filter((c) => c.status === 'dispute')
