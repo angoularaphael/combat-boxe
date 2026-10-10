@@ -71,10 +71,10 @@
     "boxerB": "Lucas Bahdi",
     "venue": "Wintrust Arena",
     "time": "",
-    "channel": "DAZN et DAZN Global",
+    "channel": "DAZN & DAZN Global",
     "aboutA": "",
     "aboutB": "",
-    "analysis": "Schofield et Bahdi doivent se disputer le titre mondial WBA vacant des poids légers à Chicago. Le calendrier indique un combat de douze rounds à la Wintrust Arena.\n\nRicardo Sandoval contre Sergio Mendoza, pour le titre WBC des poids mouches, figure également à l’affiche. Le programme mentionne aussi Abdullaev contre Agrba et Walsh contre Craycraft.\n\nLes pages consultées ne fournissent pas de bilans détaillés pour Schofield et Bahdi. Sans ces éléments, l’analyse peut situer l’enjeu et la carte, mais pas dégager un favori.",
+    "analysis": "Schofield et Bahdi sont programmés à Chicago sur douze rounds, en poids légers, pour le titre mondial WBA vacant. C’est le seul enjeu sportif explicitement précisé dans le programme consulté.\n\nLe Wintrust Arena accueille aussi le combat pour le titre WBC des poids mouches entre Ricardo Sandoval et Sergio Mendoza. La carte comprend également Abdullaev contre Agrba et Walsh contre Craycraft.\n\nLes pages consultées ne donnent pas ici de bilan, de parcours récent ni d’élément de style permettant de départager Schofield et Bahdi. L’analyse reste donc centrée sur le titre vacant et le format annoncé.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   },
@@ -142,10 +142,10 @@
     "boxerB": "Sergio Mendoza",
     "venue": "Wintrust Arena",
     "time": "",
-    "channel": "DAZN",
+    "channel": "DAZN & DAZN Global",
     "aboutA": "Ricardo Sandoval est annoncé pour un combat de championnat WBC des poids mouches. Les pages consultées ne donnent pas son bilan ni son parcours.",
     "aboutB": "Sergio Mendoza est annoncé comme l’adversaire de Sandoval pour le titre WBC des poids mouches. Les pages consultées ne donnent pas son bilan ni son parcours.",
-    "analysis": "Le combat est programmé à Chicago sur la distance de douze rounds, pour le titre WBC des poids mouches.\n\nLes informations disponibles établissent l’enjeu et le cadre, mais ne décrivent ni les styles ni les résultats précédents des deux boxeurs.\n\nL’affiche est associée à la carte de Schofield-Bahdi au Wintrust Arena.",
+    "analysis": "Sandoval et Mendoza sont annoncés pour le titre mondial WBC des poids mouches, sur douze rounds. Le WBC a indiqué le 9 octobre que les deux boxeurs avaient fait le poids, sans que les pages consultées ne précisent les chiffres de la pesée.\n\nLe combat se tient à Chicago au Wintrust Arena, sur la même carte que Schofield contre Bahdi, annoncé pour le titre mondial WBA des poids légers.\n\nAucun bilan, parcours récent ou élément de style détaillé des deux boxeurs n’est fourni dans les pages du jour. Ces informations ne permettent donc pas d’établir un avantage sportif ni un pronostic.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   },
@@ -161,5 +161,31 @@
     "analysis": "Le WBC annonce que Samuel Molina défendra le titre WBC International Silver des poids welters face à Mohammed Sahnoun. Le calendrier situe le combat le 24 octobre à Malaga. Les pages disponibles ne précisent ni la salle, ni l’horaire, ni le diffuseur.",
     "prediction": "",
     "sourceUrl": "https://wbcboxing.com/en/news/"
+  },
+  {
+    "date": "2026-10-10",
+    "boxerA": "Abdullaev",
+    "boxerB": "Agrba",
+    "venue": "RCC Boxing Academy",
+    "time": "",
+    "channel": "YouTube US & YouTube UK",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Abdullaev et Agrba figurent au programme du 10 octobre à Ekaterinbourg, en Russie. Le combat est annoncé en super-légers, sans durée précisée dans la page consultée.\n\nLe programme indique la RCC Boxing Academy comme salle et YouTube US ainsi que YouTube UK comme diffuseurs. Il ne précise pas de titre en jeu pour cette rencontre.\n\nLes informations disponibles ne comportent ni bilans ni éléments de parcours ou de style pour les deux boxeurs. Elles permettent de situer l’affiche, mais pas d’en tirer une lecture comparative.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-10-10",
+    "boxerA": "Walsh",
+    "boxerB": "Craycraft",
+    "venue": "Memorial Hall",
+    "time": "",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Walsh et Craycraft sont programmés à Memorial Hall, à Kansas City, le 10 octobre. La rencontre est annoncée sur huit rounds en poids moyens.\n\nLa page de programme consultée ne mentionne ni titre en jeu ni chaîne pour ce combat. Elle le situe sur la même journée de boxe que les affiches Schofield-Bahdi, Sandoval-Mendoza et Abdullaev-Agrba.\n\nAucun bilan, résultat précédent ou détail de style n’est fourni pour Walsh ou Craycraft dans les pages consultées. Sans ces éléments, il n’est pas possible de distinguer un avantage sportif ni de construire un pronostic documenté.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
 ]
