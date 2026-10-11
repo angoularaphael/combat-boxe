@@ -98,19 +98,24 @@
         "url": "https://www.bbc.co.uk/programmes/p0p7n5xt",
         "sourceName": "BBC Radio 5 Live"
       }
-    ]
+    ],
+    "venue": "The O2 arena",
+    "time": "Ouverture des portes à 16 h",
+    "channel": "DAZN PPV et DAZN PPV UK",
+    "analysis": "Le combat est annoncé comme un match revanche pour le championnat du monde des poids lourds. Il se tiendra le 17 octobre à The O2, à Londres. Les pages consultées ne donnent pas ici de bilan ni de détails de parcours permettant d’étoffer la comparaison sportive.",
+    "sourceUrl": "https://www.theo2.co.uk/events/detail/dubois-vs-wardley-2"
   },
   {
     "date": "2026-11-28",
     "boxerA": "Agit Kabayel",
     "boxerB": "Nelson Hysa",
-    "venue": "ESPRIT Arena, Düsseldorf",
+    "venue": "ESPRIT Arena",
     "time": "",
     "channel": "DAZN",
-    "aboutA": "Agit Kabayel est champion du monde WBC des poids lourds. Il affiche 27 victoires, dont 19 par KO. Il a remporté le titre intérimaire en mettant KO Zhilei Zhang au sixième round, puis a stoppé Damian Knyba au troisième round en janvier 2026. Il a été élevé au rang de champion du monde en juin 2026.",
-    "aboutB": "Nelson Hysa est invaincu avec 25 victoires, dont 23 par KO. Il a remporté plusieurs titres sur le circuit européen des poids lourds, dont le titre WBC CISBB en novembre 2023.",
-    "analysis": "Kabayel disputera la première défense de son titre mondial WBC des poids lourds. Le champion arrive avec une série de victoires décrite par le WBC, dont deux succès par arrêt cités dans la présentation du combat.\n\nHysa présente lui aussi un bilan invaincu et un taux de KO élevé. Le WBC présente cette rencontre comme la plus grande occasion de sa carrière à ce jour.\n\nLe combat oppose donc deux hommes invaincus, avec la ceinture mondiale de Kabayel en jeu. Le champion doit défendre son titre devant son public à Düsseldorf.",
-    "prediction": "Les deux boxeurs arrivent invaincus et possèdent des bilans marqués par les victoires avant la limite. Le WBC souligne la puissance de Hysa, tandis que Kabayel défend sa ceinture devant son public.\n\nSur la base de ces éléments, Agit Kabayel est le vainqueur pressenti.",
+    "aboutA": "Kabayel est annoncé avec un bilan de 27 victoires, dont 19 par KO. Il a remporté le titre intérimaire WBC en arrêtant Zhilei Zhang au sixième round en février 2025, puis a arrêté Damian Knyba au troisième round en janvier 2026. Il a été élevé au rang de champion WBC à part entière en juin 2026.",
+    "aboutB": "Hysa est annoncé invaincu avec 25 victoires, dont 23 par KO. Il a remporté le titre WBC CISBB le 18 novembre 2023 et se présente comme challenger pour le championnat du monde.",
+    "analysis": "Le combat met aux prises deux boxeurs invaincus pour la première défense du titre mondial WBC des poids lourds de Kabayel. Le champion disputera cette défense à domicile, à Düsseldorf, tandis que Hysa se présente avec un bilan de 25 victoires et 23 KO.\n\nLe parcours de Kabayel comprend deux étapes récentes clairement documentées : son succès sur Zhang pour le titre intérimaire, puis l’arrêt de Knyba lors de la défense de cette ceinture. Hysa arrive avec une série d’invincibilité et une forte proportion de victoires par KO, ainsi qu’un titre WBC CISBB remporté en 2023.\n\nLa rencontre oppose donc le champion établi à un challenger invaincu qui vise la plus grande victoire de sa carrière. Le titre mondial et l’avantage de la salle pour Kabayel donnent un relief particulier à cette première défense.",
+    "prediction": "Les deux hommes affichent des bilans sans défaite, et les sources soulignent la puissance de frappe de Hysa ainsi que les résultats de championnat récents de Kabayel. Le rendez-vous se présente comme une défense exigeante pour le champion.\n\nAu vu de son statut de champion, de ses victoires récentes de premier plan et de l’avantage de combattre à domicile, le vainqueur pressenti est Agit Kabayel.",
     "sourceUrl": "https://wbcboxing.com/en/agit-kabayel-to-defend-wbc-world-heavyweight-title-against-nelson-hysa/",
     "clips": [
       {
@@ -185,6 +190,19 @@
     "aboutA": "",
     "aboutB": "",
     "analysis": "Walsh et Craycraft sont programmés à Memorial Hall, à Kansas City, le 10 octobre. La rencontre est annoncée sur huit rounds en poids moyens.\n\nLa page de programme consultée ne mentionne ni titre en jeu ni chaîne pour ce combat. Elle le situe sur la même journée de boxe que les affiches Schofield-Bahdi, Sandoval-Mendoza et Abdullaev-Agrba.\n\nAucun bilan, résultat précédent ou détail de style n’est fourni pour Walsh ou Craycraft dans les pages consultées. Sans ces éléments, il n’est pas possible de distinguer un avantage sportif ni de construire un pronostic documenté.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-10-17",
+    "boxerA": "Sebastian Fundora",
+    "boxerB": "Ermal Hadribeaj",
+    "venue": "The Cosmopolitan",
+    "time": "",
+    "channel": "DAZN et DAZN Global",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Fundora et Hadribeaj sont annoncés pour le titre mondial WBC des super-welters à Las Vegas. La carte mentionnée autour du combat comprend également Brandon Figueroa contre Kameda et Reséndiz contre Mazoudier.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
