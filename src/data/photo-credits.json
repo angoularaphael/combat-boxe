@@ -676,5 +676,25 @@
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=52515715",
     "wikiTitle": "Walsh",
     "aliases": []
+  },
+  {
+    "name": "Willy Kyakonye",
+    "slug": "willy-kyakonye",
+    "path": "/img/boxers/willy-kyakonye.jpg",
+    "license": "editorial",
+    "artist": "New Vision",
+    "pageUrl": "https://www.newvision.co.ug/category/sports/kyakonye-faces-unbeaten-morejon-for-wbc-silve-NV_242024_102026",
+    "wikiTitle": "",
+    "aliases": ["Kyakonye"]
+  },
+  {
+    "name": "Angelo Morejon",
+    "slug": "angelo-morejon",
+    "path": "/img/boxers/angelo-morejon.jpg",
+    "license": "editorial",
+    "artist": "World Boxing Council",
+    "pageUrl": "https://wbcboxing.com/en/angelo-morejon-crowned-wbc-mediterranean-champion/",
+    "wikiTitle": "",
+    "aliases": ["Morejon", "Angelo Morejón"]
   }
 ]

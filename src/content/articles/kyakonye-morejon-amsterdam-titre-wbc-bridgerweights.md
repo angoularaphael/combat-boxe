@@ -1,16 +1,16 @@
 ---
 slug: kyakonye-morejon-amsterdam-titre-wbc-bridgerweights
-title: "Willy Kyakonye et Angelo Morejon annoncés pour un titre WBC à Amsterdam"
-description: "Le WBC annonce Willy Kyakonye face à Angelo Morejon le 12 octobre à Amsterdam pour un titre des poids bridger. Les pages consultées ne précisent ni salle, ni heure, ni chaîne."
-h1: "Willy Kyakonye et Angelo Morejon, un rendez-vous WBC à Amsterdam"
-date: 2026-10-12T08:00:00
+title: "Kyakonye-Morejon ce soir à Amsterdam : titre WBC Silver bridger"
+description: "Ce soir à Amsterdam, Willy Kyakonye affronte Angelo Morejon pour le titre WBC Silver des poids bridger, au Theater Carré, Ben Bril Memorial."
+h1: "Kyakonye contre Morejon ce soir au Carré d'Amsterdam"
+date: 2026-10-12T13:30:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/posters/kyakonye-morejon.jpg
+imageAlt: "Affiche Kyakonye contre Morejon au Ben Bril Memorial d'Amsterdam"
 coverVersus: "Willy Kyakonye / Angelo Morejon"
-coverMeta: "12 octobre 2026 · Amsterdam · poids bridger"
+coverMeta: "12 octobre 2026 · Theater Carré, Amsterdam · poids bridger"
 breadcrumbs:
   - href: /actualites
     label: Actualités
@@ -21,25 +21,21 @@ pillars:
     label: "Combats a venir"
 sources:
   - name: "World Boxing Council"
-    url: https://wbcboxing.com/en/events/
+    url: https://wbcboxing.com/en/willy-kyakonye-and-angelo-morejon-to-fight-for-wbc-silver-bridgerweight-title-in-amsterdam/
+  - name: "Willy Kyakonye"
+    url: https://www.willykyakonye.com/en
 ---
 
-Le 12 octobre 2026, Willy Kyakonye et Angelo Morejon sont annoncés à Amsterdam, aux Pays-Bas, dans un combat associé au titre WBC des poids bridger. Les pages consultées ne précisent ni la salle, ni l’heure, ni la chaîne de diffusion : ces éléments restent donc à confirmer.
+Ce lundi 12 octobre 2026, Willy Kyakonye et Angelo Morejon ouvrent le Ben Bril Memorial au Theater Carré d'Amsterdam. Le WBC programme le duel pour le titre Silver des poids bridger. L'affiche officielle fixe le premier combat de la soirée à 19 h.
 
-L’annonce du WBC présente Kyakonye comme un boxeur néerlandais. Elle ne donne pas de bilan professionnel, de résultat récent ni d’élément sur son parcours. Il serait donc prématuré de dessiner son style ou de lui attribuer un avantage qui ne figure pas dans les informations disponibles.
+Kyakonye, né en Ouganda et basé aux Pays-Bas, arrive avec 14 victoires, dont 13 avant la limite, sans défaite. Pour cette soirée, il descend des poids lourds vers les bridger. Le WBC le classe neuvième de la catégorie. Il boxe devant son public.
 
-Pour Kyakonye, le seul repère confirmé ici est le cadre du combat : une opposition inscrite au calendrier du WBC et associée à un titre de la catégorie bridger. La portée exacte de l’enjeu pour lui — défense, conquête ou autre configuration — n’est pas détaillée par la page.
+En face, Angelo Morejon, gaucher cubain installé en Italie, détient le titre national italien des lourds. Son bilan publié par le WBC : 11 victoires, dont 8 arrêts, aucune défaite. Il est cinquième au classement WBC bridger, quatre places devant Kyakonye.
 
-En face, Angelo Morejon est présenté comme Cubain et Italien. Là encore, aucune page consultée ne fournit son bilan, son dernier combat ou des détails sur sa trajectoire professionnelle. Le présenter comme un frappeur, un technicien ou un outsider reviendrait à combler les silences de la source par des suppositions.
+La ceinture Silver ouvre une porte dans une division menée, côté WBC, par le Belge Ryad Merhy. Ni Kyakonye ni Morejon n'est champion du monde : le vainqueur gagne un titre régional et un argument de classement.
 
-Le contraste géographique, avec Kyakonye annoncé des Pays-Bas et Morejon associé à Cuba et à l’Italie, donne une dimension internationale à l’affiche. Il ne suffit toutefois pas à établir un avantage sportif : la page ne précise pas où les deux boxeurs résident, ni lequel pourrait bénéficier d’un soutien particulier dans la salle.
+Les pages du WBC et l'agenda du boxeur confirment la salle et la date. Elles ne précisent pas la chaîne de diffusion. Le promoteur cité par le WBC est Aart Boendermaker.
 
-Le WBC rattache cette rencontre à la catégorie bridgerweight et à son titre. Cette mention place l’affiche dans un contexte de championnat, mais ne permet pas de savoir si une ceinture sera effectivement disputée selon quelles modalités, ni qui en serait le détenteur avant la rencontre.
+Deux invaincus, beaucoup d'arrêts de chaque côté, une salle hollandaise pour Kyakonye et un gaucher mieux classé en face : le contraste est net. Le reste de la carte n'est pas détaillé dans les pages consultées.
 
-Les informations disponibles ne citent pas d’autres combats sur la même soirée. La carte autour de l’affiche reste donc inconnue dans les pages consultées, tout comme les détails pratiques qui permettraient de suivre l’événement.
-
-La lecture du duel devra attendre des éléments plus concrets : bilans, combats précédents et précisions sur le titre en jeu. Sans ces repères, toute comparaison des forces ou des styles serait fragile et risquerait de transformer une annonce succincte en récit inventé.
-
-Pour l’heure, le fait marquant est la programmation à Amsterdam d’une opposition entre deux boxeurs associés à des pays différents, sous l’étiquette d’un titre WBC des poids bridger. La rencontre est annoncée, mais les informations nécessaires pour établir une hiérarchie sportive ne sont pas présentes.
-
-En l’absence de bilan, de statut de champion précisé, de combat précédent ou d’avantage de salle établi dans les pages, aucun vainqueur pressenti ne peut être nommé.
+Le public d'Amsterdam et la cadence d'arrêts de Kyakonye (13 sur 14) donnent un appui concret à l'hôte. Morejon arrive mieux classé et gaucher, avec huit arrêts sur onze. Sur la longueur d'un titre Silver, le soutien de salle et la puissance déjà montrée font pencher pour Kyakonye, à domicile, avant la limite ou aux points. Si Morejon impose sa main gauche tôt, le pronostic bascule.

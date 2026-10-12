@@ -24,7 +24,11 @@ const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
 const coachPhoto = coachs.find((c) => c.photo && c.slug !== 'valentin-guth');
 const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
 const unePoster = une ? posterForVersus(une.data.coverVersus || '') : '';
-const uneImage = unePoster || une?.data.photo || unePhotos[0] || une?.data.image || '/img/og-combat-boxe.jpg';
+const uneImageRaw = unePoster || une?.data.photo || unePhotos[0] || une?.data.image || '';
+const uneImage =
+  uneImageRaw && !String(uneImageRaw).includes('og-combat-boxe')
+    ? uneImageRaw
+    : unePhotos[0] || '/img/scene-ropes.jpg';
 const editions = groupArticlesByDay(articles);
 const upcomingGalasAll = galas
   .filter((gala) => String(gala.date) >= todayKey)
