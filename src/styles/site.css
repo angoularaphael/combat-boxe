@@ -2428,7 +2428,7 @@ a {
   color: #fff;
   font-size: clamp(1.85rem, 8vw, 5rem);
   line-height: 1.05;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .stage-copy p {
