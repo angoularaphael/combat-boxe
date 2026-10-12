@@ -2361,7 +2361,6 @@ a {
 .stage {
   position: relative;
   display: grid;
-  min-height: 420px;
   overflow: hidden;
   background: #101820;
   color: #fff;
@@ -2374,6 +2373,7 @@ a {
 
 .stage-visual {
   display: grid;
+  min-width: 0;
 }
 
 .stage-visual.is-split {
@@ -2381,11 +2381,27 @@ a {
 }
 
 .stage-visual img {
+  display: block;
   width: 100%;
-  height: 280px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
-  object-position: center 28%;
+  object-position: center top;
   animation: stage-settle 900ms ease both;
+}
+
+.stage-visual.is-split img {
+  aspect-ratio: 4 / 5;
+  max-height: 420px;
+  object-position: center top;
+}
+
+.stage-visual.is-poster img {
+  aspect-ratio: 16 / 9;
+  max-height: none;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .stage-copy {
@@ -2393,12 +2409,13 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   gap: 10px;
+  min-width: 0;
   padding: 20px 16px 28px;
 }
 
 .stage-kicker {
   font-family: var(--display);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2406,17 +2423,20 @@ a {
 }
 
 .stage-copy h1 {
-  max-width: 14ch;
+  max-width: none;
   margin: 0;
   color: #fff;
-  font-size: clamp(2.4rem, 9vw, 5rem);
+  font-size: clamp(1.85rem, 8vw, 5rem);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
 }
 
 .stage-copy p {
   max-width: 42ch;
   margin: 0;
   color: #e7eef3;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 @keyframes stage-settle {
@@ -2725,27 +2745,55 @@ a {
   }
 }
 
+@media (min-width: 720px) {
+  .stage-copy h1 {
+    max-width: 18ch;
+  }
+
+  .stage-copy p {
+    font-size: 16px;
+  }
+
+  .stage-kicker {
+    font-size: 15px;
+  }
+}
+
 @media (min-width: 900px) {
   .stage {
-    grid-template-columns: 1.35fr 320px;
+    grid-template-columns: 1.35fr minmax(280px, 360px);
     min-height: 480px;
   }
 
   .stage:has(.is-poster) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
   }
 
   .stage-visual img {
-    height: 480px;
+    height: 100%;
+    min-height: 480px;
+    aspect-ratio: auto;
   }
 
-  .stage:has(.is-poster) .stage-visual img {
-    height: 560px;
+  .stage-visual.is-poster img {
+    min-height: 520px;
+    aspect-ratio: auto;
+    object-position: center center;
+  }
+
+  .stage-visual.is-split img {
+    max-height: none;
+    min-height: 480px;
   }
 
   .stage-copy {
     justify-content: center;
     padding: 40px 36px;
+  }
+
+  .stage-copy h1 {
+    max-width: 14ch;
+    font-size: clamp(2.4rem, 4vw, 5rem);
   }
 
   .bill-grid {
