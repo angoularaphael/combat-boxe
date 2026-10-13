@@ -1869,6 +1869,24 @@ a {
   padding: 0 12px 12px;
 }
 
+.archive-month-body {
+  padding: 0 12px 14px;
+}
+
+.archive-month-body .fight-grid,
+.archive-month-body .day-list,
+.archive-month-body .edition-block {
+  margin-top: 4px;
+}
+
+.archive-month-body .edition-block + .edition-block {
+  margin-top: 18px;
+}
+
+.news-archive {
+  margin-top: 18px;
+}
+
 .days-chip {
   display: flex;
   flex-direction: column;

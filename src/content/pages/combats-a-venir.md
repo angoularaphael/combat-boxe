@@ -11,4 +11,4 @@ breadcrumbs:
     label: Combats à venir
 ---
 
-Les combats annoncés, un par un. Les soirées sont sur les [galas](/galas-boxe). Les dates, dans l'ordre, sont sur le [calendrier](/calendrier-combats-boxe).
+Seuls les combats dont la date n'est pas encore passée. Classés par mois. Les verdicts déjà connus sont dans les [résultats et archives](/resultats-boxe). Les soirées sont sur les [galas](/galas-boxe).

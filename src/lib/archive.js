@@ -43,3 +43,37 @@ export function groupEditionsByMonth(editions = []) {
   }
   return [...map.entries()];
 }
+
+/** Aujourd'hui Paris en YYYY-MM-DD. */
+export function parisTodayKey(now = new Date()) {
+  return parisDayKey(now);
+}
+
+/**
+ * Regroupe des objets avec un champ date (YYYY-MM-DD ou Date) par mois.
+ * Ordre des mois : plus recent d'abord. Ordre interne conserve celui de `items`.
+ */
+export function groupItemsByMonth(items = [], getDate = (item) => item.date) {
+  const map = new Map();
+  for (const item of items) {
+    const raw = getDate(item);
+    const day = raw instanceof Date ? parisDayKey(raw) : String(raw || '').slice(0, 10);
+    const mk = monthKeyFromDay(day);
+    if (!mk) continue;
+    if (!map.has(mk)) map.set(mk, []);
+    map.get(mk).push(item);
+  }
+  return [...map.entries()];
+}
+
+export function isUpcomingDate(date, today = parisTodayKey()) {
+  return String(date || '') >= today;
+}
+
+export function isUpcomingCombat(fight, today = parisTodayKey()) {
+  return fight?.status === 'a-venir' && isUpcomingDate(fight.date, today);
+}
+
+export function isResultCombat(fight) {
+  return fight?.status === 'dispute';
+}

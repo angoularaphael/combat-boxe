@@ -11,4 +11,4 @@ breadcrumbs:
     label: Galas
 ---
 
-Chaque carte est une soirée : date, ville, affiche. Le combat isolé est sur les [combats à venir](/combats-a-venir).
+Les soirées à venir d'abord, puis les archives par mois. Le combat isolé reste sur les [combats à venir](/combats-a-venir).

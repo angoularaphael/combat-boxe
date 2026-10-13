@@ -47,6 +47,10 @@
     "date": "2026-10-09",
     "boxerA": "Brice Clavier",
     "boxerB": "Gaëtan Ntambwe",
+    "status": "dispute",
+    "winner": "Gaëtan Ntambwe",
+    "method": "Décision aux points",
+    "decision": "Titre de France des lourds-légers",
     "clips": [
       {
         "kind": "interview",
@@ -59,24 +63,28 @@
     ],
     "venue": "La Soucoupe",
     "time": "19h à 23h50",
-    "aboutA": "Brice Clavier, 34 ans, de la Team Cazeaux, est à 14 victoires dont 7 avant la limite, 7 défaites dont 3 avant la limite, et 1 match nul. Il est co-challenger pour le titre.",
-    "aboutB": "Gaëtan Ntambwe, 31 ans, d'Hénin-Beaumont, est à 11 victoires et 2 défaites. Il est lui aussi co-challenger. Bronze aux championnats de l'Union européenne en 2018, champion de France amateur des mi-lourds en 2019.",
-    "analysis": "Le titre de France des lourds-légers se joue ce 9 octobre à La Soucoupe, en dix rounds de trois minutes. Ni Clavier ni Ntambwe n'est tenant : Ouest-France les présente tous les deux comme co-challengers, pour une seconde chance de prendre la ceinture.\n\nEn mars 2023, Clavier s'était incliné par KO dès la première reprise à Cayenne contre Léonardo Mosquea. Ntambwe a été dominé en mars dernier par Sofiane Abdeljabbar. Le bilan du Nazairien est plus chargé en défaites. Celui de Ntambwe est plus court, et plus propre.\n\nSur la même carte, Romain Bartra rencontre Patrik Velky chez les welters, en six reprises. Velky est à 5 victoires, 6 défaites et 1 nul. Cinq combats amateurs complètent la soirée. La Ville annonce le gala de 19 h à 23 h 50.",
-    "prediction": "Clavier lui-même lit le style amateur de Ntambwe comme un problème : il avance un 70-30 en faveur de son adversaire. Son entraîneur, Stéphane Cazeaux, ramène le combat à 50-50 à cause du public de La Soucoupe.\n\nLe bilan plus propre de Ntambwe et cette lecture du style pèsent plus que l'avantage de salle, que le coin ne présente pas comme décisif. Gaëtan Ntambwe est le vainqueur pressenti.",
-    "sourceUrl": "https://www.saintnazaire.fr/agenda/championnat-de-france-de-boxe-professionnelle-et-3-combats-pro/"
+    "aboutA": "Brice Clavier, 34 ans, de la Team Cazeaux. Co-challenger pour le titre de France des lourds-légers.",
+    "aboutB": "Gaëtan Ntambwe, 31 ans, d'Hénin-Beaumont. Champion de France des lourds-légers après Saint-Nazaire.",
+    "analysis": "Le 9 octobre à La Soucoupe, Gaëtan Ntambwe a battu Brice Clavier aux points et remporté le titre de France des lourds-légers.\n\nLes deux hommes étaient co-challengers. Ntambwe s’impose à Saint-Nazaire et prend la ceinture nationale.",
+    "prediction": "",
+    "sourceUrl": "https://fighter-360.com/blog-sports-combat/theo-ticout-champion-ebu-silver-et-ntambwe-titre-le-bilan-des-pros-francais"
   },
   {
     "date": "2026-10-10",
     "boxerA": "Floyd Schofield III",
     "boxerB": "Lucas Bahdi",
+    "status": "dispute",
+    "winner": "Floyd Schofield III",
+    "method": "Décision unanime",
+    "decision": "Titre WBA vacant des poids légers",
     "venue": "Wintrust Arena",
     "time": "",
     "channel": "DAZN & DAZN Global",
     "aboutA": "",
     "aboutB": "",
-    "analysis": "Schofield et Bahdi sont programmés à Chicago sur douze rounds, en poids légers, pour le titre mondial WBA vacant. C’est le seul enjeu sportif explicitement précisé dans le programme consulté.\n\nLe Wintrust Arena accueille aussi le combat pour le titre WBC des poids mouches entre Ricardo Sandoval et Sergio Mendoza. La carte comprend également Abdullaev contre Agrba et Walsh contre Craycraft.\n\nLes pages consultées ne donnent pas ici de bilan, de parcours récent ni d’élément de style permettant de départager Schofield et Bahdi. L’analyse reste donc centrée sur le titre vacant et le format annoncé.",
+    "analysis": "Le 10 octobre à Chicago, Floyd Schofield III a battu Lucas Bahdi par décision unanime sur douze rounds et remporté le titre WBA vacant des poids légers.",
     "prediction": "",
-    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+    "sourceUrl": "https://realcombatmedia.com/2026/10/floyd-schofield-captures-world-title-with-unanimous-decision-victory-over-lucas-bahdi-in-chicago-video-highlights/"
   },
   {
     "date": "2026-10-17",
@@ -147,14 +155,18 @@
     "date": "2026-10-10",
     "boxerA": "Ricardo Sandoval",
     "boxerB": "Sergio Mendoza",
+    "status": "dispute",
+    "winner": "Sergio Mendoza",
+    "method": "Arrêt au cinquième round",
+    "decision": "TKO · titre WBC des poids mouches",
     "venue": "Wintrust Arena",
     "time": "",
     "channel": "DAZN & DAZN Global",
-    "aboutA": "Ricardo Sandoval est annoncé pour un combat de championnat WBC des poids mouches. Les pages consultées ne donnent pas son bilan ni son parcours.",
-    "aboutB": "Sergio Mendoza est annoncé comme l’adversaire de Sandoval pour le titre WBC des poids mouches. Les pages consultées ne donnent pas son bilan ni son parcours.",
-    "analysis": "Sandoval et Mendoza sont annoncés pour le titre mondial WBC des poids mouches, sur douze rounds. Le WBC a indiqué le 9 octobre que les deux boxeurs avaient fait le poids, sans que les pages consultées ne précisent les chiffres de la pesée.\n\nLe combat se tient à Chicago au Wintrust Arena, sur la même carte que Schofield contre Bahdi, annoncé pour le titre mondial WBA des poids légers.\n\nAucun bilan, parcours récent ou élément de style détaillé des deux boxeurs n’est fourni dans les pages du jour. Ces informations ne permettent donc pas d’établir un avantage sportif ni un pronostic.",
+    "aboutA": "Ricardo Sandoval défendait le titre WBC des poids mouches à Chicago.",
+    "aboutB": "Sergio Mendoza remporte le titre WBC des poids mouches par arrêt au cinquième round.",
+    "analysis": "Le 10 octobre à Chicago, Sergio Mendoza a battu Ricardo Sandoval par TKO au cinquième round et est devenu champion WBC des poids mouches.",
     "prediction": "",
-    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+    "sourceUrl": "https://wbcboxing.com/en/news/"
   },
   {
     "date": "2026-10-24",

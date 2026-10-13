@@ -4,11 +4,20 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../data/entities';
-import { editionPath, editionTitle } from '../lib/archive';
+import {
+  editionPath,
+  editionTitle,
+  groupEditionsByMonth,
+  groupItemsByMonth,
+  isUpcomingCombat,
+  isUpcomingDate,
+  parisTodayKey,
+} from '../lib/archive';
 import { articleLd, breadcrumbLd, collectionLd, graph } from '../lib/seo';
 import { articleThumb, photosForVersus } from '../lib/portraits';
 import Cover from '../components/Cover.astro';
 import DaysNav from '../components/DaysNav.astro';
+import MonthArchive from '../components/MonthArchive.astro';
 import BoxerCard from '../components/BoxerCard.astro';
 import BoxerSwitch from '../components/BoxerSwitch.astro';
 import FightCard from '../components/FightCard.astro';
@@ -60,13 +69,28 @@ const jsonLd = graph(
       : null,
 );
 
+const todayKey = parisTodayKey();
+const currentMonth = todayKey.slice(0, 7);
 const upcoming = combats
-  .filter((c) => c.status === 'a-venir')
+  .filter((c) => isUpcomingCombat(c, todayKey))
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 const results = combats
   .filter((c) => c.status === 'dispute')
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
-const calendarDates = [...new Set(combats.map((c) => c.date))].sort();
+const resultsByMonth = groupItemsByMonth(results);
+const upcomingByMonth = groupItemsByMonth(upcoming);
+const calendarByMonth = groupItemsByMonth(
+  [...combats].sort((a, b) => String(b.date).localeCompare(String(a.date))),
+);
+const galasUpcoming = galas
+  .filter((g) => isUpcomingDate(g.date, todayKey))
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+const galasArchive = galas
+  .filter((g) => !isUpcomingDate(g.date, todayKey))
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+const galasUpcomingByMonth = groupItemsByMonth(galasUpcoming);
+const galasArchiveByMonth = groupItemsByMonth(galasArchive);
+const newsByMonth = groupEditionsByMonth(editions);
 const fr = boxeurs.filter((b) => !b.international);
 const intl = boxeurs.filter((b) => b.international);
 const portraits = articles.filter((a) => a.data.kind === 'portrait');
@@ -126,32 +150,45 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         </dl>
       )}
       {template === 'news' && (
-        <>
-          {editions.map(([key, items]) => (
-            <section class="edition-block">
-              <div class="section-head">
-                <h2>{editionTitle(items[0].data.date)}</h2>
-                <a href={editionPath(items[0].data.date)}>Ouvrir le jour</a>
-              </div>
-              <div class="stack">
-                {items.map((item) => {
-                  const row = liveArticle(item.data);
-                  const thumb = articleThumb(row);
-                  return (
-                    <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
-                      {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
-                      <div>
-                        <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
-                        <h3>{row.h1}</h3>
-                        <p>{row.description}</p>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </section>
-          ))}
-        </>
+        <div class="days-months news-archive">
+          {newsByMonth.map(([ym, days], index) => {
+            const total = days.reduce((sum, [, items]) => sum + items.length, 0);
+            return (
+              <MonthArchive
+                ym={ym}
+                count={total}
+                open={ym === currentMonth || index === 0}
+                unit="papier"
+                unitPlural="papiers"
+              >
+                {days.map(([, items]) => (
+                  <section class="edition-block">
+                    <div class="section-head">
+                      <h2>{editionTitle(items[0].data.date)}</h2>
+                      <a href={editionPath(items[0].data.date)}>Ouvrir le jour</a>
+                    </div>
+                    <div class="stack">
+                      {items.map((item) => {
+                        const row = liveArticle(item.data);
+                        const thumb = articleThumb(row);
+                        return (
+                          <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
+                            {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
+                            <div>
+                              <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
+                              <h3>{row.h1}</h3>
+                              <p>{row.description}</p>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </section>
+                ))}
+              </MonthArchive>
+            );
+          })}
+        </div>
       )}
       {template === 'news' && (
         <script is:inline>
@@ -183,34 +220,68 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         upcoming.length === 0 ? (
           <p class="empty">Aucun combat à venir n’est encore inscrit.</p>
         ) : (
-          <div class="fight-grid">
-            {upcoming.map((c, index) => (
-              <FightCard fight={c} index={index} />
+          <div class="days-months">
+            <p class="days-nav-label">Combats à venir</p>
+            {upcomingByMonth.map(([ym, items], index) => (
+              <MonthArchive
+                ym={ym}
+                count={items.length}
+                open={ym === currentMonth || index === 0}
+                unit="combat"
+                unitPlural="combats"
+              >
+                <div class="fight-grid">
+                  {[...items]
+                    .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+                    .map((c, i) => (
+                      <FightCard fight={c} index={i} />
+                    ))}
+                </div>
+              </MonthArchive>
             ))}
           </div>
         )
       )}
       {template === 'upcoming' && (
-        <p class="card-out"><a href="/resultats-boxe">Derniers résultats</a></p>
+        <p class="card-out"><a href="/resultats-boxe">Archives des résultats</a></p>
       )}
 
       {template === 'calendar' && (
-        <div class="day-list">
-          {calendarDates.map((date) => {
-            const dayFights = combats.filter((c) => c.date === date);
+        <div class="days-months">
+          <p class="days-nav-label">Calendrier par mois</p>
+          {calendarByMonth.map(([ym, items], index) => {
+            const dates = [...new Set(items.map((c) => c.date))];
             return (
-              <section>
-                <h2>{formatDate(date)}</h2>
-                <ul>
-                  {dayFights.map((fight) => (
-                    <li>
-                      <a href={fight.href}>{fight.boxerA} contre {fight.boxerB}</a>
-                      {fight.category ? ` · ${fight.category}` : ''}
-                      {fight.status === 'dispute' && fight.winner ? ` · ${fight.winner}` : ''}
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              <MonthArchive
+                ym={ym}
+                count={items.length}
+                open={ym === currentMonth || index === 0}
+                unit="combat"
+                unitPlural="combats"
+              >
+                <div class="day-list">
+                  {[...dates].sort((a, b) => String(b).localeCompare(String(a))).map((date) => {
+                    const dayFights = items.filter((c) => c.date === date);
+                    return (
+                      <section>
+                        <h2>{formatDate(date)}</h2>
+                        <ul>
+                          {dayFights.map((fight) => (
+                            <li>
+                              <a href={fight.href}>{fight.boxerA} contre {fight.boxerB}</a>
+                              {fight.category ? ` · ${fight.category}` : ''}
+                              {fight.status === 'dispute' && fight.winner ? ` · ${fight.winner}` : ''}
+                              {fight.status === 'a-venir' && !isUpcomingDate(fight.date, todayKey)
+                                ? ' · en attente de verdict'
+                                : ''}
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
+                    );
+                  })}
+                </div>
+              </MonthArchive>
             );
           })}
         </div>
@@ -220,9 +291,22 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         results.length === 0 ? (
           <p class="empty">Aucun résultat n’est encore publié.</p>
         ) : (
-          <div class="fight-grid">
-            {results.map((c, index) => (
-              <FightCard fight={c} index={index} verdict={true} />
+          <div class="days-months">
+            <p class="days-nav-label">Résultats et archives</p>
+            {resultsByMonth.map(([ym, items], index) => (
+              <MonthArchive
+                ym={ym}
+                count={items.length}
+                open={ym === currentMonth || index === 0}
+                unit="résultat"
+                unitPlural="résultats"
+              >
+                <div class="fight-grid">
+                  {items.map((c, i) => (
+                    <FightCard fight={c} index={i} verdict={true} />
+                  ))}
+                </div>
+              </MonthArchive>
             ))}
           </div>
         )
@@ -232,10 +316,47 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         galas.length === 0 ? (
           <p class="empty">Aucun gala n’est encore inscrit.</p>
         ) : (
-          <div class="fight-grid">
-            {galas.map((g, index) => (
-              <GalaCard gala={g} index={index} />
-            ))}
+          <div class="days-months">
+            {galasUpcoming.length > 0 && (
+              <>
+                <p class="days-nav-label">Galas à venir</p>
+                {galasUpcomingByMonth.map(([ym, items], index) => (
+                  <MonthArchive
+                    ym={ym}
+                    count={items.length}
+                    open={ym === currentMonth || index === 0}
+                    unit="gala"
+                    unitPlural="galas"
+                  >
+                    <div class="fight-grid">
+                      {items.map((g, i) => (
+                        <GalaCard gala={g} index={i} />
+                      ))}
+                    </div>
+                  </MonthArchive>
+                ))}
+              </>
+            )}
+            {galasArchive.length > 0 && (
+              <>
+                <p class="days-nav-label">Archives des galas</p>
+                {galasArchiveByMonth.map(([ym, items], index) => (
+                  <MonthArchive
+                    ym={ym}
+                    count={items.length}
+                    open={galasUpcoming.length === 0 && index === 0}
+                    unit="gala"
+                    unitPlural="galas"
+                  >
+                    <div class="fight-grid">
+                      {items.map((g, i) => (
+                        <GalaCard gala={g} index={i} />
+                      ))}
+                    </div>
+                  </MonthArchive>
+                ))}
+              </>
+            )}
           </div>
         )
       )}

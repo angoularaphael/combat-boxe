@@ -777,7 +777,13 @@ function sameFight(a, b) {
 
 function applyFightUpdate(fight) {
   const update = combatsUpdates.find((row) => sameFight(fight, row));
-  return update ? { ...fight, ...update } : fight;
+  const merged = update ? { ...fight, ...update } : { ...fight };
+  // Un combat dont la date est passee ne reste pas "a venir" sans verdict :
+  // il sort des listes a venir (filtre date), et s'il a un vainqueur on le marque dispute.
+  if (merged.winner && merged.status !== 'dispute') {
+    merged.status = 'dispute';
+  }
+  return merged;
 }
 
 function mergeAutoFights(manual, auto) {

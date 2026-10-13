@@ -1,8 +1,8 @@
 ---
 slug: resultats-boxe
 title: "Résultats boxe : derniers combats | Combat Boxe"
-description: "Résultats de boxe : vainqueur, arrêt ou décision des derniers combats, en France et à l'international."
-h1: "Résultats boxe"
+description: "Résultats de boxe : vainqueur, arrêt ou décision des derniers combats, classés par mois. Les archives restent en ligne."
+h1: "Résultats et archives"
 template: results
 image: /img/og-combat-boxe.jpg
 imageAlt: "Deux boxeurs en action pendant un entraînement"
@@ -11,4 +11,4 @@ breadcrumbs:
     label: Résultats
 ---
 
-Les derniers combats disputés : le vainqueur, l'arrêt ou la décision, et la carte du soir. La boxe française et les titres mondiaux passent dans le même fil. Les [combats à venir](/combats-a-venir) gardent les affiches qui ne sont pas encore boxées.
+Les derniers combats disputés, classés par mois : le vainqueur, l'arrêt ou la décision. Rien n'est effacé ; les mois passés restent en archive. Les [combats à venir](/combats-a-venir) ne gardent que les dates encore futures.

@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
 import { photosForVersus, posterForVersus } from '../lib/portraits';
-import { editionPath, editionTitle } from '../lib/archive';
+import { editionPath, editionTitle, isUpcomingCombat, isUpcomingDate, parisTodayKey } from '../lib/archive';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
 import ClipRow from '../components/ClipRow.astro';
@@ -13,7 +13,7 @@ import ClipRow from '../components/ClipRow.astro';
 const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const todayKey = parisDayKey(new Date());
+const todayKey = parisTodayKey();
 const todayArticles = articles.filter((item) => parisDayKey(item.data.date) === todayKey);
 const editionArticles = todayArticles.length
   ? todayArticles
@@ -31,10 +31,10 @@ const uneImage =
     : unePhotos[0] || '/img/scene-ropes.jpg';
 const editions = groupArticlesByDay(articles);
 const upcomingGalasAll = galas
-  .filter((gala) => String(gala.date) >= todayKey)
+  .filter((gala) => isUpcomingDate(gala.date, todayKey))
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 const upcomingAll = combats
-  .filter((c) => c.status === 'a-venir' && String(c.date) >= todayKey)
+  .filter((c) => isUpcomingCombat(c, todayKey))
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 const resultsAll = combats
   .filter((c) => c.status === 'dispute')

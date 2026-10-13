@@ -1,0 +1,26 @@
+---
+import { monthTitle } from '../lib/archive';
+
+/**
+ * Archive pliable par mois.
+ * props.groups : [ym, items][]
+ * Le contenu de chaque mois est fourni par le parent via le slot par defaut
+ * en passant `render` impossible en Astro : le parent itere lui-meme.
+ * Ce composant sert quand on passe `mode="shell"` avec children... 
+ * En pratique on utilise le markup days-month dans les pages.
+ */
+const { ym, count = 0, open = false, unit = 'combat', unitPlural = 'combats' } = Astro.props;
+const n = Number(count) || 0;
+---
+
+<details class="days-month" {...(open ? { open: true } : {})}>
+  <summary class="days-month-summary">
+    <span class="days-month-name">{monthTitle(ym)}</span>
+    <b class="days-month-count">
+      {n} {n > 1 ? unitPlural : unit}
+    </b>
+  </summary>
+  <div class="archive-month-body">
+    <slot />
+  </div>
+</details>
