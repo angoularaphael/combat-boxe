@@ -5,7 +5,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
 import { photosForVersus, posterForVersus } from '../lib/portraits';
-import { editionPath, editionTitle, isUpcomingCombat, isUpcomingDate, parisTodayKey } from '../lib/archive';
+import {
+  currentMonthEditions,
+  editionPath,
+  editionTitle,
+  isUpcomingCombat,
+  isUpcomingDate,
+  parisTodayKey,
+} from '../lib/archive';
 import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
 import ClipRow from '../components/ClipRow.astro';
@@ -119,14 +126,20 @@ const jsonLd = graph(
       )}
       <p class="sheet-more">
         <a href={une ? editionPath(une.data.date) : '/actualites'}>L'édition du jour</a>
-        <a href="/actualites">Toutes les actualités</a>
+        <a href="/actualites">Actualités du mois</a>
+        <a href="/archives">Archives</a>
       </p>
     </div>
   </section>
 
   <section class="section days-band">
     <div class="wrap">
-      <DaysNav editions={editions} current={todayKey} label="Actualités par jour" />
+      <DaysNav
+        editions={currentMonthEditions(editions, todayKey)}
+        current={todayKey}
+        label="Actualités du mois"
+      />
+      <p class="card-out"><a href="/archives/actualites">Archives des mois passés</a></p>
     </div>
   </section>
 

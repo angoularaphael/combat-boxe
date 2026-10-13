@@ -77,3 +77,37 @@ export function isUpcomingCombat(fight, today = parisTodayKey()) {
 export function isResultCombat(fight) {
   return fight?.status === 'dispute';
 }
+
+export function currentMonthKey(today = parisTodayKey()) {
+  return monthKeyFromDay(today);
+}
+
+export function isCurrentMonth(date, today = parisTodayKey()) {
+  const day = date instanceof Date ? parisDayKey(date) : String(date || '').slice(0, 10);
+  return monthKeyFromDay(day) === currentMonthKey(today);
+}
+
+/** Editions [jour, items] du mois en cours seulement (pour l'actualite live). */
+export function currentMonthEditions(editions = [], today = parisTodayKey()) {
+  const ym = currentMonthKey(today);
+  return editions.filter(([key]) => monthKeyFromDay(key) === ym);
+}
+
+/** Editions des mois passes (archives). */
+export function archiveEditions(editions = [], today = parisTodayKey()) {
+  const ym = currentMonthKey(today);
+  return editions.filter(([key]) => monthKeyFromDay(key) < ym);
+}
+
+export function currentMonthItems(items = [], getDate = (item) => item.date, today = parisTodayKey()) {
+  return items.filter((item) => isCurrentMonth(getDate(item), today));
+}
+
+export function archiveMonthItems(items = [], getDate = (item) => item.date, today = parisTodayKey()) {
+  const ym = currentMonthKey(today);
+  return items.filter((item) => {
+    const raw = getDate(item);
+    const day = raw instanceof Date ? parisDayKey(raw) : String(raw || '').slice(0, 10);
+    return monthKeyFromDay(day) < ym;
+  });
+}

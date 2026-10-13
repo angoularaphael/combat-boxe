@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import MonthArchive from '../../components/MonthArchive.astro';
+import GalaCard from '../../components/GalaCard.astro';
+import { galas } from '../../data/entities';
+import { groupItemsByMonth, isUpcomingDate, parisTodayKey } from '../../lib/archive';
+import { breadcrumbLd, graph } from '../../lib/seo';
+
+const todayKey = parisTodayKey();
+const past = galas
+  .filter((g) => !isUpcomingDate(g.date, todayKey))
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+const months = groupItemsByMonth(past);
+const path = '/archives/galas';
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: '/archives', label: 'Archives' },
+  { href: path, label: 'Galas' },
+];
+const jsonLd = graph(breadcrumbLd(crumbs));
+---
+
+<Base
+  title="Archives des galas | Combat Boxe"
+  description="Archives des galas de boxe déjà disputés, classés par mois."
+  path={path}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <h1>Archives des galas</h1>
+      <p class="lede">
+        Soirées déjà passées. Les prochaines dates sont sur <a href="/galas-boxe">Galas</a>.
+      </p>
+      {months.length === 0 ? (
+        <p class="empty">Aucune archive de gala pour l’instant.</p>
+      ) : (
+        <div class="days-months">
+          {months.map(([ym, items], index) => (
+            <MonthArchive ym={ym} count={items.length} open={index === 0} unit="gala" unitPlural="galas">
+              <div class="fight-grid">
+                {items.map((g, i) => (
+                  <GalaCard gala={g} index={i} />
+                ))}
+              </div>
+            </MonthArchive>
+          ))}
+        </div>
+      )}
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

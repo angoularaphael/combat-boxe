@@ -5,9 +5,11 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle } from '../data/entities';
 import {
+  currentMonthEditions,
+  currentMonthItems,
+  currentMonthKey,
   editionPath,
   editionTitle,
-  groupEditionsByMonth,
   groupItemsByMonth,
   isUpcomingCombat,
   isUpcomingDate,
@@ -70,27 +72,25 @@ const jsonLd = graph(
 );
 
 const todayKey = parisTodayKey();
-const currentMonth = todayKey.slice(0, 7);
+const currentMonth = currentMonthKey(todayKey);
+const liveEditions = currentMonthEditions(editions, todayKey);
 const upcoming = combats
   .filter((c) => isUpcomingCombat(c, todayKey))
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
-const results = combats
-  .filter((c) => c.status === 'dispute')
-  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
-const resultsByMonth = groupItemsByMonth(results);
-const upcomingByMonth = groupItemsByMonth(upcoming);
-const calendarByMonth = groupItemsByMonth(
-  [...combats].sort((a, b) => String(b.date).localeCompare(String(a.date))),
+const resultsLive = currentMonthItems(
+  combats.filter((c) => c.status === 'dispute').sort((a, b) => String(b.date).localeCompare(String(a.date))),
+  (c) => c.date,
+  todayKey,
 );
+const upcomingByMonth = groupItemsByMonth(upcoming);
+const calendarLive = combats
+  .filter((c) => isUpcomingDate(c.date, todayKey) || String(c.date).startsWith(currentMonth))
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+const calendarByMonth = groupItemsByMonth(calendarLive);
 const galasUpcoming = galas
   .filter((g) => isUpcomingDate(g.date, todayKey))
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
-const galasArchive = galas
-  .filter((g) => !isUpcomingDate(g.date, todayKey))
-  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const galasUpcomingByMonth = groupItemsByMonth(galasUpcoming);
-const galasArchiveByMonth = groupItemsByMonth(galasArchive);
-const newsByMonth = groupEditionsByMonth(editions);
 const fr = boxeurs.filter((b) => !b.international);
 const intl = boxeurs.filter((b) => b.international);
 const portraits = articles.filter((a) => a.data.kind === 'portrait');
@@ -123,7 +123,12 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
       {(template === 'boxers-fr' || template === 'boxers-int') && (
         <BoxerSwitch current={template === 'boxers-fr' ? 'fr' : 'int'} />
       )}
-      {template === 'news' && <DaysNav editions={editions} label="Actualités par jour" />}
+      {template === 'news' && (
+        <>
+          <DaysNav editions={liveEditions} label="Actualités du mois" />
+          <p class="card-out"><a href="/archives/actualites">Archives des actualités</a></p>
+        </>
+      )}
       {showPhoto && (
         <figure class="figure figure-portrait">
           <img src={data.photo} alt={data.imageAlt || ''} width="640" height="800" />
@@ -150,44 +155,36 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         </dl>
       )}
       {template === 'news' && (
-        <div class="days-months news-archive">
-          {newsByMonth.map(([ym, days], index) => {
-            const total = days.reduce((sum, [, items]) => sum + items.length, 0);
-            return (
-              <MonthArchive
-                ym={ym}
-                count={total}
-                open={ym === currentMonth || index === 0}
-                unit="papier"
-                unitPlural="papiers"
-              >
-                {days.map(([, items]) => (
-                  <section class="edition-block">
-                    <div class="section-head">
-                      <h2>{editionTitle(items[0].data.date)}</h2>
-                      <a href={editionPath(items[0].data.date)}>Ouvrir le jour</a>
-                    </div>
-                    <div class="stack">
-                      {items.map((item) => {
-                        const row = liveArticle(item.data);
-                        const thumb = articleThumb(row);
-                        return (
-                          <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
-                            {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
-                            <div>
-                              <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
-                              <h3>{row.h1}</h3>
-                              <p>{row.description}</p>
-                            </div>
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </section>
-                ))}
-              </MonthArchive>
-            );
-          })}
+        <div class="news-live">
+          {liveEditions.length === 0 ? (
+            <p class="empty">Aucun papier ce mois-ci pour l’instant.</p>
+          ) : (
+            liveEditions.map(([, items]) => (
+              <section class="edition-block">
+                <div class="section-head">
+                  <h2>{editionTitle(items[0].data.date)}</h2>
+                  <a href={editionPath(items[0].data.date)}>Ouvrir le jour</a>
+                </div>
+                <div class="stack">
+                  {items.map((item) => {
+                    const row = liveArticle(item.data);
+                    const thumb = articleThumb(row);
+                    return (
+                      <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
+                        {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
+                        <div>
+                          <p class="meta">{formatDate(row.date)} · {kindLabel(row.kind)}</p>
+                          <h3>{row.h1}</h3>
+                          <p>{row.description}</p>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </section>
+            ))
+          )}
+          <p class="card-out"><a href="/archives/actualites">Consulter les archives</a></p>
         </div>
       )}
       {template === 'news' && (
@@ -243,120 +240,99 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         )
       )}
       {template === 'upcoming' && (
-        <p class="card-out"><a href="/resultats-boxe">Archives des résultats</a></p>
+        <p class="card-out">
+          <a href="/resultats-boxe">Résultats du mois</a>
+          <a href="/archives/resultats">Archives des résultats</a>
+        </p>
       )}
 
       {template === 'calendar' && (
         <div class="days-months">
-          <p class="days-nav-label">Calendrier par mois</p>
-          {calendarByMonth.map(([ym, items], index) => {
-            const dates = [...new Set(items.map((c) => c.date))];
-            return (
-              <MonthArchive
-                ym={ym}
-                count={items.length}
-                open={ym === currentMonth || index === 0}
-                unit="combat"
-                unitPlural="combats"
-              >
-                <div class="day-list">
-                  {[...dates].sort((a, b) => String(b).localeCompare(String(a))).map((date) => {
-                    const dayFights = items.filter((c) => c.date === date);
-                    return (
-                      <section>
-                        <h2>{formatDate(date)}</h2>
-                        <ul>
-                          {dayFights.map((fight) => (
-                            <li>
-                              <a href={fight.href}>{fight.boxerA} contre {fight.boxerB}</a>
-                              {fight.category ? ` · ${fight.category}` : ''}
-                              {fight.status === 'dispute' && fight.winner ? ` · ${fight.winner}` : ''}
-                              {fight.status === 'a-venir' && !isUpcomingDate(fight.date, todayKey)
-                                ? ' · en attente de verdict'
-                                : ''}
-                            </li>
-                          ))}
-                        </ul>
-                      </section>
-                    );
-                  })}
-                </div>
-              </MonthArchive>
-            );
-          })}
+          <p class="days-nav-label">Calendrier en cours</p>
+          {calendarByMonth.length === 0 ? (
+            <p class="empty">Aucun combat inscrit sur la période courante.</p>
+          ) : (
+            calendarByMonth.map(([ym, items], index) => {
+              const dates = [...new Set(items.map((c) => c.date))];
+              return (
+                <MonthArchive
+                  ym={ym}
+                  count={items.length}
+                  open={ym === currentMonth || index === 0}
+                  unit="combat"
+                  unitPlural="combats"
+                >
+                  <div class="day-list">
+                    {[...dates].sort((a, b) => String(a).localeCompare(String(b))).map((date) => {
+                      const dayFights = items.filter((c) => c.date === date);
+                      return (
+                        <section>
+                          <h2>{formatDate(date)}</h2>
+                          <ul>
+                            {dayFights.map((fight) => (
+                              <li>
+                                <a href={fight.href}>{fight.boxerA} contre {fight.boxerB}</a>
+                                {fight.category ? ` · ${fight.category}` : ''}
+                                {fight.status === 'dispute' && fight.winner ? ` · ${fight.winner}` : ''}
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                      );
+                    })}
+                  </div>
+                </MonthArchive>
+              );
+            })
+          )}
+          <p class="card-out"><a href="/archives/calendrier">Archives du calendrier</a></p>
         </div>
       )}
 
       {template === 'results' && (
-        results.length === 0 ? (
-          <p class="empty">Aucun résultat n’est encore publié.</p>
+        resultsLive.length === 0 ? (
+          <>
+            <p class="empty">Aucun résultat ce mois-ci pour l’instant.</p>
+            <p class="card-out"><a href="/archives/resultats">Consulter les archives</a></p>
+          </>
         ) : (
           <div class="days-months">
-            <p class="days-nav-label">Résultats et archives</p>
-            {resultsByMonth.map(([ym, items], index) => (
-              <MonthArchive
-                ym={ym}
-                count={items.length}
-                open={ym === currentMonth || index === 0}
-                unit="résultat"
-                unitPlural="résultats"
-              >
-                <div class="fight-grid">
-                  {items.map((c, i) => (
-                    <FightCard fight={c} index={i} verdict={true} />
-                  ))}
-                </div>
-              </MonthArchive>
-            ))}
+            <p class="days-nav-label">Résultats du mois</p>
+            <div class="fight-grid">
+              {resultsLive.map((c, i) => (
+                <FightCard fight={c} index={i} verdict={true} />
+              ))}
+            </div>
+            <p class="card-out"><a href="/archives/resultats">Archives des résultats</a></p>
           </div>
         )
       )}
 
       {template === 'galas' && (
-        galas.length === 0 ? (
-          <p class="empty">Aucun gala n’est encore inscrit.</p>
+        galasUpcoming.length === 0 ? (
+          <>
+            <p class="empty">Aucun gala à venir n’est encore inscrit.</p>
+            <p class="card-out"><a href="/archives/galas">Archives des galas</a></p>
+          </>
         ) : (
           <div class="days-months">
-            {galasUpcoming.length > 0 && (
-              <>
-                <p class="days-nav-label">Galas à venir</p>
-                {galasUpcomingByMonth.map(([ym, items], index) => (
-                  <MonthArchive
-                    ym={ym}
-                    count={items.length}
-                    open={ym === currentMonth || index === 0}
-                    unit="gala"
-                    unitPlural="galas"
-                  >
-                    <div class="fight-grid">
-                      {items.map((g, i) => (
-                        <GalaCard gala={g} index={i} />
-                      ))}
-                    </div>
-                  </MonthArchive>
-                ))}
-              </>
-            )}
-            {galasArchive.length > 0 && (
-              <>
-                <p class="days-nav-label">Archives des galas</p>
-                {galasArchiveByMonth.map(([ym, items], index) => (
-                  <MonthArchive
-                    ym={ym}
-                    count={items.length}
-                    open={galasUpcoming.length === 0 && index === 0}
-                    unit="gala"
-                    unitPlural="galas"
-                  >
-                    <div class="fight-grid">
-                      {items.map((g, i) => (
-                        <GalaCard gala={g} index={i} />
-                      ))}
-                    </div>
-                  </MonthArchive>
-                ))}
-              </>
-            )}
+            <p class="days-nav-label">Galas à venir</p>
+            {galasUpcomingByMonth.map(([ym, items], index) => (
+              <MonthArchive
+                ym={ym}
+                count={items.length}
+                open={ym === currentMonth || index === 0}
+                unit="gala"
+                unitPlural="galas"
+              >
+                <div class="fight-grid">
+                  {items.map((g, i) => (
+                    <GalaCard gala={g} index={i} />
+                  ))}
+                </div>
+              </MonthArchive>
+            ))}
+            <p class="card-out"><a href="/archives/galas">Archives des galas</a></p>
           </div>
         )
       )}

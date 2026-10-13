@@ -53,12 +53,23 @@ export const GET: APIRoute = async () => {
   const pages = await getCollection('pages');
   const articles = (await getCollection('articles')).filter((a) => a.data.status === 'published');
   const editions = groupArticlesByDay(articles);
+  const archivePages = [
+    '/archives',
+    '/archives/actualites',
+    '/archives/resultats',
+    '/archives/calendrier',
+    '/archives/galas',
+  ];
   const urls = [
     { loc: site, lastmod: buildDate, image: '/img/og-combat-boxe.jpg' },
     ...pages.map((p) => ({
       loc: `${site}/${p.data.slug}`,
       lastmod: buildDate,
       image: p.data.image,
+    })),
+    ...archivePages.map((path) => ({
+      loc: `${site}${path}`,
+      lastmod: buildDate,
     })),
     ...editions.map(([jour, items]) => ({
       loc: `${site}/actualites/${jour}`,

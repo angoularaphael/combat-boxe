@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import MonthArchive from '../../components/MonthArchive.astro';
+import FightCard from '../../components/FightCard.astro';
+import { combats } from '../../data/entities';
+import { archiveMonthItems, groupItemsByMonth, parisTodayKey } from '../../lib/archive';
+import { breadcrumbLd, graph } from '../../lib/seo';
+
+const todayKey = parisTodayKey();
+const archived = archiveMonthItems(
+  combats.filter((c) => c.status === 'dispute').sort((a, b) => String(b.date).localeCompare(String(a.date))),
+  (c) => c.date,
+  todayKey,
+);
+const months = groupItemsByMonth(archived);
+const path = '/archives/resultats';
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: '/archives', label: 'Archives' },
+  { href: path, label: 'Résultats' },
+];
+const jsonLd = graph(breadcrumbLd(crumbs));
+---
+
+<Base
+  title="Archives des résultats | Combat Boxe"
+  description="Archives des résultats de boxe par mois. Les verdicts passés restent consultables hors de la liste courante."
+  path={path}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <h1>Archives des résultats</h1>
+      <p class="lede">
+        Verdicts des mois passés. Le mois en cours est sur <a href="/resultats-boxe">Résultats</a>.
+      </p>
+      {months.length === 0 ? (
+        <p class="empty">Aucune archive de résultat pour l’instant.</p>
+      ) : (
+        <div class="days-months">
+          {months.map(([ym, items], index) => (
+            <MonthArchive ym={ym} count={items.length} open={index === 0} unit="résultat" unitPlural="résultats">
+              <div class="fight-grid">
+                {items.map((c, i) => (
+                  <FightCard fight={c} index={i} verdict={true} />
+                ))}
+              </div>
+            </MonthArchive>
+          ))}
+        </div>
+      )}
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

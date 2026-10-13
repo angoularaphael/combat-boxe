@@ -1883,8 +1883,14 @@ a {
   margin-top: 18px;
 }
 
-.news-archive {
-  margin-top: 18px;
+.news-live .edition-block + .edition-block {
+  margin-top: 22px;
+}
+
+.archive-hub .bill-card strong {
+  display: block;
+  margin: 6px 0 8px;
+  font-size: 1.35rem;
 }
 
 .days-chip {

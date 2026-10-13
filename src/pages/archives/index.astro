@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { breadcrumbLd, graph, organizationLd, websiteLd } from '../../lib/seo';
+
+const path = '/archives';
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: path, label: 'Archives' },
+];
+const links = [
+  ['/archives/actualites', 'Actualités', 'Éditions des mois passés, jour par jour.'],
+  ['/archives/resultats', 'Résultats', 'Verdicts classés par mois.'],
+  ['/archives/calendrier', 'Calendrier', 'Combats des mois passés.'],
+  ['/archives/galas', 'Galas', 'Soirées déjà disputées.'],
+];
+const jsonLd = graph(organizationLd, websiteLd, breadcrumbLd(crumbs));
+---
+
+<Base
+  title="Archives | Combat Boxe"
+  description="Archives Combat Boxe : actualités, résultats, calendrier et galas des mois passés. Consultables à la demande, hors du fil d'actualité."
+  path={path}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <h1>Archives</h1>
+      <p class="lede">
+        Les mois passés restent en ligne ici. Ils ne figurent plus dans l’actualité du jour, les combats à venir ni les listes courantes.
+      </p>
+      <div class="fight-grid archive-hub">
+        {links.map(([href, title, text]) => (
+          <a class="bill-card" href={href}>
+            <span class="eyebrow">Archive</span>
+            <strong>{title}</strong>
+            <p>{text}</p>
+          </a>
+        ))}
+      </div>
+      <p class="card-out">
+        <a href="/actualites">Retour aux actualités du mois</a>
+      </p>
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>

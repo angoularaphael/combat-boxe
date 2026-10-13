@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import MonthArchive from '../../components/MonthArchive.astro';
+import { groupArticlesByDay, kindLabel, liveArticle } from '../../data/entities';
+import {
+  archiveEditions,
+  editionPath,
+  editionTitle,
+  groupEditionsByMonth,
+  parisTodayKey,
+} from '../../lib/archive';
+import { articleThumb } from '../../lib/portraits';
+import { breadcrumbLd, graph } from '../../lib/seo';
+
+const todayKey = parisTodayKey();
+const articles = (await getCollection('articles'))
+  .filter((a) => a.data.status === 'published')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const editions = archiveEditions(groupArticlesByDay(articles), todayKey);
+const months = groupEditionsByMonth(editions);
+const path = '/archives/actualites';
+const crumbs = [
+  { href: '/', label: 'Accueil' },
+  { href: '/archives', label: 'Archives' },
+  { href: path, label: 'Actualités' },
+];
+const jsonLd = graph(breadcrumbLd(crumbs));
+---
+
+<Base
+  title="Archives des actualités | Combat Boxe"
+  description="Archives des actualités Combat Boxe par mois. Les éditions passées restent consultables hors du fil du jour."
+  path={path}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+  <article class="page-hero">
+    <div class="wrap">
+      <ol class="crumbs">
+        {crumbs.map((c, i) => (
+          <li>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+          </li>
+        ))}
+      </ol>
+      <h1>Archives des actualités</h1>
+      <p class="lede">Mois passés uniquement. Le mois en cours est sur <a href="/actualites">Actualités</a>.</p>
+      {months.length === 0 ? (
+        <p class="empty">Aucune archive d’actualité pour l’instant.</p>
+      ) : (
+        <div class="days-months">
+          {months.map(([ym, days], index) => {
+            const total = days.reduce((sum, [, items]) => sum + items.length, 0);
+            return (
+              <MonthArchive ym={ym} count={total} open={index === 0} unit="papier" unitPlural="papiers">
+                {days.map(([, items]) => (
+                  <section class="edition-block">
+                    <div class="section-head">
+                      <h2>{editionTitle(items[0].data.date)}</h2>
+                      <a href={editionPath(items[0].data.date)}>Ouvrir le jour</a>
+                    </div>
+                    <div class="stack">
+                      {items.map((item) => {
+                        const row = liveArticle(item.data);
+                        const thumb = articleThumb(row);
+                        return (
+                          <a class:list={['row-card', thumb && 'row-card-media']} href={`/${row.slug}`}>
+                            {thumb && <img src={thumb} alt="" width="400" height="250" loading="lazy" />}
+                            <div>
+                              <p class="meta">{kindLabel(row.kind)}</p>
+                              <h3>{row.h1}</h3>
+                              <p>{row.description}</p>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </section>
+                ))}
+              </MonthArchive>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  </article>
+  <Footer slot="footer" />
+</Base>
