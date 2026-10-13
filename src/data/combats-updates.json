@@ -99,11 +99,13 @@
         "sourceName": "BBC Radio 5 Live"
       }
     ],
-    "venue": "The O2 arena",
-    "time": "Ouverture des portes à 16 h",
+    "venue": "The O2 arena, Londres",
+    "time": "Ouverture des portes à 16 h, heure locale",
     "channel": "DAZN PPV et DAZN PPV UK",
-    "analysis": "Le combat est annoncé comme un match revanche pour le championnat du monde des poids lourds. Il se tiendra le 17 octobre à The O2, à Londres. Les pages consultées ne donnent pas ici de bilan ni de détails de parcours permettant d’étoffer la comparaison sportive.",
-    "sourceUrl": "https://www.theo2.co.uk/events/detail/dubois-vs-wardley-2"
+    "analysis": "Daniel Dubois et Fabio Wardley se retrouveront le 17 octobre à l’O2 Arena pour une revanche poids lourds annoncée comme un championnat du monde. La salle indique une ouverture des portes à 16 h, heure locale.\n\nLe programme de la soirée comprend aussi Bakhodir Jalolov contre Solomon Dacres et Louie O’Doherty contre Michael Gomez Jr. Les éléments disponibles ne détaillent pas davantage ces combats dans le cadre de la page de l’O2.\n\nLa diffusion est annoncée sur DAZN PPV et DAZN PPV UK. Les pages consultées ne fournissent pas de bilans ou d’éléments de parcours permettant d’étayer une lecture technique ou un pronostic.",
+    "sourceUrl": "https://www.theo2.co.uk/events/detail/dubois-vs-wardley-2",
+    "aboutA": "Daniel Dubois est annoncé pour une revanche poids lourds présentée comme un championnat du monde. Les pages consultées ne donnent pas ici son bilan ni son parcours.",
+    "aboutB": "Fabio Wardley est annoncé pour une revanche poids lourds présentée comme un championnat du monde. Les pages consultées ne donnent pas ici son bilan ni son parcours."
   },
   {
     "date": "2026-11-28",
