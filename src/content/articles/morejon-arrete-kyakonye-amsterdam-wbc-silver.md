@@ -9,8 +9,7 @@ family: actualite
 kind: resultat
 image: /img/posters/kyakonye-morejon.jpg
 imageAlt: "Affiche Kyakonye contre Morejon au Ben Bril Memorial d'Amsterdam"
-coverVersus: "Willy Kyakonye / Angelo Morejon"
-coverMeta: "12 octobre 2026 · Theater Carré, Amsterdam · poids bridger"
+photo: /img/posters/kyakonye-morejon.jpg
 breadcrumbs:
   - href: /actualites
     label: Actualités
