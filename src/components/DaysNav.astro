@@ -1,25 +1,43 @@
 ---
-import { editionPath, editionTitle } from '../lib/archive';
+import { editionPath, editionTitle, groupEditionsByMonth, monthKeyFromDay, monthTitle } from '../lib/archive';
 
 const { editions = [], current = '', label = 'Actualités par jour' } = Astro.props;
+const months = groupEditionsByMonth(editions);
+const openMonth = current ? monthKeyFromDay(current) : months[0]?.[0] || '';
 ---
 
 {
-  editions.length > 0 && (
+  months.length > 0 && (
     <nav class="days-nav" aria-label={label}>
       <p class="days-nav-label">{label}</p>
-      <div class="days-nav-track">
-        {editions.map(([key, items]) => (
-          <a
-            class:list={['days-chip', current === key && 'is-current']}
-            href={editionPath(items[0].data.date)}
-          >
-            <span>{editionTitle(items[0].data.date)}</span>
-            <b>
-              {items.length} papier{items.length > 1 ? 's' : ''}
-            </b>
-          </a>
-        ))}
+      <div class="days-months">
+        {months.map(([ym, days], index) => {
+          const total = days.reduce((sum, [, items]) => sum + items.length, 0);
+          const isOpen = ym === openMonth || (!openMonth && index === 0);
+          return (
+            <details class="days-month" {...(isOpen ? { open: true } : {})}>
+              <summary class="days-month-summary">
+                <span class="days-month-name">{monthTitle(ym)}</span>
+                <b class="days-month-count">
+                  {days.length} jour{days.length > 1 ? 's' : ''} · {total} papier{total > 1 ? 's' : ''}
+                </b>
+              </summary>
+              <div class="days-nav-track">
+                {days.map(([key, items]) => (
+                  <a
+                    class:list={['days-chip', current === key && 'is-current']}
+                    href={editionPath(items[0].data.date)}
+                  >
+                    <span>{editionTitle(items[0].data.date)}</span>
+                    <b>
+                      {items.length} papier{items.length > 1 ? 's' : ''}
+                    </b>
+                  </a>
+                ))}
+              </div>
+            </details>
+          );
+        })}
       </div>
     </nav>
   )
