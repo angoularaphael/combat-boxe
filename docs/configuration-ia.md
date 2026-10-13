@@ -19,7 +19,7 @@ Le bootstrap clone le **dépôt principal**, installe les dépendances, puis lan
 Ce process :
 
 1. Écoute le port du panel (BotHosting exige un process vivant).
-2. Une fois par jour, à 8 h (heure de Paris). Jusqu'à 6 articles (`AGENT_ARTICLES`), un par fait distinct trouvé dans les pages. Un redémarrage le même jour complète le quota, il ne le dépasse pas.
+2. Deux fois par jour, à 8 h et 14 h (heure de Paris, `AGENT_HOURS=8,14`). Jusqu'à 6 articles (`AGENT_ARTICLES`), un par fait distinct trouvé dans les pages. Le passage de 14 h rattrape les résultats de la veille. L'accueil n'affiche que les papiers datés du jour : un résultat de la nuit précédente se date donc aujourd'hui. Un redémarrage le même jour complète le quota, il ne le dépasse pas.
 3. Lit des pages officielles (FFBoxe, WBC, promoteurs, presse).
 4. Si un fait nouveau est sourcé : article markdown publié, assez long pour décrire chaque personne, la salle, l'heure, la chaîne, puis une lecture et un pronostic en plusieurs paragraphes. La fiche combat reçoit la même longueur (`analysis`, `prediction`). Levers de rideau, pesées et soirées comptent aussi, pas seulement l'affiche principale.
 5. Combats / résultats / galas : JSON (`src/data/combats-auto.json`, `combats-updates.json`, `galas-auto.json`).

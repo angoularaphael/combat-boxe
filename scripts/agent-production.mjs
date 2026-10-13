@@ -34,6 +34,8 @@ const FEEDS = [
   ['Boxe Magazine', 'https://boxemag.ouest-france.fr/'],
   ['Ring Magazine', 'https://www.ringtv.com/'],
   ['BoxingScene', 'https://www.boxingscene.com/'],
+  ['Boxe Punch', 'https://boxepunch.com/en/'],
+  ['NOS Sport boxe', 'https://nos.nl/sport/'],
   ['Queensberry', 'https://queensberry.co.uk/blogs/queensberry-promotions-blog'],
   ['Most Valuable Promotions', 'https://www.mostvaluablepromotions.com/'],
   ['Principality Fury Joshua', 'https://www.principalitystadium.wales/event/tyson-fury-v-anthony-joshua/'],
@@ -118,11 +120,44 @@ function combatsConnus() {
   const parts = blob.split(/\{\s*status:/);
   for (const part of parts.slice(1)) {
     const date = part.match(/date:\s*(['"])((?:\\.|[^\\])*?)\1/)?.[2];
+    const status = part.match(/status:\s*(['"])((?:\\.|[^\\])*?)\1/)?.[2] || 'a-venir';
     const a = part.match(/boxerA:\s*(['"])((?:\\.|[^\\])*?)\1/)?.[2]?.replace(/\\(['"])/g, '$1');
     const b = part.match(/boxerB:\s*(['"])((?:\\.|[^\\])*?)\1/)?.[2]?.replace(/\\(['"])/g, '$1');
-    if (date && a && b) rows.push({ date, boxerA: a, boxerB: b });
+    if (date && a && b) rows.push({ date, boxerA: a, boxerB: b, status });
   }
   return [...rows, ...readJson(combatsAutoPath)];
+}
+
+function memeCombat(a, b) {
+  return fightKey(a) === fightKey(b) || fightKey({ ...a, boxerA: a.boxerB, boxerB: a.boxerA }) === fightKey(b);
+}
+
+function statutCalendrier(fight, known) {
+  const updates = readJson(updatesPath);
+  const hitUpdate = updates.find((row) => memeCombat(row, fight));
+  if (hitUpdate?.status) return hitUpdate.status;
+  const hitKnown = known.find((row) => memeCombat(row, fight));
+  return hitKnown?.status || fight.status || 'a-venir';
+}
+
+function combatsEnRetard(known = combatsConnus()) {
+  const today = jourParis();
+  return known.filter((fight) => {
+    if (!fight?.date || String(fight.date) >= today) return false;
+    return statutCalendrier(fight, known) === 'a-venir';
+  });
+}
+
+function normaliserDateArticle(article) {
+  const kind = String(article?.kind || '').toLowerCase();
+  const raw = String(article?.date || '');
+  const jour = raw.slice(0, 10);
+  const today = jourParis();
+  if (kind === 'resultat' && /^\d{4}-\d{2}-\d{2}$/.test(jour) && jour < today) {
+    const heure = raw.includes('T') ? raw.slice(11) : '08:00:00';
+    return { ...article, date: `${today}T${heure}` };
+  }
+  return article;
 }
 
 function fightKey(fight) {
@@ -388,6 +423,10 @@ export async function runProductionAgent() {
     const knownList = knownFights
       .map((f) => `${f.date} ${f.boxerA} / ${f.boxerB}`)
       .join(' ; ');
+    const enRetard = combatsEnRetard(knownFights);
+    const retardList = enRetard
+      .map((f) => `${f.date} ${f.boxerA} / ${f.boxerB}`)
+      .join(' ; ');
 
     const system = `Tu es l'agent de production de Combat Boxe, media francais de boxe anglaise.
 Reponds en JSON strict, sans markdown.
@@ -476,17 +515,21 @@ Format :
 
 Aujourd'hui (Paris) : ${jourParis()}.
 Jours recents sans aucun papier : ${joursSansPapier().join(', ') || 'aucun'}.
-Si un fait des pages est date d'un de ces jours vides, l'article prend cette date-la, pas aujourd'hui. N'invente pas un papier pour boucher un trou.
+Priorite absolue : combats deja au calendrier encore marques a-venir alors que leur date est passee : ${retardList || 'aucun'}.
+Pour chaque combat en retard, cherche d'abord le resultat dans les pages. Si le vainqueur et la methode sont sourcés : (1) un article kind "resultat" DATE D'AUJOURD'HUI (${jourParis()}T08:00:00) pour que l'accueil change le jour meme, (2) un fightUpdates status "dispute". N'ecris pas "ce soir" ni une annonce pour un combat deja boxe.
+L'accueil n'affiche que les papiers dont la date Paris est aujourd'hui. Donc chaque jour, s'il existe un fait sourcé (resultat de la veille, annonce du jour, pesee, signature), au moins un article doit porter la date d'aujourd'hui. Un resultat de la veille se date aujourd'hui, pas sur la nuit du combat.
+Si un fait des pages est date d'un jour recent sans aucun papier ET que ce n'est pas un resultat a publier aujourd'hui, l'article peut prendre cette date-la. N'invente pas un papier pour boucher un trou.
 Ecris jusqu'a ${places} articles, un par fait distinct. Un fait peut etre un combat principal, un lever de rideau, un resultat, une signature, une pesee, une conference ou une soiree. Pas seulement l'affiche principale. Tableau vide s'il n'y a pas assez de faits nouveaux. N'invente pas pour remplir le quota.
-Chaque article : slug different, sourceUrl, date, et au moins huit paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un long passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Termine par une lecture de plusieurs paragraphes, puis un dernier paragraphe de pronostic qui nomme le vainqueur pressenti. Sans bilan, sans statut de champion, sans combat precedent ni avantage de salle dans les pages, ce dernier paragraphe ne nomme personne. Pas de cote inventee. Parle aussi des autres combats de la meme soiree quand les pages les citent. analysis : trois paragraphes separes par une ligne vide, pour la fiche combat. prediction : deux paragraphes separes par une ligne vide, le dernier donne le choix. Champs vides si le fait n'est pas dans les pages. Ignore les slugs deja publies.
+Chaque article : slug different, sourceUrl, date, et au moins huit paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un long passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Pour un resultat, termine sur le verdict et ce qu'il change ; pas de pronostic. Pour une annonce, termine par une lecture puis un pronostic qui nomme le vainqueur pressenti seulement s'il y a bilan, statut de champion, combat precedent ou avantage de salle. Pas de cote inventee. Parle aussi des autres combats de la meme soiree quand les pages les citent. analysis : trois paragraphes separes par une ligne vide, pour la fiche combat. prediction : deux paragraphes separes par une ligne vide, le dernier donne le choix. Champs vides si le fait n'est pas dans les pages. Ignore les slugs deja publies.
 fights : combats absents du calendrier, date complete, deux noms, ville, sourceUrl. Remplis venue, time, channel, aboutA, aboutB, analysis, prediction, stakes. stakes reste une seule phrase pour la carte. analysis et prediction portent la longueur.
-fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés.
+fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés. Obligatoire pour les combats en retard des que le resultat est dans les pages.
 notes : pour un combat DEJA au calendrier, complete analysis, prediction, aboutA, aboutB, venue, time, channel si les pages du jour le permettent. Ne repete pas une fiche deja complete. prediction vide si aucune base n'est dans les pages.
 galas : soiree nouvelle avec date, nom, ville, et dans note la salle, la chaine et l'heure si la page les donne.
 posters : uniquement une URL d'affiche officielle (les deux visages), jamais un logo.`;
 
     const user = `Slugs deja publies : ${slugs.join(', ')}
 Combats deja au calendrier : ${knownList}
+Combats en retard (a traiter en priorite) : ${retardList || 'aucun'}
 
 Pages lues :
 ${pages
@@ -511,8 +554,9 @@ ${pages
       if (!slug || vus.has(slug) || !article.sourceUrl || !article.body) continue;
       if (!/^https?:\/\//.test(article.sourceUrl)) continue;
       vus.add(slug);
+      const normalise = normaliserDateArticle({ ...article, slug });
       const out = resolve(articlesDir, `${slug}.md`);
-      writeFileSync(out, toFrontmatter({ ...article, slug }, String(article.body).trim()));
+      writeFileSync(out, toFrontmatter(normalise, String(article.body).trim()));
       ecrits += 1;
       console.log('Article publie :', out);
     }

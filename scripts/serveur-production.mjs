@@ -12,7 +12,7 @@ import { runProductionAgent } from './agent-production.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = Number(process.env.PORT || process.env.BOT_HTTP_PORT || 3000);
-const HOURS = String(process.env.AGENT_HOURS || '8')
+const HOURS = String(process.env.AGENT_HOURS || '8,14')
   .split(',')
   .map((h) => Number(h.trim()))
   .filter((h) => h >= 0 && h <= 23);

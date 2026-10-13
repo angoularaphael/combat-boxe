@@ -88,7 +88,7 @@ const jsonLd = graph(
       </div>
       <div class="stage-copy">
         <span class="stage-kicker">La une · {kindLabel(une.data.kind)} · {formatDate(une.data.date)}</span>
-        <h1>{une.data.coverVersus ? une.data.coverVersus.replace(' / ', ' contre ') : une.data.h1}</h1>
+        <h1>{une.data.kind === 'resultat' || !une.data.coverVersus ? une.data.h1 : une.data.coverVersus.replace(' / ', ' contre ')}</h1>
         <p>{une.data.description}</p>
       </div>
     </a>
