@@ -213,11 +213,14 @@
     "venue": "Theater Carré, Amsterdam",
     "time": "Premier combat 19 h",
     "channel": "",
-    "status": "a-venir",
-    "aboutA": "Né en Ouganda, basé aux Pays-Bas. 14 victoires, dont 13 arrêts, 0 défaite. Neuvième WBC des poids bridger. Descend des lourds pour cette soirée.",
-    "aboutB": "Gaucher cubain basé en Italie, titre national italien des lourds. 11 victoires, dont 8 arrêts, 0 défaite. Cinquième WBC des poids bridger.",
-    "analysis": "Le Ben Bril Memorial du Theater Carré met en tête d’affiche Willy Kyakonye et Angelo Morejon pour le titre WBC Silver des poids bridger. Le WBC a publié les bilans et les classements ; l’affiche fixe le premier combat à 19 h.\n\nKyakonye boxe à domicile avec 13 arrêts sur 14. Morejon arrive mieux classé (5e contre 9e) et gaucher, avec huit arrêts sur onze. La division est menée côté WBC par Ryad Merhy ; ni l’un ni l’autre n’est champion du monde.\n\nLa chaîne n’est pas indiquée dans les pages consultées. Le promoteur cité par le WBC est Aart Boendermaker.",
-    "prediction": "Le public d’Amsterdam et la cadence d’arrêts de Kyakonye donnent un appui à l’hôte, malgré le meilleur classement de Morejon. Prono : Kyakonye, à domicile.",
-    "sourceUrl": "https://wbcboxing.com/en/willy-kyakonye-and-angelo-morejon-to-fight-for-wbc-silver-bridgerweight-title-in-amsterdam/"
+    "status": "dispute",
+    "winner": "Angelo Morejon",
+    "method": "Arrêt au troisième round",
+    "decision": "Abandon du coin (KOT)",
+    "aboutA": "Né en Ouganda, basé aux Pays-Bas. Arrivé à 14 victoires, dont 13 arrêts, sans défaite. Première défaite professionnelle à Amsterdam.",
+    "aboutB": "Gaucher cubain basé en Italie. Invaincu avant et après la soirée. Remporte le titre WBC Silver des poids bridger.",
+    "analysis": "Au Ben Bril Memorial du Theater Carré, Angelo Morejon a battu Willy Kyakonye par arrêt au troisième round et pris le titre WBC Silver des poids bridger.\n\nKyakonye a poussé dès le premier round. Un coup bas a mis Morejon au tapis sans compte. Morejon a ensuite envoyé Kyakonye au sol d’un crochet du droit, puis une seconde fois au troisième round. Le coin de Kyakonye a jeté l’éponge.\n\nLa FPI, Boxe Punch et la NOS convergent sur l’arrêt au troisième round. Morejon reste invaincu ; Kyakonye subit son premier revers.",
+    "prediction": "",
+    "sourceUrl": "https://www.fpi.it/pro-boxe/news/wbc-silver-bridgerweight-angelo-morejon-campione.html"
   }
 ]
