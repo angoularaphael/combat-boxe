@@ -685,7 +685,9 @@
     "artist": "New Vision",
     "pageUrl": "https://www.newvision.co.ug/category/sports/kyakonye-faces-unbeaten-morejon-for-wbc-silve-NV_242024_102026",
     "wikiTitle": "",
-    "aliases": ["Kyakonye"]
+    "aliases": [
+      "Kyakonye"
+    ]
   },
   {
     "name": "Angelo Morejon",
@@ -695,6 +697,19 @@
     "artist": "World Boxing Council",
     "pageUrl": "https://wbcboxing.com/en/angelo-morejon-crowned-wbc-mediterranean-champion/",
     "wikiTitle": "",
-    "aliases": ["Morejon", "Angelo Morejón"]
+    "aliases": [
+      "Morejon",
+      "Angelo Morejón"
+    ]
+  },
+  {
+    "name": "Anton",
+    "slug": "anton",
+    "path": "/img/boxers/anton.jpg",
+    "license": "Public domain",
+    "artist": "Vida Gallega, 15-2-1910, p. 8",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=50056650",
+    "wikiTitle": "Anton",
+    "aliases": []
   }
 ]
