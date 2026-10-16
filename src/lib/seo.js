@@ -95,10 +95,44 @@ export function graph(...nodes) {
   };
 }
 
+export function webPageLd({ title, description, path, name }) {
+  return {
+    '@type': 'WebPage',
+    '@id': `${canonical(path)}#webpage`,
+    url: canonical(path),
+    name: name || title,
+    headline: title,
+    description,
+    inLanguage: 'fr-FR',
+    isPartOf: { '@id': `${SITE}/#website` },
+    about: [
+      { '@type': 'Thing', name: 'combat boxe' },
+      { '@type': 'Thing', name: 'combats de boxe' },
+      { '@type': 'Thing', name: 'combat de boxe' },
+      { '@type': 'Sport', name: 'Boxe anglaise' },
+    ],
+  };
+}
+
+export function faqLd(items) {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
+}
+
 export const organizationLd = {
   '@type': 'NewsMediaOrganization',
   '@id': `${SITE}/#organization`,
   name: 'Combat Boxe',
+  alternateName: ['Combat boxe', 'Combat-Boxe.com'],
   url: SITE,
   logo: {
     '@type': 'ImageObject',
@@ -109,7 +143,7 @@ export const organizationLd = {
   image: canonical('/img/og-combat-boxe.jpg'),
   knowsAbout: searchKeywords,
   description:
-    'Média indépendant sur les combats de boxe, les résultats, les calendriers, les boxeurs, les clubs et les entraîneurs.',
+    'Combat boxe : média indépendant sur les combats de boxe, les résultats, les calendriers, les boxeurs, les clubs et les entraîneurs.',
 };
 
 export const websiteLd = {
@@ -117,7 +151,7 @@ export const websiteLd = {
   '@id': `${SITE}/#website`,
   url: SITE,
   name: 'Combat Boxe',
-  alternateName: 'Combat-Boxe.com',
+  alternateName: ['Combat boxe', 'Combat-Boxe.com', 'Combats de boxe'],
   inLanguage: 'fr-FR',
   publisher: { '@id': `${SITE}/#organization` },
   potentialAction: {
@@ -126,3 +160,18 @@ export const websiteLd = {
     'query-input': 'required name=search_term_string',
   },
 };
+
+export const hubFaq = [
+  {
+    q: "Qu'est-ce qu'un combat de boxe ?",
+    a: "Un combat de boxe oppose deux boxeurs, dans une catégorie, à une date et dans un lieu. Un titre peut être en jeu. Combat Boxe suit ces affiches en France et à l'international.",
+  },
+  {
+    q: 'Où suivre les combats de boxe à venir ?',
+    a: 'Les combats de boxe à venir sont listés sur la page combats à venir, classés par mois. Le calendrier les range par date. Les soirées complètes sont sur les galas.',
+  },
+  {
+    q: 'Où lire les résultats des combats de boxe ?',
+    a: 'Les résultats des combats de boxe du mois sont sur la page résultats. Les mois passés restent consultables dans les archives des résultats.',
+  },
+];

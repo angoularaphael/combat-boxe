@@ -2,6 +2,7 @@ import { getCollection } from 'astro:content';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, liveArticle } from '../data/entities';
 
 const pages = [
+  ['/combat-de-boxe', 'Page', 'Combat boxe', 'Combat boxe, combats de boxe, affiches, calendrier et résultats.'],
   ['/actualites', 'Page', 'Actualités', 'Fil des papiers de boxe.'],
   ['/combats-a-venir', 'Page', 'Combats à venir', 'Calendrier des combats annoncés.'],
   ['/resultats-boxe', 'Page', 'Résultats', 'Combats déjà disputés.'],

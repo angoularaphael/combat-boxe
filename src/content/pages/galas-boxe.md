@@ -1,7 +1,7 @@
 ---
 slug: galas-boxe
 title: "Galas de boxe : cartes et lieux | Combat Boxe"
-description: "Galas de boxe : date, ville, salle et affiche principale des soirées en France et à l'étranger."
+description: "Galas de boxe : date, ville, salle et affiche principale des soirées de combats de boxe, en France et à l'étranger. Cartes du média Combat Boxe."
 h1: "Galas de boxe"
 template: galas
 image: /img/og-combat-boxe.jpg

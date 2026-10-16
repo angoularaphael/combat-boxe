@@ -1595,6 +1595,14 @@ a {
   line-height: 1;
 }
 
+.prose h3 {
+  margin-top: 1.2em;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  line-height: 1.2;
+}
+
 .crumbs {
   font-family: var(--sans);
   font-size: 13px;
@@ -2515,7 +2523,8 @@ a {
   color: #d5e2ec;
 }
 
-.stage-copy h1 {
+.stage-copy h1,
+.stage-copy h2 {
   max-width: none;
   margin: 0;
   color: #fff;
@@ -2539,11 +2548,13 @@ a {
 
 .stage-kicker,
 .stage-copy h1,
+.stage-copy h2,
 .stage-copy p {
   animation: rise-in 650ms ease both;
 }
 
-.stage-copy h1 {
+.stage-copy h1,
+.stage-copy h2 {
   animation-delay: 90ms;
 }
 
@@ -2554,6 +2565,14 @@ a {
 .sheet {
   padding: 34px 0 8px;
   background: var(--paper);
+}
+
+.sheet-brand {
+  margin: 0 0 10px;
+  max-width: 22ch;
+  font-size: clamp(1.35rem, 4.5vw, 2rem);
+  line-height: 1.15;
+  animation: rise-in 550ms ease both;
 }
 
 .sheet-line {
@@ -2839,7 +2858,8 @@ a {
 }
 
 @media (min-width: 720px) {
-  .stage-copy h1 {
+  .stage-copy h1,
+  .stage-copy h2 {
     max-width: 18ch;
   }
 
@@ -2884,7 +2904,8 @@ a {
     padding: 40px 36px;
   }
 
-  .stage-copy h1 {
+  .stage-copy h1,
+  .stage-copy h2 {
     max-width: 14ch;
     font-size: clamp(2.4rem, 4vw, 5rem);
   }

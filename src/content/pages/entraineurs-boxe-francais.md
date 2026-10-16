@@ -1,7 +1,7 @@
 ---
 slug: entraineurs-boxe-francais
 title: "Entraîneurs de boxe français | Combat Boxe"
-description: "Entraîneurs de boxe en France : club, parcours et boxeurs formés. Valentin Guth aux Minimes, Dadi à Saint-Cyprien."
+description: "Entraîneurs de boxe en France : club, parcours et boxeurs formés. Valentin Guth aux Minimes, Dadi à Saint-Cyprien. Fiches du média Combat Boxe."
 h1: "Entraîneurs de boxe français"
 template: coaches
 image: /img/og-combat-boxe.jpg

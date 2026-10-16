@@ -15,7 +15,7 @@ import {
   isUpcomingDate,
   parisTodayKey,
 } from '../lib/archive';
-import { articleLd, breadcrumbLd, collectionLd, graph } from '../lib/seo';
+import { articleLd, breadcrumbLd, collectionLd, faqLd, graph, hubFaq, webPageLd } from '../lib/seo';
 import { articleThumb, photosForVersus } from '../lib/portraits';
 import Cover from '../components/Cover.astro';
 import DaysNav from '../components/DaysNav.astro';
@@ -53,6 +53,12 @@ const showCover = template !== 'legal' && !listing && !portraitImage;
 const image = data.photo || coverPhotos[0] || data.image || '/img/og-combat-boxe.jpg';
 const jsonLd = graph(
   breadcrumbLd(crumbs),
+  webPageLd({
+    title: data.title,
+    description: data.description,
+    path,
+    name: data.h1,
+  }),
   mode === 'article'
     ? articleLd({
         title: data.h1,
@@ -69,6 +75,7 @@ const jsonLd = graph(
           items: articles.map((a) => ({ data: liveArticle(a.data) })),
         })
       : null,
+  data.slug === 'combat-de-boxe' ? faqLd(hubFaq) : null,
 );
 
 const todayKey = parisTodayKey();

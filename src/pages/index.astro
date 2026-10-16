@@ -13,7 +13,7 @@ import {
   isUpcomingDate,
   parisTodayKey,
 } from '../lib/archive';
-import { breadcrumbLd, graph, organizationLd, websiteLd } from '../lib/seo';
+import { breadcrumbLd, graph, organizationLd, webPageLd, websiteLd } from '../lib/seo';
 import DaysNav from '../components/DaysNav.astro';
 import ClipRow from '../components/ClipRow.astro';
 
@@ -64,16 +64,25 @@ const meter = [
   [upcomingGalasAll.length, upcomingGalasAll.length > 1 ? 'soirées' : 'soirée'],
   [clubs.length, clubs.length > 1 ? 'salles' : 'salle'],
 ];
+const homeTitle = 'Combat boxe : actualité, calendrier, résultats | Combat Boxe';
+const homeDescription =
+  "Combat boxe : actualité des combats de boxe à venir, résultats, calendrier et boxeurs français. En France et à l'international, autour du ring.";
 const jsonLd = graph(
   organizationLd,
   websiteLd,
+  webPageLd({
+    title: homeTitle,
+    description: homeDescription,
+    path: '/',
+    name: 'Combat boxe',
+  }),
   breadcrumbLd([{ href: '/', label: 'Accueil' }]),
 );
 ---
 
 <Base
-  title="Combat de boxe : actualité, calendrier, résultats | Combat Boxe"
-  description="Combat Boxe suit les combats de boxe à venir, les résultats, les boxeurs français, les clubs et les entraîneurs, en France et à l'international."
+  title={homeTitle}
+  description={homeDescription}
   path="/"
   image={uneImage}
   jsonLd={jsonLd}
@@ -95,7 +104,7 @@ const jsonLd = graph(
       </div>
       <div class="stage-copy">
         <span class="stage-kicker">La une · {kindLabel(une.data.kind)} · {formatDate(une.data.date)}</span>
-        <h1>{une.data.kind === 'resultat' || !une.data.coverVersus ? une.data.h1 : une.data.coverVersus.replace(' / ', ' contre ')}</h1>
+        <h2>{une.data.kind === 'resultat' || !une.data.coverVersus ? une.data.h1 : une.data.coverVersus.replace(' / ', ' contre ')}</h2>
         <p>{une.data.description}</p>
       </div>
     </a>
@@ -103,6 +112,7 @@ const jsonLd = graph(
 
   <section class="sheet">
     <div class="wrap">
+      <h1 class="sheet-brand">Combat boxe : l'actualité des combats de boxe</h1>
       <p class="sheet-line">Les dates, les verdicts et les salles, au même endroit.</p>
       <ul class="sheet-stats">
         {meter.map(([count, label]) => (

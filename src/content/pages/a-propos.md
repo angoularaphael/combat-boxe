@@ -1,7 +1,7 @@
 ---
 slug: a-propos
-title: "À propos | Combat Boxe"
-description: "Combat Boxe est un média indépendant sur les combats de boxe anglaise, en France et à l'international."
+title: "À propos de Combat Boxe | Combat boxe"
+description: "Combat boxe : média indépendant sur les combats de boxe anglaise, les résultats, les calendriers et les boxeurs, en France et à l'international."
 h1: "À propos de Combat Boxe"
 template: legal
 breadcrumbs:
@@ -9,7 +9,7 @@ breadcrumbs:
     label: À propos
 ---
 
-Combat Boxe est un média d'actualité sur la boxe anglaise. Il suit les combats, les résultats, les calendriers, les boxeurs, les clubs et les entraîneurs, en France et à l'international.
+Combat Boxe est un média d'actualité sur le combat boxe et les combats de boxe anglaise. Il suit les affiches, les résultats, les calendriers, les boxeurs, les clubs et les entraîneurs, en France et à l'international.
 
 Le site est édité dans le cadre des activités liées à Boxing Center. Directeur de la publication : Raphael.
 

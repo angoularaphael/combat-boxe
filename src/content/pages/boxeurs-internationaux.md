@@ -1,7 +1,7 @@
 ---
 slug: boxeurs-internationaux
-title: "Boxeurs internationaux : affiches et parcours | Combat Boxe"
-description: "Boxeurs internationaux à suivre, hors de France, et liens vers les affiches."
+title: "Boxeurs internationaux : affiches et combats de boxe | Combat Boxe"
+description: "Boxeurs internationaux : parcours, fiches et combats de boxe hors de France. Les affiches suivies par le média Combat Boxe, en Europe et dans le monde."
 h1: "Boxeurs internationaux"
 template: boxers-int
 image: /img/og-combat-boxe.jpg

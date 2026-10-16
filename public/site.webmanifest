@@ -1,7 +1,7 @@
 {
   "name": "Combat Boxe",
   "short_name": "Combat Boxe",
-  "description": "Actualité, calendrier et résultats des combats de boxe.",
+  "description": "Combat boxe : actualité, calendrier et résultats des combats de boxe.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f4f1ec",

@@ -37,7 +37,7 @@ function priority(loc: string, site: string) {
 
 function changefreq(loc: string, site: string) {
   const slug = loc === site ? '' : loc.slice(site.length + 1);
-  if (slug === '' || slug === 'actualites' || slug === 'combats-a-venir' || slug === 'resultats-boxe') return 'daily';
+  if (slug === '' || slug === 'combat-de-boxe' || slug === 'actualites' || slug === 'combats-a-venir' || slug === 'resultats-boxe') return 'daily';
   return 'weekly';
 }
 

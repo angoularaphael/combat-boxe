@@ -1,7 +1,7 @@
 ---
 slug: portraits-boxeurs
 title: "Portraits de boxeurs | Combat Boxe"
-description: "Portraits de boxeurs : parcours, catégorie, bilan quand il est publié, et prochain combat. Français et internationaux."
+description: "Portraits de boxeurs : parcours, catégorie, bilan quand il est publié, et prochain combat de boxe. Français et internationaux, sur Combat Boxe."
 h1: "Portraits de boxeurs"
 template: portraits
 image: /img/valentin-guth-hero.jpg
