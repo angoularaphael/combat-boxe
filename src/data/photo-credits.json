@@ -711,5 +711,25 @@
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=50056650",
     "wikiTitle": "Anton",
     "aliases": []
+  },
+  {
+    "name": "Rojas",
+    "slug": "rojas",
+    "path": "/img/boxers/rojas.jpg",
+    "license": "Public domain",
+    "artist": "Unknown author Unknown author",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=151537381",
+    "wikiTitle": "Rojas",
+    "aliases": []
+  },
+  {
+    "name": "Giron",
+    "slug": "giron",
+    "path": "/img/boxers/giron.jpg",
+    "license": "Public domain",
+    "artist": "LHD 4",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=40291733",
+    "wikiTitle": "Giron",
+    "aliases": []
   }
 ]
