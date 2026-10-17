@@ -108,12 +108,12 @@
       }
     ],
     "venue": "The O2 arena, Londres",
-    "time": "Ouverture des portes à 16 h, heure locale",
-    "channel": "DAZN PPV et DAZN PPV UK",
-    "analysis": "Daniel Dubois et Fabio Wardley se retrouveront le 17 octobre à l’O2 Arena pour une revanche poids lourds annoncée comme un championnat du monde. La salle indique une ouverture des portes à 16 h, heure locale.\n\nLe programme de la soirée comprend aussi Bakhodir Jalolov contre Solomon Dacres et Louie O’Doherty contre Michael Gomez Jr. Les éléments disponibles ne détaillent pas davantage ces combats dans le cadre de la page de l’O2.\n\nLa diffusion est annoncée sur DAZN PPV et DAZN PPV UK. Les pages consultées ne fournissent pas de bilans ou d’éléments de parcours permettant d’étayer une lecture technique ou un pronostic.",
-    "sourceUrl": "https://www.theo2.co.uk/events/detail/dubois-vs-wardley-2",
-    "aboutA": "Daniel Dubois est annoncé pour une revanche poids lourds présentée comme un championnat du monde. Les pages consultées ne donnent pas ici son bilan ni son parcours.",
-    "aboutB": "Fabio Wardley est annoncé pour une revanche poids lourds présentée comme un championnat du monde. Les pages consultées ne donnent pas ici son bilan ni son parcours."
+    "time": "Ouverture des portes à 16:00",
+    "channel": "DAZN PPV",
+    "analysis": "La revanche est programmée le 17 octobre à l’O2 arena de Londres. Les portes ouvrent à 16 heures ; cette indication ne donne pas l’heure précise du combat principal.\n\nLes deux boxeurs arrivent à un poids record en carrière, selon la BBC. Ils se sont déjà affrontés, et Boxe Punch situe leur premier combat au 9 mai 2026. Les pages consultées ne précisent pas ici le verdict de ce premier duel.\n\nLa carte comprend aussi Jalolov contre Dacres, O’Doherty contre Gomez Jr pour des titres britannique et Commonwealth, ainsi que Fundora contre Hadribeaj pour le titre WBC des super-welters. D’autres combats annoncés opposent Figueroa à Kameda et Resendiz à Mazoudier.",
+    "sourceUrl": "https://www.bbc.com/sport/boxing",
+    "aboutA": "La BBC rapporte que Daniel Dubois aborde cette revanche au poids le plus élevé de sa carrière. Le combat est présenté comme une rencontre de championnat du monde des poids lourds.",
+    "aboutB": "La BBC rapporte que Fabio Wardley aborde lui aussi cette revanche au poids le plus élevé de sa carrière. Il affronte Dubois dans un combat de championnat du monde des poids lourds."
   },
   {
     "date": "2026-11-28",
@@ -211,14 +211,14 @@
     "date": "2026-10-17",
     "boxerA": "Sebastian Fundora",
     "boxerB": "Ermal Hadribeaj",
-    "venue": "The Cosmopolitan",
+    "venue": "The Cosmopolitan, Las Vegas",
     "time": "",
-    "channel": "DAZN et DAZN Global",
-    "aboutA": "",
-    "aboutB": "",
-    "analysis": "Fundora et Hadribeaj sont annoncés pour le titre mondial WBC des super-welters à Las Vegas. La carte mentionnée autour du combat comprend également Brandon Figueroa contre Kameda et Reséndiz contre Mazoudier.",
+    "channel": "DAZN",
+    "aboutA": "Le WBC présente Sebastian Fundora comme le boxeur américain de cette affiche, disputée pour le titre mondial WBC des super-welters. La fédération indique que les deux hommes ont fait le poids.",
+    "aboutB": "Le WBC présente Ermal Hadribeaj comme représentant de l’Albanie et des États-Unis. La fédération indique qu’il a fait le poids pour le combat de championnat WBC.",
+    "analysis": "Fundora et Hadribeaj doivent s’affronter pour le titre mondial WBC des super-welters, selon le calendrier de la fédération. Le WBC a rapporté le 16 octobre que les deux boxeurs avaient fait le poids.\n\nLa soirée est programmée au Cosmopolitan de Las Vegas et annoncée sur DAZN. Les pages consultées ne donnent pas d’heure précise pour le combat.\n\nLes informations disponibles établissent l’enjeu du titre et la validation de la pesée, mais ne fournissent pas de bilan ou de résultat antérieur permettant de départager les deux boxeurs.",
     "prediction": "",
-    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+    "sourceUrl": "https://wbcboxing.com/en/news/"
   },
   {
     "date": "2026-10-12",
