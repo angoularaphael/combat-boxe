@@ -2,7 +2,9 @@ import keywords from '../data/seo-keywords.json';
 
 const SITE = 'https://combat-boxe.com';
 
-export const searchKeywords = [...keywords.principaux, ...keywords.longue_traine];
+const principaux = keywords.principaux || keywords.fortes || [];
+const longueTraine = keywords.longue_traine || [];
+export const searchKeywords = [...principaux, ...longueTraine];
 
 export function canonical(path) {
   if (!path || path === '/') return SITE;
