@@ -64,9 +64,9 @@ const meter = [
   [upcomingGalasAll.length, upcomingGalasAll.length > 1 ? 'soirées' : 'soirée'],
   [clubs.length, clubs.length > 1 ? 'salles' : 'salle'],
 ];
-const homeTitle = 'Combat boxe : actualité, calendrier, résultats | Combat Boxe';
+const homeTitle = 'Combat boxe : actualités, résultats, calendrier | Combat Boxe';
 const homeDescription =
-  "Combat boxe : actualité des combats de boxe à venir, résultats, calendrier et boxeurs français. En France et à l'international, autour du ring.";
+  "Combat boxe et combats boxe : actualités boxe, résultats boxe, calendrier boxe et galas de boxe. Combat de boxe en France et à l'international, autour du ring.";
 const jsonLd = graph(
   organizationLd,
   websiteLd,
@@ -139,6 +139,15 @@ const jsonLd = graph(
         <a href="/actualites">Actualités du mois</a>
         <a href="/archives">Archives</a>
       </p>
+      <nav class="sheet-pillars" aria-label="Rubriques boxe">
+        <a href="/actualites">Actualités boxe</a>
+        <a href="/combats-a-venir">Combats boxe à venir</a>
+        <a href="/resultats-boxe">Résultats boxe</a>
+        <a href="/calendrier-combats-boxe">Calendrier boxe</a>
+        <a href="/galas-boxe">Galas de boxe</a>
+        <a href="/championnat-de-france-de-boxe">Championnat de France</a>
+        <a href="/clubs-boxe-france">Clubs de boxe</a>
+      </nav>
     </div>
   </section>
 

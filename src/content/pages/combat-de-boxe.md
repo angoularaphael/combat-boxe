@@ -1,7 +1,7 @@
 ---
 slug: combat-de-boxe
-title: "Combat boxe : affiches, calendrier et résultats | Combat Boxe"
-description: "Combat boxe : affiches, calendrier, résultats et boxeurs. Ce qu'est un combat de boxe, et où suivre les combats de boxe en France et à l'international."
+title: "Combat boxe et combat de boxe : guide | Combat Boxe"
+description: "Combat boxe et combat de boxe : affiches, actualités boxe, résultats boxe, calendrier boxe et combats boxe à venir. Média de boxe anglaise, France et international."
 h1: "Combat boxe"
 template: hub
 image: /img/og-combat-boxe.jpg
@@ -13,9 +13,9 @@ breadcrumbs:
 
 Un **combat de boxe** oppose deux boxeurs, dans une catégorie, à une date et dans un lieu. Un titre peut être en jeu. Combat Boxe suit ces affiches en France et à l'international.
 
-Les [combats de boxe à venir](/combats-a-venir) listent les rendez-vous encore datés dans le futur. Le [calendrier des combats de boxe](/calendrier-combats-boxe) les range par jour. Les [galas de boxe](/galas-boxe) regroupent une soirée. Les [résultats des combats de boxe](/resultats-boxe) disent qui a gagné, et comment.
+Les [combats boxe à venir](/combats-a-venir) listent les rendez-vous encore datés dans le futur. Le [calendrier boxe](/calendrier-combats-boxe) les range par jour. Les [galas de boxe](/galas-boxe) regroupent une soirée. Les [résultats boxe](/resultats-boxe) disent qui a gagné, et comment.
 
-L'[actualité boxe](/actualites) suit ce qui bouge avant le jour J. Les [boxeurs français](/boxeurs-francais) et [internationaux](/boxeurs-internationaux), les [clubs de boxe en France](/clubs-boxe-france) et les [entraîneurs](/entraineurs-boxe-francais) donnent un visage aux affiches.
+Les [actualités boxe](/actualites) suivent ce qui bouge avant le jour J. Le [championnat de France de boxe](/championnat-de-france-de-boxe) recense les titres nationaux que nous publions. Les [boxeurs français](/boxeurs-francais) et [internationaux](/boxeurs-internationaux), les [clubs de boxe](/clubs-boxe-france) et les [entraîneurs](/entraineurs-boxe-francais) donnent un visage aux affiches. Combat Boxe est un média de **boxe anglaise**, pas un promoteur.
 
 Combat Boxe est un média, pas un promoteur. Un combat n'entre ici qu'avec une date, deux noms et un lieu. Un résultat n'entre qu'avec un vainqueur et une méthode. Les mois passés restent dans les [archives](/archives).
 

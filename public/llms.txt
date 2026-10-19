@@ -2,12 +2,13 @@
 
 Média indépendant sur les combats de boxe anglaise, en France et à l'international.
 Site : https://combat-boxe.com
-Requêtes cibles : combat boxe, combats de boxe, combat de boxe.
+Requêtes cibles : combat boxe, combats boxe, combat de boxe, actualités boxe, résultats boxe, calendrier boxe, galas de boxe, championnat de France de boxe, clubs de boxe, boxeurs français.
 
 ## Pages principales
 
 - https://combat-boxe.com/
 - https://combat-boxe.com/combat-de-boxe
+- https://combat-boxe.com/championnat-de-france-de-boxe
 - https://combat-boxe.com/actualites
 - https://combat-boxe.com/actualites/2026-10-05
 - https://combat-boxe.com/combats-a-venir

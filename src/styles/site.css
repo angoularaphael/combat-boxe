@@ -2582,6 +2582,24 @@ a {
   animation: rise-in 550ms ease both;
 }
 
+.sheet-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 16px 0 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.4;
+  animation: rise-in 550ms ease both;
+}
+
+.sheet-pillars a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .sheet-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;

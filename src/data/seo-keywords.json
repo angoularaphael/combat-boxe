@@ -1,11 +1,14 @@
 {
   "principaux": [
     "combat boxe",
+    "combats boxe",
     "combats de boxe",
     "combat de boxe",
+    "actualités boxe",
     "actualité boxe",
     "résultats boxe",
     "calendrier boxe",
+    "combats boxe à venir",
     "combats de boxe à venir",
     "combat boxe france",
     "boxeurs français",
@@ -16,17 +19,20 @@
   ],
   "longue_traine": [
     "actualité combat boxe",
+    "actualités boxe française",
     "combats de boxe france",
     "résultats des combats de boxe",
     "résultats boxe du jour",
     "prochain combat de boxe",
     "combat de boxe ce soir",
     "titre de France de boxe",
+    "championnat de France boxe professionnel",
     "actualité boxe française",
     "calendrier des combats de boxe",
     "clubs de boxe en France",
     "entraîneurs de boxe",
     "portraits de boxeurs",
-    "boxeurs internationaux"
+    "boxeurs internationaux",
+    "actualité boxe anglaise"
   ]
 }

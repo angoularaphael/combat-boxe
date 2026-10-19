@@ -1,8 +1,8 @@
 ---
 slug: combats-a-venir
-title: "Combats de boxe à venir : dates et enjeux | Combat Boxe"
-description: "Combats de boxe à venir : dates, boxeurs, catégories, titres et lieux. Les soirées sont sur les galas, les verdicts sur les résultats du média."
-h1: "Combats de boxe à venir"
+title: "Combats boxe à venir : dates et affiches | Combat Boxe"
+description: "Combats boxe à venir : dates, boxeurs, catégories et titres. Les combats de boxe à venir, classés par mois ; les soirées sur les galas de boxe."
+h1: "Combats boxe à venir"
 template: upcoming
 image: /img/og-combat-boxe.jpg
 imageAlt: "Deux boxeurs face à face dans un ring"

@@ -26,6 +26,7 @@ function priority(loc: string, site: string) {
       'boxeurs-francais',
       'boxeurs-internationaux',
       'clubs-boxe-france',
+      'championnat-de-france-de-boxe',
     ].includes(slug)
   ) {
     return '0.9';

@@ -1,8 +1,8 @@
 ---
 slug: resultats-boxe
-title: "Résultats des combats de boxe | Combat Boxe"
-description: "Résultats des combats de boxe du mois : vainqueur, arrêt ou décision, en France et à l'étranger. Les mois passés restent dans les archives."
-h1: "Résultats du mois"
+title: "Résultats boxe : verdicts du mois | Combat Boxe"
+description: "Résultats boxe du mois : vainqueur, arrêt ou décision, en France et à l'étranger. Les résultats des combats de boxe ; les mois passés dans les archives."
+h1: "Résultats boxe"
 template: results
 image: /img/og-combat-boxe.jpg
 imageAlt: "Deux boxeurs en action pendant un entraînement"

@@ -1,7 +1,7 @@
 ---
 slug: boxeurs-francais
-title: "Boxeurs français : portraits et combats de boxe | Combat Boxe"
-description: "Boxeurs français : portraits, catégories, palmarès et prochains combats de boxe. Les fiches du média Combat Boxe, en France et à l'international."
+title: "Boxeurs français : fiches et championnats | Combat Boxe"
+description: "Boxeurs français : portraits, catégories, palmarès et championnat de France de boxe quand il est annoncé. Fiches Combat Boxe, France et international."
 h1: "Boxeurs français"
 template: boxers-fr
 image: /img/valentin-guth-hero.jpg

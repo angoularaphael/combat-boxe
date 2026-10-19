@@ -2,12 +2,13 @@ import { getCollection } from 'astro:content';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, liveArticle } from '../data/entities';
 
 const pages = [
-  ['/combat-de-boxe', 'Page', 'Combat boxe', 'Combat boxe, combats de boxe, affiches, calendrier et résultats.'],
-  ['/actualites', 'Page', 'Actualités', 'Fil des papiers de boxe.'],
-  ['/combats-a-venir', 'Page', 'Combats à venir', 'Calendrier des combats annoncés.'],
-  ['/resultats-boxe', 'Page', 'Résultats', 'Combats déjà disputés.'],
-  ['/calendrier-combats-boxe', 'Page', 'Calendrier', 'Dates des combats de boxe.'],
-  ['/galas-boxe', 'Page', 'Galas', 'Soirées et cartes.'],
+  ['/combat-de-boxe', 'Page', 'Combat boxe', 'Combat boxe, combat de boxe, combats boxe, guide et liens.'],
+  ['/actualites', 'Page', 'Actualités boxe', 'Actualités boxe et actualité boxe, fil des papiers.'],
+  ['/combats-a-venir', 'Page', 'Combats boxe à venir', 'Combats boxe à venir, dates et affiches.'],
+  ['/resultats-boxe', 'Page', 'Résultats boxe', 'Résultats boxe, verdicts du mois.'],
+  ['/calendrier-combats-boxe', 'Page', 'Calendrier boxe', 'Calendrier boxe, dates des combats.'],
+  ['/galas-boxe', 'Page', 'Galas de boxe', 'Galas de boxe, soirées et cartes.'],
+  ['/championnat-de-france-de-boxe', 'Page', 'Championnat de France de boxe', 'Championnat de France de boxe, titres et galas nationaux.'],
   ['/boxeurs-francais', 'Page', 'Boxeurs français', 'Fiches des boxeurs français.'],
   ['/boxeurs-internationaux', 'Page', 'Boxeurs internationaux', 'Fiches des boxeurs internationaux.'],
   ['/clubs-boxe-france', 'Page', 'Clubs', 'Salles de boxe en France.'],
