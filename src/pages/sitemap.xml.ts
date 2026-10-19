@@ -4,6 +4,12 @@ import { boxeurs, clubs, coachs, combats, galas, groupArticlesByDay, parisDayKey
 
 export const prerender = true;
 
+type SitemapUrl = {
+  loc: string;
+  lastmod: string;
+  image?: string;
+};
+
 function xml(value: string) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -61,7 +67,7 @@ export const GET: APIRoute = async () => {
     '/archives/calendrier',
     '/archives/galas',
   ];
-  const urls = [
+  const urls: SitemapUrl[] = [
     { loc: site, lastmod: buildDate, image: '/img/og-combat-boxe.jpg' },
     ...pages.map((p) => ({
       loc: `${site}/${p.data.slug}`,

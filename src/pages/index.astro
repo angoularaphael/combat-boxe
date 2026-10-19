@@ -121,7 +121,7 @@ const jsonLd = graph(
       </ul>
       {suite.length > 0 && (
         <>
-          <h2 class="sheet-day">{editionTitle(une.data.date)}</h2>
+          <h2 class="sheet-day">{editionTitle(editionArticles[0].data.date)}</h2>
           <ol class="sheet-index">
             {suite.map((item, index) => (
               <li>

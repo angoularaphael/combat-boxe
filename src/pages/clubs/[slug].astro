@@ -11,6 +11,9 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const club = clubs.find((item) => item.slug === slug);
+if (!club) {
+  return Astro.redirect('/404');
+}
 const path = `/clubs/${club.slug}`;
 const crumbs = [
   { href: '/', label: 'Accueil' },

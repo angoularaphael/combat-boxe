@@ -4,7 +4,12 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import FightCard from '../../components/FightCard.astro';
 import Cover from '../../components/Cover.astro';
+import type { Gala } from '../../data/entities';
 import { combats, formatDate, galas } from '../../data/entities';
+
+interface Props {
+  gala: Gala;
+}
 import { countryLabel, flagSrc, placeLine } from '../../lib/flags';
 import { fightMedia } from '../../lib/portraits';
 import { breadcrumbLd, graph } from '../../lib/seo';

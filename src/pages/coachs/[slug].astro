@@ -11,6 +11,9 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const coach = coachs.find((item) => item.slug === slug);
+if (!coach) {
+  return Astro.redirect('/404');
+}
 const path = `/coachs/${coach.slug}`;
 const crumbs = [
   { href: '/', label: 'Accueil' },

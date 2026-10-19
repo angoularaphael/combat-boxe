@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -37,15 +37,25 @@ const articles = (await getCollection('articles'))
   .filter((a) => a.data.status === 'published')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const entry = [...pages, ...articles].find((item) => item.data.slug === slug);
-const mode = entry && articles.some((item) => item.id === entry.id) ? 'article' : 'page';
+if (!entry) {
+  return Astro.redirect('/404');
+}
+type ArticleEntry = CollectionEntry<'articles'>;
+type PageEntry = CollectionEntry<'pages'>;
+const mode = articles.some((item) => item.id === entry.id) ? 'article' : 'page';
+const pageEntry = mode === 'page' ? (entry as PageEntry) : null;
+const articleEntry = mode === 'article' ? (entry as ArticleEntry) : null;
+const articleRow = articleEntry ? liveArticle(articleEntry.data) : null;
+const pageData = pageEntry?.data ?? null;
+const data = mode === 'article' ? articleRow! : pageData!;
 const { Content } = await render(entry);
-const data = liveArticle(entry.data);
 const path = `/${data.slug}`;
 const crumbs = [{ href: '/', label: 'Accueil' }, ...data.breadcrumbs];
-const template = mode === 'page' ? data.template : 'article';
-const portraitImage = Boolean(data.photo);
-const linkedBoxer = data.boxeur || boxeurs.find((b) => b.article === data.slug);
-const coverPhotos = photosForVersus(data.coverVersus || '');
+const template = mode === 'page' ? pageData!.template : 'article';
+const portraitImage = Boolean(mode === 'article' ? articleRow!.photo : pageData?.photo);
+const linkedBoxer =
+  articleRow?.boxeur || (mode === 'article' ? boxeurs.find((b) => b.article === data.slug) : undefined);
+const coverPhotos = photosForVersus((data.coverVersus as string | undefined) || '');
 const editions = groupArticlesByDay(articles);
 const listing = ['news', 'upcoming', 'results', 'calendar', 'galas', 'boxers-fr', 'boxers-int', 'clubs', 'coaches', 'portraits', 'analyses', 'interviews', 'dossiers'].includes(template);
 const showPhoto = template !== 'legal' && portraitImage;
@@ -59,12 +69,12 @@ const jsonLd = graph(
     path,
     name: data.h1,
   }),
-  mode === 'article'
+  mode === 'article' && articleRow
     ? articleLd({
-        title: data.h1,
-        description: data.description,
+        title: articleRow.h1,
+        description: articleRow.description,
         path,
-        date: data.date,
+        date: articleRow.date,
         image,
       })
     : template === 'news'
@@ -125,7 +135,7 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
           </li>
         ))}
       </ol>
-      {mode === 'article' && <p class="meta">{formatDate(data.date)} · {kindLabel(data.kind)}</p>}
+      {articleRow && <p class="meta">{formatDate(articleRow.date)} · {kindLabel(articleRow.kind)}</p>}
       <h1>{data.h1}</h1>
       {(template === 'boxers-fr' || template === 'boxers-int') && (
         <BoxerSwitch current={template === 'boxers-fr' ? 'fr' : 'int'} />
@@ -209,7 +219,7 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
 
       {showCover && (
         <Cover
-          kicker={mode === 'article' ? kindLabel(data.kind) : 'Combat Boxe'}
+          kicker={articleRow ? kindLabel(articleRow.kind) : 'Combat Boxe'}
           versus={data.coverVersus || ''}
           title={data.coverVersus ? '' : data.h1}
           meta={data.coverMeta || ''}
@@ -456,9 +466,9 @@ const dossiers = articles.filter((a) => a.data.kind === 'dossier' || a.data.kind
         )
       )}
 
-      {mode === 'article' && data.pillars?.length > 0 && (
+      {articleRow && articleRow.pillars?.length > 0 && (
         <nav class="also" aria-label="Maillage">
-          {data.pillars.map((link) => (
+          {articleRow.pillars.map((link) => (
             <a href={link.href}>{link.label}</a>
           ))}
         </nav>

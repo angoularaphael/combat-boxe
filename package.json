@@ -21,5 +21,9 @@
     "@astrojs/vercel": "^8.2.11",
     "astro": "^5.18.2",
     "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.11",
+    "typescript": "^5.9.3"
   }
 }

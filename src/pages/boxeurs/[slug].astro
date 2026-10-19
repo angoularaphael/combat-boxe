@@ -12,6 +12,9 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const boxeur = boxeurs.find((item) => item.slug === slug);
+if (!boxeur) {
+  return Astro.redirect('/404');
+}
 const club = clubBySlug(boxeur.clubSlug);
 const coach = coachBySlug(boxeur.coachSlug);
 const credit = creditForPhoto(boxeur.photo);
@@ -28,7 +31,7 @@ const jsonLd = graph(
   breadcrumbLd(crumbs),
   personLd({ ...boxeur, jobTitle: 'Boxeur professionnel', country: boxeur.country }, path),
 );
-const title = `${boxeur.name} : boxeur ${boxeur.category.toLowerCase()} | Combat Boxe`;
+const title = `${boxeur.name} : boxeur ${(boxeur.category || 'de boxe').toLowerCase()} | Combat Boxe`;
 const description = `${boxeur.name}, ${boxeur.ranking}. Parcours, club, style et prochaines échéances.`;
 ---
 
