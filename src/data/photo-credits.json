@@ -731,5 +731,74 @@
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=40291733",
     "wikiTitle": "Giron",
     "aliases": []
+  },
+  {
+    "name": "Martin",
+    "slug": "martin",
+    "path": "/img/boxers/martin.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Martin Rulsch , Wikimedia Commons",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=88139438",
+    "wikiTitle": "Martin",
+    "aliases": []
+  },
+  {
+    "name": "Navarro",
+    "slug": "navarro",
+    "path": "/img/boxers/navarro.jpg",
+    "license": "Public domain",
+    "artist": "",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=611102",
+    "wikiTitle": "Navarro",
+    "aliases": []
+  },
+  {
+    "name": "Moreno",
+    "slug": "moreno",
+    "path": "/img/boxers/moreno.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Antonio Schubert from Rio de Janeiro, Brasil",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=77132352",
+    "wikiTitle": "Moreno",
+    "aliases": []
+  },
+  {
+    "name": "Gonzalez",
+    "slug": "gonzalez",
+    "path": "/img/boxers/gonzalez.jpg",
+    "license": "Public domain",
+    "artist": "Ken Hackman, U.S. Air Force",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=4681831",
+    "wikiTitle": "Gonzalez",
+    "aliases": []
+  },
+  {
+    "name": "Vazquez",
+    "slug": "vazquez",
+    "path": "/img/boxers/vazquez.jpg",
+    "license": "Public domain",
+    "artist": "U.S. Air Force photo by Senior Airman Zachary Foster",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=160017088",
+    "wikiTitle": "Vazquez",
+    "aliases": []
+  },
+  {
+    "name": "Hughes",
+    "slug": "hughes",
+    "path": "/img/boxers/hughes.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Alan Hughes",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=136303692",
+    "wikiTitle": "Hughes",
+    "aliases": []
+  },
+  {
+    "name": "Ryan",
+    "slug": "ryan",
+    "path": "/img/boxers/ryan.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/ryan/",
+    "aliases": []
   }
 ]

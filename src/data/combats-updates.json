@@ -143,11 +143,11 @@
     "boxerA": "Tyson Fury",
     "boxerB": "Anthony Joshua",
     "venue": "Principality Stadium",
-    "time": "17:00",
+    "time": "Dans les premières heures du matin, après une soirée complète de boxe ; heure exacte non précisée.",
     "channel": "Netflix",
-    "aboutA": "La page du Principality Stadium présente Fury comme l’un des poids lourds britanniques ayant dominé la catégorie pendant plus d’une décennie et détenu des titres mondiaux.",
-    "aboutB": "La page du Principality Stadium présente Joshua comme l’un des poids lourds britanniques ayant dominé la catégorie pendant plus d’une décennie et détenu des titres mondiaux.",
-    "analysis": "Le combat est prévu le 11 décembre au Principality Stadium de Cardiff. L’événement débute à 17 heures, tandis que le combat principal est annoncé dans les premières heures du matin, après une soirée complète de boxe.\n\nFury et Joshua ont tous deux détenu des titres mondiaux et n’ont jamais combattu l’un contre l’autre chez les professionnels, selon la présentation de la salle. La page ne détaille ni leurs bilans ni leurs combats précédents.\n\nLe Principality Stadium annonce une diffusion en direct sur Netflix et met en avant sa capacité maximale de 80 000 places. Aucun autre combat de la carte n’est nommé dans la page consultée.",
+    "aboutA": "La page du stade indique que Fury a dominé la boxe britannique des poids lourds pendant plus d’une décennie et a détenu des titres mondiaux. Les deux hommes ne se sont jamais affrontés professionnellement avant ce combat.",
+    "aboutB": "La page du stade indique que Joshua a dominé la boxe britannique des poids lourds pendant plus d’une décennie et a détenu des titres mondiaux. Les deux hommes ne se sont jamais affrontés professionnellement avant ce combat.",
+    "analysis": "Le Principality Stadium annonce le combat pour le 11 décembre à Cardiff. La page présente l’affrontement comme la résolution d’une rivalité professionnelle longtemps inaboutie entre deux figures des poids lourds britanniques.\n\nLe stade précise que le combat est prévu dans les premières heures du matin, à la suite d’une soirée complète de boxe. Il ne donne pas d’horaire exact.\n\nNetflix assurera la diffusion en direct. La page ne fournit pas d’élément permettant de départager les deux boxeurs sur le plan sportif.",
     "prediction": "",
     "sourceUrl": "https://www.principalitystadium.wales/event/tyson-fury-v-anthony-joshua/"
   },
@@ -273,6 +273,32 @@
     "aboutA": "",
     "aboutB": "",
     "analysis": "Pauldo-Giron est indiqué comme combat de la sous-carte, sur dix rounds chez les légers. Aucun bilan ni détail de parcours n’est fourni pour départager les deux boxeurs.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-10-24",
+    "boxerA": "Dalton Smith",
+    "boxerB": "Alberto Puello",
+    "venue": "Utilita Arena Sheffield",
+    "time": "",
+    "channel": "DAZN & DAZN Global",
+    "aboutA": "Le calendrier indique que Smith-Puello est un combat pour le titre mondial WBC des super-légers, prévu sur 12 rounds.",
+    "aboutB": "Le calendrier indique que Smith-Puello est un combat pour le titre mondial WBC des super-légers, prévu sur 12 rounds.",
+    "analysis": "Smith-Puello est annoncé le 24 octobre à l’Utilita Arena Sheffield, dans la catégorie des super-légers.\n\nLe calendrier indique que le titre mondial WBC est en jeu et que le combat est prévu sur 12 rounds.\n\nDAZN et DAZN Global sont annoncés pour la diffusion. La page ne fournit pas de bilan ou de parcours permettant une comparaison sportive détaillée.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-10-24",
+    "boxerA": "Emanuel Navarrete",
+    "boxerB": "O'Shaquie Foster",
+    "venue": "Frost Bank Center",
+    "time": "",
+    "channel": "DAZN & DAZN Global",
+    "aboutA": "Le calendrier annonce un combat en 12 rounds chez les super-plumes. Il mentionne les titres IBF, WBC et WBO ainsi que le titre The Ring vacant.",
+    "aboutB": "Le calendrier annonce un combat en 12 rounds chez les super-plumes. Il mentionne les titres IBF, WBC et WBO ainsi que le titre The Ring vacant.",
+    "analysis": "Navarrete-Foster est prévu le 24 octobre au Frost Bank Center de San Antonio. Le calendrier le situe chez les super-plumes et annonce un format de 12 rounds.\n\nPlusieurs titres sont indiqués en jeu : les ceintures IBF, WBC et WBO ainsi que le titre The Ring vacant.\n\nLa diffusion est annoncée sur DAZN et DAZN Global. Les pages consultées ne fournissent pas de bilans ou de détails de parcours pour étayer un pronostic.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
