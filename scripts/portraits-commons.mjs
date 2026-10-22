@@ -120,6 +120,8 @@ async function commonsImageSearch(name) {
 }
 
 export async function findPortrait(name, extraTitles = []) {
+  const parts = String(name || '').trim().split(/\s+/).filter(Boolean);
+  if (parts.length < 2) return null;
   const titles = [
     `${name} (boxer)`,
     `${name} (boxeur)`,
@@ -169,7 +171,6 @@ export async function savePortrait(found) {
     if (!res.ok) return null;
     await pipeline(Readable.fromWeb(res.body), createWriteStream(dest));
   }
-    const last = found.name.split(/\s+/).pop();
     return {
       name: found.name,
       slug,
@@ -178,7 +179,7 @@ export async function savePortrait(found) {
       artist: found.artist,
       pageUrl: found.pageUrl,
       wikiTitle: found.wikiTitle,
-      aliases: last && last !== found.name ? [last] : [],
+      aliases: [],
     };
 }
 
