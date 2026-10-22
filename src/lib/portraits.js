@@ -30,10 +30,7 @@ export function portraitFor(name) {
   if (localHit) return localHit.path;
   const row = credits.find((item) => {
     const keys = [item.name, ...(item.aliases || [])].map(norm);
-    if (keys.includes(n)) return true;
-    // Pas de match sur le seul nom de famille : trop d'homonymes (Giron, Anton, etc.).
-    if (!n.includes(' ')) return false;
-    return keys.some((k) => k.split(' ').pop() === n.split(' ').pop() && n.split(' ').length >= 2);
+    return keys.includes(n) || keys.some((k) => k.split(' ').pop() === n && n.length > 4);
   });
   return row?.path || '';
 }

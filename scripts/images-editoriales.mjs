@@ -296,7 +296,7 @@ export function nomsDuSite() {
     if (vs) {
       for (const part of vs[2].split('/')) {
         const trimmed = unquote(part);
-        if (trimmed.split(/\s+/).filter(Boolean).length >= 2) add(trimmed);
+        if (/\s/.test(trimmed)) add(trimmed);
       }
     }
     const h1 = md.match(/^h1:\s*(['"])(.*?)\1/m);

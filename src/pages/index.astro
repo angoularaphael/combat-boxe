@@ -47,15 +47,14 @@ const upcomingGalas = upcomingGalasAll.slice(0, 2);
 const upcoming = upcomingAll.slice(0, 2);
 const results = resultsAll.slice(0, 2);
 const suite = editionArticles.slice(1).map((item) => ({ ...item, data: liveArticle(item.data) }));
-const watch = combats
+const watch = upcomingAll
   .flatMap((fight) =>
     (fight.clips || []).map((clip) => ({
       ...clip,
       context: `${fight.boxerA} contre ${fight.boxerB}`,
     })),
   )
-  .sort((a, b) => (a.kind === 'interview' ? 0 : 1) - (b.kind === 'interview' ? 0 : 1))
-  .slice(0, 10);
+  .slice(0, 4);
 const meter = [
   [articles.length, articles.length > 1 ? 'papiers' : 'papier'],
   [upcomingAll.length, upcomingAll.length > 1 ? 'affiches' : 'affiche'],
