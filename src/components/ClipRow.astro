@@ -1,17 +1,37 @@
 ---
+import { fightMedia, posterForVersus } from '../lib/portraits';
+
 const { clips = [] } = Astro.props;
 const rows = clips.filter((clip) => clip?.url && clip?.title);
+
+function versusFromContext(context) {
+  if (!context) return '';
+  return String(context).replace(/\s+contre\s+/i, ' / ');
+}
+
+function posterForClip(clip) {
+  if (clip.poster) return clip.poster;
+  const versus = versusFromContext(clip.context);
+  if (!versus) return '';
+  return posterForVersus(versus) || fightMedia(versus, 0).srcs[0] || '';
+}
 ---
 
 {
   rows.length > 0 && (
     <ul class="clip-row">
-      {rows.map((clip) => (
+      {rows.map((clip) => {
+        const poster = posterForClip(clip);
+        return (
         <li>
           <a class="clip-card" href={clip.url} target="_blank" rel="noopener noreferrer">
-            {clip.poster && (
-              <img src={clip.poster} alt="" width="640" height="360" loading="lazy" decoding="async" />
-            )}
+            <div class="clip-media">
+              {poster ? (
+                <img src={poster} alt="" width="640" height="360" loading="lazy" decoding="async" />
+              ) : (
+                <span class="clip-media-fallback" aria-hidden="true" />
+              )}
+            </div>
             <span class="clip-kind">{clip.kind === 'interview' ? 'Interview' : 'Vidéo'}</span>
             <strong>{clip.title}</strong>
             {clip.text && <p>{clip.text}</p>}
@@ -19,7 +39,8 @@ const rows = clips.filter((clip) => clip?.url && clip?.title);
             {clip.context && <span class="clip-context">{clip.context}</span>}
           </a>
         </li>
-      ))}
+        );
+      })}
     </ul>
   )
 }

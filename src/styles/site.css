@@ -2068,13 +2068,27 @@ a {
   text-decoration: none;
 }
 
-.clip-card img {
+.clip-media {
   width: 100%;
-  max-width: 100%;
-  height: auto;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #e8e2d8;
+  min-height: 0;
+}
+
+.clip-media img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
+}
+
+.clip-media-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #3d5166 0%, #1a1a1a 55%, #5f7690 100%);
 }
 
 .clip-kind,
