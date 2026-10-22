@@ -1,5 +1,6 @@
 import credits from '../data/photo-credits.json';
 import POSTERS from '../data/posters.json';
+import { namesFromHeadline } from './headline-names.js';
 
 function norm(value) {
   return String(value)
@@ -19,6 +20,8 @@ const SCENES = [
   '/img/scene-speedbag.jpg',
   '/img/scene-belt.jpg',
 ];
+
+export { namesFromHeadline } from './headline-names.js';
 
 export function portraitFor(name) {
   if (!name) return '';
@@ -46,10 +49,25 @@ export function photosForVersus(versus) {
   return out;
 }
 
+export function heroImageForArticle(data) {
+  if (!data) return '';
+  const poster = posterForVersus(data.coverVersus || '');
+  if (poster) return poster;
+  if (data.photo) return data.photo;
+  const versusPhotos = photosForVersus(data.coverVersus || '');
+  if (versusPhotos[0]) return versusPhotos[0];
+  for (const name of namesFromHeadline(data.h1)) {
+    const path = portraitFor(name);
+    if (path) return path;
+  }
+  if (data.image && !String(data.image).includes('og-combat-boxe')) return data.image;
+  return '';
+}
+
 export function articleThumb(data) {
-  if (data?.photo) return data.photo;
-  const photos = photosForVersus(data?.coverVersus || '');
-  return photos[0] || '';
+  const hero = heroImageForArticle(data);
+  if (hero) return hero;
+  return '';
 }
 
 function lastToken(value) {

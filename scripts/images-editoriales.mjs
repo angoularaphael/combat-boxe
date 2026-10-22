@@ -6,6 +6,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { portraitsForNames, loadRegistry, saveRegistry } from './portraits-commons.mjs';
+import { namesFromHeadline } from '../src/lib/headline-names.js';
 import { bordsLaterauxBlancs, bufferEstUnePhoto, cadrerPortrait, notePortrait, reduireAffiche } from './cadrer-portrait.mjs';
 import sharp from 'sharp';
 
@@ -292,10 +293,15 @@ export function nomsDuSite() {
   for (const name of readdirSync(articlesDir).filter((n) => n.endsWith('.md'))) {
     const md = readFileSync(resolve(articlesDir, name), 'utf8');
     const vs = md.match(/coverVersus:\s*(['"])((?:\\.|[^\\])*?)\1/);
-    if (!vs) continue;
-    for (const part of vs[2].split('/')) {
-      const trimmed = unquote(part);
-      if (/\s/.test(trimmed)) add(trimmed);
+    if (vs) {
+      for (const part of vs[2].split('/')) {
+        const trimmed = unquote(part);
+        if (/\s/.test(trimmed)) add(trimmed);
+      }
+    }
+    const h1 = md.match(/^h1:\s*(['"])(.*?)\1/m);
+    if (h1) {
+      for (const name of namesFromHeadline(unquote(h1[2]))) add(name);
     }
   }
   return [...names];
