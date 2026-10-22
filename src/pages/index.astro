@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { boxeurs, clubs, coachs, combats, galas, formatDate, groupArticlesByDay, kindLabel, liveArticle, parisDayKey } from '../data/entities';
-import { photosForVersus, posterForVersus } from '../lib/portraits';
+import { heroImageForArticle, photosForVersus, posterForVersus } from '../lib/portraits';
 import {
   currentMonthEditions,
   editionPath,
@@ -31,11 +31,8 @@ const guth = boxeurs.find((b) => b.slug === 'valentin-guth');
 const coachPhoto = coachs.find((c) => c.photo && c.slug !== 'valentin-guth');
 const unePhotos = une ? photosForVersus(une.data.coverVersus || '') : [];
 const unePoster = une ? posterForVersus(une.data.coverVersus || '') : '';
-const uneImageRaw = unePoster || une?.data.photo || unePhotos[0] || une?.data.image || '';
-const uneImage =
-  uneImageRaw && !String(uneImageRaw).includes('og-combat-boxe')
-    ? uneImageRaw
-    : unePhotos[0] || '/img/scene-ropes.jpg';
+const uneHero = une ? heroImageForArticle(une.data) : '';
+const uneImage = uneHero || '/img/scene-ropes.jpg';
 const editions = groupArticlesByDay(articles);
 const upcomingGalasAll = galas
   .filter((gala) => isUpcomingDate(gala.date, todayKey))

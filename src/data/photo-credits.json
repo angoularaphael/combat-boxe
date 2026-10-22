@@ -800,5 +800,17 @@
     "artist": "mostvaluablepromotions.com",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/ryan/",
     "aliases": []
+  },
+  {
+    "name": "Shakur Stevenson",
+    "slug": "shakur-stevenson",
+    "path": "/img/boxers/shakur-stevenson.jpg",
+    "license": "CC BY 3.0 br",
+    "artist": "Fernando Frazão/Agência Brasil",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=50678934",
+    "wikiTitle": "Shakur Stevenson",
+    "aliases": [
+      "Stevenson"
+    ]
   }
 ]
