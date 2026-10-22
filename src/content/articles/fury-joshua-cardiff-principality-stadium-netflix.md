@@ -7,8 +7,8 @@ date: 2026-10-08T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/editorial/fury-joshua-cardiff-principality-stadium-netflix.jpg
-imageAlt: "Photographie publiee par Principality Stadium : Fury-Joshua à Cardiff : une rivalité britannique enfin dans le ring"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverVersus: "Tyson Fury / Anthony Joshua"
 coverMeta: "11 décembre 2026 · Cardiff · poids lourds"
 breadcrumbs:

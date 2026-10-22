@@ -7,8 +7,8 @@ date: 2026-10-20T08:00:00
 status: published
 family: actualite
 kind: resultat
-image: /img/editorial/joshua-kevin-anton-retient-titre-wbc-continental-americas.jpg
-imageAlt: "Photographie publiee par World Boxing Council : Joshua Kevin Antón conserve son titre après sa victoire sur Freudis Rojas"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverVersus: "Joshua Kevin Antón / Freudis Rojas"
 coverMeta: ""
 breadcrumbs:

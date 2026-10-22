@@ -7,9 +7,8 @@ date: 2026-10-06T11:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/editorial/sakharov-logerie-marlenheim-super-plumes.jpg
-photo: /img/editorial/sakharov-logerie-marlenheim-super-plumes.jpg
-imageAlt: "Photographie publiee par Made in Alsace : Marina Sakharov contre Isis Logerie : le titre de France des super-plumes à Marlenheim"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverVersus: "Sakharov / Logerie"
 coverMeta: "10 octobre 2026 · Marlenheim · Super-plumes"
 breadcrumbs:

@@ -7,8 +7,8 @@ date: 2026-10-10T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/editorial/sergio-mendoza-tko-ricardo-sandoval-chicago-octobre-2026.jpg
-imageAlt: "Photographie publiee par World Boxing Council : Mendoza renverse Sandoval par arrêt au cinquième round"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverVersus: "Ricardo Sandoval / Sergio Mendoza"
 coverMeta: "10 octobre 2026 · Chicago · poids mouches"
 breadcrumbs:

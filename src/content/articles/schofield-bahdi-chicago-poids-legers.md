@@ -7,9 +7,8 @@ date: 2026-10-05T16:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/editorial/schofield-bahdi-chicago-poids-legers.jpg
-photo: /img/editorial/schofield-bahdi-chicago-poids-legers.jpg
-imageAlt: "Photographie publiee par Most Valuable Promotions, carte Schofield vs Bahdi, 25 septembre 2026 : Floyd Schofield contre Lucas Bahdi : le titre WBA des poids légers se joue à Chicago"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverVersus: "Schofield / Bahdi"
 coverMeta: "10 octobre 2026 · Chicago · Poids légers"
 breadcrumbs:

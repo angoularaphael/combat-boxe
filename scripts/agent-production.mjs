@@ -12,8 +12,6 @@ import {
   nomsDuSite,
   photosPourNoms,
   enregistrerAffiche,
-  imageEditorialeDepuisSource,
-  patchArticleImageFields,
   slugify,
 } from './images-editoriales.mjs';
 
@@ -194,9 +192,9 @@ date: ${data.date}
 status: published
 family: ${data.family || 'actualite'}
 kind: ${data.kind || 'annonce'}
-image: ${data.image || '/img/og-combat-boxe.jpg'}
-imageAlt: ${JSON.stringify(data.imageAlt || 'Combat Boxe')}
-${data.photo ? `photo: ${data.photo}\n` : ''}coverVersus: ${JSON.stringify(data.coverVersus || '')}
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
+coverVersus: ${JSON.stringify(data.coverVersus || '')}
 coverMeta: ${JSON.stringify(data.coverMeta || '')}
 breadcrumbs:
   - href: /actualites
@@ -569,16 +567,7 @@ ${pages
       vus.add(slug);
       const normalise = normaliserDateArticle({ ...article, slug });
       const out = resolve(articlesDir, `${slug}.md`);
-      let imageFields = {};
-      const srcImg = await imageEditorialeDepuisSource({
-        sourceUrl: article.sourceUrl,
-        slug,
-        sourceName: article.sourceName,
-        title: article.h1 || article.title,
-        coverVersus: article.coverVersus || '',
-      });
-      if (srcImg) imageFields = srcImg;
-      writeFileSync(out, toFrontmatter({ ...normalise, ...imageFields }, String(article.body).trim()));
+      writeFileSync(out, toFrontmatter(normalise, String(article.body).trim()));
       ecrits += 1;
       console.log('Article publie :', out);
     }

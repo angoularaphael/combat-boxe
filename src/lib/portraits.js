@@ -54,16 +54,16 @@ export function photosForVersus(versus) {
 
 export function heroImageForArticle(data) {
   if (!data) return '';
-  if (data.photo) return data.photo;
-  if (data.image && !String(data.image).includes('og-combat-boxe')) return data.image;
   const poster = posterForVersus(data.coverVersus || '');
   if (poster) return poster;
+  if (data.photo) return data.photo;
   const versusPhotos = photosForVersus(data.coverVersus || '');
   if (versusPhotos[0]) return versusPhotos[0];
   for (const name of namesFromHeadline(data.h1)) {
     const path = portraitFor(name);
     if (path) return path;
   }
+  if (data.image && !String(data.image).includes('og-combat-boxe')) return data.image;
   return '';
 }
 

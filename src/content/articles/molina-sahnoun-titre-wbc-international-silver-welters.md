@@ -7,8 +7,8 @@ date: 2026-10-08T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/editorial/molina-sahnoun-titre-wbc-international-silver-welters.jpg
-imageAlt: "Photographie publiee par World Boxing Council : Molina-Sahnoun : une ceinture WBC International Silver en jeu à Malaga"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverVersus: "Samuel Molina / Mohammed Sahnoun"
 coverMeta: "24 octobre 2026 · Malaga · poids welters"
 breadcrumbs:

@@ -7,9 +7,8 @@ date: 2026-10-05T18:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/editorial/mbilli-canelo-riyad-super-moyens.jpg
-photo: /img/editorial/mbilli-canelo-riyad-super-moyens.jpg
-imageAlt: "Photographie publiee par World Boxing Council, Canelo vs Mbilli, 30 septembre 2026 : Christian Mbilli défend sa ceinture WBC face à Canelo Álvarez le 31 octobre à Riyad"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverVersus: "Mbilli / Canelo"
 coverMeta: "31 octobre 2026 · Riyad · Super-moyens"
 breadcrumbs:

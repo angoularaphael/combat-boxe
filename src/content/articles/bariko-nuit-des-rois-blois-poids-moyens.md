@@ -7,9 +7,8 @@ date: 2026-10-06T10:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/editorial/bariko-nuit-des-rois-blois-poids-moyens.jpg
-photo: /img/editorial/bariko-nuit-des-rois-blois-poids-moyens.jpg
-imageAlt: "Photographie publiee par Cercle Pugilistique Blésois : Ephrem Bariko remet son titre de France des poids moyens à Blois"
+image: /img/og-combat-boxe.jpg
+imageAlt: "Combat Boxe"
 coverMeta: "17 octobre 2026 · Blois · Poids moyens"
 breadcrumbs:
   - href: /actualites
