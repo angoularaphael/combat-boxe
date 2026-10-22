@@ -7,8 +7,8 @@ date: 2026-10-17T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/dubois-wardley-pesee-carriere-plus-lourd-o2-2026.jpg
+imageAlt: "Photographie publiee par BBC Sport : Dubois et Wardley au poids le plus élevé de leur carrière avant la revanche"
 coverVersus: "Daniel Dubois / Fabio Wardley"
 coverMeta: "17 octobre 2026 · Londres · poids lourds"
 breadcrumbs:

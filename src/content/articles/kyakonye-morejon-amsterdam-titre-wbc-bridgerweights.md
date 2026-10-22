@@ -7,8 +7,8 @@ date: 2026-10-12T13:30:00
 status: published
 family: actualite
 kind: annonce
-image: /img/posters/kyakonye-morejon.jpg
-imageAlt: "Affiche Kyakonye contre Morejon au Ben Bril Memorial d'Amsterdam"
+image: /img/editorial/kyakonye-morejon-amsterdam-titre-wbc-bridgerweights.jpg
+imageAlt: "Photographie publiee par World Boxing Council : Kyakonye contre Morejon ce soir au Carré d'Amsterdam"
 coverVersus: "Willy Kyakonye / Angelo Morejon"
 coverMeta: "12 octobre 2026 · Theater Carré, Amsterdam · poids bridger"
 breadcrumbs:

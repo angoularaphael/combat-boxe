@@ -7,8 +7,9 @@ date: 2026-10-06T14:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/fundora-hadribeaj-carson-super-welters.jpg
+photo: /img/editorial/fundora-hadribeaj-carson-super-welters.jpg
+imageAlt: "Photographie publiee par CBS Sports : Sebastian Fundora contre Ermal Hadribeaj : le WBC des super-welters à Carson"
 coverVersus: "Fundora / Hadribeaj"
 coverMeta: "17 octobre 2026 · Carson · Super-welters"
 breadcrumbs:

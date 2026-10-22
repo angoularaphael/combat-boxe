@@ -7,8 +7,8 @@ date: 2026-10-17T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/fundora-hadribeaj-pesee-wbc-las-vegas-17-octobre-2026.jpg
+imageAlt: "Photographie publiee par World Boxing Council : Sebastian Fundora et Ermal Hadribeaj ont fait le poids"
 coverVersus: "Sebastian Fundora / Ermal Hadribeaj"
 coverMeta: "17 octobre 2026 · Las Vegas · super-welters"
 breadcrumbs:

@@ -1,8 +1,8 @@
 /**
- * Photos reelles des boxeurs nommes : Commons d'abord, puis pages de promoteurs.
+ * Photos reelles : image source de l'article, puis promoteur, puis Commons (nom complet).
  * Une scene generique n'est pas telechargee ici.
  */
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { portraitsForNames, loadRegistry, saveRegistry } from './portraits-commons.mjs';
@@ -10,11 +10,14 @@ import { namesFromHeadline } from '../src/lib/headline-names.js';
 import { bordsLaterauxBlancs, bufferEstUnePhoto, cadrerPortrait, notePortrait, reduireAffiche } from './cadrer-portrait.mjs';
 import sharp from 'sharp';
 
-const UA = 'CombatBoxe/1.0 (https://combat-boxe.com; media independant de boxe)';
+const UA =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 CombatBoxe/1.0';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const boxersDir = resolve(root, 'public/img/boxers');
 const postersDir = resolve(root, 'public/img/posters');
+const editorialDir = resolve(root, 'public/img/editorial');
 const postersPath = resolve(root, 'src/data/posters.json');
+const articlesDir = resolve(root, 'src/content/articles');
 
 export function slugify(name) {
   return String(name)
@@ -100,6 +103,10 @@ function extractImageUrls(html, pageUrl) {
     html.match(/property=["']og:image(?::secure_url)?["'][^>]*content=["']([^"']+)/i) ||
     html.match(/content=["']([^"']+)["'][^>]*property=["']og:image(?::secure_url)?["']/i);
   if (og) urls.push(absoluteUrl(og[1], pageUrl));
+  const tw =
+    html.match(/property=["']twitter:image(?::src)?["'][^>]*content=["']([^"']+)/i) ||
+    html.match(/content=["']([^"']+)["'][^>]*property=["']twitter:image(?::src)?["']/i);
+  if (tw) urls.push(absoluteUrl(tw[1], pageUrl));
   for (const m of html.matchAll(/<img[^>]+(?:src|data-src)=["']([^"']+)/gi)) {
     urls.push(absoluteUrl(m[1], pageUrl));
   }
@@ -139,7 +146,7 @@ function promoterPages(name) {
   return pages;
 }
 
-async function downloadBuffer(url) {
+async function downloadBuffer(url, minSide = 900) {
   try {
     const res = await fetch(url, {
       headers: { 'user-agent': UA, accept: 'image/*,*/*' },
@@ -153,7 +160,7 @@ async function downloadBuffer(url) {
     if (!(await bufferEstUnePhoto(buf))) return null;
     const meta = await sharp(buf).metadata();
     const longSide = Math.max(meta.width || 0, meta.height || 0);
-    if (longSide < 900) return null;
+    if (longSide < minSide) return null;
     return buf;
   } catch {
     return null;
@@ -238,7 +245,19 @@ export async function photosPourNoms(names) {
     missing.push(name);
   }
   if (!missing.length) return saved;
-  const commons = await portraitsForNames(missing);
+  for (const name of missing) {
+    if (aDejaUnePhoto(name)) continue;
+    console.log('Recherche editoriale :', name);
+    const found = await findEditorialPortrait(name);
+    if (!found) {
+      console.log('Pas de photo promoteur :', name);
+      continue;
+    }
+    console.log('Photo editoriale :', name, '->', found.row.path);
+    saved.push(found.row);
+  }
+  const stillMissing = missing.filter((name) => !aDejaUnePhoto(name));
+  const commons = stillMissing.length ? await portraitsForNames(stillMissing) : [];
   for (const row of commons) {
     const file = fileForCredit(row);
     if (file && existsSync(file)) {
@@ -254,18 +273,157 @@ export async function photosPourNoms(names) {
     }
     saved.push(row);
   }
-  for (const name of missing) {
-    if (aDejaUnePhoto(name)) continue;
-    console.log('Recherche editoriale :', name);
+  return saved;
+}
+
+async function saveArticleSourceImage(slug, buf) {
+  mkdirSync(editorialDir, { recursive: true });
+  const dest = resolve(editorialDir, `${slug}.jpg`);
+  const tmp = `${dest}.tmp.jpg`;
+  await sharp(buf)
+    .rotate()
+    .resize({ width: 1400, withoutEnlargement: true })
+    .jpeg({ quality: 84, mozjpeg: true })
+    .toFile(tmp);
+  if (existsSync(dest)) unlinkSync(dest);
+  renameSync(tmp, dest);
+  return `/img/editorial/${slug}.jpg`;
+}
+
+function scoreSourcePageImage(url, pageUrl) {
+  let score = scorePhoto(url, '');
+  const u = url.toLowerCase();
+  if (/\/wp-content\/uploads\//.test(u)) score += 5;
+  if (/og:image|featured|hero|article|cdn\.shopify|cloudfront/.test(u)) score += 3;
+  if (pageUrl && url === pageUrl) score -= 5;
+  return score;
+}
+
+/** Image principale de l'article source (og:image, presse, promoteur). */
+async function trySaveFromUrl(slug, url, label, title, minSide = 640) {
+  const buf = await downloadBuffer(url, minSide);
+  if (!buf) return null;
+  const note = await notePortrait(buf);
+  if (note < -12) return null;
+  const path = await saveArticleSourceImage(slug, buf);
+  const alt = imageAltFromSource(label, title);
+  console.log('Image source :', slug, '->', path, url.slice(0, 90));
+  return { image: path, photo: path, imageAlt: alt };
+}
+
+export async function imageEditorialeDepuisSource({
+  sourceUrl,
+  slug,
+  sourceName = '',
+  title = '',
+  coverVersus = '',
+  force = false,
+}) {
+  if (!sourceUrl || !slug || !/^https?:\/\//.test(sourceUrl)) return null;
+  const dest = resolve(editorialDir, `${slug}.jpg`);
+  if (!force && existsSync(dest)) {
+    const web = `/img/editorial/${slug}.jpg`;
+    const alt = imageAltFromSource(sourceName, title);
+    return { image: web, photo: web, imageAlt: alt };
+  }
+  const host = (() => {
+    try {
+      return new URL(sourceUrl).hostname.replace(/^www\./, '');
+    } catch {
+      return '';
+    }
+  })();
+  const label = sourceName || host || 'la source';
+  const html = await fetchHtml(sourceUrl);
+  if (html) {
+    const og =
+      html.match(/property=["']og:image(?::secure_url)?["'][^>]*content=["']([^"']+)/i) ||
+      html.match(/content=["']([^"']+)["'][^>]*property=["']og:image(?::secure_url)?["']/i);
+    if (og) {
+      const ogUrl = absoluteUrl(og[1], sourceUrl);
+      if (looksLikePhoto(ogUrl)) {
+        const hit = await trySaveFromUrl(slug, ogUrl, label, title, 560);
+        if (hit) return hit;
+      }
+    }
+    const ranked = extractImageUrls(html, sourceUrl)
+      .filter(looksLikePhoto)
+      .map((url) => ({ url, score: scoreSourcePageImage(url, sourceUrl) }))
+      .sort((a, b) => b.score - a.score);
+    for (const item of ranked.slice(0, 18)) {
+      if (item.score < 0) continue;
+      const hit = await trySaveFromUrl(slug, item.url, label, title, 560);
+      if (hit) return hit;
+    }
+  }
+  for (const part of String(coverVersus || '').split('/')) {
+    const name = part.trim();
+    if (name.split(/\s+/).filter(Boolean).length < 2) continue;
     const found = await findEditorialPortrait(name);
-    if (!found) {
-      console.log('Pas de photo reelle :', name);
+    if (found?.row?.path) {
+      const alt = `Portrait de ${name}, source ${found.row.pageUrl ? new URL(found.row.pageUrl).hostname.replace(/^www\./, '') : 'promoteur'}.`;
+      return { image: found.row.path, photo: found.row.path, imageAlt: alt };
+    }
+  }
+  return null;
+}
+
+function imageAltFromSource(sourceName, title) {
+  const bit = title ? ` : ${title}` : '';
+  return `Photographie publiee par ${sourceName}${bit}`.slice(0, 200);
+}
+
+export function patchArticleImageFields(mdPath, { image, photo, imageAlt }) {
+  let md = readFileSync(mdPath, 'utf8');
+  if (image) md = md.replace(/^image:.*$/m, `image: ${image}`);
+  if (imageAlt) md = md.replace(/^imageAlt:.*$/m, `imageAlt: ${JSON.stringify(imageAlt)}`);
+  if (photo) {
+    if (/^photo:/m.test(md)) md = md.replace(/^photo:.*$/m, `photo: ${photo}`);
+    else md = md.replace(/^(image:.*\n)/m, `$1photo: ${photo}\n`);
+  }
+  writeFileSync(mdPath, md);
+}
+
+export async function rattacherPhotosArticles({ limit = 0, force = false } = {}) {
+  const files = readdirSync(articlesDir)
+    .filter((n) => n.endsWith('.md'))
+    .sort();
+  let done = 0;
+  let ok = 0;
+  for (const name of files) {
+    if (limit > 0 && done >= limit) break;
+    const mdPath = resolve(articlesDir, name);
+    const md = readFileSync(mdPath, 'utf8');
+    const slug = md.match(/^slug:\s*(\S+)/m)?.[1];
+    const sourcesBlock = md.match(/^sources:\s*\n([\s\S]*?)(?=\n---|\n[a-z])/m)?.[1] || '';
+    const sourceUrl = sourcesBlock.match(/url:\s*(\S+)/)?.[1];
+    const sourceName =
+      sourcesBlock.match(/name:\s*(.+)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
+    const title = md.match(/^h1:\s*(['"])(.*?)\1/m)?.[2] || '';
+    const coverVersus = md.match(/^coverVersus:\s*(['"])((?:\\.|[^\\])*?)\1/)?.[2]?.replace(/\\(['"])/g, '$1') || '';
+    const image = md.match(/^image:\s*(\S+)/m)?.[1] || '';
+    const hasPhoto = /^photo:/m.test(md);
+    if (!slug || !sourceUrl) continue;
+    const needs =
+      force || image.includes('og-combat-boxe') || (!hasPhoto && !image.includes('/img/editorial/'));
+    if (!needs) continue;
+    done += 1;
+    const hit = await imageEditorialeDepuisSource({
+      sourceUrl,
+      slug,
+      sourceName,
+      title,
+      coverVersus,
+      force,
+    });
+    if (!hit) {
+      console.log('Pas d image source :', slug);
       continue;
     }
-    console.log('Photo editoriale :', name, '->', found.row.path);
-    saved.push(found.row);
+    patchArticleImageFields(mdPath, hit);
+    ok += 1;
   }
-  return saved;
+  return { scanned: done, updated: ok };
 }
 
 function unquote(value) {

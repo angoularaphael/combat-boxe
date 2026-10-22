@@ -7,8 +7,8 @@ date: 2026-10-08T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/sandoval-mendoza-chicago-titre-wbc-mouches.jpg
+imageAlt: "Photographie publiee par WBC : Sandoval-Mendoza : un titre WBC en jeu à Chicago"
 coverVersus: "Ricardo Sandoval / Sergio Mendoza"
 coverMeta: "10 octobre 2026 · Chicago · poids mouches"
 breadcrumbs:

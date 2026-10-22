@@ -7,8 +7,8 @@ date: 2026-10-08T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/kabayel-hysa-dusseldorf-defense-titre-wbc-lourds.jpg
+imageAlt: "Photographie publiee par World Boxing Council : Kabayel–Hysa : le champion WBC remet son titre en jeu à domicile"
 coverVersus: "Agit Kabayel / Nelson Hysa"
 coverMeta: "28 novembre 2026 · Düsseldorf · poids lourds"
 breadcrumbs:

@@ -7,8 +7,8 @@ date: 2026-10-08T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/kyakonye-morejon-combat-titre-wbc-silver-amsterdam.jpg
+imageAlt: "Photographie publiee par World Boxing Council : Kyakonye-Morejon : un titre WBC Silver en jeu le 12 octobre"
 coverVersus: "Willy Kyakonye / Angelo Morejon"
 coverMeta: "12 octobre 2026 · Amsterdam · poids bridger"
 breadcrumbs:

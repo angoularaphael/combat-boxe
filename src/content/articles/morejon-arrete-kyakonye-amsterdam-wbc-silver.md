@@ -7,8 +7,9 @@ date: 2026-10-13T10:00:00
 status: published
 family: actualite
 kind: resultat
-image: /img/posters/kyakonye-morejon.jpg
-imageAlt: "Affiche Kyakonye contre Morejon au Ben Bril Memorial d'Amsterdam"
+image: /img/editorial/morejon-arrete-kyakonye-amsterdam-wbc-silver.jpg
+photo: /img/editorial/morejon-arrete-kyakonye-amsterdam-wbc-silver.jpg
+imageAlt: "Photographie publiee par Federazione Pugilistica Italiana : Morejon stoppe Kyakonye au troisième round à Amsterdam"
 coverVersus: "Willy Kyakonye / Angelo Morejon"
 coverMeta: "12 octobre 2026 · Theater Carré, Amsterdam · poids bridger"
 breadcrumbs:

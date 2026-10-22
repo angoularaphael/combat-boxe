@@ -7,8 +7,8 @@ date: 2026-10-21T08:00:00
 status: published
 family: actualite
 kind: actualite
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/shakur-stevenson-quitte-zuffa-boxing-octobre-2026.jpg
+imageAlt: "Photographie publiee par BBC Sport : Shakur Stevenson quitte déjà Zuffa Boxing"
 coverVersus: ""
 coverMeta: ""
 breadcrumbs:

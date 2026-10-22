@@ -7,8 +7,8 @@ date: 2026-10-15T08:00:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/tiara-brown-ellie-scotney-retrait-blessure-14-octobre-2026.jpg
+imageAlt: "Photographie publiee par World Boxing Council : Ellie Scotney se retire du combat contre Tiara Brown"
 coverVersus: "Tiara Brown / Ellie Scotney"
 coverMeta: "8 novembre 2026 · Texas · poids plume"
 breadcrumbs:

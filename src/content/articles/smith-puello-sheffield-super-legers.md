@@ -7,8 +7,9 @@ date: 2026-10-06T14:30:00
 status: published
 family: actualite
 kind: annonce
-image: /img/og-combat-boxe.jpg
-imageAlt: "Combat Boxe"
+image: /img/editorial/smith-puello-sheffield-super-legers.jpg
+photo: /img/editorial/smith-puello-sheffield-super-legers.jpg
+imageAlt: "Photographie publiee par CBS Sports : Dalton Smith contre Alberto Puello : le titre WBC des super-légers se joue à Sheffield"
 coverVersus: "Smith / Puello"
 coverMeta: "24 octobre 2026 · Sheffield · Super-légers"
 breadcrumbs:
