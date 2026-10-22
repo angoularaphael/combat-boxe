@@ -497,7 +497,14 @@ Format :
     "aboutB": "",
     "analysis": "",
     "prediction": "",
-    "sourceUrl": "https://..."
+    "sourceUrl": "https://...",
+    "clips": [{
+      "kind": "video",
+      "title": "...",
+      "text": "une phrase",
+      "url": "https://www.youtube.com/...",
+      "sourceName": "..."
+    }]
   }],
   "galas": [{
     "date": "YYYY-MM-DD",
@@ -520,12 +527,16 @@ Pour chaque combat en retard, cherche d'abord le resultat dans les pages. Si le 
 L'accueil n'affiche que les papiers dont la date Paris est aujourd'hui. Donc chaque jour, s'il existe un fait sourcé (resultat de la veille, annonce du jour, pesee, signature), au moins un article doit porter la date d'aujourd'hui. Un resultat de la veille se date aujourd'hui, pas sur la nuit du combat.
 Si un fait des pages est date d'un jour recent sans aucun papier ET que ce n'est pas un resultat a publier aujourd'hui, l'article peut prendre cette date-la. N'invente pas un papier pour boucher un trou.
 Ecris jusqu'a ${places} articles, un par fait distinct. Un fait peut etre un combat principal, un lever de rideau, un resultat, une signature, une pesee, une conference ou une soiree. Pas seulement l'affiche principale. Tableau vide s'il n'y a pas assez de faits nouveaux. N'invente pas pour remplir le quota.
+Si les pages contiennent conference, face-a-face, declaration ou interview video : au moins un article kind "interview" ou "report" ce tour (family actualite).
+Chaque tour : au moins deux entrees notes.clips (kind "video" ou "interview") sur des combats deja au calendrier, avec url YouTube ou page promoteur verifiable. Pas d'url inventee.
+coverVersus : prenom et nom complets des deux boxeurs quand la source les donne. Jamais un seul nom de famille seul (interdit "Giron / Pauldo" si les vrais noms sont dans les pages).
 Chaque article : slug different, sourceUrl, date, et au moins huit paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un long passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Pour un resultat, termine sur le verdict et ce qu'il change ; pas de pronostic. Pour une annonce, termine par une lecture puis un pronostic qui nomme le vainqueur pressenti seulement s'il y a bilan, statut de champion, combat precedent ou avantage de salle. Pas de cote inventee. Parle aussi des autres combats de la meme soiree quand les pages les citent. analysis : trois paragraphes separes par une ligne vide, pour la fiche combat. prediction : deux paragraphes separes par une ligne vide, le dernier donne le choix. Champs vides si le fait n'est pas dans les pages. Ignore les slugs deja publies.
 fights : combats absents du calendrier, date complete, deux noms, ville, sourceUrl. Remplis venue, time, channel, aboutA, aboutB, analysis, prediction, stakes. stakes reste une seule phrase pour la carte. analysis et prediction portent la longueur.
 fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés. Obligatoire pour les combats en retard des que le resultat est dans les pages.
 notes : pour un combat DEJA au calendrier, complete analysis, prediction, aboutA, aboutB, venue, time, channel si les pages du jour le permettent. Ne repete pas une fiche deja complete. prediction vide si aucune base n'est dans les pages.
 galas : soiree nouvelle avec date, nom, ville, et dans note la salle, la chaine et l'heure si la page les donne.
-posters : uniquement une URL d'affiche officielle (les deux visages), jamais un logo.`;
+posters : uniquement une URL d'affiche officielle (les deux visages), jamais un logo.
+Photos : ne pas chercher de portrait Commons sur un seul mot (nom de famille). Prenom + nom obligatoires dans coverVersus pour declencher les portraits.`;
 
     const user = `Slugs deja publies : ${slugs.join(', ')}
 Combats deja au calendrier : ${knownList}
