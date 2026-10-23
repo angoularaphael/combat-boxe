@@ -812,5 +812,28 @@
     "artist": "mostvaluablepromotions.com",
     "pageUrl": "https://www.mostvaluablepromotions.com/athlete/ryan/",
     "aliases": []
+  },
+  {
+    "name": "David Benavidez",
+    "slug": "david-benavidez",
+    "path": "/img/boxers/david-benavidez.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "MILLION DOLLAZ WORTH OF GAME",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=149606229",
+    "wikiTitle": "David Benavidez",
+    "aliases": [
+      "Benavidez"
+    ]
+  },
+  {
+    "name": "Michaela Kotaskova",
+    "slug": "michaela-kotaskova",
+    "path": "/img/boxers/michaela-kotaskova.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/michaela-kotaskova/",
+    "aliases": [
+      "Kotaskova"
+    ]
   }
 ]

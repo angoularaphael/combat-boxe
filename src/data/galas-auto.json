@@ -33,5 +33,19 @@
     "city": "Chandler",
     "note": "Programme annoncé au Rawhide Event Center. La page indique ProBox TV US et ProBox TV ; l’horaire n’est pas précisé.",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-12-05",
+    "name": "Michal Cieslak contre David Benavidez",
+    "city": "Glendale, États-Unis",
+    "note": "Desert Diamond Arena ; diffusion sur DAZN et DAZN Global.",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-20",
+    "name": "Lauren Price contre Michaela Kotaskova",
+    "city": "Cardiff, pays de Galles",
+    "note": "Cardiff International Arena ; diffusion sur BBC Two.",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
 ]
