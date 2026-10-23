@@ -835,5 +835,27 @@
     "aliases": [
       "Kotaskova"
     ]
+  },
+  {
+    "name": "Ryan Garner",
+    "slug": "ryan-garner",
+    "path": "/img/boxers/ryan-garner.jpg",
+    "license": "editorial",
+    "artist": "queensberry.co.uk",
+    "pageUrl": "https://queensberry.co.uk/pages/ryan-garner",
+    "aliases": [
+      "Garner"
+    ]
+  },
+  {
+    "name": "James Dickens",
+    "slug": "james-dickens",
+    "path": "/img/boxers/james-dickens.jpg",
+    "license": "editorial",
+    "artist": "queensberry.co.uk",
+    "pageUrl": "https://queensberry.co.uk/pages/james-dickens",
+    "aliases": [
+      "Dickens"
+    ]
   }
 ]
