@@ -281,25 +281,25 @@
     "date": "2026-10-24",
     "boxerA": "Dalton Smith",
     "boxerB": "Alberto Puello",
-    "venue": "Utilita Arena Sheffield",
+    "venue": "Utilita Arena, Sheffield",
     "time": "",
-    "channel": "DAZN & DAZN Global",
-    "aboutA": "Programmé sur 12 rounds en super-légers pour le titre mondial WBC des super-légers.",
-    "aboutB": "Programmé sur 12 rounds en super-légers pour le titre mondial WBC des super-légers.",
-    "analysis": "La rencontre est annoncée à Sheffield sur 12 rounds en super-légers.\n\nLe titre mondial WBC des super-légers est indiqué en jeu.\n\nLa carte comprend également Visioli-Hughes et Ryan-Dolan.",
-    "prediction": "",
-    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+    "channel": "DAZN",
+    "aboutA": "Le WBC présente Dalton Smith comme son champion du monde des super-légers. Il doit effectuer la première défense de son titre et a pesé 139,6 livres.",
+    "aboutB": "Alberto Puello est annoncé comme le challenger de Smith dans ce combat pour le titre WBC. La page du WBC indique que les deux boxeurs ont satisfait à la pesée.",
+    "analysis": "Le championnat WBC des super-légers est en jeu à Sheffield, où Dalton Smith dispute la première défense de son titre face à Alberto Puello.\n\nLa pesée est un fait notable de l'avant-combat : Smith a affiché 139,6 livres et le WBC confirme que les deux hommes ont fait le poids. Les pages consultées ne détaillent pas leurs bilans ni leurs styles respectifs.\n\nLa carte de Sheffield comprend aussi Visioli contre Hughes, Atang contre Vergara et Ryan contre Dolan. Sans éléments documentés sur le parcours récent des deux principaux protagonistes, l'analyse doit rester centrée sur le titre et la première défense de Smith.",
+    "prediction": "Les informations disponibles ne fournissent pas de comparaison de bilans ou de styles. Le statut de champion en titre de Smith constitue le seul élément sportif concret pour orienter un choix.\n\nEn me limitant à ce statut, je donne un léger avantage à Dalton Smith pour conserver son titre.",
+    "sourceUrl": "https://wbcboxing.com/en/news/"
   },
   {
     "date": "2026-10-24",
     "boxerA": "Emanuel Navarrete",
     "boxerB": "O'Shaquie Foster",
     "venue": "Frost Bank Center",
-    "time": "",
-    "channel": "DAZN & DAZN Global",
+    "time": "10:00 AM EST",
+    "channel": "DAZN",
     "aboutA": "Le calendrier annonce un combat en 12 rounds chez les super-plumes. Il mentionne les titres IBF, WBC et WBO ainsi que le titre The Ring vacant.",
     "aboutB": "Le calendrier annonce un combat en 12 rounds chez les super-plumes. Il mentionne les titres IBF, WBC et WBO ainsi que le titre The Ring vacant.",
-    "analysis": "Navarrete-Foster est prévu le 24 octobre au Frost Bank Center de San Antonio. Le calendrier le situe chez les super-plumes et annonce un format de 12 rounds.\n\nPlusieurs titres sont indiqués en jeu : les ceintures IBF, WBC et WBO ainsi que le titre The Ring vacant.\n\nLa diffusion est annoncée sur DAZN et DAZN Global. Les pages consultées ne fournissent pas de bilans ou de détails de parcours pour étayer un pronostic.",
+    "analysis": "Emanuel Navarrete et O'Shaquie Foster doivent se retrouver à San Antonio dans un combat annoncé en super-plumes. Les sources présentent l'affiche comme un rendez-vous de championnat réunissant des titres IBF, WBC et WBO, ainsi que le titre vacant de The Ring.\n\nLe Frost Bank Center accueillera aussi Gonzalez contre Vazquez et Martin contre Zaina. La carte principale comprend également Davis contre Faccio.\n\nLes pages consultées ne donnent pas de bilan, de parcours récent ni de détails de style permettant de départager les deux boxeurs. L'enjeu des titres est établi, mais les éléments disponibles ne permettent pas d'aller plus loin dans l'analyse sportive.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   },
@@ -380,5 +380,18 @@
     "analysis": "Gonzalez-Vazquez figure sur la carte de San Antonio.\n\nLe combat est programmé sur 10 rounds en poids plumes.\n\nIl accompagne l’affiche Emanuel Navarrete-O’Shaquie Foster.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-10-24",
+    "boxerA": "Samuel Molina",
+    "boxerB": "Mohammed Sahnoun",
+    "venue": "",
+    "time": "",
+    "channel": "",
+    "aboutA": "Le WBC présente Samuel Molina comme représentant de l'Espagne.",
+    "aboutB": "Le WBC présente Mohammed Sahnoun comme représentant de l'Algérie et de l'Espagne.",
+    "analysis": "Samuel Molina et Mohammed Sahnoun sont annoncés à Málaga pour un combat associé au titre WBC des welters.\n\nLes sources indiquent les pays représentés par les deux boxeurs, mais ne donnent ni leurs bilans ni des éléments de parcours ou de style pour comparer leurs chances.\n\nLa salle, l'heure et la chaîne ne sont pas précisées dans les pages consultées. En l'absence d'autres détails vérifiables, l'enjeu du titre et la localisation à Málaga constituent les seuls repères disponibles.",
+    "prediction": "",
+    "sourceUrl": "https://wbcboxing.com/en/events/"
   }
 ]
