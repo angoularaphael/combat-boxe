@@ -857,5 +857,17 @@
     "aliases": [
       "Dickens"
     ]
+  },
+  {
+    "name": "Mirko Marchetti",
+    "slug": "mirko-marchetti",
+    "path": "/img/boxers/mirko-marchetti.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "SimoneGuarino",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=129670408",
+    "wikiTitle": "Mirko Marchetti",
+    "aliases": [
+      "Marchetti"
+    ]
   }
 ]
