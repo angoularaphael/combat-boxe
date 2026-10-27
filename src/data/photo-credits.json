@@ -869,5 +869,25 @@
     "aliases": [
       "Marchetti"
     ]
+  },
+  {
+    "name": "Dave Allen",
+    "slug": "dave-allen",
+    "path": "/img/boxers/dave-allen.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/dave-allen/",
+    "aliases": [
+      "Allen"
+    ]
+  },
+  {
+    "name": "Andy Ruiz Jr",
+    "slug": "andy-ruiz-jr",
+    "path": "/img/boxers/andy-ruiz-jr.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/andy-ruiz-jr/",
+    "aliases": []
   }
 ]
