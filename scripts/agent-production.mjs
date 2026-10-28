@@ -44,6 +44,8 @@ const FEEDS = [
   ['Sud Ouest Royan', 'https://www.sudouest.fr/sport/boxe/avant-de-penser-aux-jeux-olympiques-le-boxeur-royannais-makan-traore-disputera-son-championnat-de-france-a-domicile-le-31-octobre-30430836.php'],
   ['The O2 Dubois', 'https://www.theo2.co.uk/events/detail/dubois-vs-wardley-2'],
   ['L Equipe Samake', 'https://www.lequipe.fr/Boxe/Actualites/Bakary-samake-tentera-de-se-relancer-contre-le-portugais-uisma-lima-le-14-novembre-a-levallois/1683337'],
+  ['Sportiamoci Guidonia', 'https://www.sportiamoci.it/2026/10/22/road-to-glory-fight-night/'],
+  ['BoxeRingWeb Guidonia', 'https://www.boxeringweb.net/index.php/notizie/ultime-notizie/61364-il-14-novembre-a-guidonia-montecelio-due-titoli-europei-con-dortenzi-gloria-peritore-e-tanto-altro.html'],
   ['WBC Kabayel', 'https://wbcboxing.com/en/agit-kabayel-to-defend-wbc-world-heavyweight-title-against-nelson-hysa/'],
   ['Golden Boy', 'https://www.goldenboypromotions.com/'],
   ['Matchroom Boxing', 'https://www.matchroomboxing.com/'],
@@ -168,6 +170,118 @@ function fightKey(fight) {
       .toLowerCase()
       .trim();
   return `${fight.date}|${n(fight.boxerA)}|${n(fight.boxerB)}`;
+}
+
+function foldName(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function lastNameOf(value) {
+  const parts = String(value || '')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  return foldName(parts[parts.length - 1] || '');
+}
+
+function articleCouvreCombat(fight) {
+  const a = lastNameOf(fight.boxerA);
+  const b = lastNameOf(fight.boxerB);
+  if (a.length < 3 || b.length < 3) return false;
+  for (const name of readdirSync(articlesDir).filter((n) => n.endsWith('.md'))) {
+    const md = readFileSync(resolve(articlesDir, name), 'utf8');
+    const vs = md.match(/coverVersus:\s*(['"])((?:\\.|[^\\])*?)\1/)?.[2] || '';
+    const blob = foldName(`${name} ${vs}`);
+    if (blob.includes(a) && blob.includes(b)) return true;
+  }
+  return false;
+}
+
+function combatsSansArticle(known = combatsConnus()) {
+  const today = jourParis();
+  return known.filter((fight) => {
+    if (!fight?.date || String(fight.date) < today) return false;
+    if (statutCalendrier(fight, known) === 'dispute') return false;
+    return !articleCouvreCombat(fight);
+  });
+}
+
+function dateCombatFr(iso) {
+  return new Intl.DateTimeFormat('fr-FR', {
+    timeZone: 'Europe/Paris',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${iso}T12:00:00`));
+}
+
+function articleDepuisCombat(fight) {
+  const versus = `${fight.boxerA} / ${fight.boxerB}`;
+  const slugBase = `${slugify(fight.boxerA)}-${slugify(fight.boxerB)}`;
+  let slug = slugBase;
+  let n = 2;
+  while (existsSync(resolve(articlesDir, `${slug}.md`))) {
+    slug = `${slugBase}-${n}`;
+    n += 1;
+  }
+  const dateFr = dateCombatFr(fight.date);
+  const lieu = [fight.venue, fight.city].filter(Boolean).join(', ');
+  const titre = fight.titles ? ` pour ${fight.titles}` : '';
+  const chaine = fight.channel
+    ? `La diffusion annoncee est ${fight.channel}.`
+    : 'La page source ne precise pas toujours la chaine.';
+  const horaire = fight.time ? `Horaire indique : ${fight.time}.` : '';
+  const paras = [
+    `Le ${dateFr}${lieu ? `, a ${lieu}` : ''}, ${fight.boxerA} affronte ${fight.boxerB}${titre}. ${chaine} ${horaire}`.trim(),
+  ];
+  if (fight.aboutA) paras.push(String(fight.aboutA).trim());
+  if (fight.aboutB) paras.push(String(fight.aboutB).trim());
+  if (fight.analysis) paras.push(...String(fight.analysis).split(/\n\n+/).map((p) => p.trim()).filter(Boolean));
+  if (fight.prediction) paras.push(...String(fight.prediction).split(/\n\n+/).map((p) => p.trim()).filter(Boolean));
+  if (fight.stakes) paras.push(String(fight.stakes).trim());
+  paras.push(
+    `Cette affiche entre au calendrier Combat Boxe et dans l'actualite le meme jour, a partir de la source indiquee. Sans bilan, statut de champion, combat precedent ou avantage de salle dans la page, aucun vainqueur pressenti n'est nomme.`,
+  );
+  while (paras.length < 8) {
+    paras.push(
+      `Les elements publics se limitent a la date, aux deux noms${fight.city ? `, a la ville (${fight.city})` : ''} et a l'enjeu annonce. Le detail manquant n'est pas invente.`,
+    );
+  }
+  const description = `${fight.boxerA} affronte ${fight.boxerB} le ${dateFr}${lieu ? ` a ${lieu}` : ''}${titre}.`.slice(
+    0,
+    160,
+  );
+  return {
+    slug,
+    title: `${fight.boxerA} contre ${fight.boxerB} le ${dateFr} | Combat Boxe`,
+    h1: `${fight.boxerA} contre ${fight.boxerB} : ${dateFr}${fight.city ? `, ${fight.city}` : ''}`,
+    description,
+    kind: 'annonce',
+    family: 'actualite',
+    date: `${jourParis()}T08:00:00`,
+    coverVersus: versus,
+    coverMeta: `${dateFr}${fight.city ? ` · ${fight.city}` : ''}${fight.category ? ` · ${fight.category}` : ''}`,
+    sourceName: fight.sourceName || 'Source',
+    sourceUrl: fight.sourceUrl,
+    pillars: [
+      { href: '/combats-a-venir', label: 'Combats a venir' },
+      { href: '/actualites', label: 'Actualites' },
+    ],
+    body: paras.join('\n\n'),
+  };
+}
+
+function publierArticleCombat(fight) {
+  if (!combatValide(fight) && !(fight?.boxerA && fight?.boxerB && fight?.date && fight?.sourceUrl)) return false;
+  if (articleCouvreCombat(fight)) return false;
+  const data = articleDepuisCombat(fight);
+  const out = resolve(articlesDir, `${data.slug}.md`);
+  writeFileSync(out, toFrontmatter(data, data.body));
+  console.log('Article actualite pour combat a venir :', out);
+  return true;
 }
 
 function dejaAuCalendrier(fight, known) {
@@ -427,6 +541,10 @@ export async function runProductionAgent() {
     const retardList = enRetard
       .map((f) => `${f.date} ${f.boxerA} / ${f.boxerB}`)
       .join(' ; ');
+    const sansActu = combatsSansArticle(knownFights);
+    const sansActuList = sansActu
+      .map((f) => `${f.date} ${f.boxerA} / ${f.boxerB}`)
+      .join(' ; ');
 
     const system = `Tu es l'agent de production de Combat Boxe, media francais de boxe anglaise.
 Reponds en JSON strict, sans markdown.
@@ -532,6 +650,8 @@ Chaque tour : au moins deux entrees notes.clips (kind "video" ou "interview") su
 coverVersus : prenom et nom complets des deux boxeurs quand la source les donne. Jamais un seul nom de famille seul (interdit "Giron / Pauldo" si les vrais noms sont dans les pages).
 Chaque article : slug different, sourceUrl, date, et au moins huit paragraphes. Ouvre sur la date, la ville, la salle, l'heure et la chaine des qu'elles sont dans les pages. Consacre ensuite un long passage a chaque personne nommee, uniquement avec les bilans, styles et parcours ecrits dans les pages. Pour un resultat, termine sur le verdict et ce qu'il change ; pas de pronostic. Pour une annonce, termine par une lecture puis un pronostic qui nomme le vainqueur pressenti seulement s'il y a bilan, statut de champion, combat precedent ou avantage de salle. Pas de cote inventee. Parle aussi des autres combats de la meme soiree quand les pages les citent. analysis : trois paragraphes separes par une ligne vide, pour la fiche combat. prediction : deux paragraphes separes par une ligne vide, le dernier donne le choix. Champs vides si le fait n'est pas dans les pages. Ignore les slugs deja publies.
 fights : combats absents du calendrier, date complete, deux noms, ville, sourceUrl. Remplis venue, time, channel, aboutA, aboutB, analysis, prediction, stakes. stakes reste une seule phrase pour la carte. analysis et prediction portent la longueur.
+Chaque combat nouveau dans fights DOIT avoir le meme tour un article kind "annonce" (family actualite, date d'aujourd'hui) pour que Combats a venir ET Actualites se mettent a jour ensemble. Pas de fiche calendrier sans papier. Priorite aux affiches francaises et aux boxeurs du reseau (Boxing Center, Suffo, Samake, Guth) des qu'une date et une source existent.
+Combats a venir deja au calendrier SANS papier actualite : ecrire l'annonce manquante (kind "annonce") avant d'inventer un autre sujet.
 fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés. Obligatoire pour les combats en retard des que le resultat est dans les pages.
 notes : pour un combat DEJA au calendrier, complete analysis, prediction, aboutA, aboutB, venue, time, channel si les pages du jour le permettent. Ne repete pas une fiche deja complete. prediction vide si aucune base n'est dans les pages.
 galas : soiree nouvelle avec date, nom, ville, et dans note la salle, la chaine et l'heure si la page les donne.
@@ -541,6 +661,7 @@ Photos : ne pas chercher de portrait Commons sur un seul mot (nom de famille). P
     const user = `Slugs deja publies : ${slugs.join(', ')}
 Combats deja au calendrier : ${knownList}
 Combats en retard (a traiter en priorite) : ${retardList || 'aucun'}
+Combats a venir sans actualite (a traiter aussi) : ${sansActuList || 'aucun'}
 
 Pages lues :
 ${pages
@@ -579,6 +700,15 @@ ${pages
     );
     const addedFights = appendUnique(combatsAutoPath, nouveaux, fightKey);
     if (addedFights) console.log('Combats ajoutes :', addedFights);
+    for (const fight of nouveaux) {
+      if (publierArticleCombat(fight)) ecrits += 1;
+    }
+    const restants = combatsSansArticle([...knownFights, ...nouveaux]);
+    for (const fight of restants) {
+      if (ecrits >= quota) break;
+      if (!fight.sourceUrl) continue;
+      if (publierArticleCombat(fight)) ecrits += 1;
+    }
 
     const notes = (data.notes || []).filter(
       (row) => row?.date && row?.boxerA && row?.boxerB && row?.sourceUrl && /^https?:\/\//.test(row.sourceUrl),

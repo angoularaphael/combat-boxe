@@ -146,7 +146,7 @@ Maillage dans le corps, plus le tableau `pillars` :
 - club vers `/clubs-boxe-france`
 - coach vers `/entraineurs-boxe-francais`
 
-Combat confirmé : l'agent de production l'ajoute dans `src/data/combats-auto.json` (lu par `entities.js`) avec `status` `a-venir` ou `dispute`, `date`, `boxerA`, `boxerB`, `category`, `titles`, `city`, `stakes` ou `winner`, `method`, `decision`, `sourceName`, `sourceUrl`. Sans date précise, sans les deux noms ou sans `sourceUrl`, ne pas l'ajouter. Un résultat sur un combat déjà au calendrier va dans `combats-updates.json`.
+Combat confirmé : l'agent de production l'ajoute dans `src/data/combats-auto.json` (lu par `entities.js`) avec `status` `a-venir` ou `dispute`, `date`, `boxerA`, `boxerB`, `category`, `titles`, `city`, `stakes` ou `winner`, `method`, `decision`, `sourceName`, `sourceUrl`. **Le même tour**, il publie un article `kind: annonce` dans `src/content/articles/` (family actualite, date du jour) pour que Combats à venir **et** Actualités se mettent à jour ensemble. Sans papier, le combat n'apparaît que sur le calendrier : c'est une erreur. Sans date précise, sans les deux noms ou sans `sourceUrl`, ne pas l'ajouter. Un résultat sur un combat déjà au calendrier va dans `combats-updates.json`.
 
 Vidéo ou interview réelle : la poser dans `combats-updates.json`, champ `clips`, sur le combat déjà daté. Chaque entrée a `kind` (`video` ou `interview`), `title`, `text`, `url`, `sourceName`, et `poster` seulement si l'image montre cette vidéo ou cette conférence. L'accueil et les combats à venir lisent ce champ. Sans URL vérifiée, pas d'aperçu.
 

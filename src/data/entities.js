@@ -527,6 +527,7 @@ const combatsRaw = [
     titles: 'Titre WBC International des super-welters',
     city: 'Levallois-Perret',
     stakes: 'Samaké, après sa défaite contre Hadribeaj, vise la ceinture internationale de Lima au Palais des Sports Marcel-Cerdan.',
+    article: 'bakary-samake-uisma-lima-levallois-novembre-2026',
   },
   {
     status: 'a-venir',
