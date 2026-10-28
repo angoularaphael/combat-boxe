@@ -889,5 +889,28 @@
     "artist": "matchroomboxing.com",
     "pageUrl": "https://www.matchroomboxing.com/fighters/andy-ruiz-jr/",
     "aliases": []
+  },
+  {
+    "name": "Amanda Serrano",
+    "slug": "amanda-serrano",
+    "path": "/img/boxers/amanda-serrano.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Prcarolina",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=169943676",
+    "wikiTitle": "Amanda Serrano",
+    "aliases": [
+      "Serrano"
+    ]
+  },
+  {
+    "name": "Skye Falzon",
+    "slug": "skye-falzon",
+    "path": "/img/boxers/skye-falzon.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/skye-falzon/",
+    "aliases": [
+      "Falzon"
+    ]
   }
 ]
