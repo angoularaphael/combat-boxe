@@ -113,5 +113,12 @@ if (fs.existsSync(ENV_FILE)) {
 
 run('npm install --omit=dev --no-fund --no-audit', APP_DIR);
 
+try {
+  delete process.env.PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD;
+  run('npx playwright install chromium', APP_DIR);
+} catch {
+  log('Chromium google.com Images absent : la recherche HTML reste active');
+}
+
 log('Demarrage agent Combat Boxe…');
 run('node scripts/serveur-production.mjs', APP_DIR);

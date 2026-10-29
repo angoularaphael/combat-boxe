@@ -39,6 +39,36 @@ export const boxeurs = [
     photoSourceLabel: 'Boxing Center',
   },
   {
+    slug: 'ciril-johnson-suffo',
+    name: 'Ciril Johnson Suffo',
+    country: 'France',
+    international: false,
+    category: 'Poids moyens',
+    ranking: 'challenger WBO International des poids moyens',
+    rankingSource: 'https://www.instagram.com/p/Deyt-aDRP9I/',
+    recordNote:
+      'Le promoteur OPI Since 82 le donne à 10 victoires, 1 défaite et 1 match nul. Boxing Center indique 28 combats amateurs pour 4 défaites, passage professionnel en septembre 2023.',
+    clubSlug: 'boxing-center-toulouse-minimes',
+    style:
+      'Poids moyen formé au Boxing Center Minimes, déjà passé par le WBC Grand Prix, aligné pour une ceinture internationale en Italie.',
+    parcours:
+      'Formé au Boxing Center Minimes, 12 rue de Fenouillet à Toulouse. Il boxe aussi dans le paysage des Minimes, à deux pas du Toulouse Minimes Boxing Club. En novembre 2026, il se déplace à Guidonia pour le titre WBO International des poids moyens.',
+    palmares:
+      '10 victoires, 1 défaite, 1 match nul selon l’annonce OPI Since 82. Nul contre Anatole Lemaire en juillet 2026 à Créteil. Passage par le WBC Grand Prix.',
+    combatsMarquants:
+      'Le 14 novembre 2026 à Guidonia Montecelio, face à Giovanni Sarchioto, pour le titre WBO International des poids moyens, carte OPI Since 82 sur DAZN.',
+    objectif: 'le titre WBO International des poids moyens contre Giovanni Sarchioto',
+    prochaines:
+      'Affronter Giovanni Sarchioto le 14 novembre 2026 au Palasport de Guidonia Montecelio, en direct sur DAZN.',
+    photo: '/img/boxers/ciril-johnson-suffo.jpg',
+    photoAlt: 'Ciril Johnson Suffo, poids moyen formé au Boxing Center Minimes',
+    record: '10-1-1',
+    gym: 'Boxing Center Minimes, Toulouse',
+    verified: 'Fiche du 28 octobre 2026',
+    photoSource: 'https://www.instagram.com/p/Deyt-aDRP9I/',
+    photoSourceLabel: 'OPI Since 82',
+  },
+  {
     slug: 'souleymane-cissokho',
     name: 'Souleymane Cissokho',
     country: 'France',
@@ -192,10 +222,10 @@ export const clubs = [
     disciplines: ['Boxe anglaise'],
     coachSlugs: ['valentin-guth'],
     histoire:
-      "Salle Boxing Center au 12 rue de Fenouillet, présentée sur boxe-toulouse.com. Le club forme des pratiquants et a accompagné Valentin Guth des rangs amateurs jusqu'au professionnalisme.",
-    boxeursFormes: ['valentin-guth'],
+      "Salle Boxing Center au 12 rue de Fenouillet, présentée sur boxe-toulouse.com. Le club forme des pratiquants et a accompagné Valentin Guth et Ciril Johnson Suffo des rangs amateurs jusqu'au professionnalisme.",
+    boxeursFormes: ['valentin-guth', 'ciril-johnson-suffo'],
     resultats:
-      "Un boxeur formé au club est aujourd'hui professionnel et coach sur place. Classement, bilan et objectif sont ceux de sa fiche boxeur.",
+      "Deux boxeurs formés au club sont aujourd'hui professionnels. Guth boxe et coach sur place. Suffo vise le titre WBO International des poids moyens le 14 novembre 2026 à Guidonia.",
     ambiance:
       "Allée de sacs et ring sous la charpente, avec le blason Boxing Center au mur.",
     pointsForts: [

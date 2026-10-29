@@ -12,6 +12,7 @@ import {
   nomsDuSite,
   photosPourNoms,
   enregistrerAffiche,
+  chercherAfficheGoogle,
   slugify,
 } from './images-editoriales.mjs';
 
@@ -655,8 +656,8 @@ Combats a venir deja au calendrier SANS papier actualite : ecrire l'annonce manq
 fightUpdates : resultat d'un combat DEJA au calendrier, seulement si le vainqueur et la methode sont sourcés. Obligatoire pour les combats en retard des que le resultat est dans les pages.
 notes : pour un combat DEJA au calendrier, complete analysis, prediction, aboutA, aboutB, venue, time, channel si les pages du jour le permettent. Ne repete pas une fiche deja complete. prediction vide si aucune base n'est dans les pages.
 galas : soiree nouvelle avec date, nom, ville, et dans note la salle, la chaine et l'heure si la page les donne.
-posters : uniquement une URL d'affiche officielle (les deux visages), jamais un logo.
-Photos : ne pas chercher de portrait Commons sur un seul mot (nom de famille). Prenom + nom obligatoires dans coverVersus pour declencher les portraits.`;
+posters : uniquement une URL d'affiche officielle (les deux visages), jamais un logo. Preferer une URL google.com / promoteur / Instagram (post /p/...), jamais une miniature Bing.
+Photos : ne pas chercher de portrait Commons sur un seul mot (nom de famille). Prenom + nom obligatoires dans coverVersus pour declencher les portraits. Recherche d'images sur google.com uniquement, pas Bing.`;
 
     const user = `Slugs deja publies : ${slugs.join(', ')}
 Combats deja au calendrier : ${knownList}
@@ -728,6 +729,9 @@ ${pages
 
     for (const poster of data.posters || []) {
       await enregistrerAffiche(poster);
+    }
+    for (const fight of nouveaux) {
+      await chercherAfficheGoogle([fight.boxerA, fight.boxerB], [fight.sourceUrl]);
     }
   } else {
     console.log('Pas de cle IA (Anthropic, OpenAI ou Gemini) : pas d article, les photos tournent quand meme.');

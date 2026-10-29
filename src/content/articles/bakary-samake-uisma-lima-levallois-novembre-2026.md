@@ -34,7 +34,7 @@ Samaké revient après sa défaite contre Ermal Hadribeaj. Le calendrier d’aut
 
 Lima défend un bien. Samaké vient le prendre. Les deux hommes évoluent chez les super-welters. Le Français est classé 5e WBC de la catégorie dans les listes d’octobre. Ce rang ne dit pas le verdict de novembre ; il situe l’affiche.
 
-La carte française du 14 novembre ne s’arrête pas à Levallois. Le même jour, Ciril Johnson Suffo boxe à Guidonia Montecelio, en Italie, pour le titre WBO International des poids moyens. Suffo, formé à Boxing Center Toulouse, a travaillé dans le camp de Samaké avant ce double rendez-vous de novembre.
+La carte française du 14 novembre ne s’arrête pas à Levallois. Le même jour, [Ciril Johnson Suffo](/boxeurs/ciril-johnson-suffo), formé au [Boxing Center Minimes](/clubs/boxing-center-toulouse-minimes), boxe à Guidonia Montecelio pour le [titre WBO International des poids moyens](/johnson-suffo-sarchioto-guidonia-wbo-international-novembre-2026). Suffo a travaillé dans le camp de Samaké avant ce double rendez-vous de novembre.
 
 Le Palais des Sports Marcel-Cerdan donne un cadre clair : public français, ceinture internationale, promoteur du boxeur de la maison. Lima n’a pas à se reconstruire dans le texte de l’affiche. Il arrive avec le titre. Samaké arrive avec l’urgence d’un relance.
 

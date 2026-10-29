@@ -9,6 +9,7 @@ export const COUNTRY_LABELS = {
   mx: 'Mexique',
   au: 'Australie',
   za: 'Afrique du Sud',
+  it: 'Italie',
 };
 
 export function countryCodeFromCity(city = '') {
@@ -25,6 +26,7 @@ export function countryCodeFromCity(city = '') {
   if (/mexique|guadalajara|mexico/.test(t)) return 'mx';
   if (/australie|sydney|melbourne/.test(t)) return 'au';
   if (/afrique du sud|johannesburg/.test(t)) return 'za';
+  if (/italie|guidonia|rome|milan/.test(t)) return 'it';
   if (
     /france|saint-nazaire|marlenheim|royan|blois|levallois|toulouse|paris|nazaire/.test(t)
   ) {

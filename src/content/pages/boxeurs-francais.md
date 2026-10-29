@@ -11,4 +11,4 @@ breadcrumbs:
     label: Boxeurs français
 ---
 
-Valentin Guth, Souleymane Cissokho et Makan Traoré ont chacun une fiche et un portrait. Les affiches du calendrier, Clavier, Sakharov ou la soirée de Royan, restent des articles à part.
+Valentin Guth, Ciril Johnson Suffo, Souleymane Cissokho et Makan Traoré ont chacun une fiche et un portrait. Suffo, formé au Boxing Center Minimes, boxe le 14 novembre à Guidonia. Les autres affiches du calendrier restent des articles à part.

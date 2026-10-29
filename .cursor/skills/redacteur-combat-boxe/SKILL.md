@@ -37,7 +37,7 @@ Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et 
 
 **Ordre obligatoire pour un combat nommé**
 
-1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala. Photo nette, la plus grande du `srcset`, au moins 900 px de long côté. Le visage est celui du nom, l'affiche est celle des deux boxeurs. Refuser vignette, flou, tête coupée, logo, ceinture seule, autre sportif. Refuser aussi la photo d'identité : fond blanc ou gris clair sur les deux bords, visage seul, pas d'épaules. Prendre la photo de ring ou de soirée où le buste, les gants ou la salle se voient.
+1. Chercher les **vraies images de ce combat** : portraits des deux boxeurs, puis affiche officielle du gala. Photo nette, la plus grande du `srcset`, au moins 900 px de long côté. Le visage est celui du nom, l'affiche est celle des deux boxeurs. Refuser vignette, flou, tête coupée, logo, ceinture seule, autre sportif. Refuser aussi la photo d'identité : fond blanc ou gris clair sur les deux bords, visage seul, pas d'épaules. Prendre la photo de ring ou de soirée où le buste, les gants ou la salle se voient. La recherche web passe par **google.com** (Images, grandes tailles), jamais par Bing ni par une miniature `th.bing.com`. Un post Instagram sert seulement via son `og:image` CDN.
 2. Poser le portrait dans `public/img/boxers/prenom-nom.jpg` (640 x 800, jpeg qualité haute) et l'affiche dans `public/img/posters/` (1000 px max). Brancher `photo-credits.json` ou `src/data/posters.json`. Le process du matin commit `public/img` avec le papier.
 3. **Se rassurer qu'elles y sont et qu'elles sont cadrées** : ouvrir la carte, la fiche et l'aperçu (bandeau) en local, 375 px et ~900 px. Les visages affichés sont bien ceux des noms. Yeux et bouche visibles. Pas de crâne seul, pas de grand vide au-dessus de la tête. Pas de gant accroché, ring vide ou tabouret à la place d'un boxeur nommé.
 4. **Seulement s'il n'existe vraiment aucune photo ni affiche** : alors `fightMedia()` peut poser une image de boxe (`/img/scene-*.jpg`). Pas avant. Jamais en premier.
@@ -47,7 +47,7 @@ Dès qu'un combat, un gala ou un portrait entre sur le site, l'agent cherche et 
 
 1. Lancer `node scripts/recuperer-portraits.mjs "Prénom Nom"` pour chaque boxeur de l'affiche.
 2. Un fichier Wikimedia Commons libre n'entre que s'il représente **ce** boxeur (pas un mural, pas une affiche, pas un autre combattant, pas un hockeyeur homonyme).
-3. Si Commons n'a rien : chercher **tout de suite** une photo réelle (pas une scène IA) : affiche officielle du gala, page FFBoxe, og:image de la ville / du promoteur / de la presse (DNA, Ouest-France, Républicain Lorrain, etc.).
+3. Si Commons n'a rien : chercher **tout de suite** une photo réelle (pas une scène IA) sur **google.com/search?tbm=isch** (pas Bing), puis affiche officielle, Instagram (`og:image`), page FFBoxe, promoteur, presse.
 4. Recadrer pour que **le boxeur nommé** remplisse le cadre. Ne jamais laisser un second combattant, un arbitre ou un corps sans visage sur une carte à son nom.
 5. Une affiche officielle des deux boxeurs va sur la carte. Un portrait réel aussi. Une scène générique, jamais, tant qu'une vraie image existe.
 6. Interdit sur un combat nommé : salle vide, gant accroché, tabouret, ring générique, stock Unsplash, visage généré, photo d'un autre pugiliste.
