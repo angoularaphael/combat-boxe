@@ -925,5 +925,17 @@
       "Suffo",
       "Ciril Suffo"
     ]
+  },
+  {
+    "name": "Jake Paul",
+    "slug": "jake-paul",
+    "path": "/img/boxers/jake-paul.jpg",
+    "license": "CC BY 2.0",
+    "artist": "Erik Drost",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=135996068",
+    "wikiTitle": "Jake Paul",
+    "aliases": [
+      "Paul"
+    ]
   }
 ]
