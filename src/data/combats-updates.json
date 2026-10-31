@@ -412,13 +412,13 @@
     "boxerA": "Christian Mbilli",
     "boxerB": "Saúl Álvarez",
     "venue": "Kingdom Arena",
-    "time": "16:00 selon Boxemag ; 2:00 AM EST selon The Ring",
-    "channel": "DAZN PPV",
-    "aboutA": "Le calendrier du WBC désigne Christian Mbilli comme champion des super-moyens et présente le combat comme une défense volontaire du titre mondial.",
-    "aboutB": "Saúl Álvarez est annoncé comme adversaire de Mbilli pour le titre mondial WBC des super-moyens. Les pages consultées ne donnent pas de bilan détaillé ni de portrait de son parcours.",
-    "analysis": "Le WBC indique que Mbilli et Álvarez se sont retrouvés à Riyad le 29 octobre pour une conférence de presse en amont de leur combat du 31 octobre. L’affiche est annoncée pour le titre mondial WBC des super-moyens, avec une carte comprenant notamment Munguía contre Zon, Picasso contre Martin, Espinoza contre Blandon et Tsutsumi contre Garcia.\n\nLes sources donnent des horaires différents : Boxemag affiche 16 h et The Ring 2 h EST. CanadianBoxing annonce une diffusion sur DAZN PPV. Les informations disponibles établissent l’enjeu et le cadre de la soirée, mais ne fournissent pas les bilans détaillés nécessaires à une comparaison sportive.",
-    "prediction": "",
-    "sourceUrl": "https://wbcboxing.com/en/events/"
+    "time": "16:00 selon le programme BoxeMag",
+    "channel": "DAZN PPV et DAZN PPV UK",
+    "aboutA": "Le WBC répertorie Christian Mbilli dans sa catégorie des super-moyens et présente le combat comme une défense volontaire de titre.",
+    "aboutB": "Saúl Álvarez est annoncé sous le nom de Canelo dans les programmes du combat. Les pages consultées ne précisent pas son bilan.",
+    "analysis": "Le combat pour le titre WBC des super-moyens est programmé le 31 octobre à Riyad, à la Kingdom Arena. Le WBC confirme que les deux boxeurs ont fait le poids.\n\nLa hiérarchie de la catégorie donne un repère important : Mbilli figure dans le classement du WBC comme champion des super-moyens. Les pages fournies ne détaillent pas les bilans ni les styles des deux boxeurs.\n\nLa carte comprend également Munguía contre Zon, Picasso contre Martin, Espinoza contre Blandón et Tsutsumi contre Rojas. Le programme de la soirée est annoncé sur DAZN PPV.",
+    "prediction": "Le statut de Mbilli dans la hiérarchie WBC est le seul élément comparatif solide fourni par les pages consultées. Le combat reste néanmoins ouvert à l’analyse des styles, absente des informations disponibles.\n\nMon choix pressenti est Christian Mbilli, sur la base de ce statut de champion indiqué par le WBC.",
+    "sourceUrl": "https://wbcboxing.com/en/news/"
   },
   {
     "date": "2026-10-31",
@@ -427,9 +427,22 @@
     "venue": "Espace Cordouan",
     "time": "",
     "channel": "",
-    "aboutA": "Makan Traoré est présenté par Sud Ouest comme un boxeur du Royan Océan Club. Après ce championnat de France, il doit se consacrer à la préparation des Jeux olympiques de Los Angeles.",
-    "aboutB": "Yamin Bartolo est présenté comme le tenant du titre de champion de France des super-welters que Makan Traoré tentera de lui prendre.",
-    "analysis": "Le combat est annoncé en dix rounds de trois minutes, en super-welters, pour le championnat de France professionnel. Sud Ouest situe la soirée Royan Boxing Prestige à l’Espace Cordouan, à Royan.\n\nL’article présente cette organisation comme une première dans le département avec deux championnats de France professionnels au programme. Il mentionne également Maloway Canlers contre Hadria Bader pour un titre national en poids mouches, ainsi qu’un combat d’Arthur Aslanian dont l’adversaire restait à désigner au moment de la publication.",
+    "aboutA": "Le boxeur du Royan Océan Club dispute à domicile un championnat de France professionnel des super-welters. L'article indique qu'il se consacrera ensuite à la préparation des Jeux olympiques de Los Angeles.",
+    "aboutB": "Yamin Bartolo est présenté comme le tenant du titre que Makan Traoré doit affronter sur dix rounds de trois minutes.",
+    "analysis": "Le championnat de France professionnel des super-welters entre Makan Traoré et Yamin Bartolo est prévu à Royan, à l’Espace Cordouan, dans le cadre de Royan Boxing Prestige.\n\nLe format annoncé est de dix rounds de trois minutes. Traoré boxera devant son public, et l’article de Sud Ouest précise que cette échéance précède sa préparation pour les Jeux olympiques de Los Angeles.\n\nLa soirée comprend aussi un autre championnat de France professionnel : Maloway Canlers contre Hadria Bader, en poids mouche, sur huit rounds de deux minutes. Un combat d’Arthur Aslanian est également annoncé, avec un adversaire encore à désigner.",
+    "prediction": "",
+    "sourceUrl": "https://www.sudouest.fr/sport/boxe/avant-de-penser-aux-jeux-olympiques-le-boxeur-royannais-makan-traore-disputera-son-championnat-de-france-a-domicile-le-31-octobre-30430836.php"
+  },
+  {
+    "date": "2026-10-31",
+    "boxerA": "Maloway Canlers",
+    "boxerB": "Hadria Bader",
+    "venue": "Espace Cordouan",
+    "time": "",
+    "channel": "",
+    "aboutA": "Maloway Canlers, du Royan Océan Club, est annoncée dans un championnat de France professionnel des poids mouches.",
+    "aboutB": "Hadria Bader est annoncée comme son adversaire dans un combat prévu sur huit rounds de deux minutes.",
+    "analysis": "Maloway Canlers et Hadria Bader doivent disputer un championnat de France professionnel des poids mouches à l’Espace Cordouan, à Royan.\n\nLe combat est prévu sur huit rounds de deux minutes, dans une soirée organisée sous le nom de Royan Boxing Prestige. L’article présente Canlers comme une boxeuse du Royan Océan Club.\n\nL’affiche s’inscrit dans une soirée qui comprend aussi le championnat de France des super-welters entre Makan Traoré et Yamin Bartolo, ainsi qu’un combat d’Arthur Aslanian contre un adversaire non encore désigné.",
     "prediction": "",
     "sourceUrl": "https://www.sudouest.fr/sport/boxe/avant-de-penser-aux-jeux-olympiques-le-boxeur-royannais-makan-traore-disputera-son-championnat-de-france-a-domicile-le-31-octobre-30430836.php"
   }
