@@ -937,5 +937,27 @@
     "aliases": [
       "Paul"
     ]
+  },
+  {
+    "name": "Reda",
+    "slug": "reda",
+    "path": "/img/boxers/reda.jpg",
+    "license": "CC0",
+    "artist": "Sports check facts",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=199318624",
+    "wikiTitle": "Reda",
+    "aliases": []
+  },
+  {
+    "name": "Jaime Munguía",
+    "slug": "jaime-munguia",
+    "path": "/img/boxers/jaime-munguia.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "User:International.Boxing.Entertainment",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=112617504",
+    "wikiTitle": "Jaime Munguía",
+    "aliases": [
+      "Munguía"
+    ]
   }
 ]
