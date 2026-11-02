@@ -959,5 +959,17 @@
     "aliases": [
       "Munguía"
     ]
+  },
+  {
+    "name": "Yokasta Valle",
+    "slug": "yokasta-valle",
+    "path": "/img/boxers/yokasta-valle.jpg",
+    "license": "CC BY 3.0",
+    "artist": "CB24",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=193983771",
+    "wikiTitle": "Yokasta Valle",
+    "aliases": [
+      "Valle"
+    ]
   }
 ]
