@@ -483,5 +483,27 @@
     "decision": "",
     "sourceName": "World Boxing Council",
     "sourceUrl": "https://wbcboxing.com/en/events/"
+  },
+  {
+    "status": "a-venir",
+    "date": "2026-12-24",
+    "boxerA": "Jake Paul",
+    "boxerB": "Cédric Doumbé",
+    "category": "Boxe",
+    "titles": "",
+    "city": "Dubaï",
+    "venue": "",
+    "time": "",
+    "channel": "",
+    "aboutA": "Most Valuable Promotions indique un bilan professionnel de 12 victoires et 2 défaites, dont 7 KO.",
+    "aboutB": "La BBC le présente comme une figure du MMA et du kickboxing. Les pages consultées ne précisent pas de bilan professionnel en boxe.",
+    "analysis": "Annoncé pour le 24 décembre à Dubaï, ce combat marquera le retour de Jake Paul sur un ring de boxe selon Most Valuable Promotions.\n\nL’affiche oppose le parcours professionnel en boxe de Paul à Cédric Doumbé, décrit par la BBC comme une figure du MMA et du kickboxing. Les pages consultées ne donnent pas de bilan de boxe pour Doumbé.\n\nLa salle, l’horaire, la chaîne, les règles détaillées et les autres combats de la soirée ne sont pas précisés dans les éléments disponibles. L’analyse sportive reste donc limitée aux informations publiées sur les deux hommes.",
+    "prediction": "Le bilan de boxe de Jake Paul — 12 victoires et 2 défaites, dont 7 KO — est le seul repère chiffré disponible dans les pages consultées. Aucun bilan comparable n’est fourni pour Cédric Doumbé.\n\nAvec cette réserve, Jake Paul est le vainqueur pressenti, principalement en raison de son expérience documentée en boxe professionnelle.",
+    "stakes": "Jake Paul signe son retour à la boxe face à une figure du MMA et du kickboxing.",
+    "winner": "",
+    "method": "",
+    "decision": "",
+    "sourceName": "Most Valuable Promotions",
+    "sourceUrl": "https://www.mostvaluablepromotions.com/"
   }
 ]

@@ -971,5 +971,16 @@
     "aliases": [
       "Valle"
     ]
+  },
+  {
+    "name": "Cédric Doumbé",
+    "slug": "cedric-doumbe",
+    "path": "/img/boxers/cedric-doumbe.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/cedric-doumbe/",
+    "aliases": [
+      "Doumbé"
+    ]
   }
 ]
