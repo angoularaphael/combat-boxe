@@ -69,5 +69,19 @@
     "city": "Riyad",
     "note": "Soirée à la Kingdom Arena. Le programme BoxeMag annonce 16:00 et une diffusion sur DAZN PPV et DAZN PPV UK.",
     "sourceUrl": "https://wbcboxing.com/en/events/"
+  },
+  {
+    "date": "2026-11-14",
+    "name": "Pacheco vs Fulghum",
+    "city": "Carson, Californie",
+    "note": "Soirée au Dignity Health Sports Park. Diffusion DAZN et DAZN Global. Heure non indiquée.",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-14",
+    "name": "Sacha Morice vs Hasna Tebse",
+    "city": "Tours, France",
+    "note": "Combat pour le titre WBC féminin des super-coqs. Salle, chaîne et heure non indiquées.",
+    "sourceUrl": "https://wbcboxing.com/en/events/"
   }
 ]
