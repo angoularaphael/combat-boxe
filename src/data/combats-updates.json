@@ -400,10 +400,10 @@
     "boxerB": "Willy Hutchinson",
     "venue": "AO Arena",
     "time": "",
-    "channel": "DAZN et DAZN Global",
+    "channel": "DAZN & DAZN Global",
     "aboutA": "Le combat est annoncé pour le titre mondial WBC vacant des mi-lourds.",
     "aboutB": "Le combat est annoncé pour le titre mondial WBC vacant des mi-lourds.",
-    "analysis": "Buatsi et Hutchinson doivent s’affronter le 7 novembre à Manchester pour le titre mondial WBC vacant des mi-lourds. L’affiche est présentée comme un deuxième combat entre les deux boxeurs.",
+    "analysis": "Le combat est annoncé à Manchester pour le titre intérimaire WBC des mi-lourds. Les pages consultées le présentent comme une revanche, sans détailler ici le résultat du premier affrontement ni les bilans des deux boxeurs.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   },
@@ -445,5 +445,31 @@
     "analysis": "Maloway Canlers et Hadria Bader doivent disputer un championnat de France professionnel des poids mouches à l’Espace Cordouan, à Royan.\n\nLe combat est prévu sur huit rounds de deux minutes, dans une soirée organisée sous le nom de Royan Boxing Prestige. L’article présente Canlers comme une boxeuse du Royan Océan Club.\n\nL’affiche s’inscrit dans une soirée qui comprend aussi le championnat de France des super-welters entre Makan Traoré et Yamin Bartolo, ainsi qu’un combat d’Arthur Aslanian contre un adversaire non encore désigné.",
     "prediction": "",
     "sourceUrl": "https://www.sudouest.fr/sport/boxe/avant-de-penser-aux-jeux-olympiques-le-boxeur-royannais-makan-traore-disputera-son-championnat-de-france-a-domicile-le-31-octobre-30430836.php"
+  },
+  {
+    "date": "2026-11-14",
+    "boxerA": "Diego Pacheco",
+    "boxerB": "Darius Fulghum",
+    "venue": "Dignity Health Sports Park",
+    "time": "",
+    "channel": "DAZN & DAZN Global",
+    "aboutA": "Le WBC annonce que Diego Pacheco défendra son titre WBC Silver des super-moyens.",
+    "aboutB": "Darius Fulghum est annoncé comme adversaire de Pacheco pour cette défense.",
+    "analysis": "Le combat est programmé en douze rounds à Carson, selon le calendrier consulté.\n\nLa carte comprend également le championnat du monde WBO des mouches entre Anthony Olascuaga et Martinez, ainsi que les combats Adeleye-Flores, Sheehy-Flores Jr et Riley-Coupe.\n\nLes pages ne donnent pas de bilans ou de parcours récents permettant d’étayer une analyse plus poussée de l’opposition.",
+    "prediction": "",
+    "sourceUrl": "https://wbcboxing.com/en/news/"
+  },
+  {
+    "date": "2026-11-07",
+    "boxerA": "Chris Billam-Smith",
+    "boxerB": "Cheavon Clarke",
+    "venue": "Copper Box Arena",
+    "time": "",
+    "channel": "Paramount+ & Sky Sports Main Event",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le calendrier annonce un combat de dix rounds chez les lourds-légers à Londres. Il cite également Denzel Bentley contre Shane Mosley Jr et Zach Parker contre Umar Dzambekov sur la carte.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
 ]
