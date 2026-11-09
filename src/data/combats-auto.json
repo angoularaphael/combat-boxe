@@ -593,5 +593,27 @@
     "decision": "",
     "sourceName": "World Boxing Council",
     "sourceUrl": "https://wbcboxing.com/en/events/"
+  },
+  {
+    "status": "a-venir",
+    "date": "2026-11-13",
+    "boxerA": "Bilel Jkitou",
+    "boxerB": "Gabriel Corzo",
+    "category": "",
+    "titles": "",
+    "city": "Clichy, France",
+    "venue": "",
+    "time": "19:00",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Boxemag annonce Bilel Jkitou contre Gabriel Corzo le 13 novembre 2026 à Clichy. La page donne une heure de 19 h, sans préciser de salle ni de diffusion.\n\nLes informations consultées ne donnent pas la catégorie, un titre en jeu, les bilans ou les parcours des deux boxeurs. Il n’est donc pas possible d’établir une comparaison sportive plus détaillée sans ajouter de faits absents de la page.\n\nL’affiche est présentée parmi les prochains combats de boxe recensés par le média. Aucun autre combat de la même soirée n’est explicitement associé à cette rencontre dans les éléments disponibles.",
+    "prediction": "",
+    "stakes": "L’affiche oppose Bilel Jkitou à Gabriel Corzo à Clichy.",
+    "winner": "",
+    "method": "",
+    "decision": "",
+    "sourceName": "Boxemag",
+    "sourceUrl": "https://boxemag.ouest-france.fr/"
   }
 ]

@@ -562,5 +562,31 @@
     "analysis": "Les deux boxeurs ont fait le poids avant de se disputer le titre WBC Silver vacant des poids lourds à Istanbul. La page consultée ne précise ni l’heure ni la chaîne de diffusion.",
     "prediction": "",
     "sourceUrl": "https://wbcboxing.com/en/news/"
+  },
+  {
+    "date": "2026-11-14",
+    "boxerA": "Bakary Samaké",
+    "boxerB": "Uisma Lima",
+    "venue": "Palais des Sports Marcel-Cerdan",
+    "time": "",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le combat est annoncé à Levallois-Perret le 14 novembre, sur dix rounds en super-welters. Le WBC le présente pour son titre Silver masculin de la catégorie.\n\nLe programme consulté ne fournit ici ni bilan détaillé ni élément de parcours pour comparer les deux boxeurs. La salle est donnée par le calendrier CanadianBoxing sous la forme « Palais des Sport Marcel Cerdan ».",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-14",
+    "boxerA": "Sacha Morice",
+    "boxerB": "Hasna Tebse",
+    "venue": "",
+    "time": "",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le WBC annonce Sacha Morice contre Hasna Tebse à Tours, le 14 novembre, pour le titre WBC féminin des super-coqs.\n\nLes pages consultées ne précisent ni la salle, ni l’heure, ni la chaîne, et ne donnent pas de bilan ou de parcours permettant de départager les deux boxeuses.",
+    "prediction": "",
+    "sourceUrl": "https://wbcboxing.com/en/events/"
   }
 ]
