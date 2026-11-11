@@ -982,5 +982,25 @@
     "aliases": [
       "Doumbé"
     ]
+  },
+  {
+    "name": "Nunez",
+    "slug": "nunez",
+    "path": "/img/boxers/nunez.jpg",
+    "license": "Public domain",
+    "artist": "Official Navy Page from United States of America Trevor Welsh/U.S. Navy",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=19807853",
+    "wikiTitle": "Nunez",
+    "aliases": []
+  },
+  {
+    "name": "Erdenebat",
+    "slug": "erdenebat",
+    "path": "/img/boxers/erdenebat.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "MiPorto",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=50746762",
+    "wikiTitle": "Erdenebat",
+    "aliases": []
   }
 ]

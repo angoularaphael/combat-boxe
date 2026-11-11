@@ -97,5 +97,26 @@
     "city": "Arlington, États-Unis",
     "note": "College Park Center. Diffusion annoncée sur ESPN et Sky Sports Main Event ; l’horaire n’est pas précisé.",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-12",
+    "name": "Camila Zamorano vs Brenda Balderas",
+    "city": "Acapulco, Guerrero, Mexique",
+    "note": "Le WBC annonce le combat pour le titre atomweight féminin. Salle, horaire et chaîne non précisés.",
+    "sourceUrl": "https://wbcboxing.com/en/events/"
+  },
+  {
+    "date": "2026-11-13",
+    "name": "Flores vs Nunez",
+    "city": "El Paso, États-Unis",
+    "note": "County Coliseum. La soirée est annoncée sur ProBox TV US et ProBox TV ; horaire non précisé.",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-13",
+    "name": "Bilel Jkitou vs Gabriel Corzo",
+    "city": "Clichy, France",
+    "note": "BoxeMag affiche un horaire de 19:00. Salle et chaîne non précisées.",
+    "sourceUrl": "https://boxemag.ouest-france.fr/"
   }
 ]
