@@ -452,12 +452,12 @@
     "boxerB": "Darius Fulghum",
     "venue": "Dignity Health Sports Park",
     "time": "",
-    "channel": "DAZN & DAZN Global",
+    "channel": "DAZN et DAZN Global",
     "aboutA": "Le WBC annonce que Diego Pacheco défendra son titre WBC Silver des super-moyens.",
     "aboutB": "Darius Fulghum est annoncé comme adversaire de Pacheco pour cette défense.",
-    "analysis": "Le combat est programmé en douze rounds à Carson, selon le calendrier consulté.\n\nLa carte comprend également le championnat du monde WBO des mouches entre Anthony Olascuaga et Martinez, ainsi que les combats Adeleye-Flores, Sheehy-Flores Jr et Riley-Coupe.\n\nLes pages ne donnent pas de bilans ou de parcours récents permettant d’étayer une analyse plus poussée de l’opposition.",
+    "analysis": "Le calendrier situe Pacheco contre Fulghum à Carson, aux États-Unis, le 14 novembre. Le combat est prévu sur douze rounds en super-moyens. La page annonce également Olascuaga contre Martinez pour le titre mondial WBO des poids mouche, ainsi que les combats Adeleye-Flores et Sheehy-Flores Jr.",
     "prediction": "",
-    "sourceUrl": "https://wbcboxing.com/en/news/"
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   },
   {
     "date": "2026-11-07",
@@ -567,12 +567,12 @@
     "date": "2026-11-14",
     "boxerA": "Bakary Samaké",
     "boxerB": "Uisma Lima",
-    "venue": "Palais des Sports Marcel-Cerdan",
+    "venue": "Palais des Sports Marcel Cerdan",
     "time": "",
-    "channel": "",
+    "channel": "DAZN et DAZN Global",
     "aboutA": "",
     "aboutB": "",
-    "analysis": "Le combat est annoncé à Levallois-Perret le 14 novembre, sur dix rounds en super-welters. Le WBC le présente pour son titre Silver masculin de la catégorie.\n\nLe programme consulté ne fournit ici ni bilan détaillé ni élément de parcours pour comparer les deux boxeurs. La salle est donnée par le calendrier CanadianBoxing sous la forme « Palais des Sport Marcel Cerdan ».",
+    "analysis": "Le combat est programmé sur dix rounds en super-welters à Levallois-Perret. La WBC le présente comme un championnat Silver masculin des super-welters.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   },
@@ -588,5 +588,31 @@
     "analysis": "Le WBC annonce Sacha Morice contre Hasna Tebse à Tours, le 14 novembre, pour le titre WBC féminin des super-coqs.\n\nLes pages consultées ne précisent ni la salle, ni l’heure, ni la chaîne, et ne donnent pas de bilan ou de parcours permettant de départager les deux boxeuses.",
     "prediction": "",
     "sourceUrl": "https://wbcboxing.com/en/events/"
+  },
+  {
+    "date": "2026-11-12",
+    "boxerA": "Steven Butler",
+    "boxerB": "Erik Bazinyan",
+    "venue": "Montreal Casino",
+    "time": "",
+    "channel": "DAZN et DAZN Global",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le calendrier annonce Butler contre Bazinyan à Montréal, au Montreal Casino, le 12 novembre. Le combat est prévu sur dix rounds en super-moyens et figure à l’affiche de la soirée Orobio-Cedeno.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-20",
+    "boxerA": "Lauren Price",
+    "boxerB": "Michaela Kotaskova",
+    "venue": "Cardiff International Arena",
+    "time": "",
+    "channel": "BBC Two",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le calendrier annonce Price contre Kotaskova à Cardiff le 20 novembre, sur dix rounds chez les welters. La WBC présente cette rencontre comme un combat volontaire pour son titre féminin des welters.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
 ]
