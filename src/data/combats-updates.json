@@ -622,10 +622,23 @@
     "venue": "",
     "time": "",
     "channel": "",
-    "aboutA": "",
-    "aboutB": "",
-    "analysis": "Le WBC programme Camila Zamorano contre Brenda Balderas le 12 novembre à Acapulco, dans le Guerrero, au Mexique. L’enjeu annoncé est le titre mondial féminin WBC volontaire des poids atomiques.\n\nLes informations consultées ne donnent ni le bilan ni le parcours récent des deux boxeuses. Elles ne permettent donc pas d’établir une comparaison sportive ou de décrire un avantage tactique.\n\nL’enjeu du titre est clairement établi, mais aucun pronostic ne peut être étayé par les éléments publiés sur cette affiche.",
+    "aboutA": "Le WBC indique qu’elle représente le Mexique.",
+    "aboutB": "Le WBC indique qu’elle représente le Mexique.",
+    "analysis": "Le calendrier du WBC annonce ce combat pour le titre féminin WBC volontaire des poids atomiques, le 12 novembre à Acapulco, dans l’État de Guerrero, au Mexique. La page ne précise ni salle, ni horaire, ni chaîne, et ne fournit pas de bilan ou de parcours pour les deux boxeuses.",
     "prediction": "",
     "sourceUrl": "https://wbcboxing.com/en/events/"
+  },
+  {
+    "date": "2026-11-12",
+    "boxerA": "Orobio",
+    "boxerB": "Cedeno",
+    "venue": "Montreal Casino",
+    "time": "",
+    "channel": "DAZN & DAZN Global",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le programme annonce Orobio contre Cedeno sur dix rounds en super-légers, le 12 novembre à Montréal. La même carte comprend Butler-Bazinyan, également annoncé sur dix rounds, en super-moyens. La page ne fournit pas de bilans ni d’éléments de parcours pour les boxeurs.",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
 ]
