@@ -572,7 +572,7 @@
     "channel": "DAZN et DAZN Global",
     "aboutA": "",
     "aboutB": "",
-    "analysis": "Le calendrier de CanadianBoxing situe le combat au Palais des Sports Marcel Cerdan, à Levallois-Perret, sur dix rounds en super-welters. Le WBC annonce le titre Silver masculin de la catégorie en jeu.",
+    "analysis": "Le combat est annoncé le 14 novembre à Levallois-Perret, sur dix rounds en super-welters. Le WBC indique que le titre Silver masculin de la catégorie est en jeu.\n\nLes pages consultées ne détaillent pas les bilans ou les parcours des deux boxeurs. Elles ne fournissent donc pas de base pour opposer leurs styles ou leur forme récente.\n\nLe titre WBC Silver et le format de dix rounds donnent à cette affiche un enjeu identifié, sans permettre de désigner un favori à partir des informations publiées.",
     "prediction": "",
     "sourceUrl": "https://wbcboxing.com/en/events/"
   },
@@ -614,5 +614,18 @@
     "analysis": "Le calendrier annonce Price contre Kotaskova à Cardiff le 20 novembre, sur dix rounds chez les welters. La WBC présente cette rencontre comme un combat volontaire pour son titre féminin des welters.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-12",
+    "boxerA": "Camila Zamorano",
+    "boxerB": "Brenda Balderas",
+    "venue": "",
+    "time": "",
+    "channel": "",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le WBC programme Camila Zamorano contre Brenda Balderas le 12 novembre à Acapulco, dans le Guerrero, au Mexique. L’enjeu annoncé est le titre mondial féminin WBC volontaire des poids atomiques.\n\nLes informations consultées ne donnent ni le bilan ni le parcours récent des deux boxeuses. Elles ne permettent donc pas d’établir une comparaison sportive ou de décrire un avantage tactique.\n\nL’enjeu du titre est clairement établi, mais aucun pronostic ne peut être étayé par les éléments publiés sur cette affiche.",
+    "prediction": "",
+    "sourceUrl": "https://wbcboxing.com/en/events/"
   }
 ]
