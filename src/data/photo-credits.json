@@ -1002,5 +1002,27 @@
     "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=50746762",
     "wikiTitle": "Erdenebat",
     "aliases": []
+  },
+  {
+    "name": "Chantelle Cameron",
+    "slug": "chantelle-cameron",
+    "path": "/img/boxers/chantelle-cameron.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/chantelle-cameron/",
+    "aliases": [
+      "Cameron"
+    ]
+  },
+  {
+    "name": "Mikaela Mayer",
+    "slug": "mikaela-mayer",
+    "path": "/img/boxers/mikaela-mayer.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/mikaela-mayer/",
+    "aliases": [
+      "Mayer"
+    ]
   }
 ]
