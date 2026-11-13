@@ -118,5 +118,12 @@
     "city": "Clichy, France",
     "note": "BoxeMag affiche un horaire de 19:00. Salle et chaîne non précisées.",
     "sourceUrl": "https://boxemag.ouest-france.fr/"
+  },
+  {
+    "date": "2026-11-13",
+    "name": "Flores vs Nunez",
+    "city": "El Paso",
+    "note": "County Coliseum. ProBox TV US et ProBox TV. Horaire non indiqué.",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
 ]
