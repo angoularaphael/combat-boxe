@@ -1024,5 +1024,56 @@
     "aliases": [
       "Mayer"
     ]
+  },
+  {
+    "name": "Viddal Riley",
+    "slug": "viddal-riley",
+    "path": "/img/boxers/viddal-riley.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Goldiehaque",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=74824619",
+    "wikiTitle": "Viddal Riley",
+    "aliases": [
+      "Riley"
+    ]
+  },
+  {
+    "name": "Carlos Adames",
+    "slug": "carlos-adames",
+    "path": "/img/boxers/carlos-adames.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Weligsander",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=138023440",
+    "wikiTitle": "Carlos Adames",
+    "aliases": [
+      "Adames"
+    ]
+  },
+  {
+    "name": "Olascuaga",
+    "slug": "olascuaga",
+    "path": "/img/boxers/olascuaga.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/olascuaga/",
+    "aliases": []
+  },
+  {
+    "name": "Matias",
+    "slug": "matias",
+    "path": "/img/boxers/matias.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/matias/",
+    "aliases": []
+  },
+  {
+    "name": "Barrett",
+    "slug": "barrett",
+    "path": "/img/boxers/barrett.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/barrett/",
+    "aliases": []
   }
 ]
