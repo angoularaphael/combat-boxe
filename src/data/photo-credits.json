@@ -1075,5 +1075,17 @@
     "artist": "matchroomboxing.com",
     "pageUrl": "https://www.matchroomboxing.com/fighters/barrett/",
     "aliases": []
+  },
+  {
+    "name": "Bilel Jkitou",
+    "slug": "bilel-jkitou",
+    "path": "/img/boxers/bilel-jkitou.jpg",
+    "license": "CC0",
+    "artist": "Unknown author Unknown author",
+    "pageUrl": "https://commons.wikimedia.org/w/index.php?curid=203235701",
+    "wikiTitle": "Bilel Jkitou",
+    "aliases": [
+      "Jkitou"
+    ]
   }
 ]
