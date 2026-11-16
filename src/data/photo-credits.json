@@ -1087,5 +1087,14 @@
     "aliases": [
       "Jkitou"
     ]
+  },
+  {
+    "name": "Teremoana",
+    "slug": "teremoana",
+    "path": "/img/boxers/teremoana.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/teremoana/",
+    "aliases": []
   }
 ]
