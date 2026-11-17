@@ -1106,5 +1106,27 @@
     "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/90192430",
     "wikiTitle": "Leek",
     "aliases": []
+  },
+  {
+    "name": "Oscar Collazo",
+    "slug": "oscar-collazo",
+    "path": "/img/boxers/oscar-collazo.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/oscar-collazo/",
+    "aliases": [
+      "Collazo"
+    ]
+  },
+  {
+    "name": "Joey Canoy",
+    "slug": "joey-canoy",
+    "path": "/img/boxers/joey-canoy.jpg",
+    "license": "editorial",
+    "artist": "mostvaluablepromotions.com",
+    "pageUrl": "https://www.mostvaluablepromotions.com/athlete/joey-canoy/",
+    "aliases": [
+      "Canoy"
+    ]
   }
 ]
