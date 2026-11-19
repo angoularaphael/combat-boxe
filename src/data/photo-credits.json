@@ -1151,5 +1151,45 @@
     "aliases": [
       "Opetaia"
     ]
+  },
+  {
+    "name": "Phiri",
+    "slug": "phiri",
+    "path": "/img/boxers/phiri.jpg",
+    "license": "CC0",
+    "artist": "Gobierno CDMX",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/92635120",
+    "wikiTitle": "Phiri",
+    "aliases": []
+  },
+  {
+    "name": "Fajardo",
+    "slug": "fajardo",
+    "path": "/img/boxers/fajardo.jpg",
+    "license": "Public domain",
+    "artist": "Sgt. Daniel Schneider",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/40915933",
+    "wikiTitle": "Fajardo",
+    "aliases": []
+  },
+  {
+    "name": "Cruz",
+    "slug": "cruz",
+    "path": "/img/boxers/cruz.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Jonas de Carvalho from Rio de Janeiro, Brasil",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/50848545",
+    "wikiTitle": "Cruz",
+    "aliases": []
+  },
+  {
+    "name": "Perez",
+    "slug": "perez",
+    "path": "/img/boxers/perez.jpg",
+    "license": "Public domain",
+    "artist": "El Gráfico",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/4629055",
+    "wikiTitle": "Perez",
+    "aliases": []
   }
 ]
