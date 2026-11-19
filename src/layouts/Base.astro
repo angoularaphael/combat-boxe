@@ -1,5 +1,6 @@
 ---
 import '../styles/site.css';
+import FightFurious from '../components/FightFurious.astro';
 
 const {
   title,
@@ -85,7 +86,8 @@ const gsc = import.meta.env.PUBLIC_GSC_VERIFICATION;
     <main id="contenu">
       <slot />
     </main>
+    <FightFurious />
     <slot name="footer" />
-    <script src="https://fight-and-furious.boxingcenter.fr/ff-promo.js?v=2" data-src="cbx" defer></script>
+    <script src="https://fight-and-furious.boxingcenter.fr/ff-promo.js?v=3" data-src="cbx" defer></script>
   </body>
 </html>

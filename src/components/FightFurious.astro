@@ -1,0 +1,21 @@
+---
+const src = 'cbx';
+const eventUrl = `https://fight-and-furious.boxingcenter.fr/?src=${src}`;
+const billetsUrl = `https://boutique.boxingcenter.fr/billetterie?src=${src}`;
+const concoursUrl = `${eventUrl}#concours`;
+---
+
+<section class="ff-section" id="fight-and-furious" aria-label="FIGHT and Furious">
+  <div class="ff-section__in wrap">
+    <p class="ff-section__k">11 au 13 decembre 2026</p>
+    <h2 class="ff-section__t">FIGHT &amp; Furious</h2>
+    <p class="ff-section__p">
+      Gala de boxe Boxing Center x Moteka. Billets en ligne et jeu concours avec tirages jusqu'au 28 novembre.
+    </p>
+    <div class="ff-section__row">
+      <a class="ff-btn ff-btn--on" href={eventUrl}>Voir l'evenement</a>
+      <a class="ff-btn ff-btn--ghost" href={billetsUrl}>Acheter un billet</a>
+      <a class="ff-btn ff-btn--line" href={concoursUrl}>Jeu concours</a>
+    </div>
+  </div>
+</section>
