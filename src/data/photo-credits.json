@@ -1128,5 +1128,28 @@
     "aliases": [
       "Canoy"
     ]
+  },
+  {
+    "name": "Deontay Wilder",
+    "slug": "deontay-wilder",
+    "path": "/img/boxers/deontay-wilder.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Zach Catanzareti Photo",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/106439968",
+    "wikiTitle": "Deontay Wilder",
+    "aliases": [
+      "Wilder"
+    ]
+  },
+  {
+    "name": "Jai Opetaia",
+    "slug": "jai-opetaia",
+    "path": "/img/boxers/jai-opetaia.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/jai-opetaia/",
+    "aliases": [
+      "Opetaia"
+    ]
   }
 ]
