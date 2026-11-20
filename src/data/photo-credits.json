@@ -1191,5 +1191,24 @@
     "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/4629055",
     "wikiTitle": "Perez",
     "aliases": []
+  },
+  {
+    "name": "Jones",
+    "slug": "jones",
+    "path": "/img/boxers/jones.jpg",
+    "license": "CC BY 4.0",
+    "artist": "National Olympic Committee of the Republic of Uzbekistan",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/151512992",
+    "wikiTitle": "Jones",
+    "aliases": []
+  },
+  {
+    "name": "Khataev",
+    "slug": "khataev",
+    "path": "/img/boxers/khataev.jpg",
+    "license": "editorial",
+    "artist": "eottm.com",
+    "pageUrl": "https://eottm.com/fighter/khataev/",
+    "aliases": []
   }
 ]
