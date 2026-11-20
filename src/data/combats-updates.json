@@ -609,11 +609,11 @@
     "venue": "Cardiff International Arena",
     "time": "",
     "channel": "TrillerTV+ (États-Unis) et BBC Two (Royaume-Uni)",
-    "aboutA": "Price figure parmi les championnes du monde du WBC. Le combat est présenté comme une défense volontaire du titre mondial féminin des welters.",
-    "aboutB": "Kotaskova a fait le poids avant le combat pour le titre mondial WBC des welters. Les pages consultées ne précisent pas son bilan ni son parcours.",
-    "analysis": "Le combat est programmé sur dix rounds chez les welters, avec le titre mondial féminin du WBC en jeu. Les deux boxeuses ont fait le poids la veille de l’affiche.\n\nLa soirée se tient au Cardiff International Arena et comprend aussi Edwards-McGregor chez les plumes et Gilheaney-Palmetta chez les welters.",
-    "prediction": "Le statut de championne WBC de Lauren Price est le principal élément de comparaison disponible. Les pages consultées ne donnent pas de bilans ni de détails de style pour étayer davantage le pronostic.\n\nLauren Price est pressentie, sur la seule base de son statut de championne en titre.",
-    "sourceUrl": "https://wbcboxing.com/en/news/"
+    "aboutA": "Championne des welters selon le WBC. La BBC rappelle son passé de footballeuse et son ambition de devenir la première championne incontestée du pays.",
+    "aboutB": "Représentante de la République tchèque. Les pages consultées ne donnent pas son bilan professionnel.",
+    "analysis": "Le combat est programmé le 20 novembre à Cardiff sur dix rounds dans la catégorie des welters. Le WBC annonce une défense volontaire de son titre mondial féminin.\n\nPrice est désignée championne WBC des welters. Kotaskova se présente comme challenger, mais les éléments disponibles ne permettent pas de détailler son bilan ni son parcours.\n\nLa rencontre se tient à Cardiff, et la BBC souligne l’ambition de Price de faire l’histoire de la boxe galloise. Les données consultées ne précisent pas d’horaire pour le combat.",
+    "prediction": "Le statut de championne WBC place Price dans la position de référence de cette affiche. Les pages consultées ne fournissent pas de bilan pour Kotaskova permettant d’affiner davantage la comparaison.\n\nLauren Price est la vainqueure pressentie, sur la base de son statut de championne WBC.",
+    "sourceUrl": "https://wbcboxing.com/en/events/"
   },
   {
     "date": "2026-11-12",
@@ -677,6 +677,32 @@
     "aboutA": "",
     "aboutB": "",
     "analysis": "",
+    "prediction": "",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2026-11-20",
+    "boxerA": "Gabriela Fundora",
+    "boxerB": "Jasmina Zapotoczna",
+    "venue": "Fantasy Springs Casino, Indio, Californie",
+    "time": "",
+    "channel": "DAZN et DAZN Global",
+    "aboutA": "Championne incontestée WBC des mouches. Le WBC indique qu’elle a pesé 110,4 livres.",
+    "aboutB": "Représentante de la Grande-Bretagne selon le WBC. Les pages consultées ne donnent pas son bilan professionnel.",
+    "analysis": "Fundora et Zapotoczna s’affrontent le 20 novembre pour le titre mondial féminin WBC des mouches. Le combat est prévu sur dix rounds en sous-carte de Jones-Pettus à Indio.\n\nLe WBC présente Fundora comme championne incontestée de la division. L’organisation a également rapporté sa pesée à 110,4 livres.\n\nLe programme consulté ne donne pas l’horaire particulier de ce combat. Il annonce Jones-Pettus sur DAZN et DAZN Global, avec Fundora-Zapotoczna en sous-carte.",
+    "prediction": "Fundora défend un statut de championne incontestée, tandis que les pages disponibles ne détaillent pas le bilan de Zapotoczna. C’est le repère principal pour lire l’affiche.\n\nGabriela Fundora est la vainqueure pressentie en raison de son statut de championne incontestée WBC.",
+    "sourceUrl": "https://wbcboxing.com/en/events/"
+  },
+  {
+    "date": "2026-11-20",
+    "boxerA": "Jones",
+    "boxerB": "Pettus",
+    "venue": "Fantasy Springs Casino, Indio, États-Unis",
+    "time": "",
+    "channel": "DAZN et DAZN Global",
+    "aboutA": "",
+    "aboutB": "",
+    "analysis": "Le programme du 20 novembre annonce Jones contre Pettus au Fantasy Springs Casino, à Indio. La rencontre est prévue sur douze rounds chez les poids moyens et constitue l’affiche principale de la soirée.",
     "prediction": "",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
