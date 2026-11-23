@@ -1210,5 +1210,17 @@
     "artist": "eottm.com",
     "pageUrl": "https://eottm.com/fighter/khataev/",
     "aliases": []
+  },
+  {
+    "name": "Clemente Russo",
+    "slug": "clemente-russo",
+    "path": "/img/boxers/clemente-russo.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Boxing AIBA",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/50837421",
+    "wikiTitle": "Clemente Russo",
+    "aliases": [
+      "Russo"
+    ]
   }
 ]
