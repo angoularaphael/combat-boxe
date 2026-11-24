@@ -1222,5 +1222,16 @@
     "aliases": [
       "Russo"
     ]
+  },
+  {
+    "name": "Martin Bakole",
+    "slug": "martin-bakole",
+    "path": "/img/boxers/martin-bakole.jpg",
+    "license": "editorial",
+    "artist": "matchroomboxing.com",
+    "pageUrl": "https://www.matchroomboxing.com/fighters/martin-bakole/",
+    "aliases": [
+      "Bakole"
+    ]
   }
 ]

@@ -1033,5 +1033,27 @@
     "decision": "",
     "sourceName": "CanadianBoxing.com",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "status": "a-venir",
+    "date": "2026-12-11",
+    "boxerA": "Deontay Wilder",
+    "boxerB": "Martin Bakole",
+    "category": "Poids lourds",
+    "titles": "",
+    "city": "Cardiff",
+    "venue": "Principality Stadium",
+    "time": "17:00 pour le début de l’événement; horaire du combat non précisé",
+    "channel": "Netflix",
+    "aboutA": "La BBC le présente comme un ancien champion du monde des poids lourds. Les pages consultées ne donnent pas son bilan ni son parcours récent.",
+    "aboutB": "La BBC le présente comme un poids lourd. Les pages consultées ne donnent pas son bilan ni son parcours récent.",
+    "analysis": "Deontay Wilder et Martin Bakole doivent s’affronter en poids lourds sur la carte de Fury-Joshua, le 11 décembre à Cardiff. Le combat a été ajouté après le forfait de Jai Opetaia, selon les informations publiées par The Ring.\n\nLe rendez-vous s’inscrit dans une soirée au Principality Stadium dont le début est annoncé à 17 heures. La salle indique que Netflix diffusera l’événement en direct. L’horaire précis de Wilder-Bakole n’est pas donné dans les pages consultées.\n\nLa carte comprend aussi Michael Essomba contre Da’Mazion Vanhouter, annoncé sur huit rounds. Les éléments disponibles confirment l’importance de l’affiche et son contexte, mais ne documentent pas assez les bilans ou les parcours récents pour analyser les styles ou départager les deux poids lourds.",
+    "prediction": "Les pages consultées qualifient Wilder d’ancien champion du monde et Bakole de poids lourd, sans apporter leurs bilans ni de résultat récent permettant d’évaluer leur forme.\n\nFaute de base factuelle suffisante dans les sources, aucun vainqueur pressenti ne peut être nommé.",
+    "stakes": "Une opposition de poids lourds vient renforcer la carte de Fury-Joshua à Cardiff.",
+    "winner": "",
+    "method": "",
+    "decision": "",
+    "sourceName": "BBC Sport",
+    "sourceUrl": "https://www.bbc.com/sport/boxing"
   }
 ]
