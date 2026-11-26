@@ -125,5 +125,12 @@
     "city": "El Paso",
     "note": "County Coliseum. ProBox TV US et ProBox TV. Horaire non indiqué.",
     "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
+  },
+  {
+    "date": "2027-01-30",
+    "name": "Daniel Dubois vs Joseph Parker",
+    "city": "Manchester",
+    "note": "Soirée à la Co-op Live Arena ; diffusion sur DAZN et DAZN Global ; heure non précisée.",
+    "sourceUrl": "https://www.canadianboxing.com/schedule.htm"
   }
 ]
