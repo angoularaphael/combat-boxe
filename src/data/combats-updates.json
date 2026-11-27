@@ -143,14 +143,14 @@
     "date": "2026-12-11",
     "boxerA": "Tyson Fury",
     "boxerB": "Anthony Joshua",
-    "venue": "Principality Stadium, Cardiff",
-    "time": "17:00, début de l’événement",
+    "venue": "Principality Stadium",
+    "time": "17:00 pour le début de l’événement ; combat prévu aux premières heures du matin",
     "channel": "Netflix",
-    "aboutA": "A détenu des titres mondiaux et fait partie des figures dominantes de la boxe britannique des poids lourds depuis plus d’une décennie.",
-    "aboutB": "A détenu des titres mondiaux et fait partie des figures dominantes de la boxe britannique des poids lourds depuis plus d’une décennie.",
-    "analysis": "Le Principality Stadium accueillera Fury contre Joshua le 11 décembre. La page du stade présente le combat comme la conclusion d’une rivalité britannique de poids lourds restée sans affrontement professionnel pendant plus d’une décennie.\n\nLa soirée doit se dérouler à Cardiff et le combat est prévu aux premières heures de la matinée, après une nuit complète de boxe. Netflix diffusera l’événement en direct.\n\nLe stade annonce une capacité maximale de 80 000 personnes et souligne son toit rétractable ainsi que son emplacement au cœur de la ville. Les informations disponibles ne détaillent pas ici les bilans des deux boxeurs ni les autres combats de la carte.",
+    "aboutA": "Tyson Fury a été déclaré médicalement apte à combattre après des examens, selon la BBC. Le site du stade rappelle qu’il a détenu des titres mondiaux.",
+    "aboutB": "Anthony Joshua a détenu des titres mondiaux. Le site du stade rappelle qu’il n’a jamais affronté Fury chez les professionnels.",
+    "analysis": "Le combat est programmé le 11 décembre au Principality Stadium de Cardiff. Le programme de la soirée est annoncé à partir de 17 h et le combat doit se dérouler aux premières heures du matin.\n\nLa BBC rapporte que Fury a reçu le feu vert médical après des examens, alors que des allégations sur un diagnostic avaient fait planer un doute sur la tenue de l’affiche.\n\nFury et Joshua ont détenu des titres mondiaux et dominé la scène britannique des poids lourds pendant plus d’une décennie, mais ne se sont jamais rencontrés chez les professionnels. Deontay Wilder contre Martin Bakole figure également sur la carte.",
     "prediction": "",
-    "sourceUrl": "https://www.principalitystadium.wales/event/tyson-fury-v-anthony-joshua/"
+    "sourceUrl": "https://www.bbc.com/sport/boxing"
   },
   {
     "date": "2026-10-10",

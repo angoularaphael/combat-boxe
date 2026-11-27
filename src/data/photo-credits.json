@@ -1233,5 +1233,17 @@
     "aliases": [
       "Bakole"
     ]
+  },
+  {
+    "name": "Joseph Parker",
+    "slug": "joseph-parker",
+    "path": "/img/boxers/joseph-parker.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Kidsoljah",
+    "pageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/58553361",
+    "wikiTitle": "Joseph Parker",
+    "aliases": [
+      "Parker"
+    ]
   }
 ]
